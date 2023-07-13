@@ -29,6 +29,7 @@ const Banner: FC = () => {
             label={"Посмотреть все"}
             color={"light"}
             clickHandler={showAllReplica}
+            height={"30"}
           />
         </ContentContainer>
       </StyledBanner>

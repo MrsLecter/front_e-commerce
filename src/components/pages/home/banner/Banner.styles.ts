@@ -9,6 +9,7 @@ export const StyledBannerWrapper = styled.section`
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
   overflow: hidden;
+  background-color: #f0f0f0;
 `;
 
 export const StyledBanner = styled.div`

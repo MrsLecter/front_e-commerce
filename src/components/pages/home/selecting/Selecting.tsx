@@ -16,8 +16,8 @@ const Selecting: FC = () => {
         <SearchBar />
       </SearchWrapper>
       <ChoosingWrapper>
-        <Choosing/>
-        </ChoosingWrapper>
+        <Choosing />
+      </ChoosingWrapper>
     </StyledSelecting>
   );
 };

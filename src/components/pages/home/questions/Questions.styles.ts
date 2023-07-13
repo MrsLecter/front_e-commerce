@@ -29,6 +29,9 @@ export const QuestionContent = styled.div`
     width: calc(100%-110px);
     padding-left: 20px;
   }
+  p {
+    margin: 0 5px;
+  }
 
   p:first-child {
     font-size: 16px;

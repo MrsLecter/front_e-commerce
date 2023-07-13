@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 interface IBlueBtnProps {
   color: "dark" | "light" | "transparent";
+  height?: "36" | "30";
   clickHandler: () => void;
   label: string;
 }
 
-const BlueBtn: FC<IBlueBtnProps> = ({ color, clickHandler, label }) => {
+const BlueBtn: FC<IBlueBtnProps> = ({ color, clickHandler, label, height }) => {
   const colors = {
     dark: {
       background: "#507298",
@@ -30,15 +31,20 @@ const BlueBtn: FC<IBlueBtnProps> = ({ color, clickHandler, label }) => {
       mainColor={colors[color].background}
       fontColor={colors[color].font}
       onClick={clickHandler}
+      height={height ? height : "36"}
     >
       {label}
     </StyledBlueBtn>
   );
 };
 
-const StyledBlueBtn = styled.button<{ mainColor: string; fontColor: string }>`
+const StyledBlueBtn = styled.button<{
+  mainColor: string;
+  fontColor: string;
+  height: string;
+}>`
   width: 100%;
-  height: 36px;
+  height: ${(props) => props.height + "px"};
   font-family: var(--font-roboto);
   font-size: 14px;
   letter-spacing: 0.5px;

@@ -2,21 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import logoPng from "@images/logo.png";
+import logoGreyPng from "@images/logo-dark.png";
 import styled from "styled-components";
 import { rubik } from "@styles/fonts";
 
-const Logo: FC = () => {
+interface Props {
+  color?: "white" | "gray";
+}
+
+const Logo: FC<Props> = ({ color = "white" }) => {
   return (
     <Link href="/">
-      <StyledLogo className={rubik.variable}>
-        <Image width={36} height={32} src={logoPng} alt={"logo.png"} />
+      <StyledLogo className={rubik.variable} color={color}>
+        {color === "white" && (
+          <Image width={36} height={32} src={logoPng} alt={"logo.png"} />
+        )}
+        {color === "gray" && (
+          <Image width={36} height={32} src={logoGreyPng} alt={"logo.png"} />
+        )}
         <p>Ukrdisk</p>
       </StyledLogo>
     </Link>
   );
 };
 
-const StyledLogo = styled.div`
+const StyledLogo = styled.div<{ color: string }>`
   padding: 2px;
   height: 32px;
   display: flex;
@@ -31,7 +41,7 @@ const StyledLogo = styled.div`
     font-weight: 400;
     letter-spacing: 0px;
     line-height: 48px;
-    color: white;
+    color: ${(props) => (props.color === "gray" ? "#7A8999" : "#fff")};
     white-space: nowrap;
   }
 `;
