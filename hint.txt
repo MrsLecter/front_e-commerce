@@ -1,8 +1,36 @@
 breackpoints:
-992
-600
-350
+1020
+960
+760
+375
 
 исправить:
 -картинка в карточках производители дисков
 -уменьшен футер
+
+добавить
+-airbnb config for eslint
+-errror, notFound page
+
+
+read:
+"use client";
+
+
+
+
+https://rims-1neq.onrender.com/car-brands (выдаст список брендов)
+https://rims-1neq.onrender.com/car-models/:brand (выдаст модели и года по квери параму)
+
+https://rims-1neq.onrender.com/rims-configs (возможные конфигурации дисков, для поиска)
+https://rims-1neq.onrender.com/rims-popular (20 самых популярных вернёт) 
+https://rims-1neq.onrender.com/rim-by-id (body : {id: string} вернет тебе инфу по конкретному диску более полную)
+https://rims-1neq.onrender.com/rims-by-brand (body : {rimBrand: string} либо название одного из брендов либо "all" что бы получить все)
+
+https://rims-1neq.onrender.com/order  (body :{ name: string; phone: string; email: string } это когда нажмимаешь заказать)
+https://rims-1neq.onrender.com/order-phcall  (body : { phone: string; } это когда нажмимаешь заказать звонок )
+https://rims-1neq.onrender.com/order-question  (body : { question: string; phone: string; email: string(опционально) } это когда нажмимаешь задать вопрос)
+
+https://rims-1neq.onrender.com/search-by-naming (body :{ searchText: string } вернет совпадения с введеным текстом среди названий дисков или брендов дисков)
+https://rims-1neq.onrender.com/search-by-car (body :{ brand, model, year } это для первого поиска все значения рекваиред)
+https://rims-1neq.onrender.com/search-by-config  (body :{ mountHoles, width, diameter  } тут хотя бы одно из значений должно быть, оно будет тебе возвращять по имеющимся значениям совпадения)

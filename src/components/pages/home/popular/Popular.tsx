@@ -5,11 +5,16 @@ import ProductCard from "@/components/common/productCard/ProductCard";
 import SectionHeader from "@/components/common/sectionHeader/SectionHeader";
 
 import { CardContainer, StyledPopular } from "./Popular.styles";
+import { useRouter } from "next/navigation";
+import { AppRoutes } from "@/constants/common";
 
 const Popular: FC = () => {
+  const router = useRouter();
+
   const showAllRimsHandler = () => {
-    alert("ShowAllRims");
+    router.push(AppRoutes.Rims);
   };
+
   return (
     <StyledPopular>
       <SectionHeader label={"Популярные модели"} />

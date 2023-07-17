@@ -6,7 +6,7 @@ import MainWrapper from "@/components/common/wrappers/MainWrapper";
 import Banner from "@/components/pages/home/banner/Banner";
 import Manufacturers from "@/components/pages/home/manufacturers/Manufacturers";
 import Popular from "@/components/pages/home/popular/Popular";
-import Questions from "@/components/pages/home/questions/Questions";
+import Questions from "@/components/common/questions/Questions";
 import Selecting from "@/components/pages/home/selecting/Selecting";
 
 export default function Home() {

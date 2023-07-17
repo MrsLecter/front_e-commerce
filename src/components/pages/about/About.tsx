@@ -1,14 +1,15 @@
-import Link from 'next/link';
-import { FC } from 'react';
+import Link from "next/link";
+import { FC } from "react";
 
-import { AppRoutes } from '@/constants/common';
+import ContentWrapper from "@/components/common/wrappers/ContentWrapper";
+import { AppRoutes } from "@/constants/common";
 
-import { AboutHeader, Paragraph, StyledAbout } from './About.styles';
-import Location from './elements/Location';
+import { AboutHeader, Paragraph } from "./About.styles";
+import Location from "./elements/Location";
 
 const About: FC = () => {
   return (
-    <StyledAbout>
+    <ContentWrapper>
       <AboutHeader>O нас</AboutHeader>
       <Paragraph>
         <p>Наша компания основана 24 февраля 2004 года в г. Днепр.</p>
@@ -51,7 +52,7 @@ const About: FC = () => {
         <p>Днепр, Запорожское Шоссе 26</p>
         <Location />
       </Paragraph>
-    </StyledAbout>
+    </ContentWrapper>
   );
 };
 

@@ -3,13 +3,17 @@
 import Footer from "@/components/common/footer/Footer";
 import Header from "@/components/common/header/Header";
 import MainWrapper from "@/components/common/wrappers/MainWrapper";
-import About from "@/components/pages/about/About";
 
-export default function Page({ params }: { params: { manufacturer: string } }) {
+export default function RimsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <MainWrapper>
       <Header />
-      <div>{params.manufacturer}</div>
+      <div>{"param panel"}</div>
+      {children}
       <Footer />
     </MainWrapper>
   );

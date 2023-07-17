@@ -1,5 +1,5 @@
-import { FC, ReactNode } from 'react';
-import styled from 'styled-components';
+import { FC, ReactNode } from "react";
+import styled from "styled-components";
 
 interface Props {
   children: ReactNode;
@@ -10,7 +10,7 @@ const MainWrapper: FC<Props> = ({ children }) => {
 };
 
 const StyledMainWrapper = styled.div`
-  height: 100%;
+  /* height: auto; */
   min-height: 100%;
   background-color: #f0f1f1;
 `;

@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-export const StyledAbout = styled.div`
-  margin: 16px auto;
-  padding: 8px 16px;
-  width: calc(100% - 16px);
-  min-width: 230px;
-  max-width: 960px;
-  min-height: 777px;
-  background-color: #fefeff;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-  border-radius: 2px;
-`;
-
 export const AboutHeader = styled.div`
   margin: 12px 0;
   width: 100%;

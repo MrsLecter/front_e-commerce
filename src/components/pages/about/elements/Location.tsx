@@ -10,7 +10,6 @@ const Location: FC = () => {
         height="100%"
         style={{ border: "none" }}
         allowFullScreen={false}
-        loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
     </MapWrapper>
@@ -20,6 +19,7 @@ const Location: FC = () => {
 const MapWrapper = styled.div`
   width: 100%;
   height: 400px;
+  background-color: #f0f1f1;
 `;
 
 export default Location;
