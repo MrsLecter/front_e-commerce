@@ -1,12 +1,12 @@
 import { FC, ReactNode } from "react";
 import styled from "styled-components";
 
-interface ISectionWrapperProps {
+interface Props {
   top: number;
   children: ReactNode;
 }
 
-const SectionWrapper: FC<ISectionWrapperProps> = ({ top, children }) => {
+const SectionWrapper: FC<Props> = ({ top, children }) => {
   return (
     <StyledSection>
       <ContentWrapper top={top}>{children}</ContentWrapper>

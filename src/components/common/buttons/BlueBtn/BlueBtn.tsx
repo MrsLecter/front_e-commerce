@@ -1,14 +1,15 @@
 import { FC } from "react";
-import styled from "styled-components";
 
-interface IBlueBtnProps {
+import { StyledBlueBtn } from "./BlueBtn.styles";
+
+interface Props {
   color: "dark" | "light" | "transparent";
   height?: "36" | "30";
   clickHandler: () => void;
   label: string;
 }
 
-const BlueBtn: FC<IBlueBtnProps> = ({ color, clickHandler, label, height }) => {
+const BlueBtn: FC<Props> = ({ color, clickHandler, label, height }) => {
   const colors = {
     dark: {
       background: "#507298",
@@ -37,28 +38,5 @@ const BlueBtn: FC<IBlueBtnProps> = ({ color, clickHandler, label, height }) => {
     </StyledBlueBtn>
   );
 };
-
-const StyledBlueBtn = styled.button<{
-  mainColor: string;
-  fontColor: string;
-  height: string;
-}>`
-  width: 100%;
-  height: ${(props) => props.height + "px"};
-  font-family: var(--font-roboto);
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  font-weight: 500;
-  opacity: 0.9;
-  border: none;
-  color: ${(props) => props.fontColor};
-  background-color: ${(props) => props.mainColor};
-
-  &:hover {
-    opacity: 1;
-    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-    transition-duration: 0.45s;
-  }
-`;
 
 export default BlueBtn;

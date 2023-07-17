@@ -16,39 +16,6 @@ export const StyledChoosing = styled.div`
     width: 100%;
   }
 
-  div:last-child {
-    width: 212px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  div:last-child p {
-    margin-top: 4px;
-    margin-bottom: 8px;
-    font-family: var(--font-roboto);
-    font-size: 18px;
-    letter-spacing: 0.6px;
-    font-weight: 500;
-    color: rgba(66, 95, 128, 0.78);
-  }
-
-  div:last-child div {
-    margin-top: 4px;
-  }
-
-  div:last-child button {
-    margin-top: 26px;
-  }
-
-  @media (max-width: 600px) {
-    div:last-child p {
-      font-size: 14px;
-      letter-spacing: 0.5px;
-    }
-  }
-
   @media (max-width: 500px) {
     margin: 0 8px;
     padding: 24px 0px;
@@ -56,6 +23,39 @@ export const StyledChoosing = styled.div`
     justify-content: center;
     div:first-child {
       display: none;
+    }
+  }
+`;
+
+export const ChoosingContent = styled.div`
+  width: 212px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  p {
+    margin-top: 2px;
+    margin-bottom: 6px;
+    font-family: var(--font-roboto);
+    font-size: 18px;
+    letter-spacing: 0.6px;
+    font-weight: 500;
+    color: rgba(66, 95, 128, 0.78);
+  }
+
+  div {
+    margin-top: 4px;
+  }
+
+  button {
+    margin-top: 26px;
+  }
+
+  @media (max-width: 600px) {
+    p {
+      font-size: 14px;
+      letter-spacing: 0.5px;
     }
   }
 `;

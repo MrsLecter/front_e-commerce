@@ -1,20 +1,21 @@
 import Image from "next/image";
 import { FC } from "react";
+
 import { StyledCard } from "./Card.styles";
 
-interface CardProps {
+interface Props {
   id: number;
   logo: string;
   rim: string;
   href: string;
 }
 
-const Card: FC<CardProps> = (props) => {
+const Card: FC<Props> = (props) => {
   return (
     <StyledCard>
       <div>
         <div>
-          <Image src={props.logo} alt={"logo.png"} width={130} height={25} />
+          <Image src={props.logo} alt={"logo.png"} width={130} height={28} />
         </div>
         <button>Посмотреть все</button>
       </div>

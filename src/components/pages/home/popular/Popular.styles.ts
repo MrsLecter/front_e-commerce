@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledPopular = styled.section`
   padding-top: 30px;
+  padding-bottom: 24px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,13 +10,17 @@ export const StyledPopular = styled.section`
   align-items: center;
   background-color: #f0f0f0;
 
-  @media (max-width: 600px) {
+  @media (max-width: 960px) {
+    padding-top: 34px;
+  }
+
+  @media (max-width: 760px) {
     display: none;
   }
 `;
 
 export const CardContainer = styled.div`
-  margin: 12px auto;
+  margin: 12px auto 6px;
   width: 992px;
   height: 740px;
   display: flex;

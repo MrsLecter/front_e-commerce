@@ -1,12 +1,13 @@
 import { FC } from "react";
+
+import Choosing from "./elements/choosing/Choosing";
+import SearchBar from "./elements/searchBar/SearchBar";
 import {
   ChoosingWrapper,
   SearchWrapper,
   StyledSelecting,
   Substrate,
 } from "./Selecting.styles";
-import SearchBar from "./elements/searchBar/SearchBar";
-import Choosing from "./elements/choosing/Choosing";
 
 const Selecting: FC = () => {
   return (

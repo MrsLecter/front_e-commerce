@@ -21,7 +21,10 @@ export const SearchInput = styled.input`
   height: 100%;
   padding-left: 50px;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 4px;
+  font-family: var(--font-roboto);
+  font-size: 16px;
+  letter-spacing: 0.6px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 
   @media (max-width: 500px) {

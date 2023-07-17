@@ -1,9 +1,11 @@
-import SectionHeader from "@/components/common/sectionHeader/SectionHeader";
-import { StyledManufacturers } from "./Manufacturers.styles";
 import { FC, useState } from "react";
+
+import SectionHeader from "@/components/common/sectionHeader/SectionHeader";
+import { MANUFACTURERS_CARD_LIST } from "@/constants/manufactures-card-list";
+
 import CardContainer from "./elements/CardsContainer/CardsContainer";
 import ShowMoreBtn from "./elements/showMoreBtn/ShowMoreBtn";
-import { MANUFACTURERS_CARD_LIST } from "@/constants/common";
+import { StyledManufacturers } from "./Manufacturers.styles";
 
 const Manufacturers: FC = () => {
   const hiddenCardsAmount = MANUFACTURERS_CARD_LIST.length - 2;

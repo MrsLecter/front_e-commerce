@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import logoPng from "@images/logo.png";
+
 import logoGreyPng from "@images/logo-dark.png";
-import styled from "styled-components";
+import logoPng from "@images/logo.png";
 import { rubik } from "@styles/fonts";
+
+import { StyledLogo } from "./Logo.styles";
 
 interface Props {
   color?: "white" | "gray";
@@ -25,25 +27,5 @@ const Logo: FC<Props> = ({ color = "white" }) => {
     </Link>
   );
 };
-
-const StyledLogo = styled.div<{ color: string }>`
-  padding: 2px;
-  height: 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  p {
-    margin-left: 16px;
-    font-family: var(--font-rubik);
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: 0px;
-    line-height: 48px;
-    color: ${(props) => (props.color === "gray" ? "#7A8999" : "#fff")};
-    white-space: nowrap;
-  }
-`;
 
 export default Logo;

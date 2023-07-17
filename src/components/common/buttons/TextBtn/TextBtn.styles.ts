@@ -1,16 +1,6 @@
-import { FC } from "react";
 import styled from "styled-components";
 
-interface ITextBtn {
-  label: string;
-  clickHandler: () => void;
-}
-
-const TextBtn: FC<ITextBtn> = ({ label, clickHandler }) => {
-  return <StyledTextBtn onClick={clickHandler}>{label}</StyledTextBtn>;
-};
-
-const StyledTextBtn = styled.button`
+export const StyledTextBtn = styled.button`
   padding: 14px 0;
   display: flex;
   flex-direction: row;
@@ -20,17 +10,13 @@ const StyledTextBtn = styled.button`
   text-decoration: none;
   font-family: var(--font-roboto);
   font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.4px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
   color: white;
   background: transparent;
   border: none;
-
-
 
   &:hover {
     text-decoration: underline;
   }
 `;
-
-export default TextBtn;

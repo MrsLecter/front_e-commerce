@@ -1,15 +1,24 @@
 import styled from "styled-components";
 
 export const QuestionsWrapper = styled.section`
+  display: none;
+  padding-top: 0px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: #f0f0f0;
+
+  @media (max-width: 760px) {
+    display: block;
+    padding-top: 20px;
+  }
 `;
 
 export const QuestionContent = styled.div`
   padding: 12px;
+  margin: 0 auto;
   width: calc(100% - 16px);
   display: none;
   flex-direction: row;
@@ -20,6 +29,7 @@ export const QuestionContent = styled.div`
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
   overflow: hidden;
+  background-color: white;
 
   div:first-child {
     width: 110px;

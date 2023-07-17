@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { FC } from "react";
+
 import searchIcon from "@icons/search-black.svg";
-import { StyledSearchBar, SearchInput, Icon } from "./SearchBar.styles";
+
+import { Icon, SearchInput, StyledSearchBar } from "./SearchBar.styles";
 
 const SearchBar: FC = () => {
   return (

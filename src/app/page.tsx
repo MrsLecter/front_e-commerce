@@ -2,16 +2,16 @@
 
 import Footer from "@/components/common/footer/Footer";
 import Header from "@/components/common/header/Header";
+import MainWrapper from "@/components/common/wrappers/MainWrapper";
 import Banner from "@/components/pages/home/banner/Banner";
 import Manufacturers from "@/components/pages/home/manufacturers/Manufacturers";
 import Popular from "@/components/pages/home/popular/Popular";
 import Questions from "@/components/pages/home/questions/Questions";
 import Selecting from "@/components/pages/home/selecting/Selecting";
-import styled from "styled-components";
 
 export default function Home() {
   return (
-    <StyledMain>
+    <MainWrapper>
       <Header color={"none"} />
       <Selecting />
       <Manufacturers />
@@ -19,12 +19,6 @@ export default function Home() {
       <Questions />
       <Popular />
       <Footer />
-    </StyledMain>
+    </MainWrapper>
   );
 }
-
-const StyledMain = styled.div`
-  height: 100%;
-  min-height: 100%;
-  background-color: #f0f1f1;
-`;

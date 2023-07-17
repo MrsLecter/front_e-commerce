@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import Card from "../Card/Card";
 import { StyledContainer } from "./CardsContainer.styles";
 
@@ -44,7 +45,7 @@ const CardContainer: FC<Props> = ({ cardList, isHaveHiddenCards }) => {
         })}
         {isHaveHiddenCards && (
           <div id="rest">
-            {splicedArr.map((item) => {
+            {restArr.map((item) => {
               return (
                 <Card
                   key={item.id}

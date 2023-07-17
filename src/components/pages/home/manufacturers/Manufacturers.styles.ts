@@ -7,4 +7,9 @@ export const StyledManufacturers = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  background-color: #f1f0f1;
+
+  @media (max-width: 1020px) {
+    padding: 24px 0;
+  }
 `;

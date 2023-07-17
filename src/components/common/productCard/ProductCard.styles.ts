@@ -4,7 +4,7 @@ export const StyledProductCard = styled.div`
   margin-bottom: 16px;
   position: relative;
   width: 236px;
-  height: 354px;
+  height: 356px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -22,11 +22,11 @@ export const StyledProductCard = styled.div`
 `;
 
 export const CardContent = styled.div`
-  padding: 0 12px 12px;
+  padding: 0px 12px 12px;
+  width: 100%;
   font-family: var(--font-roboto);
 
   a {
-    margin-top: 8px;
     font-size: 15px;
     text-overflow: ellipsis;
     overflow: hidden;

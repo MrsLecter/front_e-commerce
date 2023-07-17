@@ -16,6 +16,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.variable}>
+        <div id="backdrop"></div>
+        <div id="modal"></div>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>

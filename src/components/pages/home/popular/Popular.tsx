@@ -1,8 +1,10 @@
-import ProductCard from "@/components/common/productCard/ProductCard";
 import { FC } from "react";
-import { CardContainer, StyledPopular } from "./Popular.styles";
+
+import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn/ShowMoreBtn";
+import ProductCard from "@/components/common/productCard/ProductCard";
 import SectionHeader from "@/components/common/sectionHeader/SectionHeader";
-import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn";
+
+import { CardContainer, StyledPopular } from "./Popular.styles";
 
 const Popular: FC = () => {
   const showAllRimsHandler = () => {

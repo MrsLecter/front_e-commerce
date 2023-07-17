@@ -13,8 +13,8 @@ export const StyledCard = styled.div`
   box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
 
   div:first-child {
-    margin: 6px 5px 0px;
-    padding-top: 6px;
+    margin: 6px 5px 2px;
+    padding-top: 4px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -54,7 +54,7 @@ export const StyledCard = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   } */
 
-  @media (max-width: 990px) {
+  @media (max-width: 1020px) {
     padding: 0px 0 0 8px;
     margin-bottom: 16px;
     width: 362px;

@@ -1,7 +1,9 @@
-import { FC } from "react";
-import questions from "@images/questions.png";
 import Image from "next/image";
-import BlueBtn from "@/components/common/buttons/BlueBtn";
+import { FC } from "react";
+
+import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
+import questions from "@images/questions.png";
+
 import { QuestionContent, QuestionsWrapper } from "./Questions.styles";
 
 const Questions: FC = () => {

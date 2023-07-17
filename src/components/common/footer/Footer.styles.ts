@@ -12,7 +12,7 @@ export const StyledFooter = styled.div`
 
 export const FooterWrapper = styled.footer`
   width: 100%;
-  height: 300px;
+  height: 193px;
   max-width: 1024px;
   padding: 8px 16px;
   display: flex;
@@ -27,7 +27,7 @@ export const FooterWrapper = styled.footer`
     height: auto;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
   }
 `;
 
@@ -36,7 +36,7 @@ export const LogoWrapper = styled.div`
   width: 20%;
   height: 100%;
   min-height: 100%;
-  min-width: 250px;
+  min-width: 244px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -98,7 +98,7 @@ export const LinksWrapper = styled.nav`
 `;
 
 export const ContactWrapper = styled.div`
-  width: 20%;
+  width: 40%;
   height: 100%;
   min-height: 100%;
   display: flex;

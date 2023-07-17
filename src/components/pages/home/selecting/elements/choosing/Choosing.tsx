@@ -1,9 +1,11 @@
-import { FC, useState } from "react";
 import Image from "next/image";
-import cars from "@images/auto-search.png";
+import { FC, useState } from "react";
+
+import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
 import SelectMenu from "@/components/common/selectMenu/SelectMenu";
-import { StyledChoosing } from "./Choosing.styles";
-import BlueBtn from "@/components/common/buttons/BlueBtn";
+import cars from "@images/auto-search.png";
+
+import { ChoosingContent, StyledChoosing } from "./Choosing.styles";
 
 interface IListItemType {
   id: number;
@@ -41,7 +43,7 @@ const Choosing: FC = () => {
           style={{ marginLeft: "10px", marginTop: "6px" }}
         />
       </div>
-      <div>
+      <ChoosingContent>
         <p>Подбор по авто</p>
         <SelectMenu
           defaultOption={"Марка"}
@@ -63,7 +65,7 @@ const Choosing: FC = () => {
           label={"Подобрать"}
           clickHandler={choseAutoHandler}
         />
-      </div>
+      </ChoosingContent>
     </StyledChoosing>
   );
 };

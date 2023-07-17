@@ -1,9 +1,9 @@
-import { FC } from "react";
-import Image from "next/image";
-import logo from "@images/logo-dark.png";
 import Link from "next/link";
+import { FC } from "react";
+
 import { FOOTER_LINKS } from "@/constants/common";
-import SectionWrapper from "../wrappers/SectionWrapper";
+
+import Logo from "../Logo/Logo";
 import {
   ContactWrapper,
   FooterWrapper,
@@ -11,7 +11,6 @@ import {
   LogoWrapper,
   StyledFooter,
 } from "./Footer.styles";
-import Logo from "../Logo/Logo";
 
 const Footer: FC = () => {
   return (
@@ -36,7 +35,7 @@ const Footer: FC = () => {
             <a href="mailto:blokhvova@gmail.com">blokhvova@gmail.com</a>
           </p>
           <p>
-            <a href="tel:+380503403726">(050)340-37-26</a>
+            <a href="tel:+380503403726">(050) 340-37-26</a>
           </p>
         </ContactWrapper>
       </FooterWrapper>

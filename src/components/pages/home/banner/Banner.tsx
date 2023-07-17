@@ -1,11 +1,13 @@
-import BlueBtn from "@/components/common/buttons/BlueBtn";
-import { FC } from "react";
-import carBanner from "@images/auto-banner.png";
 import Image from "next/image";
+import { FC } from "react";
+
+import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
+import carBanner from "@images/auto-banner.png";
+
 import {
+  ContentContainer,
   StyledBanner,
   StyledBannerWrapper,
-  ContentContainer,
 } from "./Banner.styles";
 
 const Banner: FC = () => {
@@ -24,12 +26,12 @@ const Banner: FC = () => {
         </div>
         <ContentContainer>
           <p>Replica</p>
-          <p>Копии оригинальных дисков у нас на сайте</p>
+          <p>Копии оригинальных дисков теперь у нас на сайте</p>
           <BlueBtn
             label={"Посмотреть все"}
             color={"light"}
             clickHandler={showAllReplica}
-            height={"30"}
+            height={"36"}
           />
         </ContentContainer>
       </StyledBanner>

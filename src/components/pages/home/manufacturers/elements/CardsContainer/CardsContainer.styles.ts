@@ -9,7 +9,7 @@ export const StyledContainer = styled.div<{ param: "large" | "small" }>`
   justify-content: space-between;
   align-items: flex-start;
 
-  @media (max-width: 990px) {
+  @media (max-width: 1020px) {
     padding: 14px 0px 0px 0px;
     width: 740px;
     flex-wrap: wrap;

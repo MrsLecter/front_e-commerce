@@ -11,8 +11,10 @@ export const StyledSelectMenu = styled.div`
     min-width: 100%;
     max-width: 100%;
     padding: 6px 8px;
-    font-size: 14px;
+
     font-family: var(--font-roboto);
+    font-size: 14px;
+    letter-spacing: 0px;
     text-overflow: ellipsis;
     color: #364d66;
     border: none;

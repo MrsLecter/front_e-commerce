@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledBannerWrapper = styled.section`
+  padding-top: 14px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -9,27 +10,42 @@ export const StyledBannerWrapper = styled.section`
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
   overflow: hidden;
-  background-color: #f0f0f0;
+  background-color: #f1f0f1;
+
+  @media (max-width: 1020px) {
+    margin-top: 22px;
+  }
 `;
 
 export const StyledBanner = styled.div`
   padding: 36px 32px 12px;
-  width: 740px;
-  height: 259px;
+  width: 992px;
+  height: 250px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: space-between;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
   overflow: hidden;
 
   div:first-child {
-    width: 55%;
+    width: 50%;
+  }
+
+  @media (max-width: 1020px) {
+    width: 740px;
+    height: 259px;
+
+    div:first-child {
+      margin-top: 28px;
+      height: 150px;
+    }
   }
 
   @media (max-width: 760px) {
+    padding: 16px;
     margin: 0 auto;
     width: calc(100% - 16px);
     height: 403px;
@@ -40,29 +56,32 @@ export const StyledBanner = styled.div`
     div:first-child {
       margin-top: 16px;
       width: 100%;
+      min-width: 300px;
+      height: 250px;
     }
   }
 `;
 
 export const ContentContainer = styled.div`
-  width: 47%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 
   p:first-child {
+    margin-bottom: 18px;
     font-family: var(--font-roboto);
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 1.2px;
-    margin-bottom: 16px;
+
     color: #000;
     text-align: center;
   }
 
   p:nth-child(2) {
-    padding: 0 43px;
+    padding: 2px 50px;
     font-family: var(--font-roboto);
     font-size: 20px;
     font-weight: 400;
@@ -71,12 +90,26 @@ export const ContentContainer = styled.div`
   }
 
   button {
-    margin-top: 16px;
+    margin-top: 26px;
     width: 180px;
+  }
+
+  @media (max-width: 1020px) {
+    p:nth-child(2) {
+      padding: 2px 46px;
+    }
+
+    button {
+      margin-top: 16px;
+    }
   }
 
   @media (max-width: 760px) {
     width: 100%;
     order: -1;
+
+    p:nth-child(2) {
+      padding: 2px 0px;
+    }
   }
 `;

@@ -1,17 +1,14 @@
 import { FC } from "react";
+
 import { StyledSelectMenu } from "./SelectMenu.styles";
 
-interface ISelectMenuProps {
+interface Props {
   defaultOption: string;
   setValue: (value: string) => void;
   optionsArray: { id: number; label: string }[];
 }
 
-const SelectMenu: FC<ISelectMenuProps> = ({
-  defaultOption,
-  optionsArray,
-  setValue,
-}) => {
+const SelectMenu: FC<Props> = ({ defaultOption, optionsArray, setValue }) => {
   return (
     <StyledSelectMenu>
       <select onChange={(e) => setValue(e.target.value)}>
