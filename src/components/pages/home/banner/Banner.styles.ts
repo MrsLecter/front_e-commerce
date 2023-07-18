@@ -32,6 +32,7 @@ export const StyledBanner = styled.div`
 
   div:first-child {
     width: 50%;
+    object-fit: contain;
   }
 
   @media (max-width: 1020px) {
@@ -56,7 +57,7 @@ export const StyledBanner = styled.div`
     div:first-child {
       margin-top: 16px;
       width: 100%;
-      min-width: 300px;
+      min-width: 400px;
       height: 250px;
     }
   }

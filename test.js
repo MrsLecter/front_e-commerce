@@ -1,15 +1,14 @@
-const words = [];
+let str = "12345";
 
-for (let i = 0; i < 100; i++) {
-  const wordLength = Math.floor(Math.random() * 10) + 1; // generate a random word length between 1 and 10 characters
-  let word = "";
-
-  for (let j = 0; j < wordLength; j++) {
-    const charCode = Math.floor(Math.random() * 26) + 97; // generate a random character code between a and z
-    word += String.fromCharCode(charCode);
+const getPrettyPrice = (price) => {
+  let priceStr = String(price);
+  for (let i = priceStr.length - 1; i >= 0; i--) {
+    if (i % 3 === 0 && i !== 0) {
+      priceStr =
+        priceStr.slice(0, i - 1) + " " + priceStr.slice(i - 1, priceStr.length);
+    }
   }
+  return priceStr;
+};
 
-  words.push(word);
-}
-
-console.log(words);
+console.log(getPrettyPrice(45236));

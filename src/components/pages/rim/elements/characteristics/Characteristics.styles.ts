@@ -1,14 +1,21 @@
 import styled from "styled-components";
 
 export const StyledChContainer = styled.div`
+  margin-top: 26px;
   width: 411px;
-  height: 164px;
+  min-height: 164px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   font-family: var(--font-roboto);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+
+  @media (max-width: 1000px) {
+    width: calc(100% - 16px);
+    margin: 26px auto 0px;
+    max-width: calc(100% - 16px);
+  }
 `;
 
 export const ChHeader = styled.div`
@@ -21,13 +28,15 @@ export const ChHeader = styled.div`
   align-items: center;
   font-size: 20px;
   color: #757575;
+  background-color: #fffefe;
 `;
 
 export const ChRow = styled.div<{ color?: string }>`
   position: relative;
   padding: 0px 16px;
-  width: inherit;
-  height: 36px;
+  width: 100%;
+  min-height: 36px;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -36,7 +45,7 @@ export const ChRow = styled.div<{ color?: string }>`
   font-weight: 400;
   line-height: 36px;
   color: #757575;
-  background-color: ${(props) => (props.color ? props.color : "white")};
+  background-color: ${(props) => (props.color ? props.color : " #fffefe")};
 
   div:first-child {
     position: absolute;
@@ -53,31 +62,53 @@ export const ChRow = styled.div<{ color?: string }>`
 
   div:nth-child(2) {
     width: 100%;
-    height: 70%;
-    border-bottom: 1px dashed black;
+    height: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-bottom: 1px dashed #757575;
   }
 
   div:last-child {
-    position: absolute;
-    top: 0;
-    right: 8px;
+    max-width: 120px;
     height: 100%;
     align-self: flex-end;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
     background-color: ${(props) => (props.color ? props.color : "white")};
-
+    color: #757575;
+    line-height: 18px;
+    margin: 2px;
+    float: left;
+    padding: 2px;
     span {
+      margin: 2px;
       display: inline-block;
       border: 1px solid #757575;
-      color: #757575;
-      line-height: 18px;
       border-radius: 3px;
-      margin: 2px;
-      float: left;
-      padding: 2px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div:first-child {
+      position: relative;
+      text-align: center;
+    }
+
+    div:nth-child(2) {
+      display: none;
+    }
+
+    div:last-child {
+      max-width: 100%;
+      text-align: center;
+      align-self: center;
     }
   }
 `;

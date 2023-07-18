@@ -4,7 +4,7 @@ import { ChHeader, ChRow, StyledChContainer } from "./Characteristics.styles";
 interface Props {
   width: string;
   diameter: string;
-  fixingHoles: string;
+  fixingHoles: string[];
 }
 
 const Characteristics: FC<Props> = ({ width, diameter, fixingHoles }) => {
@@ -19,7 +19,7 @@ const Characteristics: FC<Props> = ({ width, diameter, fixingHoles }) => {
           {'"'}
         </div>
       </ChRow>
-      <ChRow>
+      <ChRow color={" #fffefe"}>
         <div>Диаметр обода (D)</div>
         <div />
         <div>&#8709;{diameter}</div>
@@ -27,7 +27,11 @@ const Characteristics: FC<Props> = ({ width, diameter, fixingHoles }) => {
       <ChRow color={"#e8ebed"}>
         <div>Крепежные отверстия (PCD)</div>
         <div />
-        <div><span>{fixingHoles}</span></div>
+        <div>
+          {fixingHoles.map((item, index) => {
+            return <span key={index}>{item}</span>;
+          })}
+        </div>
       </ChRow>
     </StyledChContainer>
   );

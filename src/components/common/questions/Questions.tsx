@@ -4,7 +4,11 @@ import { FC } from "react";
 import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
 import questions from "@images/questions.png";
 
-import { QuestionContent, QuestionsWrapper } from "./Questions.styles";
+import {
+  QuestionContent,
+  QuestionImage,
+  QuestionsWrapper,
+} from "./Questions.styles";
 
 const Questions: FC = () => {
   const orderCall = () => {
@@ -15,14 +19,13 @@ const Questions: FC = () => {
   };
   return (
     <QuestionsWrapper>
+      <QuestionImage>
+        <Image src={questions} alt={"questions"} width={118} height={126} />
+      </QuestionImage>
       <QuestionContent>
-        <div>
-          <Image src={questions} alt={"questions"} width={110} height={118} />
-        </div>
-        <div>
-          <p>Есть вопрос?</p>
-          <p>Мы с удовольствием ответим на все!</p>
-          <BlueBtn
+        <p>Есть вопрос?</p>
+        <p>Мы с удовольствием ответим на все!</p>
+        <BlueBtn
             color={"dark"}
             label={"Заказать звонок"}
             clickHandler={orderCall}
@@ -32,7 +35,6 @@ const Questions: FC = () => {
             label={"Задать вопрос"}
             clickHandler={askQuestion}
           />
-        </div>
       </QuestionContent>
     </QuestionsWrapper>
   );

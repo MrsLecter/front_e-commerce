@@ -6,6 +6,7 @@ import rim from "@images/delete-rim.jpg";
 
 import BlueBtn from "../buttons/BlueBtn/BlueBtn";
 import { CardContent, StyledProductCard } from "./ProductCard.styles";
+import { getPrettyPrice } from "@/utils/functions";
 
 interface Props {
   name: string;
@@ -27,7 +28,7 @@ const ProductCard: FC<Props> = ({ name, price, diameter, href }) => {
 
       <CardContent>
         <Link href={href}>{name}</Link>
-        <p>от&nbsp;{price}&nbsp;грн</p>
+        <p>от&nbsp;{getPrettyPrice(price)}&nbsp;грн</p>
         <p>&#8960;{diameter}</p>
 
         <BlueBtn

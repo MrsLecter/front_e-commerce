@@ -16,7 +16,7 @@ export default function Home() {
       <Selecting />
       <Manufacturers />
       <Banner />
-      <Questions />
+      {/* <Questions /> */}
       <Popular />
       <Footer />
     </MainWrapper>
