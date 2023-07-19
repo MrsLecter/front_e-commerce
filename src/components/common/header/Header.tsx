@@ -1,24 +1,22 @@
-import { useRouter } from 'next/navigation';
-import { FC } from 'react';
+import { useRouter } from "next/navigation";
+import { FC } from "react";
 
-import TextBtn from '../buttons/TextBtn/TextBtn';
-import Logo from '../Logo/Logo';
-import { HeaderContent, StyledHeader } from './Header.styles';
+import TextBtn from "../buttons/TextBtn/TextBtn";
+import Logo from "../Logo/Logo";
+import { HeaderContent, StyledHeader } from "./Header.styles";
 
 interface Props {
   color?: "blue" | "none";
+  showContact: () => void;
 }
 
-const Header: FC<Props> = ({ color }) => {
+const Header: FC<Props> = ({ color, showContact }) => {
   const router = useRouter();
 
   const showNews = () => {
     router.push("/news");
   };
 
-  const showContact = () => {
-    alert("show contact");
-  };
   return (
     <StyledHeader color={color || "blue"}>
       <HeaderContent>

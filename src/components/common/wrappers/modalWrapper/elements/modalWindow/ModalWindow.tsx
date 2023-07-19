@@ -3,23 +3,23 @@ import { FC } from "react";
 
 import { FOCUS_TRAP_OPTIONS } from "@/config/focus-trap-options";
 
-import { ModalWrapper } from "./ModalWindow.styles";
+import { StyledModalWrapper } from "./ModalWindow.styles";
 
 export interface IModalWindowProps {
+  isActive:boolean;
   children: React.ReactNode;
 }
 
-const ModalWindow: FC<IModalWindowProps> = ({ children }) => {
+const ModalWindow: FC<IModalWindowProps> = ({isActive, children }) => {
   const backdropClickHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
-    alert("closeModal");
   };
 
   return (
     <FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS}>
-      <ModalWrapper onMouseDown={(e) => backdropClickHandler(e)}>
+      <StyledModalWrapper onMouseDown={(e) => backdropClickHandler(e)} isActive={isActive}>
         {children}
-      </ModalWrapper>
+      </StyledModalWrapper>
     </FocusTrap>
   );
 };

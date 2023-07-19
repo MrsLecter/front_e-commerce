@@ -12,7 +12,6 @@ export default function RimsLayout({
   return (
     <MainWrapper>
       <Header />
-      <div>{"param panel"}</div>
       {children}
       <Footer />
     </MainWrapper>

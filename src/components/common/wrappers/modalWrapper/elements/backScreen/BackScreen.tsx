@@ -2,34 +2,47 @@ import { FC } from "react";
 import styled from "styled-components";
 
 interface IBackdropProps {
+  isActive: boolean;
   backClickHandler: React.MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-const BackScreen: FC<IBackdropProps> = ({ backClickHandler }) => {
-  return <StyledBackdrop onMouseDown={backClickHandler} />;
+const BackScreen: FC<IBackdropProps> = ({ isActive, backClickHandler }) => {
+  return <StyledBackdrop onMouseDown={backClickHandler} isActive={isActive} />;
 };
 
-export const StyledBackdrop = styled.div`
+export const StyledBackdrop = styled.div<{ isActive: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  min-width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.871);
-  backdrop-filter: blur(77px);
-  animation: appearing 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.54);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(1px);
+
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   overflow: hidden;
+  animation: ${(props) =>
+    props.isActive ? "appearance 0.5s ease-in" : "disappearance 0.5s ease-in"};
 
-  @keyframes appearing {
+  @keyframes appearance {
     from {
-      opacity: 0;
+      opacity: 0.7;
     }
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes disappearance {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.7;
     }
   }
 `;

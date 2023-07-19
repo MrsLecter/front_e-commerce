@@ -49,7 +49,7 @@ export const StyledBanner = styled.div`
     padding: 16px;
     margin: 0 auto;
     width: calc(100% - 16px);
-    height: 403px;
+    height: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -57,7 +57,8 @@ export const StyledBanner = styled.div`
     div:first-child {
       margin-top: 16px;
       width: 100%;
-      min-width: 400px;
+      min-width: 464px;
+      max-width: 464px;
       height: 250px;
     }
   }
