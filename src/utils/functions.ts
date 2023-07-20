@@ -39,8 +39,19 @@ export const getPrettyPrice = (price: number) => {
   for (let i = priceStr.length - 1; i >= 0; i--) {
     if (i % 3 === 0 && i !== 0) {
       priceStr =
-        priceStr.slice(0, i - 1) + " " + priceStr.slice(i - 1, priceStr.length);
+        priceStr.slice(0, priceStr.length - i) +
+        " " +
+        priceStr.slice(priceStr.length - i, priceStr.length);
     }
   }
   return priceStr;
+};
+
+export const getPrettyDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const dateArr = date.toLocaleString("uk-UA", {
+    timeZone: "UTC",
+    dateStyle: "short",
+  });
+  return dateArr;
 };

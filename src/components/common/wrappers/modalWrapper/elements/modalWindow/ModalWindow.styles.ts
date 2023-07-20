@@ -14,7 +14,7 @@ export const StyledModalWrapper = styled.div<{ isActive: boolean }>`
   align-items: center;
   overflow: hidden;
   z-index: 101;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: inherit;
   animation: ${(props) =>
     props.isActive
       ? "appearance 0.3s ease-in-out"

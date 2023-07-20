@@ -48,7 +48,9 @@ const ModalWrapper: FC<Props> = ({ isActive, children, backClickHandler }) => {
           backdrop
         )}
         {ReactDOM.createPortal(
-          <ModalWindow isActive={isActive}>{children}</ModalWindow>,
+          <ModalWindow isActive={isActive} backClickHandler={backClickHandler}>
+            {children}
+          </ModalWindow>,
           modal
         )}
       </>

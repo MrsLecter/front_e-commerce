@@ -10,13 +10,12 @@ import {
   QuestionsWrapper,
 } from "./Questions.styles";
 
-const Questions: FC = () => {
-  const orderCall = () => {
-    alert("order call");
-  };
-  const askQuestion = () => {
-    alert("ask Question");
-  };
+interface Props {
+  orderCallHandler: () => void;
+  askQuestionHandler: () => void;
+}
+
+const Questions: FC<Props> = ({ orderCallHandler, askQuestionHandler }) => {
   return (
     <QuestionsWrapper>
       <QuestionImage>
@@ -26,15 +25,15 @@ const Questions: FC = () => {
         <p>Есть вопрос?</p>
         <p>Мы с удовольствием ответим на все!</p>
         <BlueBtn
-            color={"dark"}
-            label={"Заказать звонок"}
-            clickHandler={orderCall}
-          />
-          <BlueBtn
-            color={"light"}
-            label={"Задать вопрос"}
-            clickHandler={askQuestion}
-          />
+          color={"dark"}
+          label={"Заказать звонок"}
+          clickHandler={orderCallHandler}
+        />
+        <BlueBtn
+          color={"light"}
+          label={"Задать вопрос"}
+          clickHandler={askQuestionHandler}
+        />
       </QuestionContent>
     </QuestionsWrapper>
   );

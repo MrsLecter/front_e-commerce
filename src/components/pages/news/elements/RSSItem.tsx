@@ -1,22 +1,29 @@
 import { FC } from "react";
 import { ItemHeader, StyledRSSItem } from "./RSSItem.styles";
+import { getPrettyDate } from "@/utils/functions";
 
 interface Props {
-  date: Date;
-  source: string;
-  header: string;
+  newsPublicDate: string;
+  sourceLink: string;
+  sourceName: string;
+  newsTitle: string;
 }
 
-const RSSItem: FC<Props> = ({ date, source, header }) => {
+const RSSItem: FC<Props> = ({
+  newsPublicDate,
+  sourceLink,
+  sourceName,
+  newsTitle,
+}) => {
   return (
     <StyledRSSItem>
       <ItemHeader>
-        <span>{date.toLocaleDateString("en-US")}</span>
-        <span>&#128279;</span>
-        <span>internetua</span>
+        <span>{getPrettyDate(newsPublicDate)}</span>
+        <span>&#128279;</span>&nbsp;
+        <span>&nbsp;{sourceName}</span>
       </ItemHeader>
-      <a href="https://mmr.net.ua/autoworld/178968">
-        Найдорожчий у світі автомобільний номер оцінили у 24 млн доларів
+      <a href={sourceLink} target={"_blank"}>
+        {newsTitle}
       </a>
     </StyledRSSItem>
   );

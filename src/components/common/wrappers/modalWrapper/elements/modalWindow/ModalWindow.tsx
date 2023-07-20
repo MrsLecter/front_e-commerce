@@ -6,18 +6,27 @@ import { FOCUS_TRAP_OPTIONS } from "@/config/focus-trap-options";
 import { StyledModalWrapper } from "./ModalWindow.styles";
 
 export interface IModalWindowProps {
-  isActive:boolean;
+  isActive: boolean;
   children: React.ReactNode;
+  backClickHandler: () => void;
 }
 
-const ModalWindow: FC<IModalWindowProps> = ({isActive, children }) => {
+const ModalWindow: FC<IModalWindowProps> = ({
+  isActive,
+  children,
+  backClickHandler,
+}) => {
   const backdropClickHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
+    backClickHandler();
   };
 
   return (
     <FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS}>
-      <StyledModalWrapper onMouseDown={(e) => backdropClickHandler(e)} isActive={isActive}>
+      <StyledModalWrapper
+        onClick={(e) => backdropClickHandler(e)}
+        isActive={isActive}
+      >
         {children}
       </StyledModalWrapper>
     </FocusTrap>

@@ -5,7 +5,17 @@ import Gallery from "./elements/gallery/Gallery";
 import Order from "./elements/order/Order";
 import Questions from "@/components/common/questions/Questions";
 
-const RimOrder: FC = () => {
+interface Props {
+  orderCallHandler: () => void;
+  askQuestionHandler: () => void;
+  placeOrderHandler:()=>void;
+}
+
+const RimOrder: FC<Props> = ({
+  orderCallHandler,
+  askQuestionHandler,
+  placeOrderHandler,
+}) => {
   let options = [
     {
       id: 1,
@@ -30,9 +40,13 @@ const RimOrder: FC = () => {
           header={"InziAone - XR 050 AMB"}
           options={options}
           price={2569879}
+          placeOrderHandler={placeOrderHandler}
         />
         <QuestionWrapper>
-          <Questions />
+          <Questions
+            orderCallHandler={orderCallHandler}
+            askQuestionHandler={askQuestionHandler}
+          />
         </QuestionWrapper>
         <Characteristics
           width={"8"}

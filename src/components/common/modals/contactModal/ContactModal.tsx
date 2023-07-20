@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 
 import BlueBtn from "../../buttons/BlueBtn/BlueBtn";
 import {
@@ -9,31 +9,32 @@ import {
 import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
 
 interface Props {
-  isActive: boolean;
   isAppearing: boolean;
   closeModalHandler: () => void;
 }
 
 const ContactModal: FC<Props> = ({
-  isActive,
   isAppearing,
   closeModalHandler,
 }) => {
+  const modalClickHandler = (e: MouseEvent) => {
+    e.stopPropagation();
+  };
   return (
     <ModalWrapper backClickHandler={closeModalHandler} isActive={isAppearing}>
-      <StyledContactModal>
+      <StyledContactModal onClick={(e) => modalClickHandler(e)}>
         <ModalHeader>
           <p>Наши контакты</p>
         </ModalHeader>
         <ModalContent>
-          <p>
+          <div>
             <span>Наш e-mail:</span>
             <a href="mailto:blokhvova@gmail.com">blokhvova@gmail.com</a>
-          </p>
-          <p>
+          </div>
+          <div>
             <span>Наши телефоны:</span>{" "}
-            <a href="tel:+380503403726">(050) 340-37-26</a>
-          </p>
+            <a href="tel:+380503403726">+38(050) 340-37-26</a>
+          </div>
           <BlueBtn
             color="dark"
             height="36"

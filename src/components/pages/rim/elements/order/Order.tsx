@@ -15,15 +15,17 @@ interface Props {
     label: string;
   }[];
   price: number;
+  placeOrderHandler: () => void;
 }
 
-const Order: FC<Props> = ({ header, options, price }) => {
+const Order: FC<Props> = ({ header, options, price, placeOrderHandler }) => {
   const [diameter, setDiameter] = useState<string>(options[0].label);
   const [isHaveAlert, setAlert] = useState<boolean>(true);
 
-  const makePurchase = () => {
-    alert("make purchase");
-  };
+  setTimeout(() => {
+    setAlert(false);
+  }, 2000);
+
   return (
     <StyledOrder onClick={() => setAlert(false)}>
       <OrderHeader header={header} />
@@ -41,7 +43,7 @@ const Order: FC<Props> = ({ header, options, price }) => {
       <BlueBtn
         color={"dark"}
         label={"Заказать в 1 клик"}
-        clickHandler={makePurchase}
+        clickHandler={placeOrderHandler}
       />
       <OrderDescription />
     </StyledOrder>

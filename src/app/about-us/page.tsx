@@ -28,7 +28,6 @@ export default function AboutUs() {
       {isActiveContactModal && (
         <ContactModal
           closeModalHandler={toggleContactModal}
-          isActive={isActiveContactModal}
           isAppearing={isAppearing}
         />
       )}

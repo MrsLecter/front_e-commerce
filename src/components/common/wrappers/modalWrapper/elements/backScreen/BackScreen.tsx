@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface IBackdropProps {
   isActive: boolean;
-  backClickHandler: React.MouseEventHandler<HTMLDivElement> | undefined;
+  backClickHandler: () => void;
 }
 
 const BackScreen: FC<IBackdropProps> = ({ isActive, backClickHandler }) => {
@@ -22,7 +22,7 @@ export const StyledBackdrop = styled.div<{ isActive: boolean }>`
   background-color: rgba(0, 0, 0, 0.54);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(1px);
-
+  scrollbar-gutter: inherit;
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   overflow: hidden;
   animation: ${(props) =>

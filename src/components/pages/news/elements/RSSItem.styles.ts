@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledRSSItem = styled.div`
-  padding: 8px 0px;
+  padding: 8px 16px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -15,6 +15,14 @@ export const StyledRSSItem = styled.div`
     letter-spacing: 0.4px;
     text-align: left;
     text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  &:hover {
+    background: #f0f0f0;
   }
 `;
 
