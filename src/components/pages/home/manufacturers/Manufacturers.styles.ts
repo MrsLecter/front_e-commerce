@@ -13,3 +13,13 @@ export const StyledManufacturers = styled.section`
     padding: 24px 0;
   }
 `;
+
+export const ShowMoreBtnWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 760px) {
+    margin: 0 auto;
+    display: block;
+    width: calc(100% - 16px);
+  }
+`;

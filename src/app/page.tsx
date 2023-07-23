@@ -8,36 +8,29 @@ import Manufacturers from "@/components/pages/home/manufacturers/Manufacturers";
 import Popular from "@/components/pages/home/popular/Popular";
 import Questions from "@/components/common/questions/Questions";
 import Selecting from "@/components/pages/home/selecting/Selecting";
-import { useState } from "react";
 import ContactModal from "@/components/common/modals/contactModal/ContactModal";
+import { QuestionWrapper } from "@/components/pages/home/QuestionWrapper.stytles";
+import { useModal } from "@/hooks/use-modal";
+import OrderCallModal from "@/components/common/modals/orderCallModal/OrderCallModal";
+import QuestionModal from "@/components/common/modals/questionModal/QuestionModal";
 
 export default function Home() {
-  const [isActiveContactModal, setContactModal] = useState<boolean>(false);
-  const [isAppearing, setIsAppearing] = useState<boolean>(false);
+  const { managementObj } = useModal();
 
-  const toggleContactModal = () => {
-    setTimeout(() => {
-      setIsAppearing(!isAppearing);
-    }, 100);
-    setTimeout(() => {
-      setContactModal(!isActiveContactModal);
-    }, 300);
-  };
   return (
     <MainWrapper>
-      <Header color={"none"} showContact={toggleContactModal} />
+      <Header color={"none"} modalHandler={managementObj.activateHandler} />
       <Selecting />
       <Manufacturers />
       <Banner />
-      {/* <Questions /> */}
+      <QuestionWrapper>
+        <Questions modalHandler={managementObj.activateHandler} />
+      </QuestionWrapper>
       <Popular />
       <Footer />
-      {isActiveContactModal && (
-        <ContactModal
-          closeModalHandler={toggleContactModal}
-          isAppearing={isAppearing}
-        />
-      )}
+      <ContactModal managementObject={managementObj} />
+      <OrderCallModal managementObject={managementObj} />
+      <QuestionModal managementObject={managementObj} />
     </MainWrapper>
   );
 }

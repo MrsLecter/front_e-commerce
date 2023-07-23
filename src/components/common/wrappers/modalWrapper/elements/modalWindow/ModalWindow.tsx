@@ -6,13 +6,13 @@ import { FOCUS_TRAP_OPTIONS } from "@/config/focus-trap-options";
 import { StyledModalWrapper } from "./ModalWindow.styles";
 
 export interface IModalWindowProps {
-  isActive: boolean;
+  isAppearing: boolean;
   children: React.ReactNode;
   backClickHandler: () => void;
 }
 
 const ModalWindow: FC<IModalWindowProps> = ({
-  isActive,
+  isAppearing,
   children,
   backClickHandler,
 }) => {
@@ -25,7 +25,7 @@ const ModalWindow: FC<IModalWindowProps> = ({
     <FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS}>
       <StyledModalWrapper
         onClick={(e) => backdropClickHandler(e)}
-        isActive={isActive}
+        isActive={isAppearing}
       >
         {children}
       </StyledModalWrapper>

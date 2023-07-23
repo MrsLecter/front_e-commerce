@@ -9,13 +9,19 @@ import {
   QuestionImage,
   QuestionsWrapper,
 } from "./Questions.styles";
+import { AppModals } from "@/constants/common";
 
 interface Props {
-  orderCallHandler: () => void;
-  askQuestionHandler: () => void;
+  modalHandler: (modalID: number) => void;
 }
 
-const Questions: FC<Props> = ({ orderCallHandler, askQuestionHandler }) => {
+const Questions: FC<Props> = ({ modalHandler }) => {
+  const orderCallHandler = () => {
+    modalHandler(AppModals.Call);
+  };
+  const askQuestionHandler = () => {
+    modalHandler(AppModals.Question);
+  };
   return (
     <QuestionsWrapper>
       <QuestionImage>

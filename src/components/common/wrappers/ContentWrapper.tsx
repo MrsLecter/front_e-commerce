@@ -10,7 +10,7 @@ const ContentWrapper: FC<Props> = ({ children }) => {
 };
 
 const StyledContentWrapper = styled.div`
-  margin: 16px auto;
+  margin: 14px auto;
   padding: 8px 16px;
   width: calc(100% - 16px);
   min-width: 230px;

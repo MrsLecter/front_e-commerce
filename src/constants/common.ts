@@ -4,6 +4,14 @@ export enum AppRoutes {
   Makers = "/makers",
   News = "/news",
   Rims = "/rims",
+  Rim = "/rim",
+}
+
+export enum AppModals {
+  Contact = 1,
+  Call = 2,
+  Question = 3,
+  Order = 4,
 }
 
 export const FOOTER_LINKS = [
@@ -39,7 +47,7 @@ export const FOOTER_LINKS = [
   },
   {
     id: 7,
-    href: AppRoutes.Makers,
+    href: AppRoutes.Makers + "/all",
     description: "Подбор дисков по авто",
   },
   {

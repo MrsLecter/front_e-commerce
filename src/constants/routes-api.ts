@@ -1,3 +1,11 @@
-const BASE_API_URL = "https://rims-1neq.onrender.com";
+// const BASE_API_URL = "https://rims-i467.onrender.com";
+const BASE_API_URL = "https://4ad3-87-244-131-197.ngrok-free.app";
 export const GET_BRANDS_URL = `${BASE_API_URL}/car-brands`;
-export const GET_NEWS_URL = `https://rims-i467.onrender.com/car-news/`;
+export const GET_NEWS_URL = `${BASE_API_URL}/car-news`;
+export const GET_ALL_AUTO_URL = `${BASE_API_URL}/car-brands`;
+export const POST_CALL_DATA_URL = `${BASE_API_URL}/order-phcall`;
+export const POST_FEEDBACK_URL = `${BASE_API_URL}/order-question `;
+export const GET_AUTO_MODELS_URL = `${BASE_API_URL}/car-models`;
+export const GET_AUTO_YEARS_URL = `${BASE_API_URL}/car-years`;
+export const GET_POPULAR_RIMS_URL = `${BASE_API_URL}/rims-popular`;
+export const GET_RIM_DETAILED_URL = `${BASE_API_URL}/rim-by-id`;

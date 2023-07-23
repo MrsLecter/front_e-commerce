@@ -4,6 +4,7 @@ export const StyledPopular = styled.section`
   padding-top: 30px;
   padding-bottom: 24px;
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

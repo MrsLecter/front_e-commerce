@@ -10,16 +10,13 @@ import { StyledAlert, StyledOrder } from "./Order.styles";
 
 interface Props {
   header: string;
-  options: {
-    id: number;
-    label: string;
-  }[];
+  options: string[];
   price: number;
   placeOrderHandler: () => void;
 }
 
 const Order: FC<Props> = ({ header, options, price, placeOrderHandler }) => {
-  const [diameter, setDiameter] = useState<string>(options[0].label);
+  const [diameter, setDiameter] = useState<string>(options[0]);
   const [isHaveAlert, setAlert] = useState<boolean>(true);
 
   setTimeout(() => {
@@ -35,11 +32,11 @@ const Order: FC<Props> = ({ header, options, price, placeOrderHandler }) => {
         </StyledAlert>
       )}
       <SelectMenu
-        defaultOption={options[0].label}
+        defaultOption={options[0]}
         setValue={setDiameter}
         optionsArray={options}
       />
-      <OrderPrice price={45236} />
+      <OrderPrice price={price} />
       <BlueBtn
         color={"dark"}
         label={"Заказать в 1 клик"}

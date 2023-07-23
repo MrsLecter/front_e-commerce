@@ -32,7 +32,7 @@ export const FooterWrapper = styled.footer`
 `;
 
 export const LogoWrapper = styled.div`
-  margin-top: 30px;
+  margin-top: 18px;
   width: 20%;
   height: 100%;
   min-height: 100%;

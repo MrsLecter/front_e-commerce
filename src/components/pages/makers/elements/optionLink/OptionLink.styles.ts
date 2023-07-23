@@ -7,7 +7,6 @@ export const StyledOptionLink = styled.div`
   font-size: 16px;
   line-height: 30px;
   text-align: center;
-  box-sizing: border-box;
   color: #507299;
 
   &:hover {

@@ -9,10 +9,13 @@ import {
   StyledBanner,
   StyledBannerWrapper,
 } from "./Banner.styles";
+import { useRouter } from "next/navigation";
+import { AppRoutes } from "@/constants/common";
 
 const Banner: FC = () => {
+  const router = useRouter();
   const showAllReplica = () => {
-    alert("show replica stub");
+    router.push(AppRoutes.Rims + "/replica");
   };
   return (
     <StyledBannerWrapper>

@@ -29,3 +29,12 @@ export const OrderCallContent = styled.div`
     width: 144px;
   }
 `;
+
+export const Message = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

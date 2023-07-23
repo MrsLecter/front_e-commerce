@@ -5,11 +5,11 @@ interface Props {
   label: string;
 }
 
-const ModalHeader: FC<Props> = ({ label }) => {
-  return <StyledModalHeader>{label}</StyledModalHeader>;
+const ModalHeaderElement: FC<Props> = ({ label }) => {
+  return <StyledModalHeaderElement>{label}</StyledModalHeaderElement>;
 };
 
-const StyledModalHeader = styled.div`
+const StyledModalHeaderElement = styled.div`
   padding: 0 0 0 20px;
   width: 100%;
   height: 40px;
@@ -26,4 +26,4 @@ const StyledModalHeader = styled.div`
   }
 `;
 
-export default ModalHeader;
+export default ModalHeaderElement;

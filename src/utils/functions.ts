@@ -1,6 +1,6 @@
 import { GET_BRANDS_URL } from "@/constants/routes-api";
 
-export const getBtnLabel = (path: string[]) => {
+export const getBtnLabel = (path: string[]): string => {
   const pathLen = path.length;
 
   switch (pathLen) {
@@ -17,7 +17,7 @@ export const getBtnLabel = (path: string[]) => {
   }
 };
 
-export const getMakerQueryString = (path: string) => {
+export const getMakerQueryString = (path: string): string => {
   const pathLen = path.split("/").length;
 
   switch (pathLen) {
@@ -30,11 +30,11 @@ export const getMakerQueryString = (path: string) => {
     case 5:
       return "all diameters";
     default:
-      return "allcars";
+      return "all cars";
   }
 };
 
-export const getPrettyPrice = (price: number) => {
+export const getPrettyPrice = (price: number): string => {
   let priceStr = String(price);
   for (let i = priceStr.length - 1; i >= 0; i--) {
     if (i % 3 === 0 && i !== 0) {
@@ -47,7 +47,7 @@ export const getPrettyPrice = (price: number) => {
   return priceStr;
 };
 
-export const getPrettyDate = (dateString: string) => {
+export const getPrettyDate = (dateString: string): string => {
   const date = new Date(dateString);
   const dateArr = date.toLocaleString("uk-UA", {
     timeZone: "UTC",

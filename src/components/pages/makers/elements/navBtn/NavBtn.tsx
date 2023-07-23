@@ -12,7 +12,7 @@ const NavBtn: FC<Props> = ({ label, currentHref }) => {
   const router = useRouter();
 
   const goToPathHandler = () => {
-    router.push("/" + currentHref);
+    router.push(currentHref);
   };
 
   return <StyledNavBtn onClick={goToPathHandler}>{label}</StyledNavBtn>;

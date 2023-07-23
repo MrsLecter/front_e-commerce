@@ -14,7 +14,7 @@ const ShowMoreBtn: FC<Props> = ({
 }) => {
   return (
     <StyledShowMoreBtn onClick={clickHandler} color={color}>
-      {hiddenCards && "Показать еще " + { hiddenCards }}
+      {hiddenCards && `Показать еще ${hiddenCards}`}
       {!hiddenCards && "Показать еще"}
     </StyledShowMoreBtn>
   );

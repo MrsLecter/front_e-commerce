@@ -1,35 +1,31 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Characteristics from "./elements/characteristics/Characteristics";
 import { QuestionWrapper, StyledRimOrder } from "./RimOrder.styles";
 import Gallery from "./elements/gallery/Gallery";
 import Order from "./elements/order/Order";
 import Questions from "@/components/common/questions/Questions";
+import { AppModals } from "@/constants/common";
+import rimsService from "@/api/rims-service";
+import { usePathname } from "next/navigation";
+import { IRimDetailedData } from "@/types/common.types";
+
+
 
 interface Props {
-  orderCallHandler: () => void;
-  askQuestionHandler: () => void;
-  placeOrderHandler:()=>void;
+  rimData: IRimDetailedData;
+  managementObject: {
+    isAppearing: boolean;
+    isActive: (modalID: number) => boolean;
+    activateHandler: (modalID: number) => void;
+    closeHandler: () => void;
+  };
 }
 
-const RimOrder: FC<Props> = ({
-  orderCallHandler,
-  askQuestionHandler,
-  placeOrderHandler,
-}) => {
-  let options = [
-    {
-      id: 1,
-      label: "l1",
-    },
-    {
-      id: 2,
-      label: "l2",
-    },
-    {
-      id: 3,
-      label: "l3",
-    },
-  ];
+const RimOrder: FC<Props> = ({ managementObject, rimData }) => {
+  const pathname = usePathname();
+  const placeOrderHandler = () => {
+    managementObject.activateHandler(AppModals.Order);
+  };
   return (
     <StyledRimOrder>
       <div>
@@ -37,21 +33,18 @@ const RimOrder: FC<Props> = ({
       </div>
       <div>
         <Order
-          header={"InziAone - XR 050 AMB"}
-          options={options}
-          price={2569879}
+          header={rimData?.name}
+          options={rimData.diameter}
+          price={rimData.price}
           placeOrderHandler={placeOrderHandler}
         />
         <QuestionWrapper>
-          <Questions
-            orderCallHandler={orderCallHandler}
-            askQuestionHandler={askQuestionHandler}
-          />
+          <Questions modalHandler={managementObject.activateHandler} />
         </QuestionWrapper>
         <Characteristics
-          width={"8"}
-          diameter={"16"}
-          fixingHoles={["5x11", "5x120", "5x120", "5x120", "5x120", "5x120"]}
+          width={[...rimData.width]}
+          diameter={[...rimData.diameter]}
+          fixingHoles={[...rimData.mountingHoles]}
         />
       </div>
     </StyledRimOrder>

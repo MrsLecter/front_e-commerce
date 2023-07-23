@@ -12,3 +12,14 @@ export const StyledMakersContent = styled.div`
     grid-template-columns: auto;
   }
 `;
+
+export const Message = styled.div`
+  margin: 4px;
+  height: 30px;
+  font-family: var(--font-roboto);
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  box-sizing: border-box;
+  color: #507299;
+`;

@@ -6,8 +6,6 @@ import { isValidInput } from "@/utils/validators";
 export const useInput = (props: useInputProps) => {
   const { regexp, allowEmpty, mask, maskType, initialValue = "" } = props;
 
-  console.log(mask, maskType);
-
   const [input, setInput] = useState(initialValue);
   const [inputIsValid, setInputIsValid] = useState(true);
 

@@ -22,7 +22,7 @@ export const StyledModalWrapper = styled.div<{ isActive: boolean }>`
 
   @keyframes appearance {
     from {
-      padding-bottom: 150px;
+      padding-bottom: 250px;
       opacity: 0;
     }
     to {
@@ -38,7 +38,7 @@ export const StyledModalWrapper = styled.div<{ isActive: boolean }>`
     }
     to {
       opacity: 0;
-      padding-bottom: 150px;
+      padding-bottom: 250px;
     }
   }
 `;

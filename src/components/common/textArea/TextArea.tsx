@@ -45,11 +45,11 @@ const StyledTextArea = styled.textarea`
   font-weight: 400;
   font-size: 14px;
   color: #909090;
-  line-height: 40px;
   opacity: 0.7;
   border-radius: 2px;
   border: 1px solid #c4c8cc;
   background-color: white;
+  resize: none;
 `;
 
 export default TextArea;

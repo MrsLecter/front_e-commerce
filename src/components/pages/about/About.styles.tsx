@@ -26,4 +26,14 @@ export const Paragraph = styled.div`
     text-decoration: underline;
     color: rgb(80, 114, 153);
   }
+
+  button {
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: rgb(80, 114, 153);
+    text-decoration: underline;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
 `;

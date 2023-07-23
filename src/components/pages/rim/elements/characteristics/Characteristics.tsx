@@ -2,8 +2,8 @@ import { FC } from "react";
 import { ChHeader, ChRow, StyledChContainer } from "./Characteristics.styles";
 
 interface Props {
-  width: string;
-  diameter: string;
+  width: string[];
+  diameter: string[];
   fixingHoles: string[];
 }
 
@@ -15,14 +15,19 @@ const Characteristics: FC<Props> = ({ width, diameter, fixingHoles }) => {
         <div>Ширина обода (J)</div>
         <div />
         <div>
-          {width}
-          {'"'}
+          {width.map((item, index) => {
+            return <span key={index}>{item}</span>;
+          })}
         </div>
       </ChRow>
       <ChRow color={" #fffefe"}>
         <div>Диаметр обода (D)</div>
         <div />
-        <div>&#8709;{diameter}</div>
+        <div>
+          {diameter.map((item, index) => {
+            return <span key={index}>&#8709;{item}</span>;
+          })}
+        </div>
       </ChRow>
       <ChRow color={"#e8ebed"}>
         <div>Крепежные отверстия (PCD)</div>

@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const StyledLogo = styled.div<{ color: string }>`
   padding: 2px;
-  height: 32px;
+  width: 145px;
+  height: 48px;
   display: flex;
   flex-direction: row;
   justify-content: center;

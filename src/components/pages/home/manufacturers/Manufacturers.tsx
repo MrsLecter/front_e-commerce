@@ -5,7 +5,7 @@ import { MANUFACTURERS_CARD_LIST } from "@/constants/manufactures-card-list";
 
 import CardContainer from "./elements/CardsContainer/CardsContainer";
 import ShowMoreBtn from "./elements/showMoreBtn/ShowMoreBtn";
-import { StyledManufacturers } from "./Manufacturers.styles";
+import { ShowMoreBtnWrapper, StyledManufacturers } from "./Manufacturers.styles";
 
 const Manufacturers: FC = () => {
   const hiddenCardsAmount = MANUFACTURERS_CARD_LIST.length - 2;
@@ -19,10 +19,12 @@ const Manufacturers: FC = () => {
         cardList={MANUFACTURERS_CARD_LIST}
       />
       {!isHaveHiddenCards && (
-        <ShowMoreBtn
-          clickHandler={() => toggleIsHaveHiddenCards(true)}
-          hiddenCards={hiddenCardsAmount}
-        />
+        <ShowMoreBtnWrapper>
+          <ShowMoreBtn
+            clickHandler={() => toggleIsHaveHiddenCards(true)}
+            hiddenCards={hiddenCardsAmount}
+          />
+        </ShowMoreBtnWrapper>
       )}
     </StyledManufacturers>
   );

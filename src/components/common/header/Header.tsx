@@ -4,17 +4,22 @@ import { FC } from "react";
 import TextBtn from "../buttons/TextBtn/TextBtn";
 import Logo from "../Logo/Logo";
 import { HeaderContent, StyledHeader } from "./Header.styles";
+import { AppModals } from "@/constants/common";
 
 interface Props {
   color?: "blue" | "none";
-  showContact: () => void;
+  modalHandler: (modalID: number) => void;
 }
 
-const Header: FC<Props> = ({ color, showContact }) => {
+const Header: FC<Props> = ({ color, modalHandler }) => {
   const router = useRouter();
 
   const showNews = () => {
     router.push("/news");
+  };
+
+  const showContact = () => {
+    modalHandler(AppModals.Contact);
   };
 
   return (

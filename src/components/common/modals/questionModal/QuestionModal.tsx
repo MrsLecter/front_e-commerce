@@ -1,6 +1,6 @@
-import { FC, MouseEvent, useState } from "react";
-import ModalHeader from "../elements/ModalHeader";
-import ModalContent from "../elements/ModalContent";
+import { FC, MouseEvent, useState, KeyboardEvent } from "react";
+import ModalHeader from "../elements/ModalHeaderElement";
+import ModalContent from "../elements/ModalContentElement";
 import Input from "../../input/Input";
 import BlueBtn from "../../buttons/BlueBtn/BlueBtn";
 import { useInput } from "@/hooks/use-input";
@@ -8,14 +8,16 @@ import { EMAIL_REGEXP, PHONE_REGEXP } from "@/utils/regexp";
 import { StyledQuestionModal } from "./QuestionModal.styles";
 import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
 import TextArea from "../../textArea/TextArea";
+import rimsService from "@/api/rims-service";
+import SuccessContent from "../elements/feedbackContent/SuccessContent";
+import ErrorContent from "../elements/feedbackContent/ErrorContent";
+import { IModalProps } from "@/types/common.types";
+import { AppModals } from "@/constants/common";
 
-interface Props {
-  isAppearing: boolean;
-  closeModalHandler: () => void;
-}
-
-const QuestionModal: FC<Props> = ({ isAppearing, closeModalHandler }) => {
+const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
   const [text, setText] = useState<string>("");
+  const [isQuestionSend, setQuestionSend] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   const {
     value: email,
@@ -37,20 +39,47 @@ const QuestionModal: FC<Props> = ({ isAppearing, closeModalHandler }) => {
     mask: "+380(099)-250-75-69",
   });
 
-  const askQuestionHandler = () => {
-    console.log("email: ", email, "phone: ", phone, "text: ", text);
-    if (email && !emailIsValid) {
-      alert("Error: Email is not valid!");
+  const questionHandler = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      askQuestionHandler();
     }
-    if (phone && !phoneIsValid) {
-      alert("Error: Phone number is not valid!");
+  };
+
+  const askQuestionHandler = async () => {
+    if (email) {
+      if (!emailIsValid) {
+        alert("Ошибка: неправильный адрес почты");
+      }
     }
-    if (!text) {
-      alert("Error: Text is empty!");
+    if ((phone && !phoneIsValid) || !phone) {
+      alert("Ошибка: неправильный номер телефона");
+    }
+    if (!text || text.length <= 11) {
+      alert("Ошибка: минимальная длина вопроса - 10 символов");
     }
 
-    if ((phoneIsValid || phone) && (emailIsValid || email) && text) {
+    if (
+      (phoneIsValid && phone && text && text.length >= 11) ||
+      (phoneIsValid &&
+        phone &&
+        text &&
+        text.length >= 11 &&
+        email &&
+        emailIsValid)
+    ) {
       alert("send " + phone + email + text);
+      try {
+        const response = await rimsService.postFeedback({
+          question: text,
+          email,
+          phone,
+        });
+
+        console.log("resp", response);
+        setQuestionSend(true);
+      } catch (err) {
+        setError(true);
+      }
     }
   };
 
@@ -59,42 +88,65 @@ const QuestionModal: FC<Props> = ({ isAppearing, closeModalHandler }) => {
   };
 
   return (
-    <ModalWrapper backClickHandler={closeModalHandler} isActive={isAppearing}>
-      <StyledQuestionModal onClick={windowClickHandler}>
-        <ModalHeader label={"Обратная связь"} />
-        <ModalContent>
-          <TextArea
-            placeholder={"Напишите Ваш вопрос"}
-            inputValue={text}
-            isRequired={false}
-            onChangeHandler={setText}
-          />
-          <Input
-            type={"email"}
-            placeholder={"Ваш email (необязательно)"}
-            inputValue={email}
-            isRequired={false}
-            onChangeHandler={emailChangeHandler}
-          />
-          <Input
-            type={"tel"}
-            placeholder={"Ваш номер телефона"}
-            inputValue={phone}
-            isRequired={true}
-            maxLen={18}
-            onChangeHandler={phoneChangeHandler}
-          />
+    <>
+      {!managementObject.isActive(AppModals.Question) && <></>}
+      {managementObject.isActive(AppModals.Question) && (
+        <ModalWrapper
+          backClickHandler={() => managementObject.closeHandler()}
+          isAppearing={managementObject.isAppearing}
+        >
+          <StyledQuestionModal onClick={windowClickHandler}>
+            <ModalHeader label={"Обратная связь"} />
+            {!error && !isQuestionSend && (
+              <>
+                <ModalContent>
+                  <TextArea
+                    placeholder={"Напишите Ваш вопрос"}
+                    inputValue={text}
+                    isRequired={false}
+                    onChangeHandler={setText}
+                  />
+                  <Input
+                    type={"email"}
+                    placeholder={"Ваш email (необязательно)"}
+                    inputValue={email}
+                    isRequired={false}
+                    onChangeHandler={emailChangeHandler}
+                  />
+                  <Input
+                    type={"tel"}
+                    placeholder={"Ваш номер телефона"}
+                    inputValue={phone}
+                    isRequired={true}
+                    maxLen={18}
+                    onChangeHandler={phoneChangeHandler}
+                    onKeyDown={(e) => questionHandler(e)}
+                  />
 
-          <div>
-            <BlueBtn
-              color={"dark"}
-              label={"Задать вопрос"}
-              clickHandler={askQuestionHandler}
-            />
-          </div>
-        </ModalContent>
-      </StyledQuestionModal>
-    </ModalWrapper>
+                  <div>
+                    <BlueBtn
+                      color={"dark"}
+                      label={"Задать вопрос"}
+                      clickHandler={askQuestionHandler}
+                    />
+                  </div>
+                </ModalContent>
+              </>
+            )}
+            {!error && isQuestionSend && (
+              <SuccessContent
+                closeModalHandler={() => managementObject.closeHandler()}
+              />
+            )}
+            {error && (
+              <ErrorContent
+                closeModalHandler={() => managementObject.closeHandler()}
+              />
+            )}
+          </StyledQuestionModal>
+        </ModalWrapper>
+      )}
+    </>
   );
 };
 

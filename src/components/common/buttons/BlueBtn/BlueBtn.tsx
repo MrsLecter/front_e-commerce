@@ -5,7 +5,7 @@ import { StyledBlueBtn } from "./BlueBtn.styles";
 interface Props {
   color: "dark" | "light" | "transparent";
   height?: "36" | "30";
-  clickHandler: () => void;
+  clickHandler: () => void ;
   label: string;
 }
 

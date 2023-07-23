@@ -2,15 +2,17 @@ import { FC } from "react";
 import styled from "styled-components";
 
 interface IBackdropProps {
-  isActive: boolean;
+  isAppearing: boolean;
   backClickHandler: () => void;
 }
 
-const BackScreen: FC<IBackdropProps> = ({ isActive, backClickHandler }) => {
-  return <StyledBackdrop onMouseDown={backClickHandler} isActive={isActive} />;
+const BackScreen: FC<IBackdropProps> = ({ isAppearing, backClickHandler }) => {
+  return (
+    <StyledBackdrop onMouseDown={backClickHandler} isAppearing={isAppearing} />
+  );
 };
 
-export const StyledBackdrop = styled.div<{ isActive: boolean }>`
+export const StyledBackdrop = styled.div<{ isAppearing: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -26,7 +28,9 @@ export const StyledBackdrop = styled.div<{ isActive: boolean }>`
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   overflow: hidden;
   animation: ${(props) =>
-    props.isActive ? "appearance 0.5s ease-in" : "disappearance 0.5s ease-in"};
+    props.isAppearing
+      ? "appearance 0.5s ease-in"
+      : "disappearance 0.5s ease-in"};
 
   @keyframes appearance {
     from {

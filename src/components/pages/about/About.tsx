@@ -2,12 +2,24 @@ import Link from "next/link";
 import { FC } from "react";
 
 import ContentWrapper from "@/components/common/wrappers/ContentWrapper";
-import { AppRoutes } from "@/constants/common";
+import { AppModals, AppRoutes } from "@/constants/common";
 
 import { AboutHeader, Paragraph } from "./About.styles";
 import Location from "./elements/Location";
 
-const About: FC = () => {
+interface Props {
+  modalHandler: (modalID: number) => void;
+}
+
+const About: FC<Props> = ({ modalHandler }) => {
+  
+  const orderCallClickHandler = () => {
+    modalHandler(AppModals.Call);
+  };
+
+  const orderQuestionClickHandler = () => {
+    modalHandler(AppModals.Question);
+  };
   return (
     <ContentWrapper>
       <AboutHeader>O нас</AboutHeader>
@@ -21,8 +33,8 @@ const About: FC = () => {
           За время работы мы стали эксклюзивным представителем компаний &nbsp;
           <Link href={AppRoutes.Rims + "/kosei"}>Kosei aluminium (Япония)</Link>
           ,&nbsp;<Link href={AppRoutes.Rims + "/mkw"}>MKW (Mi-tech)</Link>,
-          &nbsp;<Link href={AppRoutes.Rims + "/inzi"}>Marcello wheels</Link>,
-          Zent и&nbsp;
+          &nbsp;<Link href={AppRoutes.Rims + "/marcello"}>Marcello wheels</Link>
+          , Zent и&nbsp;
           <Link href={AppRoutes.Rims + "/inzi"}>Inzi Aone (Корея)</Link>&nbsp;в
           Украине.
         </p>
@@ -37,8 +49,14 @@ const About: FC = () => {
       </Paragraph>
       <AboutHeader>Как с нами связаться?</AboutHeader>
       <Paragraph>
-        <p>Закажите обратный звонок здесь</p>
-        <p>Напишите нам прямо на сайте</p>
+        <p>
+          Закажите обратный звонок&nbsp;
+          <button onClick={orderCallClickHandler}>здесь</button>
+        </p>
+        <p>
+          Напишите нам прямо на&nbsp;
+          <button onClick={orderQuestionClickHandler}>сайте</button>
+        </p>
         <p>Свяжитесь с нами напрямую:</p>
         <p>
           <a href="tel:+380503403726">+38 (050) 340-37-26</a>

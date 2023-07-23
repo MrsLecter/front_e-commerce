@@ -1,7 +1,5 @@
-let date = new Date("2023-07-20T19:00:05.000Z");
-let dateArr = date.toLocaleString("uk-UA", {
-  timeZone: "UTC",
-  dateStyle: "short",
-});
-console.log(dateArr);
-// console.log(`${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`);
+let str = "/makers/all/Acura/MDX/2016";
+
+let arrStr = str.substring(1, str.length).split("/");
+arrStr.splice(0, 1);
+console.log(arrStr);

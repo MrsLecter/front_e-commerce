@@ -5,11 +5,11 @@ interface Props {
   children: React.ReactNode;
 }
 
-const ModalContent: FC<Props> = ({ children }) => {
-  return <StyledModalContent>{children}</StyledModalContent>;
+const ModalContentElement: FC<Props> = ({ children }) => {
+  return <StyledModalContentElement>{children}</StyledModalContentElement>;
 };
 
-const StyledModalContent = styled.div`
+const StyledModalContentElement = styled.div`
   padding: 16px 20px;
   width: 100%;
   height: 100%;
@@ -24,4 +24,4 @@ const StyledModalContent = styled.div`
   }
 `;
 
-export default ModalContent;
+export default ModalContentElement;

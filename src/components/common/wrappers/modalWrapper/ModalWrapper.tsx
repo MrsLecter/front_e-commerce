@@ -5,12 +5,16 @@ import BackScreen from "./elements/backScreen/BackScreen";
 import ModalWindow from "./elements/modalWindow/ModalWindow";
 
 interface Props {
-  isActive: boolean;
+  isAppearing: boolean;
   children: React.ReactNode;
   backClickHandler: () => void;
 }
 
-const ModalWrapper: FC<Props> = ({ isActive, children, backClickHandler }) => {
+const ModalWrapper: FC<Props> = ({
+  isAppearing,
+  children,
+  backClickHandler,
+}) => {
   const [render, setRender] = useState(false);
 
   interface KeyboardEvent {
@@ -43,12 +47,15 @@ const ModalWrapper: FC<Props> = ({ isActive, children, backClickHandler }) => {
         {ReactDOM.createPortal(
           <BackScreen
             backClickHandler={backClickHandler}
-            isActive={isActive}
+            isAppearing={isAppearing}
           />,
           backdrop
         )}
         {ReactDOM.createPortal(
-          <ModalWindow isActive={isActive} backClickHandler={backClickHandler}>
+          <ModalWindow
+            isAppearing={isAppearing}
+            backClickHandler={backClickHandler}
+          >
             {children}
           </ModalWindow>,
           modal

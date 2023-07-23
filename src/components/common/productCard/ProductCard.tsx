@@ -7,17 +7,19 @@ import rim from "@images/delete-rim.jpg";
 import BlueBtn from "../buttons/BlueBtn/BlueBtn";
 import { CardContent, StyledProductCard } from "./ProductCard.styles";
 import { getPrettyPrice } from "@/utils/functions";
+import { IRimObject } from "@/types/common.types";
+import { AppRoutes } from "@/constants/common";
+import { useRouter } from "next/navigation";
 
 interface Props {
-  name: string;
-  price: number;
-  diameter: number;
-  href: string;
+  parameters: IRimObject;
 }
 
-const ProductCard: FC<Props> = ({ name, price, diameter, href }) => {
+const ProductCard: FC<Props> = ({ parameters }) => {
+  const { name, price, diameter, image, rimId } = parameters;
+  const route = useRouter();
   const orderHandler = () => {
-    alert("order click");
+    route.push(AppRoutes.Rim + `/${rimId}`);
   };
 
   return (
@@ -27,7 +29,7 @@ const ProductCard: FC<Props> = ({ name, price, diameter, href }) => {
       </div>
 
       <CardContent>
-        <Link href={href}>{name}</Link>
+        <Link href={AppRoutes.Rim + `/${rimId}`}>{name}</Link>
         <p>от&nbsp;{getPrettyPrice(price)}&nbsp;грн</p>
         <p>&#8960;{diameter}</p>
 
