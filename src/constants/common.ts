@@ -1,3 +1,5 @@
+export const BASE_URL = "http://localhost:3000/";
+
 export enum AppRoutes {
   Home = "/",
   Aboout = "/about-us",
@@ -12,6 +14,7 @@ export enum AppModals {
   Call = 2,
   Question = 3,
   Order = 4,
+  Search = 5,
 }
 
 export const FOOTER_LINKS = [

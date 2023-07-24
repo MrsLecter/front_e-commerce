@@ -13,6 +13,7 @@ import { QuestionWrapper } from "@/components/pages/home/QuestionWrapper.stytles
 import { useModal } from "@/hooks/use-modal";
 import OrderCallModal from "@/components/common/modals/orderCallModal/OrderCallModal";
 import QuestionModal from "@/components/common/modals/questionModal/QuestionModal";
+import SearchModal from "@/components/pages/home/selecting/elements/searchModal/SearchModal";
 
 export default function Home() {
   const { managementObj } = useModal();
@@ -20,7 +21,11 @@ export default function Home() {
   return (
     <MainWrapper>
       <Header color={"none"} modalHandler={managementObj.activateHandler} />
-      <Selecting />
+      <Selecting
+        openSearchModal={(modalId: number) =>
+          managementObj.activateHandler(modalId)
+        }
+      />
       <Manufacturers />
       <Banner />
       <QuestionWrapper>
@@ -31,6 +36,7 @@ export default function Home() {
       <ContactModal managementObject={managementObj} />
       <OrderCallModal managementObject={managementObj} />
       <QuestionModal managementObject={managementObj} />
+      <SearchModal managementObject={managementObj} />
     </MainWrapper>
   );
 }

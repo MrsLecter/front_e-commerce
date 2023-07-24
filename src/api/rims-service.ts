@@ -8,10 +8,11 @@ import {
   GET_RIM_DETAILED_URL,
   POST_CALL_DATA_URL,
   POST_FEEDBACK_URL,
+  POST_SEARCH_TEXT_URL,
 } from "@/constants/routes-api";
 import {
   IAutoResponse,
-  IGetPopularRimsResponse,
+  IGetRimsResponse,
   IGetRimDetailedResponse,
   INewsFeedResponse,
   IPostDataResponse,
@@ -25,7 +26,7 @@ class RimsService {
     page: number;
   }): Promise<AxiosResponse<INewsFeedResponse, any>> {
     try {
-      const response = await axios.get<INewsFeedResponse>(GET_NEWS_URL + page);
+      const response = await axios.get<INewsFeedResponse>(GET_NEWS_URL +`/${page}`);
       return response;
     } catch (err: any) {
       return err;
@@ -93,20 +94,15 @@ class RimsService {
     }
   }
   //TODO:delete ngrok headers
-  public async getPopularRims(): Promise<
-    AxiosResponse<IGetPopularRimsResponse, any>
-  > {
+  public async getPopularRims(): Promise<AxiosResponse<IGetRimsResponse, any>> {
     try {
-      const response = await axios.get<IGetPopularRimsResponse>(
-        GET_POPULAR_RIMS_URL,
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.get<IGetRimsResponse>(GET_POPULAR_RIMS_URL, {
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
       return response;
     } catch (err: any) {
       return err;
@@ -123,6 +119,32 @@ class RimsService {
         GET_RIM_DETAILED_URL,
         {
           id: rimId,
+        },
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  //TODO:delete ngrok headers
+  public async postSearchString({
+    searchText,
+  }: {
+    searchText: string;
+  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
+    try {
+      const response = await axios.post<IGetRimsResponse>(
+        POST_SEARCH_TEXT_URL,
+        {
+          searchText,
         },
         {
           headers: {

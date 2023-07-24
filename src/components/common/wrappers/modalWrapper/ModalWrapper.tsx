@@ -8,12 +8,14 @@ interface Props {
   isAppearing: boolean;
   children: React.ReactNode;
   backClickHandler: () => void;
+  hasAnimation?:boolean
 }
 
 const ModalWrapper: FC<Props> = ({
   isAppearing,
   children,
   backClickHandler,
+  hasAnimation
 }) => {
   const [render, setRender] = useState(false);
 
@@ -48,6 +50,7 @@ const ModalWrapper: FC<Props> = ({
           <BackScreen
             backClickHandler={backClickHandler}
             isAppearing={isAppearing}
+            hasAnimation={hasAnimation}
           />,
           backdrop
         )}
@@ -55,6 +58,7 @@ const ModalWrapper: FC<Props> = ({
           <ModalWindow
             isAppearing={isAppearing}
             backClickHandler={backClickHandler}
+            hasAnimation={hasAnimation}
           >
             {children}
           </ModalWindow>,

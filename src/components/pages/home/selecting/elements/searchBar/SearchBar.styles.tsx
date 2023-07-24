@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledSearchBar = styled.div`
+  margin: 0 auto;
   position: relative;
   width: 362px;
   height: 48px;

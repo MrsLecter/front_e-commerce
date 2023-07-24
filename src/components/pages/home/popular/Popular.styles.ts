@@ -20,12 +20,13 @@ export const StyledPopular = styled.section`
   }
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.div<{ isReady: boolean }>`
   margin: 12px auto 6px;
   width: 992px;
   height: 740px;
   display: grid;
   grid-template-columns: auto auto auto auto;
+  filter: ${(props) => (props.isReady ? "blur(5px)" : "blur(0px)")};
 
   @media (max-width: 1020px) {
     width: 740px;

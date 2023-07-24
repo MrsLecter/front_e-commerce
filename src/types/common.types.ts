@@ -18,8 +18,8 @@ export interface IRimObject {
   rimId: string;
   name: string;
   image: string;
-  diameter: string;
-  price: number;
+  diameter: string[];
+  price: number[];
 }
 
 export interface IRimDetailedData {

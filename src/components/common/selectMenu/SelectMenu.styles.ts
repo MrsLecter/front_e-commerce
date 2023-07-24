@@ -32,9 +32,10 @@ export const StyledSelectMenu = styled.div`
     min-height: 1.2em;
     width: inherit;
     padding: 6px;
-    font-size: 12px;
+    font-size: 14px;
     font-family: var(--font-roboto);
     text-overflow: ellipsis;
+    background-color: white;
   }
 
   &::after {

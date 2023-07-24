@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 
 import TextBtn from "../buttons/TextBtn/TextBtn";
 import Logo from "../Logo/Logo";
@@ -14,11 +14,11 @@ interface Props {
 const Header: FC<Props> = ({ color, modalHandler }) => {
   const router = useRouter();
 
-  const showNews = () => {
+  const showNews = (e: MouseEvent<HTMLButtonElement>) => {
     router.push("/news");
   };
 
-  const showContact = () => {
+  const showContact = (e: MouseEvent<HTMLButtonElement>) => {
     modalHandler(AppModals.Contact);
   };
 
@@ -29,8 +29,8 @@ const Header: FC<Props> = ({ color, modalHandler }) => {
           <Logo />
         </div>
         <div>
-          <TextBtn label={"Новости"} clickHandler={showNews} />
-          <TextBtn label={"Контакты"} clickHandler={showContact} />
+          <TextBtn label={"Новости"} clickHandler={(e) => showNews(e)} />
+          <TextBtn label={"Контакты"} clickHandler={(e) => showContact(e)} />
         </div>
       </HeaderContent>
     </StyledHeader>

@@ -8,6 +8,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "rims-i467.onrender.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

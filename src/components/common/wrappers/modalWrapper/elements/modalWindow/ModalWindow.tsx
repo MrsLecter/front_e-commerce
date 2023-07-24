@@ -9,12 +9,14 @@ export interface IModalWindowProps {
   isAppearing: boolean;
   children: React.ReactNode;
   backClickHandler: () => void;
+  hasAnimation?: boolean;
 }
 
 const ModalWindow: FC<IModalWindowProps> = ({
   isAppearing,
   children,
   backClickHandler,
+  hasAnimation = true,
 }) => {
   const backdropClickHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -26,6 +28,7 @@ const ModalWindow: FC<IModalWindowProps> = ({
       <StyledModalWrapper
         onClick={(e) => backdropClickHandler(e)}
         isActive={isAppearing}
+        hasAnimation={hasAnimation}
       >
         {children}
       </StyledModalWrapper>

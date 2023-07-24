@@ -1,6 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const StyledModalWrapper = styled.div<{ isActive: boolean }>`
+export const StyledModalWrapper = styled.div<{
+  isActive: boolean;
+  hasAnimation: Boolean;
+}>`
   position: absolute;
   top: 0px;
   width: 100%;
@@ -15,10 +18,15 @@ export const StyledModalWrapper = styled.div<{ isActive: boolean }>`
   overflow: hidden;
   z-index: 101;
   scrollbar-gutter: inherit;
-  animation: ${(props) =>
-    props.isActive
-      ? "appearance 0.3s ease-in-out"
-      : "disappearance 0.3s ease-in-out"};
+
+  ${(props) =>
+    props.hasAnimation &&
+    css`
+      animation: ${(isActive) =>
+        isActive
+          ? "appearance 0.3s ease-in-out"
+          : "disappearance 0.3s ease-in-out"};
+    `}
 
   @keyframes appearance {
     from {

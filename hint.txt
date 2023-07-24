@@ -17,6 +17,7 @@ mountingholes как массив
 добавить
 -airbnb config for eslint
 -errror, notFound page
+везде пропсы по дефолту
 
 
 read:

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header<{ color: "blue" | "none" }>`
   position: relative;
+  width: 100%;
   height: 48px;
   background-color: ${(props) =>
     props.color === "blue" ? "#517399" : "transparent"};

@@ -49,7 +49,7 @@ export const ChoosingContent = styled.div`
   }
 
   button {
-    margin-top: 26px;
+    /* margin-top: 26px; */
   }
 
   @media (max-width: 600px) {
@@ -58,4 +58,19 @@ export const ChoosingContent = styled.div`
       letter-spacing: 0.5px;
     }
   }
+`;
+
+export const Message = styled.div`
+  padding-bottom: 4px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: var(--font-roboto);
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  line-height: 12px;
+  font-weight: 400;
+  color: red;
 `;

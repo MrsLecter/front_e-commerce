@@ -1,17 +1,60 @@
 import Image from "next/image";
-import { FC } from "react";
+import { ChangeEvent, FC, KeyboardEvent, MouseEvent, useState } from "react";
 
+import { AppModals } from "@/constants/common";
 import searchIcon from "@icons/search-black.svg";
 
 import { Icon, SearchInput, StyledSearchBar } from "./SearchBar.styles";
 
-const SearchBar: FC = () => {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+  setInputHandler?: (searchInput: string) => void;
+  openSearchModal?: (modalId: number) => void;
+  inputSearch: string;
+}
+
+const SearchBar: FC<Props> = ({
+  setInputHandler,
+  openSearchModal,
+  inputSearch,
+  ...defaultProps
+}) => {
+  // const [searchInput, setSearchInput] = useState<string>("");
+
+  const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    console.log(e.key);
+    if (e.key === "Enter") {
+      if (openSearchModal) openSearchModal(AppModals.Search);
+      // if (setInputHandler) setInputHandler(searchInput);
+    }
+  };
+
+  const changeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    // setSearchInput(e.target.value);
+    if (setInputHandler) setInputHandler(e.target.value);
+  };
+
+  const setFocus = () => {
+    if (openSearchModal) openSearchModal(AppModals.Search);
+  };
+
+  const barClickHandler = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+
   return (
-    <StyledSearchBar>
+    <StyledSearchBar onClick={(e) => barClickHandler(e)}>
       <Icon>
         <Image src={searchIcon} width={18} height={18} alt={"search.svg"} />
       </Icon>
-      <SearchInput type="text" placeholder="Поиск по дискам" name="searchBar" />
+      <SearchInput
+        type="text"
+        onChange={(e) => changeInput(e)}
+        onKeyDown={(e) => onPressEnter(e)}
+        onClick={setFocus}
+        placeholder="Поиск по дискам"
+        name="searchBar"
+        {...defaultProps}
+      />
     </StyledSearchBar>
   );
 };

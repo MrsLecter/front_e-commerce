@@ -25,13 +25,17 @@ const ProductCard: FC<Props> = ({ parameters }) => {
   return (
     <StyledProductCard>
       <div>
-        <Image src={rim} width={236} height={236} alt={"rim"} />
+        <Image src={image} width={236} height={236} alt={"rim"} />
       </div>
 
       <CardContent>
         <Link href={AppRoutes.Rim + `/${rimId}`}>{name}</Link>
-        <p>от&nbsp;{getPrettyPrice(price)}&nbsp;грн</p>
-        <p>&#8960;{diameter}</p>
+        <p>от&nbsp;{getPrettyPrice(price[0])}&nbsp;грн</p>
+        <p>
+          {diameter.map((item) => (
+            <span key={item}>&#8960;{item}</span>
+          ))}
+        </p>
 
         <BlueBtn
           color="dark"

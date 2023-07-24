@@ -12,7 +12,7 @@ export interface IPostDataResponse {
   message: string;
 }
 
-export interface IGetPopularRimsResponse {
+export interface IGetRimsResponse {
   message: IRimObject[];
 }
 

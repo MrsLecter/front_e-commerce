@@ -1,4 +1,6 @@
+import { AppRoutes, BASE_URL } from "@/constants/common";
 import { GET_BRANDS_URL } from "@/constants/routes-api";
+import { IRimObject } from "@/types/common.types";
 
 export const getBtnLabel = (path: string[]): string => {
   const pathLen = path.length;
@@ -54,4 +56,50 @@ export const getPrettyDate = (dateString: string): string => {
     dateStyle: "short",
   });
   return dateArr;
+};
+
+export const getSertedRimData = (rimDataArr: IRimObject[]): IRimObject[] => {
+  let map = new Map();
+
+  for (let rim of rimDataArr) {
+    const currRimId = rim.rimId;
+    if (map.has(currRimId)) {
+      let rimObj = map.get(currRimId);
+      rimObj.diameter.push(rim.diameter);
+      rimObj.price.push(rim.price);
+
+      map.delete(currRimId);
+      map.set(currRimId, rimObj);
+    }
+    if (!map.has(currRimId)) {
+      const rimObj = {
+        rimId: currRimId,
+        name: rim.name,
+        image: rim.image,
+        diameter: [rim.diameter],
+        price: [rim.price],
+      };
+      map.set(currRimId, rimObj);
+    }
+  }
+  const sortedRimData = Array.from(map, ([name, value]) => value);
+  return sortedRimData;
+};
+
+export const getUrlWithSearchParams = ({
+  brand,
+  model,
+  year,
+}: {
+  brand: string;
+  model: string;
+  year: string;
+}) => {
+  const urlOrigin = new URL(AppRoutes.Rims, BASE_URL);
+  const params = new URLSearchParams(urlOrigin.search);
+  params.set("maker_name", brand);
+  params.set("model_name", model);
+  params.set("year", year);
+  const url = `${urlOrigin}?${params}`;
+  return url;
 };

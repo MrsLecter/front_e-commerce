@@ -9,12 +9,16 @@ import {
   Substrate,
 } from "./Selecting.styles";
 
-const Selecting: FC = () => {
+interface Props {
+  openSearchModal: (modalId: number) => void;
+}
+
+const Selecting: FC<Props> = ({ openSearchModal }) => {
   return (
     <StyledSelecting>
       <Substrate />
       <SearchWrapper>
-        <SearchBar />
+        <SearchBar openSearchModal={openSearchModal} />
       </SearchWrapper>
       <ChoosingWrapper>
         <Choosing />

@@ -1,18 +1,30 @@
 import { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface IBackdropProps {
   isAppearing: boolean;
   backClickHandler: () => void;
+  hasAnimation?: boolean;
 }
 
-const BackScreen: FC<IBackdropProps> = ({ isAppearing, backClickHandler }) => {
+const BackScreen: FC<IBackdropProps> = ({
+  isAppearing,
+  backClickHandler,
+  hasAnimation = true,
+}) => {
   return (
-    <StyledBackdrop onMouseDown={backClickHandler} isAppearing={isAppearing} />
+    <StyledBackdrop
+      onMouseDown={backClickHandler}
+      isAppearing={isAppearing}
+      hasAnimation={hasAnimation}
+    />
   );
 };
 
-export const StyledBackdrop = styled.div<{ isAppearing: boolean }>`
+export const StyledBackdrop = styled.div<{
+  isAppearing: boolean;
+  hasAnimation: boolean;
+}>`
   position: fixed;
   top: 0;
   left: 0;
@@ -27,10 +39,13 @@ export const StyledBackdrop = styled.div<{ isAppearing: boolean }>`
   scrollbar-gutter: inherit;
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   overflow: hidden;
-  animation: ${(props) =>
-    props.isAppearing
-      ? "appearance 0.5s ease-in"
-      : "disappearance 0.5s ease-in"};
+
+  ${(props) =>
+    props.hasAnimation &&
+    css`
+      animation: ${(isAppearing) =>
+        isAppearing ? "appearance 0.5s ease-in" : "disappearance 0.5s ease-in"};
+    `}
 
   @keyframes appearance {
     from {
