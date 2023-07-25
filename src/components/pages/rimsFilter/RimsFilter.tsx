@@ -28,9 +28,10 @@ const RimsFilter: FC = () => {
   const [rimsList, setRimsList] = useState<IRimObject[]>();
   const [rimsResponse, setRimsResponse] = useState<IRimObject[]>();
   const [loading, setLoading] = useState<boolean>(true);
+  const [visibleRimsAmount, setVisibleRimsAmount] = useState<number>(8);
 
   console.log("filterDiameters: ", filterDiameters, filterDiameters.join("-"));
-
+  //TODO: delete diametersRef
   useEffect(() => {
     console.log(
       "---------------diametersRef.current:",
@@ -77,27 +78,31 @@ const RimsFilter: FC = () => {
   };
 
   const showMoreHandler = () => {
-    alert("show more");
+    setVisibleRimsAmount((prev) => prev + 8);
   };
 
   useEffect(() => {
     console.log(">>>>>run download data");
+
     const getRimsByBrand = async () => {
       setLoading(true);
+      setVisibleRimsAmount(8);
       const response = await rimsService.getRimsByBrand({
         rimBrand: getRimBrand(params.params || "all") || "all",
       });
       console.log("rim by brand response", response);
       setRimsResponse((prev) => response.data.message);
-      setRimsList((prev) => response.data.message);
+      setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount));
       const avaliableDiameters = getRetrievedDiameters(response.data.message);
       setRetrievedDiameters((prev) => avaliableDiameters);
       setTimeout(() => {
         setLoading(false);
       }, 1000);
     };
+
     const getFilteredRims = async () => {
       setLoading(true);
+      setVisibleRimsAmount(8);
       const response = await rimsService.getFilteredRims({
         brand: rimsBrand || "",
         model: rimsModel || "",
@@ -105,7 +110,7 @@ const RimsFilter: FC = () => {
       });
       console.log("filter response", response);
       setRimsResponse((prev) => response.data.message);
-      setRimsList((prev) => response.data.message);
+      setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount));
       const avaliableDiameters = getRetrievedDiameters(response.data.message);
       setRetrievedDiameters((prev) => avaliableDiameters);
       setTimeout(() => {
@@ -119,6 +124,12 @@ const RimsFilter: FC = () => {
       getRimsByBrand();
     }
   }, [params.params, rimsBrand, rimsModel, rimsYear]);
+
+  useEffect(() => {
+    if (rimsResponse) {
+      setRimsList((prev) => rimsResponse!.slice(0, visibleRimsAmount));
+    }
+  }, [visibleRimsAmount]);
 
   console.log("rim brand", rimsBrand, rimsModel, rimsYear);
   return (
