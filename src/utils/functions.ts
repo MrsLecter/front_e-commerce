@@ -93,14 +93,14 @@ export const getUrlWithSearchParams = ({
 }: {
   brand: string;
   model: string;
-  year: string;
+  year: number;
 }) => {
   const urlOrigin = new URL(AppRoutes.Rims + "/filter", BASE_URL);
   const params = new URLSearchParams(urlOrigin.search);
 
   params.set("brand", brand);
   params.set("model", model);
-  params.set("year", year);
+  params.set("year", String(year));
   const url = `${urlOrigin}?${params}`;
   return url;
 };

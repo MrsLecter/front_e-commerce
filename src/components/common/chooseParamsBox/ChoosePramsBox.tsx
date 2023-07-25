@@ -18,6 +18,9 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   const [brand, setBrand] = useState<string>(
     defaultParams[0] ? defaultParams[0] : "Марка"
   );
+  const [oldBrand, setOldBrand] = useState<string>(
+    defaultParams[0] ? defaultParams[0] : "Марка"
+  );
   const [brandsArr, setBrandsArr] = useState<string[]>([]);
   const [model, setModel] = useState<string>(
     defaultParams[1] ? defaultParams[1] : "Модель"
@@ -39,7 +42,7 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       const url = getUrlWithSearchParams({
         brand,
         model,
-        year,
+        year: +year,
       });
       router.push(url);
     }
@@ -48,15 +51,14 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   useEffect(() => {
     const getCarBrands = async () => {
       setYearsArr([]);
-      setYear("Год");
       setModelsArr([]);
-      setModel("Модель");
       const response = await rimsService.getAllAuto();
       setBrandsArr(response.data.message);
     };
     const getCarModels = async () => {
       setYearsArr([]);
       setYear("Год");
+      setOldBrand(brand);
       const response = await rimsService.getAutoModels({
         brand,
       });
@@ -69,19 +71,22 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       });
       setYearsArr(response.data.message);
     };
+
     console.log("brand model year", brand, model, year);
+    if (brand !== oldBrand) {
+      setYear("Год");
+      setModel("Модель");
+      setYearsArr([]);
+      setModelsArr([]);
+    }
     if (!brandsArr.length) {
+      console.log("swipe ", brand, oldBrand);
       getCarBrands();
     }
-    if (brand !== "Марка" && brand !== "" && year === "Год") {
+    if (brand !== "Марка" && year === "Год") {
       getCarModels();
     }
-    if (
-      model !== "Модель" &&
-      model !== "" &&
-      brand !== "Марка" &&
-      brand !== ""
-    ) {
+    if (model !== "Модель" && brand !== "Марка") {
       getCarYears();
     }
   }, [brand, model, year]);
@@ -90,17 +95,17 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
     <ChoosingContent>
       {header && <p>{header}</p>}
       <SelectMenu
-        defaultOption={defaultParams[0] ? defaultParams[0] : "Марка"}
+        defaultOption={brand}
         setValue={setBrand}
         optionsArray={brandsArr}
       />
       <SelectMenu
-        defaultOption={defaultParams[1] ? defaultParams[1] : "Модель"}
+        defaultOption={model}
         setValue={setModel}
         optionsArray={modelsArr}
       />
       <SelectMenu
-        defaultOption={defaultParams[2] ? defaultParams[2] : "Год"}
+        defaultOption={year}
         setValue={setYear}
         optionsArray={yearsArr}
       />

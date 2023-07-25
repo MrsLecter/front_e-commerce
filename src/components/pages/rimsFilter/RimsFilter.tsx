@@ -87,7 +87,7 @@ const RimsFilter: FC = () => {
       const response = await rimsService.getRimsByBrand({
         rimBrand: getRimBrand(params.params || "all") || "all",
       });
-      // console.log("rim by brand response", response);
+      console.log("rim by brand response", response);
       setRimsResponse((prev) => response.data.message);
       setRimsList((prev) => response.data.message);
       const avaliableDiameters = getRetrievedDiameters(response.data.message);
@@ -103,7 +103,7 @@ const RimsFilter: FC = () => {
         model: rimsModel || "",
         year: rimsYear || "",
       });
-      // console.log("filter response", response);
+      console.log("filter response", response);
       setRimsResponse((prev) => response.data.message);
       setRimsList((prev) => response.data.message);
       const avaliableDiameters = getRetrievedDiameters(response.data.message);
@@ -118,7 +118,7 @@ const RimsFilter: FC = () => {
     if (params.params !== "filter") {
       getRimsByBrand();
     }
-  }, [params.params]);
+  }, [params.params, rimsBrand, rimsModel, rimsYear]);
 
   console.log("rim brand", rimsBrand, rimsModel, rimsYear);
   return (

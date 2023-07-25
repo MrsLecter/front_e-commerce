@@ -243,7 +243,7 @@ class RimsService {
         {
           brand,
           model,
-          year,
+          year: +year,
         },
         {
           headers: {

@@ -25,6 +25,7 @@ export const CardContainer = styled.div<{ isReady: boolean }>`
   width: 992px;
   min-height: 740px;
   display: grid;
+  column-gap: 12px;
   justify-content: flex-start;
   grid-template-columns: auto auto auto auto;
   filter: ${(props) => (props.isReady ? "blur(5px)" : "blur(0px)")};
