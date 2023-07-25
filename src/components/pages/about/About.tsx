@@ -6,6 +6,7 @@ import { AppModals, AppRoutes } from "@/constants/common";
 
 import { AboutHeader, Paragraph } from "./About.styles";
 import Location from "./elements/Location";
+import { ManufacturesNames } from "@/constants/manufactures-card-list";
 
 interface Props {
   modalHandler: (modalID: number) => void;
@@ -31,11 +32,11 @@ const About: FC<Props> = ({ modalHandler }) => {
         </p>
         <p>
           За время работы мы стали эксклюзивным представителем компаний &nbsp;
-          <Link href={AppRoutes.Rims + "/kosei"}>Kosei aluminium (Япония)</Link>
-          ,&nbsp;<Link href={AppRoutes.Rims + "/mkw"}>MKW (Mi-tech)</Link>,
-          &nbsp;<Link href={AppRoutes.Rims + "/marcello"}>Marcello wheels</Link>
+          <Link href={AppRoutes.Rims + ManufacturesNames.Kosei}>Kosei aluminium (Япония)</Link>
+          ,&nbsp;<Link href={AppRoutes.Rims + ManufacturesNames.Mkw}>MKW (Mi-tech)</Link>,
+          &nbsp;<Link href={AppRoutes.Rims + ManufacturesNames.Marcello}>Marcello wheels</Link>
           , Zent и&nbsp;
-          <Link href={AppRoutes.Rims + "/inzi"}>Inzi Aone (Корея)</Link>&nbsp;в
+          <Link href={AppRoutes.Rims + ManufacturesNames.Inzi}>Inzi Aone (Корея)</Link>&nbsp;в
           Украине.
         </p>
         <p>

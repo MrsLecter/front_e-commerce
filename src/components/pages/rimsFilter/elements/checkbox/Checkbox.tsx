@@ -1,27 +1,32 @@
-import { FC, MouseEvent } from "react";
+import { ChangeEvent, FC, MouseEvent, useState } from "react";
 import styled from "styled-components";
 
 interface Props {
   name: string;
   label: string;
-  setDiameter: (diameter: string) => void;
+  setDiameter: (selectedDiameter: string) => void;
 }
 
 const Checkbox: FC<Props> = ({ name, label, setDiameter }) => {
-  const toggleCheckbox = (e: MouseEvent) => {
-    console.log((e.currentTarget as HTMLInputElement).value);
+  const [check, setCheck] = useState<boolean>(false);
+
+  const toggleCheckbox = (e: ChangeEvent) => {
     setDiameter((e.currentTarget as HTMLInputElement).value);
+    setCheck(!check);
+    console.log("click ", (e.currentTarget as HTMLInputElement).value);
   };
 
   return (
     <StyledCheckbox>
       <StyledInput
         type="checkbox"
-        name={name}
+        name={"checkbox-" + name}
+        id={"checkbox-" + name}
         value={label}
-        onClick={(e) => toggleCheckbox(e)}
+        onChange={(e) => toggleCheckbox(e)}
+        checked={check}
       />
-      <StyledLabel htmlFor={name}>{label}</StyledLabel>
+      <StyledLabel htmlFor={"checkbox-" + name}>{label}</StyledLabel>
     </StyledCheckbox>
   );
 };
@@ -36,21 +41,30 @@ const StyledCheckbox = styled.div`
 `;
 
 const StyledInput = styled.input`
-  -moz-appearance: none;
+  /* -moz-appearance: none;
   -webkit-appearance: none;
-  -o-appearance: none;
+  -o-appearance: none; */
   width: 14px;
   height: 14px;
   accent-color: #517399;
   border: 2px solid #517399;
   border-radius: 2px;
   margin-right: 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledLabel = styled.label`
+  width: 100%;
   font-family: var(--font-roboto);
   font-size: 12px;
   color: #333;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Checkbox;

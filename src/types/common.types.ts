@@ -27,6 +27,17 @@ export interface IRimDetailedData {
   width: string[];
   diameter: string[];
   mountingHoles: string[];
-  price: number;
+  price: number[];
   images: string[];
+}
+
+export interface IRimDetailedInfo {
+  name: string;
+  images: string[];
+  rimVariations: {
+    width: string;
+    diameter: string;
+    mountingHoles: string;
+    price: number;
+  }[];
 }

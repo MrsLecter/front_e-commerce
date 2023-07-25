@@ -19,13 +19,13 @@ const Popular: FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const showAllRimsHandler = () => {
-    router.push(AppRoutes.Rims);
+    router.push(AppRoutes.Rims + "/all");
   };
 
   useEffect(() => {
     const getPopularRims = async () => {
       const response = await rimsService.getPopularRims();
-      const popularRims = getSertedRimData(response.data.message).slice(0, 8);
+      const popularRims = response.data.message.slice(0, 8);
       console.log(popularRims);
       setRims((prev) => [...popularRims]);
       setLoading(false);
@@ -41,10 +41,9 @@ const Popular: FC = () => {
           popularRimsStub.map((item, index) => {
             return <ProductCard key={index} parameters={item} />;
           })}
-        {!loading &&
-          rims.map((item, index) => {
-            return <ProductCard key={index} parameters={item} />;
-          })}
+        {rims.map((item, index) => {
+          return <ProductCard key={index} parameters={item} />;
+        })}
       </CardContainer>
       <ShowMoreBtn clickHandler={showAllRimsHandler} />
     </StyledPopular>

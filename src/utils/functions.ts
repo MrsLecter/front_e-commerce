@@ -95,11 +95,83 @@ export const getUrlWithSearchParams = ({
   model: string;
   year: string;
 }) => {
-  const urlOrigin = new URL(AppRoutes.Rims, BASE_URL);
+  const urlOrigin = new URL(AppRoutes.Rims + "/filter", BASE_URL);
   const params = new URLSearchParams(urlOrigin.search);
-  params.set("maker_name", brand);
-  params.set("model_name", model);
+
+  params.set("brand", brand);
+  params.set("model", model);
   params.set("year", year);
   const url = `${urlOrigin}?${params}`;
   return url;
+};
+
+export const getRetrievedDiameters = (rims: IRimObject[]): string[] => {
+  if (!rims || !rims.length) {
+    return [];
+  }
+
+  let map = new Map();
+
+  for (let rim of rims) {
+    for (let diameter of rim.diameter) {
+      if (!map.has(diameter)) {
+        map.set(diameter, diameter);
+      }
+    }
+  }
+  const arrDiameters = Array.from(map, ([name, value]) => value);
+  arrDiameters.sort((a, b) => a - b);
+  return arrDiameters;
+};
+
+export const getRimBrand = (rimBrand: string): string | undefined => {
+  switch (rimBrand) {
+    case "all":
+      return "на авто";
+    case "filter":
+      return "";
+    case "":
+      return;
+    case "mkw":
+      return "MKW";
+    case "inzi":
+      return "InziAone";
+    default:
+      return rimBrand[0].toUpperCase() + rimBrand.slice(1);
+  }
+};
+
+export const getDiameterLabel = (diameters: string[]): string[] => {
+  if (diameters.length === 1) {
+    return diameters;
+  } else {
+    diameters.sort((a, b) => +a - +b);
+    return [diameters[0], diameters[diameters.length - 1]];
+  }
+};
+
+export const getPriceLabel = (prices: number[]): string => {
+  if (prices.length === 1) {
+    return getPrettyPrice(prices[0]);
+  } else {
+    prices.sort((a, b) => a - b);
+    return getPrettyPrice(prices[0]);
+  }
+};
+
+export const getRimsDiameterFiltered = ({
+  rims,
+  diameters,
+}: {
+  rims: IRimObject[];
+  diameters: string[];
+}) => {
+  const arr = rims.filter((item) => {
+    for (let diameter of diameters) {
+      if (item.diameter.includes(diameter)) {
+        return item;
+      }
+    }
+  });
+  return arr;
 };

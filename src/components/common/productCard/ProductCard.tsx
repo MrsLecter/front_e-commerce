@@ -6,7 +6,7 @@ import rim from "@images/delete-rim.jpg";
 
 import BlueBtn from "../buttons/BlueBtn/BlueBtn";
 import { CardContent, StyledProductCard } from "./ProductCard.styles";
-import { getPrettyPrice } from "@/utils/functions";
+import { getDiameterLabel, getPriceLabel } from "@/utils/functions";
 import { IRimObject } from "@/types/common.types";
 import { AppRoutes } from "@/constants/common";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,8 @@ interface Props {
 const ProductCard: FC<Props> = ({ parameters }) => {
   const { name, price, diameter, image, rimId } = parameters;
   const route = useRouter();
+  const diameterLabel = getDiameterLabel(diameter);
+  const priceLabel = getPriceLabel(price);
   const orderHandler = () => {
     route.push(AppRoutes.Rim + `/${rimId}`);
   };
@@ -30,11 +32,18 @@ const ProductCard: FC<Props> = ({ parameters }) => {
 
       <CardContent>
         <Link href={AppRoutes.Rim + `/${rimId}`}>{name}</Link>
-        <p>от&nbsp;{getPrettyPrice(price[0])}&nbsp;грн</p>
+        <p>от&nbsp;{priceLabel}&nbsp;грн</p>
         <p>
-          {diameter.map((item) => (
-            <span key={item}>&#8960;{item}</span>
-          ))}
+          {diameterLabel.length === 1 && (
+            <span>&#8960;{diameterLabel[0]}&rsquo;&rsquo;</span>
+          )}
+          {diameterLabel.length > 1 && (
+            <span>
+              &#8960;{diameterLabel[0]}
+              &rsquo;&rsquo;&nbsp;-&nbsp;&#8960;{diameterLabel[1]}
+              &rsquo;&rsquo;
+            </span>
+          )}
         </p>
 
         <BlueBtn

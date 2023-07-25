@@ -9,7 +9,7 @@ import { Icon, SearchInput, StyledSearchBar } from "./SearchBar.styles";
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   setInputHandler?: (searchInput: string) => void;
   openSearchModal?: (modalId: number) => void;
-  inputSearch: string;
+  inputSearch?: string;
 }
 
 const SearchBar: FC<Props> = ({

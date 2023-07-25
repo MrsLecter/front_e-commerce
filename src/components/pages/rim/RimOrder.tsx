@@ -6,10 +6,13 @@ import Order from "./elements/order/Order";
 import Questions from "@/components/common/questions/Questions";
 import { AppModals } from "@/constants/common";
 import rimsService from "@/api/rims-service";
-import { usePathname } from "next/navigation";
-import { IRimDetailedData } from "@/types/common.types";
-
-
+import { useParams, usePathname } from "next/navigation";
+import {
+  IRimDetailedData,
+  IRimDetailedInfo,
+  IRimObject,
+} from "@/types/common.types";
+import { rimStub } from "@/constants/helpers";
 
 interface Props {
   rimData: IRimDetailedData;
@@ -22,10 +25,22 @@ interface Props {
 }
 
 const RimOrder: FC<Props> = ({ managementObject, rimData }) => {
-  const pathname = usePathname();
+  const params = useParams();
+  const [rimObject, setRimObject] = useState<IRimDetailedInfo>(rimStub);
+  console.log("rimid ", params.params);
   const placeOrderHandler = () => {
     managementObject.activateHandler(AppModals.Order);
   };
+
+  useEffect(() => {
+    const getDetailedRimsInfo = async () => {
+      const response = await rimsService.getRimData({
+        id: params.params,
+      });
+      console.log("resposne rim data", response);
+    };
+    getDetailedRimsInfo();
+  }, []);
   return (
     <StyledRimOrder>
       <div>

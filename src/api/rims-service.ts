@@ -1,10 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import {
+  GED_RIM_INFO_URL,
   GET_ALL_AUTO_URL,
   GET_AUTO_MODELS_URL,
   GET_AUTO_YEARS_URL,
+  GET_FILTERED_RIMS_URL,
   GET_NEWS_URL,
   GET_POPULAR_RIMS_URL,
+  GET_RIMS_BY_BRAND_URL,
   GET_RIM_DETAILED_URL,
   POST_CALL_DATA_URL,
   POST_FEEDBACK_URL,
@@ -26,7 +29,9 @@ class RimsService {
     page: number;
   }): Promise<AxiosResponse<INewsFeedResponse, any>> {
     try {
-      const response = await axios.get<INewsFeedResponse>(GET_NEWS_URL +`/${page}`);
+      const response = await axios.get<INewsFeedResponse>(
+        GET_NEWS_URL + `/${page}`
+      );
       return response;
     } catch (err: any) {
       return err;
@@ -189,6 +194,79 @@ class RimsService {
         question,
         phone,
         email,
+      });
+      return response;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  //TODO:delete ngrok headers
+  public async getRimsByBrand({
+    rimBrand,
+  }: {
+    rimBrand: string;
+  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
+    try {
+      const response = await axios.post<IGetRimsResponse>(
+        GET_RIMS_BY_BRAND_URL,
+        {
+          rimBrand,
+        },
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  //TODO:delete ngrok headers
+  public async getFilteredRims({
+    brand,
+    model,
+    year,
+  }: {
+    brand: string;
+    model: string;
+    year: string;
+  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
+    try {
+      const response = await axios.post<IGetRimsResponse>(
+        GET_FILTERED_RIMS_URL,
+        {
+          brand,
+          model,
+          year,
+        },
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  public async getRimData({
+    id,
+  }: {
+    id: string;
+  }): Promise<AxiosResponse<IPostDataResponse, any>> {
+    try {
+      const response = await axios.post<IPostDataResponse>(GED_RIM_INFO_URL, {
+        id,
       });
       return response;
     } catch (err: any) {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledFilter = styled.div`
   padding: 8px;
   width: 100%;
-  height: 218px;
+  min-height: 218px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -54,6 +54,9 @@ export const StyledFilter = styled.div`
   & > div:nth-child(3) {
     width: 20%;
     height: 100%;
+    & > div {
+      width: 100%;
+    }
   }
 
   @media (max-width: 766px) {

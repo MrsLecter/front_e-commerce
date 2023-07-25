@@ -1,3 +1,5 @@
+import { ManufacturesNames } from "./manufactures-card-list";
+
 export const BASE_URL = "http://localhost:3000/";
 
 export enum AppRoutes {
@@ -20,27 +22,27 @@ export enum AppModals {
 export const FOOTER_LINKS = [
   {
     id: 1,
-    href: AppRoutes.Rims + "/inzi",
+    href: AppRoutes.Rims + ManufacturesNames.Inzi,
     description: "Диски InziAone",
   },
   {
     id: 2,
-    href: AppRoutes.Rims + "/kosei",
+    href: AppRoutes.Rims + ManufacturesNames.Kosei,
     description: "Диски Kosei",
   },
   {
     id: 3,
-    href: AppRoutes.Rims + "/marcello",
+    href: AppRoutes.Rims + ManufacturesNames.Marcello,
     description: "Диски Marcello",
   },
   {
     id: 4,
-    href: AppRoutes.Rims + "/mkw",
+    href: AppRoutes.Rims + ManufacturesNames.Mkw,
     description: "Диски MKW",
   },
   {
     id: 5,
-    href: AppRoutes.Rims + "/replica",
+    href: AppRoutes.Rims + ManufacturesNames.Replica,
     description: "Диски Replica",
   },
   {

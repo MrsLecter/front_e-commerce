@@ -11,11 +11,12 @@ import {
 } from "./Banner.styles";
 import { useRouter } from "next/navigation";
 import { AppRoutes } from "@/constants/common";
+import { ManufacturesNames } from "@/constants/manufactures-card-list";
 
 const Banner: FC = () => {
   const router = useRouter();
   const showAllReplica = () => {
-    router.push(AppRoutes.Rims + "/replica");
+    router.push(AppRoutes.Rims + ManufacturesNames.Replica);
   };
   return (
     <StyledBannerWrapper>
