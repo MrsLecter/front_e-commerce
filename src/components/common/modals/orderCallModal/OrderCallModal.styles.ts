@@ -18,7 +18,7 @@ export const StyledOrderCall = styled.div`
 export const OrderCallContent = styled.div`
   padding: 16px 20px;
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,6 +26,7 @@ export const OrderCallContent = styled.div`
   background-color: #eceff1;
 
   & > div:last-child {
+    margin-top: 16px;
     width: 144px;
   }
 `;

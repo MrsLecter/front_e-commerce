@@ -6,17 +6,33 @@ import SelectMenu from "@/components/common/selectMenu/SelectMenu";
 import OrderDescription from "./elements/orderDescription/OrderDescription";
 import OrderHeader from "./elements/orderHeader/OrderHeader";
 import OrderPrice from "./elements/orderPrice/OrderPrice";
-import { StyledAlert, StyledOrder } from "./Order.styles";
+import {
+  LoadingDescription,
+  LoadingOrderHeader,
+  LoadingOrderMenu,
+  LoadingOrderPrice,
+  StyledAlert,
+  StyledOrder,
+} from "./Order.styles";
+import { LoadingButton } from "@/styles/common";
 
 interface Props {
   header: string;
-  options: string[];
-  price: number;
+  rimPrice: number;
+  optionArray: string[];
+  setVariationHandler: (option: string) => void;
   placeOrderHandler: () => void;
+  loading: boolean;
 }
 
-const Order: FC<Props> = ({ header, options, price, placeOrderHandler }) => {
-  const [diameter, setDiameter] = useState<string>(options[0]);
+const Order: FC<Props> = ({
+  header,
+  rimPrice,
+  optionArray,
+  setVariationHandler,
+  placeOrderHandler,
+  loading,
+}) => {
   const [isHaveAlert, setAlert] = useState<boolean>(true);
 
   setTimeout(() => {
@@ -25,24 +41,39 @@ const Order: FC<Props> = ({ header, options, price, placeOrderHandler }) => {
 
   return (
     <StyledOrder onClick={() => setAlert(false)}>
-      <OrderHeader header={header} />
-      {isHaveAlert && (
-        <StyledAlert>
-          Здесь Вы можете выбрать диаметр и ширину дисков
-        </StyledAlert>
+      {!loading && (
+        <>
+          <OrderHeader header={header} />
+          {isHaveAlert && (
+            <StyledAlert>
+              Здесь Вы можете выбрать диаметр и ширину дисков
+            </StyledAlert>
+          )}
+          <SelectMenu
+            defaultOption={optionArray[0]}
+            setValue={setVariationHandler}
+            optionsArray={optionArray}
+          />
+          <OrderPrice price={rimPrice} />
+          <BlueBtn
+            color={"dark"}
+            label={"Заказать в 1 клик"}
+            clickHandler={placeOrderHandler}
+          />
+          <OrderDescription />
+        </>
       )}
-      <SelectMenu
-        defaultOption={options[0]}
-        setValue={setDiameter}
-        optionsArray={options}
-      />
-      <OrderPrice price={price} />
-      <BlueBtn
-        color={"dark"}
-        label={"Заказать в 1 клик"}
-        clickHandler={placeOrderHandler}
-      />
-      <OrderDescription />
+      {loading && (
+        <>
+          <LoadingOrderHeader />
+          <LoadingOrderMenu />
+          <LoadingOrderPrice>
+            <div></div>
+          </LoadingOrderPrice>
+          <LoadingButton height={36} />
+          <LoadingDescription />
+        </>
+      )}
     </StyledOrder>
   );
 };

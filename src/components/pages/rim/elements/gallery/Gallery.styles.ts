@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledGallery = styled.div`
   position: relative;
@@ -25,7 +25,7 @@ export const StyledGallery = styled.div`
   }
 `;
 
-export const Thumbnail = styled.div`
+export const Thumbnail = styled.div<{ loading: boolean }>`
   padding: 16px;
   width: 100%;
   height: 80px;
@@ -33,6 +33,11 @@ export const Thumbnail = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  ${(props) =>
+    props.loading &&
+    css`
+      animation: image-loading 1s linear infinite alternate;
+    `}
 
   @media (max-width: 560px) {
     height: 100%;
@@ -94,9 +99,14 @@ export const Next = styled.button`
   background-color: transparent;
 `;
 
-export const Slide = styled.div`
+export const Slide = styled.div<{ loading: boolean }>`
   width: 100%;
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  ${(props) =>
+    props.loading &&
+    css`
+      animation: image-loading 1s linear infinite alternate;
+    `}
 
   &:hover {
     button {

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledChContainer = styled.div`
   margin-top: 26px;
@@ -61,7 +61,7 @@ export const ChRow = styled.div<{ color?: string }>`
   }
 
   div:nth-child(2) {
-    width: 100%;
+    width: 90%;
     height: 20px;
     margin-top: auto;
     margin-bottom: auto;
@@ -83,6 +83,7 @@ export const ChRow = styled.div<{ color?: string }>`
     margin: 2px;
     float: left;
     padding: 2px;
+
     span {
       margin: 2px;
       display: inline-block;
@@ -111,4 +112,10 @@ export const ChRow = styled.div<{ color?: string }>`
       align-self: center;
     }
   }
+`;
+
+export const LoadingHeader = styled.div`
+  width: 100%;
+  height: 48px;
+  border-radius: 2px;
 `;

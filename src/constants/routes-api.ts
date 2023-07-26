@@ -6,6 +6,7 @@ export const GET_ALL_AUTO_URL = `${BASE_API_URL}/car-brands`;
 export const GET_AUTO_MODELS_URL = `${BASE_API_URL}/car-models`;
 export const POST_CALL_DATA_URL = `${BASE_API_URL}/order-phcall`;
 export const POST_FEEDBACK_URL = `${BASE_API_URL}/order-question `;
+export const POST_ORDER_URL = `${BASE_API_URL}/order`;
 export const GET_AUTO_YEARS_URL = `${BASE_API_URL}/car-years`;
 export const GET_POPULAR_RIMS_URL = `${BASE_API_URL}/rims-popular`;
 export const GET_RIM_DETAILED_URL = `${BASE_API_URL}/rim-by-id`;

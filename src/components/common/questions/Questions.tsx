@@ -5,17 +5,22 @@ import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
 import questions from "@images/questions.png";
 
 import {
+  LoadingDescription,
+  LoadingQuiestion,
   QuestionContent,
   QuestionImage,
   QuestionsWrapper,
 } from "./Questions.styles";
 import { AppModals } from "@/constants/common";
+import { LoadingButton } from "@/styles/common";
+
 
 interface Props {
   modalHandler: (modalID: number) => void;
+  loading?: boolean;
 }
 
-const Questions: FC<Props> = ({ modalHandler }) => {
+const Questions: FC<Props> = ({ modalHandler, loading = false }) => {
   const orderCallHandler = () => {
     modalHandler(AppModals.Call);
   };
@@ -24,22 +29,38 @@ const Questions: FC<Props> = ({ modalHandler }) => {
   };
   return (
     <QuestionsWrapper>
-      <QuestionImage>
-        <Image src={questions} alt={"questions"} width={118} height={126} />
+      <QuestionImage loading={loading}>
+        {!loading && (
+          <Image src={questions} alt={"questions"} width={118} height={126} />
+        )}
       </QuestionImage>
       <QuestionContent>
-        <p>Есть вопрос?</p>
-        <p>Мы с удовольствием ответим на все!</p>
-        <BlueBtn
-          color={"dark"}
-          label={"Заказать звонок"}
-          clickHandler={orderCallHandler}
-        />
-        <BlueBtn
-          color={"light"}
-          label={"Задать вопрос"}
-          clickHandler={askQuestionHandler}
-        />
+        {!loading && (
+          <>
+            <p>Есть вопрос?</p>
+            <p>Мы с удовольствием ответим на все!</p>
+            <BlueBtn
+              height={"30"}
+              color={"dark"}
+              label={"Заказать звонок"}
+              clickHandler={orderCallHandler}
+            />
+            <BlueBtn
+              height={"30"}
+              color={"light"}
+              label={"Задать вопрос"}
+              clickHandler={askQuestionHandler}
+            />
+          </>
+        )}
+        {loading && (
+          <>
+            <LoadingQuiestion />
+            <LoadingDescription />
+            <LoadingButton height={30} />
+            <LoadingButton height={30} />
+          </>
+        )}
       </QuestionContent>
     </QuestionsWrapper>
   );

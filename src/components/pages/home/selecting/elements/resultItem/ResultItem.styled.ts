@@ -15,13 +15,18 @@ export const StyldResultItem = styled.div`
   }
 
   & > div:last-child {
-    margin-left:10px;
+    margin-left: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     font-family: var(--font-roboto);
     font-weight: 400;
+  }
+
+  &:hover {
+    background-color: hsl(200, 20%, 95%);
+    cursor: pointer;
   }
 `;
 

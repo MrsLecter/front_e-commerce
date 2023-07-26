@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const StyledProductCard = styled.div`
+export const StyledProductCard = styled.div<{ loading: boolean }>`
   margin-bottom: 16px;
   position: relative;
   width: 236px;
@@ -18,6 +18,11 @@ export const StyledProductCard = styled.div`
     position: absolute;
     top: 0px;
     left: 0px;
+    ${(props) =>
+      props.loading &&
+      css`
+        animation: image-loading 1s linear infinite alternate;
+      `}
   }
 `;
 
@@ -50,3 +55,32 @@ export const CardContent = styled.div`
     letter-spacing: 0.4px;
   }
 `;
+
+export const LoadingName = styled.span`
+  display: block;
+  width: 200px;
+  height: 18px;
+  border-radius: 2px;
+  background-color: hsl(200, 20%, 70%);
+  animation: image-loading 1s linear infinite alternate;
+`;
+
+export const LoadingPrice = styled.div`
+  margin-top: 4px;
+  width: 80px;
+  height: 15px;
+  border-radius: 2px;
+  background-color: hsl(200, 20%, 70%);
+  animation: image-loading 1s linear infinite alternate;
+`;
+
+export const LoadingDiameters = styled.div`
+  margin: 4px 0 13px 0;
+  width: 50px;
+  height: 11px;
+  border-radius: 2px;
+  background-color: hsl(200, 20%, 70%);
+  animation: image-loading 1s linear infinite alternate;
+`;
+
+

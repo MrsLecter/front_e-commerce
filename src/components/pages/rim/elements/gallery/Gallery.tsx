@@ -8,59 +8,44 @@ import {
   Thumbnail,
 } from "./Gallery.styles";
 import Image from "next/image";
+import { getLinksObjectArr } from "@/utils/functions";
+import placeholder from "@images/rim-placeholder.png";
 
-const linkArr = [
-  {
-    id: 1,
-    link: "https://rims-1neq.onrender.com/wo_01_chrome.jpg",
-  },
-  {
-    id: 2,
-    link: "https://rims-1neq.onrender.com/XR-050_HB_mini.jpg",
-  },
-  {
-    id: 3,
-    link: "https://rims-1neq.onrender.com/mk_150_ams.jpg",
-  },
-  {
-    id: 4,
-    link: "https://rims-1neq.onrender.com/XR-050_HB_mini.jpg",
-  },
-  {
-    id: 5,
-    link: "https://rims-1neq.onrender.com/zora_12_amb.jpg",
-  },
-];
+interface Props {
+  imageLinks: string[];
+  loading: boolean;
+}
 
-const Gallery: FC = () => {
+const Gallery: FC<Props> = ({ imageLinks, loading }) => {
+  const linksArr = getLinksObjectArr(imageLinks);
   const [currSlide, setCurrSlide] = useState<{ id: number; link: string }>(
-    linkArr[0]
+    linksArr[0]
   );
   const getPrev = () => {
-    let prevId = currSlide.id - 2;
+    let prevId = currSlide.id - 1;
     if (prevId < 0) {
-      prevId = linkArr.length - 1;
+      prevId = linksArr.length - 1;
     }
-    setCurrSlide(linkArr[prevId]);
+    setCurrSlide(linksArr[prevId]);
   };
 
   const getNext = () => {
     let nextId = currSlide.id + 1;
-    if (nextId > linkArr.length) {
+    if (nextId > linksArr.length - 1) {
       nextId = 0;
-      setCurrSlide(linkArr[nextId]);
+      setCurrSlide(linksArr[nextId]);
     } else {
-      setCurrSlide(linkArr[nextId - 1]);
+      setCurrSlide(linksArr[nextId]);
     }
   };
 
   return (
     <StyledGallery>
-      <Slide>
+      <Slide loading={loading}>
         <Image
           width={551}
           height={551}
-          src={currSlide.link}
+          src={currSlide.link.length === 0 ? placeholder : currSlide.link}
           alt={"bigRim"}
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
@@ -68,15 +53,20 @@ const Gallery: FC = () => {
         <Next onClick={getNext}>&#10095;</Next>
       </Slide>
 
-      <Thumbnail>
-        {linkArr.map((item) => {
+      <Thumbnail loading={loading}>
+        {linksArr.map((item) => {
           return (
             <Preview
               key={item.id}
               onClick={() => setCurrSlide(item)}
               haveBorder={item.id === currSlide.id}
             >
-              <Image src={item.link} width={48} height={48} alt="rim.png" />
+              <Image
+                src={item.link.length === 0 ? placeholder : item.link}
+                width={48}
+                height={48}
+                alt="rim.png"
+              />
             </Preview>
           );
         })}

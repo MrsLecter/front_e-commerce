@@ -63,3 +63,48 @@ export const StyledAlert = styled.div`
     }
   }
 `;
+
+export const LoadingOrderHeader = styled.div`
+  margin: 8px 0px 16px;
+  width: 65%;
+  height: 22px;
+  border-radius: 2px;
+  background-color: #507298;
+  animation: image-loading 1s linear infinite alternate;
+`;
+
+export const LoadingOrderMenu = styled.div`
+  margin: 8px 0px;
+  width: 379px;
+  height: 36px;
+  border-radius: 2px;
+  background-color: #507298;
+  animation: image-loading 1s linear infinite alternate;
+`;
+
+export const LoadingOrderPrice = styled.div`
+  margin: 16px 0px;
+  width: 100%;
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    width: 100px;
+    height: 100%;
+    border-radius: 2px;
+    background-color: #507298;
+    animation: image-loading 1s linear infinite alternate;
+  }
+`;
+
+export const LoadingDescription = styled.div`
+  margin: 8px auto;
+  width: 90%;
+  height: 28px;
+  border-radius: 2px;
+  background-color: #507298;
+  animation: image-loading 1s linear infinite alternate;
+`;

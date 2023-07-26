@@ -1,42 +1,68 @@
 import { FC } from "react";
-import { ChHeader, ChRow, StyledChContainer } from "./Characteristics.styles";
+import {
+  ChHeader,
+  ChRow,
+  LoadingHeader,
+  StyledChContainer,
+} from "./Characteristics.styles";
 
 interface Props {
-  width: string[];
-  diameter: string[];
-  fixingHoles: string[];
+  width: string;
+  diameter: string;
+  fixingHoles: string;
+  loading: boolean;
 }
 
-const Characteristics: FC<Props> = ({ width, diameter, fixingHoles }) => {
+const Characteristics: FC<Props> = ({
+  width,
+  diameter,
+  fixingHoles,
+  loading,
+}) => {
   return (
     <StyledChContainer>
-      <ChHeader>Характеристики</ChHeader>
+     {loading && <LoadingHeader />}
+      {!loading && <ChHeader>Характеристики</ChHeader>}
       <ChRow color={"#e8ebed"}>
-        <div>Ширина обода (J)</div>
-        <div />
-        <div>
-          {width.map((item, index) => {
-            return <span key={index}>{item}</span>;
-          })}
-        </div>
+        {!loading && (
+          <>
+            <div>
+              <span>Ширина обода (J)</span>
+            </div>
+            <div />
+            <div>
+              <span>{width}</span>
+            </div>
+          </>
+        )}
       </ChRow>
       <ChRow color={" #fffefe"}>
-        <div>Диаметр обода (D)</div>
-        <div />
-        <div>
-          {diameter.map((item, index) => {
-            return <span key={index}>&#8709;{item}</span>;
-          })}
-        </div>
+        {!loading && (
+          <>
+            <div>
+              <span>Диаметр обода (D)</span>
+            </div>
+            <div />
+            <div>
+              <span>&#8709;{diameter}</span>
+            </div>
+          </>
+        )}
       </ChRow>
       <ChRow color={"#e8ebed"}>
-        <div>Крепежные отверстия (PCD)</div>
-        <div />
-        <div>
-          {fixingHoles.map((item, index) => {
-            return <span key={index}>{item}</span>;
-          })}
-        </div>
+        {!loading && (
+          <>
+            <div>
+              <span>Крепежные отверстия (PCD)</span>
+            </div>
+            <div />
+            <div>
+              {fixingHoles.split("/").map((item, index) => {
+                return <span key={index}>{item}</span>;
+              })}
+            </div>
+          </>
+        )}
       </ChRow>
     </StyledChContainer>
   );

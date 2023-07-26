@@ -16,17 +16,22 @@ export const StyledFeedbackModal = styled.div`
 `;
 
 export const FeedbackModalContent = styled.div`
+  margin: 0 auto;
   padding: 16px 20px;
   width: 100%;
-  height: 100%;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: #eceff1;
 
+  & > img {
+    margin-bottom: 8px;
+  }
+
   & > p {
-    width: 100%;
+    width: 340px;
     text-align: center;
   }
 
@@ -35,7 +40,7 @@ export const FeedbackModalContent = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 
     & > button {

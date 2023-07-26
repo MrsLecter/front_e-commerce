@@ -19,7 +19,9 @@ const Filter: FC<Props> = ({
   return (
     <StyledFilter>
       <div>
-        {rimBrand && <p>Литые диски&nbsp;{rimBrand}</p>}
+        {rimBrand && (
+          <p>Литые диски&nbsp;{rimBrand === "all" ? "на авто" : rimBrand}</p>
+        )}
         {!rimBrand && <p>Литые диски</p>}
         {rimFilterParams[0] && <p>на&nbsp;{rimFilterParams.join(" ")}</p>}
         {!rimFilterParams[0] && (

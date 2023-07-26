@@ -1,6 +1,5 @@
 import { FC, KeyboardEvent, MouseEvent, useState } from "react";
 
-import rimsService from "@/api/rims-service";
 import { useInput } from "@/hooks/use-input";
 import { IModalProps } from "@/types/common.types";
 import { PHONE_REGEXP } from "@/utils/regexp";
@@ -13,6 +12,8 @@ import SuccessContent from "../elements/feedbackContent/SuccessContent";
 import ModalHeader from "../elements/ModalHeaderElement";
 import { OrderCallContent, StyledOrderCall } from "./OrderCallModal.styles";
 import { AppModals } from "@/constants/common";
+import modalService from "@/api/modal-service";
+import { Link } from "react-router-dom";
 
 const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
   const [isOrderCall, setOrderCall] = useState<boolean>(false);
@@ -40,7 +41,7 @@ const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
     }
     if (phoneNumberIsValid) {
       try {
-        await rimsService.postCallData({ phoneNumber });
+        await modalService.postCallData({ phoneNumber });
         setOrderCall(true);
       } catch (err) {
         setError(true);
@@ -62,37 +63,40 @@ const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
         >
           <StyledOrderCall onClick={(e) => windowClickHandler(e)}>
             <ModalHeader label={"Обратный звонок"} />
-            {error && (
-              <ErrorContent
-                closeModalHandler={() => managementObject.closeHandler()}
-              />
-            )}
-            {isOrderCall && !error && (
-              <SuccessContent
-                closeModalHandler={() => managementObject.closeHandler()}
-              />
-            )}
-            {!isOrderCall && !error && (
-              <OrderCallContent>
-                <Input
-                  type={"tel"}
-                  placeholder={"Ваш номер телефона"}
-                  inputValue={phoneNumber}
-                  isRequired={true}
-                  onChangeHandler={phoneNumberChangeHandler}
-                  onKeyDown={(e) => orderHandler(e)}
-                  maxLen={18}
-                  autofocus={true}
+
+            <OrderCallContent>
+              {error && (
+                <ErrorContent
+                  closeModalHandler={() => managementObject.closeHandler()}
                 />
-                <div>
-                  <BlueBtn
-                    color={"dark"}
-                    clickHandler={orderClickHandler}
-                    label={"Заказать звонок"}
+              )}
+              {isOrderCall && !error && (
+                <SuccessContent
+                  closeModalHandler={() => managementObject.closeHandler()}
+                />
+              )}
+              {!isOrderCall && !error && (
+                <>
+                  <Input
+                    type={"tel"}
+                    placeholder={"Ваш номер телефона"}
+                    inputValue={phoneNumber}
+                    isRequired={true}
+                    onChangeHandler={phoneNumberChangeHandler}
+                    onKeyDown={(e) => orderHandler(e)}
+                    maxLen={18}
+                    autofocus={true}
                   />
-                </div>
-              </OrderCallContent>
-            )}
+                  <div>
+                    <BlueBtn
+                      color={"dark"}
+                      clickHandler={orderClickHandler}
+                      label={"Заказать звонок"}
+                    />
+                  </div>
+                </>
+              )}
+            </OrderCallContent>
           </StyledOrderCall>
         </ModalWrapper>
       )}

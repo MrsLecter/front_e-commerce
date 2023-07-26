@@ -165,42 +165,6 @@ class RimsService {
     }
   }
 
-  public async postCallData({
-    phoneNumber,
-  }: {
-    phoneNumber: string;
-  }): Promise<AxiosResponse<IPostDataResponse, any>> {
-    try {
-      const response = await axios.post<IPostDataResponse>(POST_CALL_DATA_URL, {
-        phone: phoneNumber,
-      });
-      return response;
-    } catch (err: any) {
-      return err;
-    }
-  }
-
-  public async postFeedback({
-    question,
-    phone,
-    email,
-  }: {
-    question: string;
-    phone: string;
-    email?: string;
-  }): Promise<AxiosResponse<IPostDataResponse, any>> {
-    try {
-      const response = await axios.post<IPostDataResponse>(POST_FEEDBACK_URL, {
-        question,
-        phone,
-        email,
-      });
-      return response;
-    } catch (err: any) {
-      return err;
-    }
-  }
-
   //TODO:delete ngrok headers
   public async getRimsByBrand({
     rimBrand,
@@ -263,11 +227,14 @@ class RimsService {
     id,
   }: {
     id: string;
-  }): Promise<AxiosResponse<IPostDataResponse, any>> {
+  }): Promise<AxiosResponse<IGetRimDetailedResponse, any>> {
     try {
-      const response = await axios.post<IPostDataResponse>(GED_RIM_INFO_URL, {
-        id,
-      });
+      const response = await axios.post<IGetRimDetailedResponse>(
+        GED_RIM_INFO_URL,
+        {
+          id,
+        }
+      );
       return response;
     } catch (err: any) {
       return err;

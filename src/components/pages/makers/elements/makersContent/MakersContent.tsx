@@ -32,6 +32,7 @@ const MakersContent: FC = () => {
       console.log("get auto years", response.data.message);
       setParameters(response.data.message);
     };
+    
     console.log("patharr", patharr, patharr.length);
     if (patharr.length === 3 && !parameters.length) {
       downloadAutoParameters();
@@ -40,6 +41,9 @@ const MakersContent: FC = () => {
       downloadAutoModels();
     }
     if (patharr.length === 5 && !parameters.length) {
+      downloadAutoYears();
+    }
+    if (patharr.length === 6 && !parameters.length) {
       downloadAutoYears();
     }
     

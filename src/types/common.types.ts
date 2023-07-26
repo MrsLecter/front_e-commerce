@@ -34,10 +34,12 @@ export interface IRimDetailedData {
 export interface IRimDetailedInfo {
   name: string;
   images: string[];
-  rimVariations: {
-    width: string;
-    diameter: string;
-    mountingHoles: string;
-    price: number;
-  }[];
+  rimVariations: IRimParams[];
+}
+
+export interface IRimParams {
+  width: string;
+  diameter: string;
+  mountingHoles: string;
+  price: number;
 }

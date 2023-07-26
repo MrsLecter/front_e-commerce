@@ -5,6 +5,7 @@ import doneSVG from "@icons/done.svg";
 
 import BlueBtn from "../../../buttons/BlueBtn/BlueBtn";
 import { FeedbackModalContent } from "./FeedbackModal.styles";
+import Link from "next/link";
 
 interface Props {
   closeModalHandler: () => void;
@@ -13,7 +14,7 @@ interface Props {
 const SuccessContent: FC<Props> = ({ closeModalHandler }) => {
   return (
     <FeedbackModalContent>
-      <Image src={doneSVG} width={40} height={40} alt={"done.svg"} />
+      <Link href={'/'}><Image src={doneSVG} width={40} height={40} alt={"done.svg"} /></Link>
       <p>Запрос отправлен, скоро с Вами свяжутся</p>
       <div>
         <BlueBtn

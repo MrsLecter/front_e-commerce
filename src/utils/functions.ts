@@ -1,6 +1,6 @@
 import { AppRoutes, BASE_URL } from "@/constants/common";
 import { GET_BRANDS_URL } from "@/constants/routes-api";
-import { IRimObject } from "@/types/common.types";
+import { IRimDetailedInfo, IRimObject } from "@/types/common.types";
 
 export const getBtnLabel = (path: string[]): string => {
   const pathLen = path.length;
@@ -13,7 +13,7 @@ export const getBtnLabel = (path: string[]): string => {
     case 2:
       return "Все года";
     case 3:
-      return "Все диаметры";
+      return "Все конфигурации";
     default:
       return path.join("");
   }
@@ -127,7 +127,7 @@ export const getRetrievedDiameters = (rims: IRimObject[]): string[] => {
 export const getRimBrand = (rimBrand: string): string | undefined => {
   switch (rimBrand) {
     case "all":
-      return "на авто";
+      return "all";
     case "filter":
       return "";
     case "":
@@ -174,4 +174,30 @@ export const getRimsDiameterFiltered = ({
     }
   });
   return arr;
+};
+
+export const getDimentionOptionsArray = (rimObject: IRimDetailedInfo) => {
+  let extractOptions = [];
+  for (let item of rimObject.rimVariations) {
+    extractOptions.push(
+      `${item.diameter}" - Диаметр;  ${item.width}" - Ширина;`
+    );
+  }
+  return extractOptions;
+};
+
+export const getLinksObjectArr = (
+  links: string[]
+): {
+  id: number;
+  link: string;
+}[] => {
+  let imagesLinks = [];
+  for (let i = 0; i < links.length; i++) {
+    imagesLinks.push({
+      id: i,
+      link: links[i],
+    });
+  }
+  return imagesLinks;
 };

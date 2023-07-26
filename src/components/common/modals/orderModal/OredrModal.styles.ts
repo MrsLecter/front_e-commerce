@@ -89,3 +89,12 @@ export const UserInputContainer = styled.div`
   align-items: center;
   background-color: white;
 `;
+
+export const Message = styled.div`
+  font-family: var(--font-roboto);
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  line-height: 12px;
+  font-weight: 400;
+  color: red;
+`;

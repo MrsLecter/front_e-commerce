@@ -20,7 +20,7 @@ export const StyledPopular = styled.section`
   }
 `;
 
-export const CardContainer = styled.div<{ isReady: boolean }>`
+export const CardContainer = styled.div`
   margin: 12px auto 6px;
   width: 992px;
   min-height: 740px;
@@ -28,7 +28,6 @@ export const CardContainer = styled.div<{ isReady: boolean }>`
   column-gap: 12px;
   justify-content: flex-start;
   grid-template-columns: auto auto auto auto;
-  filter: ${(props) => (props.isReady ? "blur(5px)" : "blur(0px)")};
 
   @media (max-width: 1020px) {
     width: 740px;

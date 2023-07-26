@@ -8,11 +8,11 @@ import { EMAIL_REGEXP, PHONE_REGEXP } from "@/utils/regexp";
 import { StyledQuestionModal } from "./QuestionModal.styles";
 import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
 import TextArea from "../../textArea/TextArea";
-import rimsService from "@/api/rims-service";
 import SuccessContent from "../elements/feedbackContent/SuccessContent";
 import ErrorContent from "../elements/feedbackContent/ErrorContent";
 import { IModalProps } from "@/types/common.types";
 import { AppModals } from "@/constants/common";
+import modalService from "@/api/modal-service";
 
 const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
   const [text, setText] = useState<string>("");
@@ -67,15 +67,13 @@ const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
         email &&
         emailIsValid)
     ) {
-      alert("send " + phone + email + text);
       try {
-        const response = await rimsService.postFeedback({
+        await modalService.postFeedback({
           question: text,
           email,
           phone,
         });
 
-        console.log("resp", response);
         setQuestionSend(true);
       } catch (err) {
         setError(true);

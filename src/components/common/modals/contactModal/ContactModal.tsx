@@ -14,6 +14,7 @@ const ContactModal: FC<IModalProps> = ({ managementObject }) => {
   const modalClickHandler = (e: MouseEvent) => {
     e.stopPropagation();
   };
+
   return (
     <>
       {!managementObject.isActive(AppModals.Contact) && <></>}

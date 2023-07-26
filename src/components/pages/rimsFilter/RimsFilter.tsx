@@ -82,8 +82,6 @@ const RimsFilter: FC = () => {
   };
 
   useEffect(() => {
-    console.log(">>>>>run download data");
-
     const getRimsByBrand = async () => {
       setLoading(true);
       setVisibleRimsAmount(8);
@@ -118,9 +116,11 @@ const RimsFilter: FC = () => {
       }, 1000);
     };
     if (params.params === "filter") {
+      alert("filter");
       getFilteredRims();
     }
     if (params.params !== "filter") {
+      console.log(">>>", params.params);
       getRimsByBrand();
     }
   }, [params.params, rimsBrand, rimsModel, rimsYear]);
@@ -140,15 +140,27 @@ const RimsFilter: FC = () => {
         avaliableDiameters={retrievedDiameters}
         setFilterDiameters={(value: string) => setDiametersHandler(value)}
       />
-      <CardContainer isReady={loading}>
+      <CardContainer>
         {loading &&
           popularRimsStub.map((item) => {
-            return <ProductCard key={item.rimId} parameters={item} />;
+            return (
+              <ProductCard
+                key={item.rimId}
+                parameters={item}
+                loading={loading}
+              />
+            );
           })}
         {!loading &&
           rimsList &&
           rimsList.map((item) => {
-            return <ProductCard key={item.rimId} parameters={item} />;
+            return (
+              <ProductCard
+                key={item.rimId}
+                parameters={item}
+                loading={loading}
+              />
+            );
           })}
       </CardContainer>
       <ShowMoreBtnWrapper>

@@ -36,13 +36,17 @@ const Popular: FC = () => {
   return (
     <StyledPopular>
       <SectionHeader label={"Популярные модели"} />
-      <CardContainer isReady={loading}>
+      <CardContainer>
         {loading &&
           popularRimsStub.map((item, index) => {
-            return <ProductCard key={index} parameters={item} />;
+            return (
+              <ProductCard key={index} parameters={item} loading={loading} />
+            );
           })}
         {rims.map((item, index) => {
-          return <ProductCard key={index} parameters={item} />;
+          return (
+            <ProductCard key={index} parameters={item} loading={loading} />
+          );
         })}
       </CardContainer>
       <ShowMoreBtn clickHandler={showAllRimsHandler} />

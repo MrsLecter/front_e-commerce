@@ -1,21 +1,19 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import Characteristics from "./elements/characteristics/Characteristics";
 import { QuestionWrapper, StyledRimOrder } from "./RimOrder.styles";
 import Gallery from "./elements/gallery/Gallery";
 import Order from "./elements/order/Order";
 import Questions from "@/components/common/questions/Questions";
 import { AppModals } from "@/constants/common";
-import rimsService from "@/api/rims-service";
-import { useParams, usePathname } from "next/navigation";
-import {
-  IRimDetailedData,
-  IRimDetailedInfo,
-  IRimObject,
-} from "@/types/common.types";
-import { rimStub } from "@/constants/helpers";
+
+import { IRimDetailedInfo, IRimParams } from "@/types/common.types";
 
 interface Props {
-  rimData: IRimDetailedData;
+  rimData: IRimDetailedInfo;
+  optionArray: string[];
+  setVariation: (vary: string) => void;
+  rimVariation: IRimParams;
+  loading: boolean;
   managementObject: {
     isAppearing: boolean;
     isActive: (modalID: number) => boolean;
@@ -24,42 +22,43 @@ interface Props {
   };
 }
 
-const RimOrder: FC<Props> = ({ managementObject, rimData }) => {
-  const params = useParams();
-  const [rimObject, setRimObject] = useState<IRimDetailedInfo>(rimStub);
-  console.log("rimid ", params.params);
+const RimOrder: FC<Props> = ({
+  rimData,
+  optionArray,
+  setVariation,
+  rimVariation,
+  managementObject,
+  loading,
+}) => {
   const placeOrderHandler = () => {
     managementObject.activateHandler(AppModals.Order);
   };
 
-  useEffect(() => {
-    const getDetailedRimsInfo = async () => {
-      const response = await rimsService.getRimData({
-        id: params.params,
-      });
-      console.log("resposne rim data", response);
-    };
-    getDetailedRimsInfo();
-  }, []);
   return (
     <StyledRimOrder>
       <div>
-        <Gallery />
+        <Gallery imageLinks={rimData.images} loading={loading} />
       </div>
       <div>
         <Order
-          header={rimData?.name}
-          options={rimData.diameter}
-          price={rimData.price}
+          header={rimData.name}
+          rimPrice={rimVariation.price}
+          optionArray={optionArray}
+          setVariationHandler={setVariation}
           placeOrderHandler={placeOrderHandler}
+          loading={loading}
         />
         <QuestionWrapper>
-          <Questions modalHandler={managementObject.activateHandler} />
+          <Questions
+            modalHandler={managementObject.activateHandler}
+            loading={loading}
+          />
         </QuestionWrapper>
         <Characteristics
-          width={[...rimData.width]}
-          diameter={[...rimData.diameter]}
-          fixingHoles={[...rimData.mountingHoles]}
+          width={rimVariation.width}
+          diameter={rimVariation.diameter}
+          fixingHoles={rimVariation.mountingHoles}
+          loading={loading}
         />
       </div>
     </StyledRimOrder>
