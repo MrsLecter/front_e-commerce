@@ -19,7 +19,8 @@ export const StyledPopular = styled.section`
 export const CardContainer = styled.div`
   margin: 16px auto 6px;
   width: 992px;
-  min-height: 740px;
+  height: auto;
+  /* min-height: 740px; */
   display: grid;
   column-gap: 16px;
   justify-content: flex-start;
@@ -27,18 +28,18 @@ export const CardContainer = styled.div`
 
   @media (max-width: 1020px) {
     width: 740px;
-    min-height: 1110px;
+    /* min-height: 1110px; */
     grid-template-columns: auto auto auto;
   }
   @media (max-width: 766px) {
     width: 488px;
-    min-height: 1110px;
+    /* min-height: 1110px; */
     grid-template-columns: auto auto;
   }
 
   @media (max-width: 600px) {
     width: 236px;
-    min-height: 1110px;
+    /* min-height: 1110px; */
     grid-template-columns: auto;
   }
   /* display: flex;
