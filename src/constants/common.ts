@@ -1,6 +1,6 @@
 import { ManufacturesNames } from "./manufactures-card-list";
 
-export const BASE_URL = "http://localhost:3000/";
+export const BASE_URL = "https://front-e-commerce-six.vercel.app/";
 
 export enum AppRoutes {
   Home = "/",
