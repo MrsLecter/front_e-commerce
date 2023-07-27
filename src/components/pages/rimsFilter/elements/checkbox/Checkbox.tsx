@@ -13,7 +13,6 @@ const Checkbox: FC<Props> = ({ name, label, setDiameter }) => {
   const toggleCheckbox = (e: ChangeEvent) => {
     setDiameter((e.currentTarget as HTMLInputElement).value);
     setCheck(!check);
-    console.log("click ", (e.currentTarget as HTMLInputElement).value);
   };
 
   return (

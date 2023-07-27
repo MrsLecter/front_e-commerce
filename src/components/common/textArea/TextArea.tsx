@@ -21,7 +21,6 @@ const TextArea: FC<ITextAreaProps> = ({
 }) => {
   const [currentText, setCurrentText] = useState<string>("");
   const textChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    console.log(e.target.value);
     setCurrentText(e.target.value);
     onChangeHandler(currentText);
   };
@@ -50,6 +49,11 @@ const StyledTextArea = styled.textarea`
   border: 1px solid #c4c8cc;
   background-color: white;
   resize: none;
+
+  @media (max-width: 360px) {
+    margin: 0 auto;
+    width: calc(100% - 16px);
+  }
 `;
 
 export default TextArea;

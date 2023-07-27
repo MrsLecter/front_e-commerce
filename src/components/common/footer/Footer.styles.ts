@@ -66,6 +66,7 @@ export const LinksWrapper = styled.nav`
   }
   ul li {
     width: 100%;
+    height: 25px;
     margin: 3px;
   }
 
@@ -110,6 +111,7 @@ export const ContactWrapper = styled.div`
 
   p {
     margin-bottom: 8px;
+    height: 25px;
   }
 
   p:hover {

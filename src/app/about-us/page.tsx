@@ -6,12 +6,12 @@ import ContactModal from "@/components/common/modals/contactModal/ContactModal";
 import OrderCallModal from "@/components/common/modals/orderCallModal/OrderCallModal";
 import QuestionModal from "@/components/common/modals/questionModal/QuestionModal";
 import MainWrapper from "@/components/common/wrappers/MainWrapper";
-
 import About from "@/components/pages/about/About";
 import { useModal } from "@/hooks/use-modal";
 
 export default function AboutUs() {
   const { managementObj } = useModal();
+
   return (
     <MainWrapper>
       <Header modalHandler={managementObj.activateHandler} />

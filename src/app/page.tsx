@@ -2,18 +2,18 @@
 
 import Footer from "@/components/common/footer/Footer";
 import Header from "@/components/common/header/Header";
+import ContactModal from "@/components/common/modals/contactModal/ContactModal";
+import OrderCallModal from "@/components/common/modals/orderCallModal/OrderCallModal";
+import QuestionModal from "@/components/common/modals/questionModal/QuestionModal";
+import Questions from "@/components/common/questions/Questions";
 import MainWrapper from "@/components/common/wrappers/MainWrapper";
 import Banner from "@/components/pages/home/banner/Banner";
 import Manufacturers from "@/components/pages/home/manufacturers/Manufacturers";
 import Popular from "@/components/pages/home/popular/Popular";
-import Questions from "@/components/common/questions/Questions";
-import Selecting from "@/components/pages/home/selecting/Selecting";
-import ContactModal from "@/components/common/modals/contactModal/ContactModal";
 import { QuestionWrapper } from "@/components/pages/home/QuestionWrapper.stytles";
-import { useModal } from "@/hooks/use-modal";
-import OrderCallModal from "@/components/common/modals/orderCallModal/OrderCallModal";
-import QuestionModal from "@/components/common/modals/questionModal/QuestionModal";
 import SearchModal from "@/components/pages/home/selecting/elements/searchModal/SearchModal";
+import Selecting from "@/components/pages/home/selecting/Selecting";
+import { useModal } from "@/hooks/use-modal";
 
 export default function Home() {
   const { managementObj } = useModal();

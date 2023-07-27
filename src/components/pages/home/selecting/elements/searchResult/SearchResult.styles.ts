@@ -19,6 +19,6 @@ export const StyledSearchResult = styled.div`
   overflow: auto;
 
   @media (max-width: 500px) {
-    width: 100%;
+    width: calc(100% - 16px);
   }
 `;

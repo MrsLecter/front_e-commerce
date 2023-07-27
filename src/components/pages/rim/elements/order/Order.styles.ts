@@ -45,6 +45,10 @@ export const StyledAlert = styled.div`
     background-color: #fff;
   }
 
+  @media (max-width: 600px) {
+    left: 50px;
+  }
+
   @keyframes translate-hor {
     0% {
       transform: translateZ(0);
@@ -80,6 +84,10 @@ export const LoadingOrderMenu = styled.div`
   border-radius: 2px;
   background-color: #507298;
   animation: image-loading 1s linear infinite alternate;
+
+  @media (max-width: 600px) {
+    width: calc(100% - 16px);
+  }
 `;
 
 export const LoadingOrderPrice = styled.div`

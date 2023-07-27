@@ -1,6 +1,10 @@
 import { AppRoutes, BASE_URL } from "@/constants/common";
 import { GET_BRANDS_URL } from "@/constants/routes-api";
-import { IRimDetailedInfo, IRimObject } from "@/types/common.types";
+import {
+  IRimDetailedInfo,
+  IRimObject,
+  IRimsConfigs,
+} from "@/types/common.types";
 
 export const getBtnLabel = (path: string[]): string => {
   const pathLen = path.length;
@@ -14,6 +18,8 @@ export const getBtnLabel = (path: string[]): string => {
       return "Все года";
     case 3:
       return "Все конфигурации";
+    case 4:
+      return "Все диски";
     default:
       return path.join("");
   }
@@ -200,4 +206,19 @@ export const getLinksObjectArr = (
     });
   }
   return imagesLinks;
+};
+
+export const getAllConfigs = (configs: IRimsConfigs): string[] => {
+  let optionsArr = [];
+  const pcd = configs.pcd;
+  const configsArr = configs.rims;
+  configsArr.sort((a, b) => +a.diameter - +b.diameter);
+
+  for (let config of configsArr) {
+    let optionString = `${config.diameter}" - диаметр; ${config.width}" - ширина; ${pcd} - крепежные отверстия`;
+
+    optionsArr.push(optionString);
+  }
+
+  return optionsArr;
 };

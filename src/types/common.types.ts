@@ -43,3 +43,13 @@ export interface IRimParams {
   mountingHoles: string;
   price: number;
 }
+
+export interface IRimsConfigs {
+  pcd: string;
+  rims: IRimConfigs[];
+}
+
+export interface IRimConfigs {
+  width: string;
+  diameter: string;
+}

@@ -1,4 +1,9 @@
-import { INewsFeedItem, IRimDetailedInfo, IRimObject } from "@/types/common.types";
+import {
+  INewsFeedItem,
+  IRimDetailedInfo,
+  IRimObject,
+  IRimsConfigs,
+} from "@/types/common.types";
 
 export interface INewsFeedResponse {
   message: INewsFeedItem[];
@@ -18,4 +23,8 @@ export interface IGetRimsResponse {
 
 export interface IGetRimDetailedResponse {
   message: IRimDetailedInfo;
+}
+
+export interface IGetRimsConfigResponse {
+  message: IRimsConfigs;
 }

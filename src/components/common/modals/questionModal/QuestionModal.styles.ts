@@ -9,7 +9,7 @@ export const StyledQuestionModal = styled.div`
   align-items: end;
   border-radius: 2px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 700px) {
     margin: 0 auto;
     width: calc(100% - 16px);
   }

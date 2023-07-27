@@ -21,4 +21,8 @@ export const ModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;

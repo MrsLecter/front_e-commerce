@@ -89,3 +89,16 @@ export const rimStub = {
     },
   ],
 };
+
+export const rim = {
+  name: "Name - name",
+  images: [""],
+  rimVariations: [
+    {
+      width: "",
+      diameter: "",
+      mountingHoles: "",
+      price: 0,
+    },
+  ],
+};

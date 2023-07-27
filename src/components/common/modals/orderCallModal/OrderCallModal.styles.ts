@@ -23,7 +23,7 @@ export const OrderCallContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
-  background-color: #eceff1;
+  background-color: white;
 
   & > div:last-child {
     margin-top: 16px;

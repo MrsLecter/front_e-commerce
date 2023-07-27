@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { FC, MouseEvent, useState } from "react";
+import { FC, MouseEvent, useState, KeyboardEvent } from "react";
 
 import { useInput } from "@/hooks/use-input";
 import { getPrettyPrice } from "@/utils/functions";
 import { EMAIL_REGEXP, PHONE_REGEXP } from "@/utils/regexp";
-import rim from "@images/demo/1.jpeg";
 
 import BlueBtn from "../../buttons/BlueBtn/BlueBtn";
 import Input from "../../input/Input";
@@ -32,9 +31,15 @@ import SuccessContent from "../elements/feedbackContent/SuccessContent";
 interface Props extends IModalProps {
   rimData: IRimDetailedInfo;
   rimVariation: IRimParams;
+  rimId: string;
 }
 
-const OrderModal: FC<Props> = ({ managementObject, rimData, rimVariation }) => {
+const OrderModal: FC<Props> = ({
+  managementObject,
+  rimData,
+  rimVariation,
+  rimId,
+}) => {
   const {
     value: name,
     error: nameIsValid,
@@ -63,17 +68,12 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimVariation }) => {
     maskType: "phone",
     mask: "+380(099)-250-75-69",
   });
+
   const [isOrderReady, setOrderReady] = useState<boolean>(false);
   const [orderError, setOrderError] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
-  const placeOrderHandler = () => {
-    console.log(name, email, phone);
-  };
-
-  const modalClickHandler = async (e: MouseEvent) => {
-    e.stopPropagation();
-
+  const placeOrderHandler = async () => {
     if (!nameIsValid || !emailIsValid || !phoneIsValid) {
       setError(true);
     }
@@ -84,12 +84,28 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimVariation }) => {
           name,
           email,
           phone,
+          orderConfig: {
+            mountingHoles: rimVariation.mountingHoles,
+            diameter: rimVariation.diameter,
+            width: rimVariation.width,
+            rimId: rimId,
+          },
         });
         setOrderReady(true);
       } catch (err) {
         setOrderError(true);
       }
     }
+  };
+
+  const orderHandler = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      placeOrderHandler();
+    }
+  };
+
+  const modalClickHandler = (e: MouseEvent) => {
+    e.stopPropagation();
   };
 
   return (
@@ -148,6 +164,7 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimVariation }) => {
                     inputValue={name}
                     isRequired={false}
                     onChangeHandler={nameChangeHandler}
+                    autofocus={true}
                   />
                   <Input
                     type={"email"}
@@ -163,6 +180,7 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimVariation }) => {
                     isRequired={true}
                     maxLen={18}
                     onChangeHandler={phoneChangeHandler}
+                    onKeyDown={(e) => orderHandler(e)}
                   />
                   {error && (
                     <Message>

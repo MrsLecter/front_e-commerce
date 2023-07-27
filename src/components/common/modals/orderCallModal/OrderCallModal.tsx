@@ -39,7 +39,7 @@ const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
     if (!phoneNumberIsValid) {
       alert("Ошибка: неправильный номер телефона");
     }
-    if (phoneNumberIsValid) {
+    if (phoneNumberIsValid && phoneNumber) {
       try {
         await modalService.postCallData({ phoneNumber });
         setOrderCall(true);

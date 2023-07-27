@@ -103,6 +103,7 @@ const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
                     inputValue={text}
                     isRequired={false}
                     onChangeHandler={setText}
+                    autofocus={true}
                   />
                   <Input
                     type={"email"}

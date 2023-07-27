@@ -18,18 +18,15 @@ const SearchBar: FC<Props> = ({
   inputSearch,
   ...defaultProps
 }) => {
-  // const [searchInput, setSearchInput] = useState<string>("");
+
 
   const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    console.log(e.key);
     if (e.key === "Enter") {
       if (openSearchModal) openSearchModal(AppModals.Search);
-      // if (setInputHandler) setInputHandler(searchInput);
     }
   };
 
   const changeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    // setSearchInput(e.target.value);
     if (setInputHandler) setInputHandler(e.target.value);
   };
 

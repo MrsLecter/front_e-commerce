@@ -1,26 +1,27 @@
 import axios, { AxiosResponse } from "axios";
+
 import {
-  GED_RIM_INFO_URL,
   GET_ALL_AUTO_URL,
   GET_AUTO_MODELS_URL,
   GET_AUTO_YEARS_URL,
   GET_FILTERED_RIMS_URL,
   GET_NEWS_URL,
   GET_POPULAR_RIMS_URL,
-  GET_RIMS_BY_BRAND_URL,
+  GET_RIM_BY_CONFIG_URL,
+  GET_RIM_CONFIGS_URL,
   GET_RIM_DETAILED_URL,
-  POST_CALL_DATA_URL,
-  POST_FEEDBACK_URL,
+  GET_RIM_INFO_URL,
+  GET_RIMS_BY_BRAND_URL,
   POST_SEARCH_TEXT_URL,
 } from "@/constants/routes-api";
+
 import {
   IAutoResponse,
-  IGetRimsResponse,
   IGetRimDetailedResponse,
+  IGetRimsConfigResponse,
+  IGetRimsResponse,
   INewsFeedResponse,
-  IPostDataResponse,
 } from "./rims-service.types";
-import { IRimDetailedData } from "@/types/common.types";
 
 class RimsService {
   public async getNewsFeed({
@@ -37,12 +38,11 @@ class RimsService {
       return err;
     }
   }
-  //TODO:delete ngrok headers
+
   public async getAllAuto(): Promise<AxiosResponse<IAutoResponse, any>> {
     try {
       const response = await axios.get<IAutoResponse>(GET_ALL_AUTO_URL, {
         headers: {
-          "ngrok-skip-browser-warning": "69420",
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
@@ -52,7 +52,7 @@ class RimsService {
       return err;
     }
   }
-  //TODO:delete ngrok headers
+
   public async getAutoYears({
     brand,
     model,
@@ -65,7 +65,6 @@ class RimsService {
         `${GET_AUTO_YEARS_URL}/${brand}/${model}`,
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
@@ -76,7 +75,7 @@ class RimsService {
       return err;
     }
   }
-  //TODO:delete ngrok headers
+
   public async getAutoModels({
     brand,
   }: {
@@ -87,7 +86,6 @@ class RimsService {
         `${GET_AUTO_MODELS_URL}/${brand}`,
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
@@ -98,12 +96,11 @@ class RimsService {
       return err;
     }
   }
-  //TODO:delete ngrok headers
+
   public async getPopularRims(): Promise<AxiosResponse<IGetRimsResponse, any>> {
     try {
       const response = await axios.get<IGetRimsResponse>(GET_POPULAR_RIMS_URL, {
         headers: {
-          "ngrok-skip-browser-warning": "69420",
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
@@ -113,7 +110,7 @@ class RimsService {
       return err;
     }
   }
-  //TODO:delete ngrok headers
+
   public async getRimDetailedData({
     rimId,
   }: {
@@ -127,7 +124,6 @@ class RimsService {
         },
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
@@ -139,7 +135,6 @@ class RimsService {
     }
   }
 
-  //TODO:delete ngrok headers
   public async postSearchString({
     searchText,
   }: {
@@ -153,7 +148,6 @@ class RimsService {
         },
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
@@ -165,7 +159,6 @@ class RimsService {
     }
   }
 
-  //TODO:delete ngrok headers
   public async getRimsByBrand({
     rimBrand,
   }: {
@@ -179,7 +172,6 @@ class RimsService {
         },
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
@@ -191,7 +183,6 @@ class RimsService {
     }
   }
 
-  //TODO:delete ngrok headers
   public async getFilteredRims({
     brand,
     model,
@@ -211,7 +202,6 @@ class RimsService {
         },
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
@@ -230,9 +220,64 @@ class RimsService {
   }): Promise<AxiosResponse<IGetRimDetailedResponse, any>> {
     try {
       const response = await axios.post<IGetRimDetailedResponse>(
-        GED_RIM_INFO_URL,
+        GET_RIM_INFO_URL,
         {
           id,
+        }
+      );
+      return response;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  public async getRimsConfig({
+    brand,
+    model,
+    year,
+  }: {
+    brand: string;
+    model: string;
+    year: string;
+  }): Promise<AxiosResponse<IGetRimsConfigResponse, any>> {
+    try {
+      const response = await axios.get<IGetRimsConfigResponse>(
+        `${GET_RIM_CONFIGS_URL}/${brand}/${model}/${year}`,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  public async getRimsByConfig({
+    mountingHoles,
+    width,
+    diameter,
+  }: {
+    mountingHoles: string;
+    width: string;
+    diameter: string;
+  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
+    try {
+      const response = await axios.post<IGetRimsResponse>(
+        GET_RIM_BY_CONFIG_URL,
+        {
+          mountingHoles,
+          width,
+          diameter,
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
         }
       );
       return response;

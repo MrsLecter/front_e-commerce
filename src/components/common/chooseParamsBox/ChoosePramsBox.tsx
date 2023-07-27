@@ -72,7 +72,6 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       setYearsArr(response.data.message);
     };
 
-    console.log("brand model year", brand, model, year);
     if (brand !== oldBrand) {
       setYear("Год");
       setModel("Модель");
@@ -80,7 +79,6 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       setModelsArr([]);
     }
     if (!brandsArr.length) {
-      console.log("swipe ", brand, oldBrand);
       getCarBrands();
     }
     if (brand !== "Марка" && year === "Год") {

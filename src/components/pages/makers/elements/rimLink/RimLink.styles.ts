@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledOptionLink = styled.div`
+export const StyledRimLink = styled.div`
   margin: 4px;
   padding: 12px;
   min-height: 45px;

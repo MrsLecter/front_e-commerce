@@ -34,9 +34,9 @@ export default function RootLayout({
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
       </Head>
       <body className={roboto.variable}>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
         <div id="backdrop"></div>
         <div id="modal"></div>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
   );

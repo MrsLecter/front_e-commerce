@@ -8,6 +8,11 @@ export const StyledOrderModal = styled.div`
   justify-content: flex-start;
   align-items: center;
   border-radius: 2px;
+
+  @media (max-width: 380px) {
+    margin: 0 auto;
+    width: calc(100% - 16px);
+  }
 `;
 
 export const OrderHeader = styled.div`

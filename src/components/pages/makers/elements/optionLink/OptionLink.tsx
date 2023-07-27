@@ -9,8 +9,14 @@ interface Props {
 
 const OptionLink: FC<Props> = ({ label }) => {
   const pathname = usePathname();
+  let link = label;
+  if (label.length > 30) {
+    const parsedLink = label.match(/[\d\.\x]+/g);
+    link = `d-${parsedLink![0]}&w-${parsedLink![1]}&pcd-${parsedLink![2]}`;
+  }
+
   return (
-    <Link href={pathname + `/${label}/`}>
+    <Link href={pathname + `/${link}/`}>
       <StyledOptionLink>{label}</StyledOptionLink>
     </Link>
   );

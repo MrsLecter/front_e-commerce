@@ -26,7 +26,6 @@ const Popular: FC = () => {
     const getPopularRims = async () => {
       const response = await rimsService.getPopularRims();
       const popularRims = response.data.message.slice(0, 8);
-      console.log(popularRims);
       setRims((prev) => [...popularRims]);
       setLoading(false);
     };

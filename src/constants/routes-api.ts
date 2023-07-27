@@ -13,4 +13,6 @@ export const GET_RIM_DETAILED_URL = `${BASE_API_URL}/rim-by-id`;
 export const POST_SEARCH_TEXT_URL = `${BASE_API_URL}/search-by-naming`;
 export const GET_RIMS_BY_BRAND_URL = `${BASE_API_URL}/rims-by-brand`;
 export const GET_FILTERED_RIMS_URL = `${BASE_API_URL}/search-by-car`;
-export const GED_RIM_INFO_URL = `${BASE_API_URL}/rim-by-id`;
+export const GET_RIM_INFO_URL = `${BASE_API_URL}/rim-by-id`;
+export const GET_RIM_CONFIGS_URL = `${BASE_API_URL}/car-config`;
+export const GET_RIM_BY_CONFIG_URL = `${BASE_API_URL}/search-by-config`;

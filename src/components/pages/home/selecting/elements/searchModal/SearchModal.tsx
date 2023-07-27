@@ -20,11 +20,9 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
   };
 
   useEffect(() => {
-    console.log("input", input);
     const getPopularResult = async () => {
       setLoading(true);
       const response = await rimsService.getPopularRims();
-      console.log("popular respone", response);
       setSearchResult((prev) => [...response.data.message]);
       setLoading(false);
     };
@@ -33,8 +31,6 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
       const response = await rimsService.postSearchString({
         searchText: input || "",
       });
-      console.log("search input", response);
-
       setSearchResult((prev) => [...response.data.message]);
       setLoading(false);
     };

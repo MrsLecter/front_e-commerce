@@ -4,17 +4,18 @@ export const StyledMakersContent = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
 
-  @media (max-width: 600px) {
+  @media (max-width: 780px) {
     grid-template-columns: auto auto;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 560px) {
     grid-template-columns: auto;
   }
 `;
 
 export const Message = styled.div`
   margin: 4px;
+  width: 100%;
   height: 30px;
   font-family: var(--font-roboto);
   font-size: 16px;

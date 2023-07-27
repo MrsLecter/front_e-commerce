@@ -30,16 +30,9 @@ const RimsFilter: FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [visibleRimsAmount, setVisibleRimsAmount] = useState<number>(8);
 
-  console.log("filterDiameters: ", filterDiameters, filterDiameters.join("-"));
   //TODO: delete diametersRef
   useEffect(() => {
-    console.log(
-      "---------------diametersRef.current:",
-      diametersRef.current,
-      !diametersRef.current
-    );
     if (!diametersRef.current) {
-      console.log("without filter", rimsList);
       setLoading(true);
       setRimsList((prev) => rimsResponse);
       setTimeout(() => {
@@ -47,11 +40,6 @@ const RimsFilter: FC = () => {
       }, 1000);
     }
     if (diametersRef.current && diametersRef.current.length > 0) {
-      console.log(
-        "width filter ",
-        diametersRef.current,
-        diametersRef.current.length
-      );
       setLoading(true);
       let newRimsList = getRimsDiameterFiltered({
         rims: rimsResponse || [],
@@ -88,7 +76,6 @@ const RimsFilter: FC = () => {
       const response = await rimsService.getRimsByBrand({
         rimBrand: getRimBrand(params.params || "all") || "all",
       });
-      console.log("rim by brand response", response);
       setRimsResponse((prev) => response.data.message);
       setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount));
       const avaliableDiameters = getRetrievedDiameters(response.data.message);
@@ -106,7 +93,7 @@ const RimsFilter: FC = () => {
         model: rimsModel || "",
         year: rimsYear || "",
       });
-      console.log("filter response", response);
+
       setRimsResponse((prev) => response.data.message);
       setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount));
       const avaliableDiameters = getRetrievedDiameters(response.data.message);
@@ -116,11 +103,9 @@ const RimsFilter: FC = () => {
       }, 1000);
     };
     if (params.params === "filter") {
-      alert("filter");
       getFilteredRims();
     }
     if (params.params !== "filter") {
-      console.log(">>>", params.params);
       getRimsByBrand();
     }
   }, [params.params, rimsBrand, rimsModel, rimsYear]);
@@ -131,7 +116,6 @@ const RimsFilter: FC = () => {
     }
   }, [visibleRimsAmount]);
 
-  console.log("rim brand", rimsBrand, rimsModel, rimsYear);
   return (
     <StyledRimsFilter>
       <Filter

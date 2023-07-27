@@ -17,11 +17,9 @@ const NewsFeed: FC = () => {
   useEffect(() => {
     const getFeed = async () => {
       const response = await rimsService.getNewsFeed({ page: currPage });
-      console.log("response news ", response.data.message);
       setNewsFeed((prev) => [...prev, ...response.data.message]);
     };
     getFeed();
-    console.log("send feed request");
   }, [currPage]);
 
   const getMoreNews = () => {

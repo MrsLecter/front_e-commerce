@@ -3,31 +3,19 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import rimsService from "@/api/rims-service";
 import Footer from "@/components/common/footer/Footer";
 import Header from "@/components/common/header/Header";
-import MainWrapper from "@/components/common/wrappers/MainWrapper";
-import RimOrder from "@/components/pages/rim/RimOrder";
 import ContactModal from "@/components/common/modals/contactModal/ContactModal";
 import OrderCallModal from "@/components/common/modals/orderCallModal/OrderCallModal";
-import QuestionModal from "@/components/common/modals/questionModal/QuestionModal";
 import OrderModal from "@/components/common/modals/orderModal/OrderModal";
+import QuestionModal from "@/components/common/modals/questionModal/QuestionModal";
+import MainWrapper from "@/components/common/wrappers/MainWrapper";
+import RimOrder from "@/components/pages/rim/RimOrder";
+import { rim } from "@/constants/helpers";
 import { useModal } from "@/hooks/use-modal";
 import { IRimDetailedInfo, IRimParams } from "@/types/common.types";
 import { getDimentionOptionsArray } from "@/utils/functions";
-import rimsService from "@/api/rims-service";
-
-const rim = {
-  name: "Name - name",
-  images: [""],
-  rimVariations: [
-    {
-      width: "",
-      diameter: "",
-      mountingHoles: "",
-      price: 0,
-    },
-  ],
-};
 
 export default function Rim() {
   const { managementObj } = useModal();
@@ -56,7 +44,6 @@ export default function Rim() {
       const response = await rimsService.getRimData({
         id: params.params,
       });
-      console.log("resposne rim data", response);
       setRimObject((prev) => response.data.message);
       setRimVariation((prev) => response.data.message.rimVariations[0]);
       setOptionArray((prev) => getDimentionOptionsArray(response.data.message));
@@ -96,6 +83,7 @@ export default function Rim() {
           managementObject={managementObj}
           rimData={rim}
           rimVariation={rim.rimVariations[0]}
+          rimId={params.params}
         />
       )}
       {!loading && (
@@ -103,6 +91,7 @@ export default function Rim() {
           managementObject={managementObj}
           rimData={rimObject!}
           rimVariation={rimVariation!}
+          rimId={params.params}
         />
       )}
     </MainWrapper>

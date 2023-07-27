@@ -54,6 +54,7 @@ export const StyledFilter = styled.div`
   & > div:nth-child(3) {
     width: 20%;
     height: 100%;
+    overflow: auto;
     & > div {
       width: 100%;
     }
@@ -69,8 +70,7 @@ export const StyledFilter = styled.div`
 
     & > div:nth-child(1) {
       width: 100%;
-      height: 70px;
-
+      height: 84px;
       order: 1;
 
       & > p {

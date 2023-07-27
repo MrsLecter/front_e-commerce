@@ -12,6 +12,7 @@ export default function MakersLayout({
   children: React.ReactNode;
 }) {
   const { managementObj } = useModal();
+
   return (
     <MainWrapper>
       <Header modalHandler={managementObj.activateHandler} />
