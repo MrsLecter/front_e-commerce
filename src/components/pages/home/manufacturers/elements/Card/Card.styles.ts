@@ -26,8 +26,9 @@ export const StyledCard = styled.div`
     }
 
     button {
-      padding: 6px 12px;
+      padding: 8px 16px;
       width: 100%;
+      height: 32px;
       font-family: var(--font-roboto);
       font-size: 14px;
       font-weight: 500;
@@ -46,7 +47,7 @@ export const StyledCard = styled.div`
 
   div:last-child {
     position: absolute;
-    bottom: -5px;
+    bottom: -6px;
     right: 0;
   }
 
@@ -70,12 +71,18 @@ export const StyledCard = styled.div`
       justify-content: flex-start;
       align-items: flex-start;
     }
+
+    div:last-child {
+      position: absolute;
+      bottom: -6px;
+      right: 0;
+    }
   }
 
   @media (max-width: 760px) {
     padding: 8px 0 0 8px;
     margin-bottom: 8px;
-    width: 360px;
+    width: 488px;
 
     div:first-child {
       padding-top: 0px;
@@ -88,9 +95,14 @@ export const StyledCard = styled.div`
         }
       }
     }
+    div:last-child {
+      position: absolute;
+      bottom: -5px;
+      right: 0;
+    }
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 510px) {
     width: calc(100% - 16px);
     div:first-child {
       z-index: 1;

@@ -41,12 +41,18 @@ export const ModalContent = styled.div`
   height: 239px;
   font-family: var(--font-roboto);
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
   background-color: white;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px,
+    rgba(0, 0, 0, 0.22) 0px 10px 18px;
 
   button {
     margin-top: 24px;
+    border-radius: 2px;
   }
 
   div {

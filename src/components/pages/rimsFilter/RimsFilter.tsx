@@ -30,7 +30,6 @@ const RimsFilter: FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [visibleRimsAmount, setVisibleRimsAmount] = useState<number>(8);
 
-  //TODO: delete diametersRef
   useEffect(() => {
     if (!diametersRef.current) {
       setLoading(true);

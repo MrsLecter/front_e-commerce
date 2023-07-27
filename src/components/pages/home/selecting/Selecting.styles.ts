@@ -30,7 +30,7 @@ export const SearchWrapper = styled.div`
 
 export const ChoosingWrapper = styled.div`
   margin-top: 8px;
-  height: 252px;
+  height: 256px;
   width: 100%;
   display: flex;
   flex-direction: column;

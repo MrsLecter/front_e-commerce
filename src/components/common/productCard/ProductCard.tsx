@@ -67,7 +67,7 @@ const ProductCard: FC<Props> = ({ parameters, loading }) => {
         {!loading && (
           <BlueBtn
             color="dark"
-            height="30"
+            height="32"
             label={"Заказать"}
             clickHandler={orderHandler}
           />

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledRimOrder = styled.div`
   margin: 16px auto;
-  width: 982px;
+  width: 994px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,7 +27,10 @@ export const StyledRimOrder = styled.div`
 
 export const QuestionWrapper = styled.div`
   width: 411px;
-  height: 170px;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  border-radius: 2px;
+  background-color: #fffefe;
 
   @media (max-width: 1000px) {
     width: 100%;

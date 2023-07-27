@@ -100,7 +100,7 @@ export const getUrlWithSearchParams = ({
   brand: string;
   model: string;
   year: number;
-}) => {
+}): string => {
   const urlOrigin = new URL(AppRoutes.Rims + "/filter", BASE_URL);
   const params = new URLSearchParams(urlOrigin.search);
 
@@ -182,7 +182,9 @@ export const getRimsDiameterFiltered = ({
   return arr;
 };
 
-export const getDimentionOptionsArray = (rimObject: IRimDetailedInfo) => {
+export const getDimentionOptionsArray = (
+  rimObject: IRimDetailedInfo
+): string[] => {
   let extractOptions = [];
   for (let item of rimObject.rimVariations) {
     extractOptions.push(
@@ -216,7 +218,6 @@ export const getAllConfigs = (configs: IRimsConfigs): string[] => {
 
   for (let config of configsArr) {
     let optionString = `${config.diameter}" - диаметр; ${config.width}" - ширина; ${pcd} - крепежные отверстия`;
-
     optionsArr.push(optionString);
   }
 

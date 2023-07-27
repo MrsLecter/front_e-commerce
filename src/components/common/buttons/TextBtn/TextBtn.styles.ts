@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledTextBtn = styled.button`
-  padding: 14px 0;
+  padding: 16px 0;
+  height: 48px;
   display: flex;
   flex-direction: row;
   justify-content: center;

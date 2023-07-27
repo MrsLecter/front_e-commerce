@@ -2,14 +2,20 @@ import { FC } from "react";
 
 import { StyledBlueBtn } from "./BlueBtn.styles";
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color: "dark" | "light" | "transparent";
-  height?: "36" | "30";
+  height?: "36" | "30" | "32";
   clickHandler: () => void;
   label: string;
 }
 
-const BlueBtn: FC<Props> = ({ color, clickHandler, label, height }) => {
+const BlueBtn: FC<Props> = ({
+  color,
+  clickHandler,
+  label,
+  height,
+  ...defaultProps
+}) => {
   const colors = {
     dark: {
       background: "#507298",
@@ -33,6 +39,9 @@ const BlueBtn: FC<Props> = ({ color, clickHandler, label, height }) => {
       fontColor={colors[color].font}
       onClick={clickHandler}
       height={height ? height : "36"}
+      aria-label="submit-button"
+      aria-labelledby="submit"
+      {...defaultProps}
     >
       {label}
     </StyledBlueBtn>

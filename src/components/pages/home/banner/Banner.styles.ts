@@ -18,7 +18,7 @@ export const StyledBannerWrapper = styled.section`
 `;
 
 export const StyledBanner = styled.div`
-  padding: 36px 32px 12px;
+  padding: 36px 32px 16px;
   width: 992px;
   height: 250px;
   display: flex;
@@ -62,6 +62,22 @@ export const StyledBanner = styled.div`
       height: 250px;
     }
   }
+
+  @media (max-width: 510px) {
+    div:first-child {
+      min-width: 364px;
+      max-width: 364px;
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    div:first-child {
+      min-width: 264px;
+      max-width: 264px;
+      height: 120px;
+    }
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -72,7 +88,7 @@ export const ContentContainer = styled.div`
   align-items: center;
 
   p:first-child {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     font-family: var(--font-roboto);
     font-size: 32px;
     font-weight: 700;

@@ -6,6 +6,8 @@ export const StyledOrder = styled.div`
   margin-bottom: 26px;
   width: 411px;
   height: 246px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  border-radius: 2px;
   background-color: #fffefe;
 
   @media (max-width: 1000px) {

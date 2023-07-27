@@ -42,6 +42,7 @@ export const HeaderContent = styled.div`
   }
 
   @media (max-width: 350px) {
+    margin-top: 16px;
     padding: 16px 0 0;
     height: 90px;
     flex-direction: column;

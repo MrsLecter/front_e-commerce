@@ -45,7 +45,7 @@ export const QuestionContent = styled.div`
   background-color: white;
 
   p {
-    margin: 0 5px;
+    margin: 0 8px;
   }
 
   p:first-child {
@@ -57,14 +57,15 @@ export const QuestionContent = styled.div`
 
   p:nth-child(2) {
     width: 100%;
-    margin-top: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     font-size: 16px;
     color: #757575;
     letter-spacing: 0.5px;
   }
 
   button {
-    margin: 5px 0;
+    margin: 8px 0 0;
   }
 
   @media (max-width: 560px) {

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const StyledFilter = styled.div`
-  padding: 8px;
+  padding: 8px 16px;
   width: 100%;
+  min-width: 992px;
   min-height: 218px;
   display: flex;
   flex-direction: row;
@@ -25,10 +26,10 @@ export const StyledFilter = styled.div`
   }
 
   & > div:nth-child(1) {
-    width: 50%;
+    width: 52%;
 
     & > p {
-      margin: 6px 0px;
+      margin: 4px 0px;
       width: 100%;
       font-family: var(--font-roboto);
       font-weight: 400;
@@ -37,7 +38,7 @@ export const StyledFilter = styled.div`
 
     & > p:first-child {
       color: black;
-      font-size: 20px;
+      font-size: 18px;
     }
 
     & > p:last-child {
@@ -47,20 +48,25 @@ export const StyledFilter = styled.div`
   }
 
   & > div:nth-child(2) {
-    width: 30%;
+    width: 26%;
     align-items: center;
   }
 
   & > div:nth-child(3) {
-    width: 20%;
+    width: 24%;
     height: 100%;
     overflow: auto;
     & > div {
       width: 100%;
     }
   }
+  @media (max-width: 1020px) {
+    width: 100%;
+    min-width: 236px;
+  }
 
   @media (max-width: 766px) {
+    width: 100%;
     min-width: 236px;
     height: 100%;
     flex-direction: column;

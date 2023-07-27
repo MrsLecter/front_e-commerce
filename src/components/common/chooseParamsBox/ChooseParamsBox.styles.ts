@@ -7,26 +7,20 @@ export const ChoosingContent = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  p {
-    margin-top: 2px;
-    margin-bottom: 6px;
+  & > p {
+    margin: 8px 0 0;
     font-family: var(--font-roboto);
     font-size: 18px;
     letter-spacing: 0.6px;
     font-weight: 500;
     color: rgba(66, 95, 128, 0.78);
   }
-
-  div {
-    /* margin-top: 4px; */
-  }
-
-  button {
-    /* margin-top: 26px; */
+  & > div {
+    margin: 8px 0 0 0;
   }
 
   @media (max-width: 600px) {
-    p {
+    & > p {
       font-size: 14px;
       letter-spacing: 0.5px;
     }
@@ -34,7 +28,7 @@ export const ChoosingContent = styled.div`
 `;
 
 export const Message = styled.div`
-  padding-bottom: 4px;
+  padding-bottom: 8px;
   height: 24px;
   display: flex;
   flex-direction: column;

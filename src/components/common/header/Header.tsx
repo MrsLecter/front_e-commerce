@@ -1,10 +1,11 @@
 import { useRouter } from "next/navigation";
 import { FC, MouseEvent } from "react";
 
+import { AppModals } from "@/constants/common";
+
 import TextBtn from "../buttons/TextBtn/TextBtn";
 import Logo from "../Logo/Logo";
 import { HeaderContent, StyledHeader } from "./Header.styles";
-import { AppModals } from "@/constants/common";
 
 interface Props {
   color?: "blue" | "none";

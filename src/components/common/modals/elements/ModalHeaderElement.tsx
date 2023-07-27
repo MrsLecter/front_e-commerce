@@ -20,6 +20,8 @@ const StyledModalHeaderElement = styled.div`
   line-height: 40px;
   color: #fff;
   background-color: #507299;
+  border-top-right-radius:2px;
+  border-top-left-radius:2px;
 
   @media (max-width: 360px) {
     text-align: center;

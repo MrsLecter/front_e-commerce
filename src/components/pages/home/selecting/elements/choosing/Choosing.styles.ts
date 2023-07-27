@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledChoosing = styled.div`
   padding: 24px 32px 24px 32px;
   width: 488px;
-  height: 252px;
+  height: 256px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

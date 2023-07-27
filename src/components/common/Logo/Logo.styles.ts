@@ -10,7 +10,8 @@ export const StyledLogo = styled.div<{ color: string }>`
   align-items: center;
 
   p {
-    margin-left: 14px;
+    margin-top: -4hh  px;
+    margin-left: 8px;
     font-family: var(--font-rubik);
     font-size: 24px;
     font-weight: 400;

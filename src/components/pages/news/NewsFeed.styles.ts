@@ -18,7 +18,7 @@ export const NewsFeedWrapper = styled.div`
 `;
 
 export const NewsHeader = styled.div`
-  padding: 16px 18px;
+  padding: 16px 16px;
   width: 100%;
   text-align: center;
   font-family: var(--font-roboto);

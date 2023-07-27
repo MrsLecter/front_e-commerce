@@ -29,6 +29,10 @@ export const ChHeader = styled.div`
   font-size: 20px;
   color: #757575;
   background-color: #fffefe;
+
+  @media (max-width: 560px) {
+    justify-content: center;
+  }
 `;
 
 export const ChRow = styled.div<{ color?: string }>`
@@ -50,7 +54,7 @@ export const ChRow = styled.div<{ color?: string }>`
   div:first-child {
     position: absolute;
     top: 0;
-    left: 8px;
+    left: 16px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -93,12 +97,14 @@ export const ChRow = styled.div<{ color?: string }>`
   }
 
   @media (max-width: 560px) {
+    padding: 0px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     div:first-child {
       position: relative;
+      left: 0;
       text-align: center;
     }
 
@@ -107,6 +113,7 @@ export const ChRow = styled.div<{ color?: string }>`
     }
 
     div:last-child {
+      padding: 2px 0;
       max-width: 100%;
       text-align: center;
       align-self: center;

@@ -17,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
+        <meta charSet="utf-8"></meta>
         <title>
           Ukrdisk | Компания ООО «Укрдиск» - легкосплавные, литые диски на авто
         </title>

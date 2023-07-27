@@ -10,7 +10,8 @@ export const StyledSelectMenu = styled.div`
     width: 100%;
     min-width: 100%;
     max-width: 100%;
-    padding: 6px 8px;
+    padding: 0px 8px;
+    height: 30px;
 
     font-family: var(--font-roboto);
     font-size: 14px;

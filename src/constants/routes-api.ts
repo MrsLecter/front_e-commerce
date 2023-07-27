@@ -1,5 +1,4 @@
 const BASE_API_URL = "https://rims-i467.onrender.com";
-// const BASE_API_URL = "https://b47a-87-244-131-197.ngrok-free.app";
 export const GET_BRANDS_URL = `${BASE_API_URL}/car-brands`;
 export const GET_NEWS_URL = `${BASE_API_URL}/car-news`;
 export const GET_ALL_AUTO_URL = `${BASE_API_URL}/car-brands`;

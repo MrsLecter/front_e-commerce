@@ -13,7 +13,6 @@ import ModalHeader from "../elements/ModalHeaderElement";
 import { OrderCallContent, StyledOrderCall } from "./OrderCallModal.styles";
 import { AppModals } from "@/constants/common";
 import modalService from "@/api/modal-service";
-import { Link } from "react-router-dom";
 
 const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
   const [isOrderCall, setOrderCall] = useState<boolean>(false);

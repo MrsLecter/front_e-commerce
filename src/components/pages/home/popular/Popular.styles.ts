@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledPopular = styled.section`
-  padding-top: 30px;
+  padding-top: 32px;
   padding-bottom: 24px;
   width: 100%;
   height: auto;
@@ -11,21 +11,17 @@ export const StyledPopular = styled.section`
   align-items: center;
   background-color: #f0f0f0;
 
-  @media (max-width: 960px) {
-    padding-top: 34px;
-  }
-
   @media (max-width: 760px) {
     display: none;
   }
 `;
 
 export const CardContainer = styled.div`
-  margin: 12px auto 6px;
+  margin: 16px auto 6px;
   width: 992px;
   min-height: 740px;
   display: grid;
-  column-gap: 12px;
+  column-gap: 16px;
   justify-content: flex-start;
   grid-template-columns: auto auto auto auto;
 

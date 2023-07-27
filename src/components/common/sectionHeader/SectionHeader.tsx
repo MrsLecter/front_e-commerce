@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import styled from 'styled-components';
+import { FC } from "react";
+import styled from "styled-components";
 
 interface Props {
   label: string;
@@ -19,7 +19,7 @@ const StyledHeader = styled.div`
   text-align: center;
 
   @media (max-width: 600px) {
-    font-size: 14px;
+    font-size: 18px;
     letter-spacing: 0.5px;
   }
 `;

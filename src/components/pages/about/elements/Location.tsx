@@ -17,6 +17,7 @@ const Location: FC = () => {
 };
 
 const MapWrapper = styled.div`
+  margin-top: 8px;
   width: 100%;
   height: 400px;
   background-color: #f0f1f1;

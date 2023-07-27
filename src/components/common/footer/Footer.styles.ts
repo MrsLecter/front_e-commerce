@@ -1,3 +1,4 @@
+import { COLORS } from "@/styles/tokens";
 import styled from "styled-components";
 
 export const StyledFooter = styled.div`
@@ -13,8 +14,8 @@ export const StyledFooter = styled.div`
 export const FooterWrapper = styled.footer`
   width: 100%;
   height: 193px;
-  max-width: 1024px;
   padding: 8px 16px;
+  max-width: 1024px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -29,14 +30,18 @@ export const FooterWrapper = styled.footer`
     justify-content: flex-start;
     align-items: flex-start;
   }
+
+  @media (max-width: 510px) {
+    padding-top: 16px;
+  }
 `;
 
 export const LogoWrapper = styled.div`
-  margin-top: 18px;
-  width: 20%;
+  margin-top: -14px;
+  width: 252px;
   height: 100%;
   min-height: 100%;
-  min-width: 244px;
+  min-width: 252px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -53,8 +58,9 @@ export const LogoWrapper = styled.div`
 `;
 
 export const LinksWrapper = styled.nav`
-  width: 45%;
+  width: 492px;
   height: 100%;
+
   ul {
     display: flex;
     flex-direction: column;
@@ -64,9 +70,10 @@ export const LinksWrapper = styled.nav`
     font-size: 14px;
     font-weight: 400;
   }
+
   ul li {
     width: 100%;
-    height: 25px;
+    height: 16px;
     margin: 3px;
   }
 
@@ -76,18 +83,25 @@ export const LinksWrapper = styled.nav`
   }
 
   @media (max-width: 660px) {
-    padding: 30px;
+    padding: 32px;
     width: 100%;
     height: auto;
+
     ul {
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
     }
+
     ul li {
       width: 45%;
+      height: 24px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   }
 
@@ -99,7 +113,7 @@ export const LinksWrapper = styled.nav`
 `;
 
 export const ContactWrapper = styled.div`
-  width: 40%;
+  width: 252px;
   height: 100%;
   min-height: 100%;
   display: flex;
@@ -111,7 +125,6 @@ export const ContactWrapper = styled.div`
 
   p {
     margin-bottom: 8px;
-    height: 25px;
   }
 
   p:hover {
@@ -125,5 +138,9 @@ export const ContactWrapper = styled.div`
     min-height: 50px;
     justify-content: center;
     align-items: center;
+
+    p {
+      height: 24px;
+    }
   }
 `;

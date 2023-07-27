@@ -1,12 +1,12 @@
+import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
 import rimsService from "@/api/rims-service";
 import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
 import SelectMenu from "@/components/common/selectMenu/SelectMenu";
+import { getUrlWithSearchParams } from "@/utils/functions";
 
 import { ChoosingContent, Message } from "./ChooseParamsBox.styles";
-import { useRouter } from "next/navigation";
-import { getUrlWithSearchParams } from "@/utils/functions";
 
 interface Props {
   header?: string;
@@ -15,20 +15,17 @@ interface Props {
 
 const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   const router = useRouter();
-  const [brand, setBrand] = useState<string>(
-    defaultParams[0] ? defaultParams[0] : "Марка"
-  );
-  const [oldBrand, setOldBrand] = useState<string>(
-    defaultParams[0] ? defaultParams[0] : "Марка"
-  );
+
+  const defaultBrand = defaultParams[0] ? defaultParams[0] : "Марка";
+  const defaultModel = defaultParams[1] ? defaultParams[1] : "Модель";
+  const defaultYear = defaultParams[2] ? defaultParams[2] : "Год";
+
+  const [brand, setBrand] = useState<string>(defaultBrand);
+  const [oldBrand, setOldBrand] = useState<string>(defaultBrand);
   const [brandsArr, setBrandsArr] = useState<string[]>([]);
-  const [model, setModel] = useState<string>(
-    defaultParams[1] ? defaultParams[1] : "Модель"
-  );
+  const [model, setModel] = useState<string>(defaultModel);
   const [modelsArr, setModelsArr] = useState<string[]>([]);
-  const [year, setYear] = useState<string>(
-    defaultParams[2] ? defaultParams[2] : "Год"
-  );
+  const [year, setYear] = useState<string>(defaultYear);
   const [yearsArr, setYearsArr] = useState<string[]>([]);
   const [message, setMessage] = useState<string>("");
 

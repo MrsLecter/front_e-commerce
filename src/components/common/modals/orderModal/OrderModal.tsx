@@ -195,8 +195,6 @@ const OrderModal: FC<Props> = ({
                 </>
               )}
             </UserInputContainer>
-
-            {/* // )} */}
           </StyledOrderModal>
         </ModalWrapper>
       )}

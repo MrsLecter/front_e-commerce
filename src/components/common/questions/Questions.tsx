@@ -14,7 +14,6 @@ import {
 import { AppModals } from "@/constants/common";
 import { LoadingButton } from "@/styles/common";
 
-
 interface Props {
   modalHandler: (modalID: number) => void;
   loading?: boolean;
@@ -40,13 +39,13 @@ const Questions: FC<Props> = ({ modalHandler, loading = false }) => {
             <p>Есть вопрос?</p>
             <p>Мы с удовольствием ответим на все!</p>
             <BlueBtn
-              height={"30"}
+              height={"32"}
               color={"dark"}
               label={"Заказать звонок"}
               clickHandler={orderCallHandler}
             />
             <BlueBtn
-              height={"30"}
+              height={"32"}
               color={"light"}
               label={"Задать вопрос"}
               clickHandler={askQuestionHandler}

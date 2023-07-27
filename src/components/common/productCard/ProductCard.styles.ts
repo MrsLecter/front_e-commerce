@@ -32,7 +32,7 @@ export const CardContent = styled.div`
   font-family: var(--font-roboto);
 
   a {
-    font-size: 15px;
+    font-size: 14px;
     text-overflow: ellipsis;
     overflow: hidden;
     color: #507299;
@@ -41,15 +41,15 @@ export const CardContent = styled.div`
 
   p:nth-child(2) {
     margin-top: 4px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     color: #000;
     letter-spacing: 0.5px;
   }
 
   p:nth-child(3) {
-    margin-top: 4px;
-    margin-bottom: 13px;
+    margin-top:8px;
+    margin-bottom: 12px;
     font-size: 10px;
     color: gray;
     letter-spacing: 0.4px;
@@ -82,5 +82,3 @@ export const LoadingDiameters = styled.div`
   background-color: hsl(200, 20%, 70%);
   animation: image-loading 1s linear infinite alternate;
 `;
-
-
