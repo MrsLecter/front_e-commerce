@@ -1,7 +1,11 @@
 import ProductCard from "@/components/common/productCard/ProductCard";
 import ProductCardContainer from "@/components/common/productCardContainer/ProductCardContainer";
 import { FC, useEffect, useRef, useState } from "react";
-import { ShowMoreBtnWrapper, StyledRimsFilter } from "./RimsFilter.styles";
+import {
+  Message,
+  ShowMoreBtnWrapper,
+  StyledRimsFilter,
+} from "./RimsFilter.styles";
 import Filter from "./elements/filter/Filter";
 import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn/ShowMoreBtn";
 import { useParams, useSearchParams } from "next/navigation";
@@ -123,6 +127,9 @@ const RimsFilter: FC = () => {
         avaliableDiameters={retrievedDiameters}
         setFilterDiameters={(value: string) => setDiametersHandler(value)}
       />
+      {!loading && rimsList && rimsList.length === 0 && (
+        <Message>Data not found</Message>
+      )}
       <CardContainer>
         {loading &&
           popularRimsStub.map((item) => {
@@ -134,6 +141,7 @@ const RimsFilter: FC = () => {
               />
             );
           })}
+
         {!loading &&
           rimsList &&
           rimsList.map((item) => {
