@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, KeyboardEvent } from "react";
 
 import { StyledBlueBtn } from "./BlueBtn.styles";
 
@@ -33,11 +33,18 @@ const BlueBtn: FC<Props> = ({
       hover: "#425f80",
     },
   };
+
+  const keyDownHandler = (e: KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Enter") {
+      clickHandler();
+    }
+  };
   return (
     <StyledBlueBtn
       mainColor={colors[color].background}
       fontColor={colors[color].font}
       onClick={clickHandler}
+      onKeyDown={(e) => keyDownHandler(e)}
       height={height ? height : "36"}
       aria-label="submit-button"
       aria-labelledby="submit"

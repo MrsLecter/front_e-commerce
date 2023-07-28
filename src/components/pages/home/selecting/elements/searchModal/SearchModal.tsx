@@ -34,7 +34,7 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
       setSearchResult((prev) => [...response.data.message]);
       setLoading(false);
     };
-    setSearchResult(prev=>[]);
+    setSearchResult((prev) => []);
     if (!input) {
       getPopularResult();
     }
@@ -66,7 +66,7 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
               <SearchResult>
                 {!loading &&
                   searchResult &&
-                  searchResult.map((item) => {
+                  searchResult.map((item, index) => {
                     return <ResultItem key={item.rimId} params={item} />;
                   })}
                 {loading && <></>}

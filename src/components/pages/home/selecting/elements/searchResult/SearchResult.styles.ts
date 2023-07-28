@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledSearchResult = styled.div`
   margin: 10px auto 0px;
+  padding: 2px;
   width: 362px;
   height: 448px;
 
@@ -17,6 +18,14 @@ export const StyledSearchResult = styled.div`
   background-color: white;
   z-index: 10;
   overflow: auto;
+
+  & > a {
+    width: 100%;
+  }
+
+  & > a:focus {
+    background-color: hsl(200, 20%, 95%);
+  }
 
   @media (max-width: 500px) {
     width: calc(100% - 16px);

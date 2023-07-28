@@ -78,6 +78,10 @@ export const Prev = styled.button`
   border: none;
   user-select: none;
   background-color: transparent;
+
+  &:focus {
+    background-color: black;
+  }
 `;
 
 export const Next = styled.button`
@@ -97,6 +101,10 @@ export const Next = styled.button`
   border: none;
   border-radius: 4px 0 0 4px;
   background-color: transparent;
+
+  &:focus {
+    background-color: black;
+  }
 `;
 
 export const Slide = styled.div<{ loading: boolean }>`
@@ -108,7 +116,7 @@ export const Slide = styled.div<{ loading: boolean }>`
       animation: image-loading 1s linear infinite alternate;
     `}
 
-  &:hover {
+  &:hover, &:focus {
     button {
       transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
       background-color: black;

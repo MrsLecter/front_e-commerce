@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, MouseEvent, useState } from "react";
+import { ChangeEvent, FC, MouseEvent, useState, KeyboardEvent } from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -15,6 +15,13 @@ const Checkbox: FC<Props> = ({ name, label, setDiameter }) => {
     setCheck(!check);
   };
 
+  const toggleCheckboxKeyboard = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setDiameter((e.currentTarget as HTMLInputElement).value);
+      setCheck(!check);
+    }
+  };
+
   return (
     <StyledCheckbox>
       <StyledInput
@@ -23,6 +30,7 @@ const Checkbox: FC<Props> = ({ name, label, setDiameter }) => {
         id={"checkbox-" + name}
         value={label}
         onChange={(e) => toggleCheckbox(e)}
+        onKeyDown={(e) => toggleCheckboxKeyboard(e)}
         checked={check}
       />
       <StyledLabel htmlFor={"checkbox-" + name}>{label}</StyledLabel>
