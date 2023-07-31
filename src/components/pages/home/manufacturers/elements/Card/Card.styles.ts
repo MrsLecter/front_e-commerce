@@ -47,7 +47,7 @@ export const StyledCard = styled.div`
 
   div:last-child {
     position: absolute;
-    bottom: -5px;
+    bottom: -4px;
     right: 0;
   }
 
