@@ -33,6 +33,7 @@ export default function RootLayout({
           content="Ukrdisk интернет-магазин дисков  на автомобиль."
         />
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <link rel="icon" href="/favicon.ico"></link>
       </Head>
       <body className={roboto.variable}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>

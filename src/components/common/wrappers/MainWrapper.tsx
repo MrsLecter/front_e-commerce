@@ -10,7 +10,6 @@ const MainWrapper: FC<Props> = ({ children }) => {
 };
 
 const StyledMainWrapper = styled.div`
-  /* height: auto; */
   min-height: 100%;
   background-color: #f0f1f1;
 `;

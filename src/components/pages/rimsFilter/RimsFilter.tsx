@@ -22,9 +22,9 @@ import { CardContainer } from "../home/popular/Popular.styles";
 const RimsFilter: FC = () => {
   const params = useParams();
   const searchParams = useSearchParams();
-  const rimsBrand = searchParams.get("brand");
-  const rimsModel = searchParams.get("model");
-  const rimsYear = searchParams.get("year");
+  const rimsBrand = searchParams!.get("brand");
+  const rimsModel = searchParams!.get("model");
+  const rimsYear = searchParams!.get("year");
   const diametersRef = useRef<string>();
 
   const [filterDiameters, setFilterDiameters] = useState<string[]>([]);
@@ -105,10 +105,10 @@ const RimsFilter: FC = () => {
         setLoading(false);
       }, 1000);
     };
-    if (params.params === "filter") {
+    if (params!.params === "filter") {
       getFilteredRims();
     }
-    if (params.params !== "filter") {
+    if (params!.params !== "filter") {
       getRimsByBrand();
     }
   }, [params.params, rimsBrand, rimsModel, rimsYear]);

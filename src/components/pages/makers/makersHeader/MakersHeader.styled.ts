@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledMakersHeader = styled.div`
-  padding: 12px 0px;
+  padding: 0px 0px;
   width: 100%;
   min-height: 60px;
   height: auto;

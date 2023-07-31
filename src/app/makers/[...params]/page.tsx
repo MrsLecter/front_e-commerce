@@ -7,5 +7,5 @@ import MakersChoose from "@/components/pages/makers/Makers";
 export default function Makers() {
   const pathname = usePathname();
 
-  return <MakersChoose chooseOption={[pathname]} />;
+  return <MakersChoose chooseOption={[pathname!]} />;
 }

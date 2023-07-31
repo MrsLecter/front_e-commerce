@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledShowMoreBtn = styled.button`
-  margin: 12px auto;
   width: 488px;
   height: 40px;
   font-family: var(--font-roboto);

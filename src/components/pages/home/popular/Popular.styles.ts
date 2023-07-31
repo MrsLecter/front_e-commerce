@@ -17,7 +17,7 @@ export const StyledPopular = styled.section`
 `;
 
 export const CardContainer = styled.div`
-  margin: 16px auto 6px;
+  margin: 16px auto 0px;
   width: 992px;
   height: auto;
   /* min-height: 740px; */

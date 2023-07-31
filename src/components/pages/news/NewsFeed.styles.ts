@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const NewsFeedWrapper = styled.div`
-  margin: 10px auto;
-  padding: 8px 0px;
+  margin: 16px auto;
+  padding: 16px 0 1px 0;
   width: calc(100% - 16px);
   min-width: 230px;
   max-width: 960px;
@@ -12,13 +12,13 @@ export const NewsFeedWrapper = styled.div`
   border-radius: 2px;
 
   & > div:last-child {
-    margin: 20px auto;
+    margin: 16px auto;
     width: 212px;
   }
 `;
 
 export const NewsHeader = styled.div`
-  padding: 16px 16px;
+  padding: 0px 16px 16px 16px;
   width: 100%;
   text-align: center;
   font-family: var(--font-roboto);

@@ -8,7 +8,7 @@ import { AppRoutes } from "@/constants/common";
 
 const MakersHeader: FC = () => {
   const pathname = usePathname();
-  let path = pathname.substring(1, pathname.length).split("/");
+  let path = pathname!.substring(1, pathname!.length).split("/");
   path.splice(0, 1);
 
   return (
