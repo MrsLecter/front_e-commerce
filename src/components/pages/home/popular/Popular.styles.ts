@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledPopular = styled.section`
   padding-top: 32px;
-  padding-bottom: 24px;
+  padding-bottom: 16px;
   width: 100%;
   height: auto;
   display: flex;

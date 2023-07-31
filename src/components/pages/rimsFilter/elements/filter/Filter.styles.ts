@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFilter = styled.div`
-  padding: 8px 16px;
+  padding: 16px 16px 8px 16px;
   width: 100%;
   min-width: 992px;
   min-height: 218px;
@@ -13,7 +13,6 @@ export const StyledFilter = styled.div`
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 
   & > div {
-    margin: 0px 8px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -48,6 +47,7 @@ export const StyledFilter = styled.div`
   }
 
   & > div:nth-child(2) {
+    margin: 0px 8px;
     width: 26%;
     align-items: center;
   }

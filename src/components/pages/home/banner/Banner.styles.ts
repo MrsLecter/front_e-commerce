@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledBannerWrapper = styled.section`
-  padding-top: 14px;
   width: 100%;
   display: flex;
   flex-direction: row;
