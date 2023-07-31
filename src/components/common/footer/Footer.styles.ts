@@ -1,4 +1,3 @@
-import { COLORS } from "@/styles/tokens";
 import styled from "styled-components";
 
 export const StyledFooter = styled.div`

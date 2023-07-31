@@ -5,12 +5,12 @@ export const Substrate = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 336px;
+  height: 287px;
   background: linear-gradient(0deg, #507299, #2d435c);
 `;
 
 export const StyledSelecting = styled.section`
-  margin-top: 40px;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledLogo = styled.div<{ color: string }>`
   padding: 2px;
+  margin-left: ${(props) => (props.color === "white" ? "-8px" : "-4px")};
   width: 145px;
   height: 48px;
   display: flex;
@@ -10,7 +11,7 @@ export const StyledLogo = styled.div<{ color: string }>`
   align-items: center;
 
   p {
-    margin-top: -4hh  px;
+    margin-top: -4px;
     margin-left: 8px;
     font-family: var(--font-rubik);
     font-size: 24px;
