@@ -42,7 +42,7 @@ export default function Rim() {
   useEffect(() => {
     const getDetailedRimsInfo = async () => {
       const response = await rimsService.getRimData({
-        id: params.params,
+        id: params!.params as string,
       });
       setRimObject((prev) => response.data.message);
       setRimVariation((prev) => response.data.message.rimVariations[0]);
@@ -83,7 +83,7 @@ export default function Rim() {
           managementObject={managementObj}
           rimData={rim}
           rimVariation={rim.rimVariations[0]}
-          rimId={params.params}
+          rimId={params!.params as string}
         />
       )}
       {!loading && (
@@ -91,7 +91,7 @@ export default function Rim() {
           managementObject={managementObj}
           rimData={rimObject!}
           rimVariation={rimVariation!}
-          rimId={params.params}
+          rimId={params!.params as string}
         />
       )}
     </MainWrapper>

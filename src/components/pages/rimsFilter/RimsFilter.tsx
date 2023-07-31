@@ -77,7 +77,7 @@ const RimsFilter: FC = () => {
       setLoading(true);
       setVisibleRimsAmount(8);
       const response = await rimsService.getRimsByBrand({
-        rimBrand: getRimBrand(params.params || "all") || "all",
+        rimBrand: getRimBrand((params!.params as string) || "all") || "all",
       });
       setRimsResponse((prev) => response.data.message);
       setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount));
@@ -111,7 +111,7 @@ const RimsFilter: FC = () => {
     if (params!.params !== "filter") {
       getRimsByBrand();
     }
-  }, [params.params, rimsBrand, rimsModel, rimsYear]);
+  }, [params!.params as string, rimsBrand, rimsModel, rimsYear]);
 
   useEffect(() => {
     if (rimsResponse) {
@@ -122,7 +122,7 @@ const RimsFilter: FC = () => {
   return (
     <StyledRimsFilter>
       <Filter
-        rimBrand={getRimBrand(params.params || "")}
+        rimBrand={getRimBrand((params!.params as string) || "")}
         rimFilterParams={[rimsBrand, rimsModel, rimsYear]}
         avaliableDiameters={retrievedDiameters}
         setFilterDiameters={(value: string) => setDiametersHandler(value)}

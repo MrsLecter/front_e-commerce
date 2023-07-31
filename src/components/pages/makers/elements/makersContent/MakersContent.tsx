@@ -10,7 +10,7 @@ import RimLink from "../rimLink/RimLink";
 
 const MakersContent: FC = () => {
   const pathname = usePathname();
-  const patharr = pathname.split("/");
+  const patharr = pathname!.split("/");
 
   const [parameters, setParameters] = useState<string[]>([]);
   const [rimsLinks, setRimsLinks] = useState<IRimObject[]>();
@@ -113,7 +113,7 @@ const MakersContent: FC = () => {
   }, [patharr]);
 
   const goBack = () => {
-    alert(pathname.split("/"));
+    alert(pathname!.split("/"));
   };
 
   return (
