@@ -7,6 +7,7 @@ export const StyledOrderCall = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border-radius: 4px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px,
     rgba(0, 0, 0, 0.22) 0px 10px 18px;
@@ -18,15 +19,15 @@ export const StyledOrderCall = styled.div`
 `;
 
 export const OrderCallContent = styled.div`
-  padding: 16px 24px;
+  padding: 24px 24px;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
   background-color: white;
 
   & > div:last-child {

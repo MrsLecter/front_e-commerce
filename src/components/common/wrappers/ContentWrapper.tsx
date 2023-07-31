@@ -18,7 +18,7 @@ const StyledContentWrapper = styled.div`
   min-height: 777px;
   background-color: #fefeff;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-  border-radius: 2px;
+  border-radius: 4px;
 
   & > div:first-child {
     margin-top: 0px;

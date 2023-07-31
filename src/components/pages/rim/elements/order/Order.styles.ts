@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const StyledOrder = styled.div`
   position: relative;
-  padding: 8px 16px;
+  padding: 16px 16px;
   margin-bottom: 26px;
   width: 411px;
   height: 246px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #fffefe;
 
   @media (max-width: 1000px) {
@@ -71,9 +71,9 @@ export const StyledAlert = styled.div`
 `;
 
 export const LoadingOrderHeader = styled.div`
-  margin: 8px 0px 16px;
+  margin: 0px 0px 16px;
   width: 65%;
-  height: 22px;
+  height: 20px;
   border-radius: 2px;
   background-color: #507298;
   animation: image-loading 1s linear infinite alternate;

@@ -13,7 +13,7 @@ export const StyledBlueBtn = styled.button<{
   font-weight: 500;
   opacity: 0.9;
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
   color: ${(props) => props.fontColor};
   background-color: ${(props) => props.mainColor};
 

@@ -11,8 +11,11 @@ export const StyledMakersHeader = styled.div`
   align-items: flex-start;
 
   @media (max-width: 600px) {
+    margin: 0 auto;
     width: calc(100% - 16px);
     flex-wrap: wrap;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;

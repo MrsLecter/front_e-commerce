@@ -8,6 +8,7 @@ export const StyledChContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  border-radius: 4px;
   font-family: var(--font-roboto);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 
@@ -27,6 +28,8 @@ export const ChHeader = styled.div`
   justify-content: flex-start;
   align-items: center;
   font-size: 20px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   color: #757575;
   background-color: #fffefe;
 
@@ -124,5 +127,5 @@ export const ChRow = styled.div<{ color?: string }>`
 export const LoadingHeader = styled.div`
   width: 100%;
   height: 48px;
-  border-radius: 2px;
+  border-radius: 4px;
 `;

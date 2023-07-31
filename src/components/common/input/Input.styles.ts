@@ -11,7 +11,7 @@ export const StyledInput = styled.input`
   color: #909090;
   line-height: 40px;
   opacity: 0.7;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid #c4c8cc;
   background-color: white;
 `;

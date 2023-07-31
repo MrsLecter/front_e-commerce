@@ -30,7 +30,7 @@ const StyledShowMoreBtn = styled.button<{ color: string }>`
   letter-spacing: 0.5px;
   font-weight: 500;
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
   overflow: hidden;
   text-align: center;

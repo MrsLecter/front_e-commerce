@@ -10,7 +10,7 @@ const ModalHeaderElement: FC<Props> = ({ label }) => {
 };
 
 const StyledModalHeaderElement = styled.div`
-  padding: 0 0 0 20px;
+  padding: 0 0 0 24px;
   width: 100%;
   height: 40px;
   font-family: var(--font-roboto);
@@ -20,8 +20,8 @@ const StyledModalHeaderElement = styled.div`
   line-height: 40px;
   color: #fff;
   background-color: #507299;
-  border-top-right-radius:2px;
-  border-top-left-radius:2px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
 
   @media (max-width: 360px) {
     text-align: center;

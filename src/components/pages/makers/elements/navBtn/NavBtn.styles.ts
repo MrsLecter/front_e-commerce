@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const StyledNavBtn = styled.button`
   margin: 4px 2px;
-  padding: 10px 15px;
+  padding: 8px 16px;
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  min-height: 50px;
+  min-height: 36px;
   height: auto;
-  border-radius: 2px;
+  border-radius: 4px;
   border: none;
   font-family: var(--font-roboto);
   font-size: 14px;
@@ -20,5 +20,6 @@ export const StyledNavBtn = styled.button`
 
   @media (max-width: 600px) {
     width: 100%;
+    margin: 4px auto;
   }
 `;

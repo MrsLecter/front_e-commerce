@@ -24,6 +24,10 @@ export const StyledProductCard = styled.div<{ loading: boolean }>`
         animation: image-loading 1s linear infinite alternate;
       `}
   }
+
+  button {
+    border-radius: 4px;
+  }
 `;
 
 export const CardContent = styled.div`
@@ -48,7 +52,7 @@ export const CardContent = styled.div`
   }
 
   p:nth-child(3) {
-    margin-top:8px;
+    margin-top: 8px;
     margin-bottom: 12px;
     font-size: 10px;
     color: gray;

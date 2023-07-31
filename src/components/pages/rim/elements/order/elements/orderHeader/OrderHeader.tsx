@@ -10,7 +10,7 @@ const OrderHeader: FC<Props> = ({ header }) => {
 };
 
 const StyledOrderHeader = styled.div`
-  margin: 8px 0px 16px;
+  margin: 0px 0px 16px;
   width: 100%;
   font-family: var(--font-roboto);
   color: #507299;

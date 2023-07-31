@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, MouseEvent, useState, KeyboardEvent } from "react";
+import { ChangeEvent, FC, useState, KeyboardEvent } from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -48,13 +48,10 @@ const StyledCheckbox = styled.div`
 `;
 
 const StyledInput = styled.input`
-  /* -moz-appearance: none;
-  -webkit-appearance: none;
-  -o-appearance: none; */
   width: 14px;
   height: 14px;
   accent-color: #517399;
-  border: 2px solid #517399;
+  border: 4px solid #517399;
   border-radius: 2px;
   margin-right: 4px;
 

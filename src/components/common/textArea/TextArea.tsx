@@ -45,7 +45,7 @@ const StyledTextArea = styled.textarea`
   font-size: 14px;
   color: #909090;
   opacity: 0.7;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid #c4c8cc;
   background-color: white;
   resize: none;

@@ -9,7 +9,7 @@ export const NewsFeedWrapper = styled.div`
   height: auto;
   background-color: #fefeff;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-  border-radius: 2px;
+  border-radius: 4px;
 
   & > div:last-child {
     margin: 16px auto;
@@ -23,6 +23,7 @@ export const NewsHeader = styled.div`
   text-align: center;
   font-family: var(--font-roboto);
   font-size: 18px;
+  line-height: 16px;
   letter-spacing: 0.5px;
   font-weight: 500;
   text-align: left;

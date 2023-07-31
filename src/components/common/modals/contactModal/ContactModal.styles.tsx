@@ -7,7 +7,7 @@ export const StyledContactModal = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 2px;
+  border-radius: 4px;
 
   @media (max-width: 360px) {
     margin: 0 auto;
@@ -16,18 +16,18 @@ export const StyledContactModal = styled.div`
 `;
 
 export const ModalHeader = styled.div`
-  padding: 24px 24px 20px;
+  padding: 16px;
   width: 100%;
-  height: 77px;
+  height: auto;
   font-family: var(--font-roboto);
   font-size: 16px;
-  line-height: 32px;
+  line-height: 26px;
   font-weight: 400;
   text-transform: uppercase;
   color: #7a8999;
   background-color: #eceff1;
-  border-top-right-radius: 2px;
-  border-top-left-radius: 2px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
   border-bottom: 1px solid #c4c8cc;
 
   @media (max-width: 360px) {
@@ -38,13 +38,13 @@ export const ModalHeader = styled.div`
 export const ModalContent = styled.div`
   padding: 24px;
   width: 100%;
-  height: 239px;
+  height: auto;
   font-family: var(--font-roboto);
   font-weight: 400;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
   background-color: white;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px,
@@ -52,7 +52,6 @@ export const ModalContent = styled.div`
 
   button {
     margin-top: 24px;
-    border-radius: 2px;
   }
 
   div {

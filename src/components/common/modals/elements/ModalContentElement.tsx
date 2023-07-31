@@ -10,7 +10,7 @@ const ModalContentElement: FC<Props> = ({ children }) => {
 };
 
 const StyledModalContentElement = styled.div`
-  padding: 16px 20px;
+  padding: 24px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -18,6 +18,8 @@ const StyledModalContentElement = styled.div`
   justify-content: space-between;
   align-items: end;
   background-color: #eceff1;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 
   & > div:last-child {
     width: 144px;

@@ -10,7 +10,7 @@ const OrderDescription: FC = () => {
 };
 
 const StyledOrderDescription = styled.div`
-  margin: 8px 0px;
+  margin: 16px 0px;
   width: 100%;
   color: #a4afba;
   font-family: var(--font-roboto);

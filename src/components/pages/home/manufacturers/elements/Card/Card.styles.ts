@@ -36,6 +36,7 @@ export const StyledCard = styled.div`
       letter-spacing: 0.5px;
       text-align: center;
       border: none;
+      border-radius: 4px;
       background-color: transparent;
       transition: duration, 0.2s;
 

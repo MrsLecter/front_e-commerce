@@ -19,7 +19,7 @@ export const StyledSelectMenu = styled.div`
     text-overflow: ellipsis;
     color: #364d66;
     border: none;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: #ebf1f4;
     appearance: none;
     overflow: auto;

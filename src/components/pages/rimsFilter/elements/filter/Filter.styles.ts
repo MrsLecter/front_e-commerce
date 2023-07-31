@@ -10,6 +10,7 @@ export const StyledFilter = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   background-color: white;
+  border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 
   & > div {

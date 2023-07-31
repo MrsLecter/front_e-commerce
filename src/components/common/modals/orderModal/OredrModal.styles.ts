@@ -25,8 +25,8 @@ export const OrderHeader = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   font-family: var(--font-roboto);
   color: #7a8999;
   border-bottom: 1px solid #c4c8cc;
@@ -96,8 +96,8 @@ export const UserInputContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
   background-color: white;
 `;
 

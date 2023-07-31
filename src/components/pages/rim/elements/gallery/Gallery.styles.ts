@@ -11,7 +11,7 @@ export const StyledGallery = styled.div`
   justify-content: space-between;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #fffefe;
 
   @media (max-width: 1000px) {
