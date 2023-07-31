@@ -53,10 +53,10 @@ export const Preview = styled.div<{ haveBorder: boolean }>`
   justify-content: center;
   align-items: center;
   border: ${(props) =>
-    props.haveBorder ? "2px solid #507299" : "2px solid transparent"};
+    props.haveBorder ? "4px solid #507299" : "4px solid transparent"};
 
   &:hover {
-    border: 1px solid #507299;
+    border: 4px solid #507299;
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
