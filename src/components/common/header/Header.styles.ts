@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledHeader = styled.header<{ color: "blue" | "none" }>`
   position: ${(props) => (props.color === "blue" ? "fixed" : "relative")};
-  top:0px;
+  top: 0px;
   width: 100%;
   height: 48px;
   background-color: ${(props) =>
@@ -12,6 +12,11 @@ export const StyledHeader = styled.header<{ color: "blue" | "none" }>`
   justify-content: space-between;
   align-items: center;
   z-index: 2;
+  ${(props) =>
+    props.color === "blue" &&
+    css`
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 6px, rgba(0, 0, 0, 0.3) 0px 1px 4px;
+    `};
 
   @media (max-width: 350px) {
     height: 124px;

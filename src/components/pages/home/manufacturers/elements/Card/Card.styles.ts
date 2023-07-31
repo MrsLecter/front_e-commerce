@@ -40,8 +40,12 @@ export const StyledCard = styled.div`
       background-color: transparent;
       transition: duration, 0.2s;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: #ebf0f5;
+        opacity: 1;
+        transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+        transition-duration: 0.45s;
       }
     }
   }
@@ -51,10 +55,6 @@ export const StyledCard = styled.div`
     bottom: -4px;
     right: 0;
   }
-
-  /* &:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  } */
 
   @media (max-width: 1020px) {
     padding: 0px 0 0 8px;

@@ -41,7 +41,11 @@ const ProductCard: FC<Props> = ({ parameters, loading }) => {
       </div>
 
       <CardContent>
-        {!loading && <Link href={AppRoutes.Rim + `/${rimId}`}>{name}</Link>}
+        {!loading && (
+          <Link tabIndex={-1} href={AppRoutes.Rim + `/${rimId}`}>
+            {name}
+          </Link>
+        )}
         {loading && (
           <a>
             <LoadingName />

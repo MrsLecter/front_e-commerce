@@ -7,7 +7,7 @@ export const StyledBannerWrapper = styled.section`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
+
   overflow: hidden;
   background-color: #f1f0f1;
 
@@ -17,6 +17,7 @@ export const StyledBannerWrapper = styled.section`
 `;
 
 export const StyledBanner = styled.div`
+  margin: 10px auto;
   padding: 36px 32px 16px;
   width: 992px;
   height: 250px;

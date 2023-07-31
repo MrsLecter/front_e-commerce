@@ -24,7 +24,12 @@ export const StyledSelectMenu = styled.div`
     appearance: none;
     overflow: auto;
     cursor: pointer;
-    opacity: 0.85;
+    opacity: 0.7;
+
+    &:focus,
+    &:hover {
+      opacity: 1;
+    }
   }
 
   select option {
