@@ -130,7 +130,7 @@ const RimsFilter: FC = () => {
       {!loading && rimsList && rimsList.length === 0 && (
         <Message>Data not found</Message>
       )}
-      <CardContainer>
+      <CardContainer marginTop={16}>
         {loading &&
           popularRimsStub.map((item) => {
             return (

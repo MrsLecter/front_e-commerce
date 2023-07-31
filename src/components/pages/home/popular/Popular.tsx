@@ -35,7 +35,7 @@ const Popular: FC = () => {
   return (
     <StyledPopular>
       <SectionHeader label={"Популярные модели"} />
-      <CardContainer>
+      <CardContainer marginTop={32}>
         {loading &&
           popularRimsStub.map((item, index) => {
             return (

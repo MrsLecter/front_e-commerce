@@ -16,8 +16,8 @@ export const StyledPopular = styled.section`
   }
 `;
 
-export const CardContainer = styled.div`
-  margin: 32px auto 0px;
+export const CardContainer = styled.div<{ marginTop: number }>`
+  margin: ${(props) => props.marginTop + "px auto 0px"};
   width: 992px;
   height: auto;
   /* min-height: 740px; */
