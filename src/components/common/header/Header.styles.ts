@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header<{ color: "blue" | "none" }>`
-  position: relative;
+  position: ${(props) => (props.color === "blue" ? "fixed" : "relative")};
+  top:0px;
   width: 100%;
   height: 48px;
   background-color: ${(props) =>

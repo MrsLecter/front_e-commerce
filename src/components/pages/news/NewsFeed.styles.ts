@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NewsFeedWrapper = styled.div`
-  margin: 16px auto;
+  margin: 64px auto 16px;
   padding: 16px 0 1px 0;
   width: calc(100% - 16px);
   min-width: 230px;
