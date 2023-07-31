@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const StyledContainer = styled.div<{ param: "large" | "small" }>`
-  padding: 16px 16px 0px 16px;
+  padding: 32px 16px 0px 16px;
   width: 100%;
   max-width: 1024px;
   display: ${(params) => (params.param === "large" ? "flex" : "none")};
