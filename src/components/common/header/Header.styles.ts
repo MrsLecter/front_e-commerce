@@ -13,7 +13,7 @@ export const StyledHeader = styled.header<{ color: "blue" | "none" }>`
   z-index: 2;
 
   @media (max-width: 350px) {
-    height: 90px;
+    height: 124px;
     flex-direction: column;
     justify-content: flex-start;
   }
@@ -42,9 +42,7 @@ export const HeaderContent = styled.div`
   }
 
   @media (max-width: 350px) {
-    margin-top: 16px;
-    padding: 16px 0 0;
-    height: 90px;
+    padding: 16px 0 16px 0;
     flex-direction: column;
     justify-content: flex-end;
   }

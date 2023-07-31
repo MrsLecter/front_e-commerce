@@ -61,6 +61,7 @@ export const StyledFilter = styled.div`
     }
   }
   @media (max-width: 1020px) {
+    padding: 16px;
     width: 100%;
     min-width: 236px;
   }

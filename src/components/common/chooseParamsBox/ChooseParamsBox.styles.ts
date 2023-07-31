@@ -21,7 +21,7 @@ export const ChoosingContent = styled.div`
 
   @media (max-width: 600px) {
     & > p {
-      font-size: 14px;
+      font-size: 18px;
       letter-spacing: 0.5px;
     }
   }

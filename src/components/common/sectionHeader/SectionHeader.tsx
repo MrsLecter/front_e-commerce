@@ -13,13 +13,15 @@ const StyledHeader = styled.div`
   width: 100%;
   font-family: var(--font-roboto);
   font-size: 32px;
+  line-height: 30px;
   letter-spacing: 0.7px;
   font-weight: 500;
   color: #333;
   text-align: center;
 
   @media (max-width: 600px) {
-    font-size: 18px;
+    font-size: 24px;
+
     letter-spacing: 0.5px;
   }
 `;

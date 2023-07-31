@@ -125,8 +125,13 @@ export const ContentContainer = styled.div`
     width: 100%;
     order: -1;
 
+    p:nth-child(1) {
+      font-size: 24px;
+    }
+
     p:nth-child(2) {
       padding: 2px 0px;
+      font-size: 16px;
     }
   }
 `;

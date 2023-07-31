@@ -25,6 +25,10 @@ const StyledShowMoreBtn = styled.button<{ color: string }>`
   margin-top: 8px;
   width: 100%;
   height: 40px;
+  font-family: var(--font-roboto);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
   border: none;
   border-radius: 2px;
   box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
