@@ -1,6 +1,7 @@
 "use client";
 
 import Footer from "@/components/common/footer/Footer";
+import HeadComponent from "@/components/common/head/Head";
 import Header from "@/components/common/header/Header";
 import ContactModal from "@/components/common/modals/contactModal/ContactModal";
 import OrderCallModal from "@/components/common/modals/orderCallModal/OrderCallModal";
@@ -19,24 +20,27 @@ export default function Home() {
   const { managementObj } = useModal();
 
   return (
-    <MainWrapper>
-      <Header color={"none"} modalHandler={managementObj.activateHandler} />
-      <Selecting
-        openSearchModal={(modalId: number) =>
-          managementObj.activateHandler(modalId)
-        }
-      />
-      <Manufacturers />
-      <Banner />
-      <QuestionWrapper>
-        <Questions modalHandler={managementObj.activateHandler} />
-      </QuestionWrapper>
-      <Popular />
-      <Footer />
-      <ContactModal managementObject={managementObj} />
-      <OrderCallModal managementObject={managementObj} />
-      <QuestionModal managementObject={managementObj} />
-      <SearchModal managementObject={managementObj} />
-    </MainWrapper>
+    <>
+      <HeadComponent />
+      <MainWrapper>
+        <Header color={"none"} modalHandler={managementObj.activateHandler} />
+        <Selecting
+          openSearchModal={(modalId: number) =>
+            managementObj.activateHandler(modalId)
+          }
+        />
+        <Manufacturers />
+        <Banner />
+        <QuestionWrapper>
+          <Questions modalHandler={managementObj.activateHandler} />
+        </QuestionWrapper>
+        <Popular />
+        <Footer />
+        <ContactModal managementObject={managementObj} />
+        <OrderCallModal managementObject={managementObj} />
+        <QuestionModal managementObject={managementObj} />
+        <SearchModal managementObject={managementObj} />
+      </MainWrapper>
+    </>
   );
 }

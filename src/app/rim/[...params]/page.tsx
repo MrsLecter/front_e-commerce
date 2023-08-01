@@ -16,6 +16,7 @@ import { rim } from "@/constants/helpers";
 import { useModal } from "@/hooks/use-modal";
 import { IRimDetailedInfo, IRimParams } from "@/types/common.types";
 import { getDimentionOptionsArray } from "@/utils/functions";
+import HeadComponent from "@/components/common/head/Head";
 
 export default function Rim() {
   const { managementObj } = useModal();
@@ -52,48 +53,51 @@ export default function Rim() {
     getDetailedRimsInfo();
   }, []);
   return (
-    <MainWrapper>
-      <Header modalHandler={managementObj.activateHandler} />
-      {loading && (
-        <RimOrder
-          rimData={rim}
-          optionArray={getDimentionOptionsArray(rim)}
-          setVariation={setVariation}
-          rimVariation={rim.rimVariations[0]}
-          managementObject={managementObj}
-          loading={loading}
-        />
-      )}
-      {!loading && (
-        <RimOrder
-          rimData={rimObject!}
-          optionArray={optionArray!}
-          setVariation={setVariation}
-          rimVariation={rimVariation!}
-          managementObject={managementObj}
-          loading={loading}
-        />
-      )}
-      <Footer />
-      <ContactModal managementObject={managementObj} />
-      <OrderCallModal managementObject={managementObj} />
-      <QuestionModal managementObject={managementObj} />
-      {loading && (
-        <OrderModal
-          managementObject={managementObj}
-          rimData={rim}
-          rimVariation={rim.rimVariations[0]}
-          rimId={params!.params as string}
-        />
-      )}
-      {!loading && (
-        <OrderModal
-          managementObject={managementObj}
-          rimData={rimObject!}
-          rimVariation={rimVariation!}
-          rimId={params!.params as string}
-        />
-      )}
-    </MainWrapper>
+    <>
+      <HeadComponent />
+      <MainWrapper>
+        <Header modalHandler={managementObj.activateHandler} />
+        {loading && (
+          <RimOrder
+            rimData={rim}
+            optionArray={getDimentionOptionsArray(rim)}
+            setVariation={setVariation}
+            rimVariation={rim.rimVariations[0]}
+            managementObject={managementObj}
+            loading={loading}
+          />
+        )}
+        {!loading && (
+          <RimOrder
+            rimData={rimObject!}
+            optionArray={optionArray!}
+            setVariation={setVariation}
+            rimVariation={rimVariation!}
+            managementObject={managementObj}
+            loading={loading}
+          />
+        )}
+        <Footer />
+        <ContactModal managementObject={managementObj} />
+        <OrderCallModal managementObject={managementObj} />
+        <QuestionModal managementObject={managementObj} />
+        {loading && (
+          <OrderModal
+            managementObject={managementObj}
+            rimData={rim}
+            rimVariation={rim.rimVariations[0]}
+            rimId={params!.params as string}
+          />
+        )}
+        {!loading && (
+          <OrderModal
+            managementObject={managementObj}
+            rimData={rimObject!}
+            rimVariation={rimVariation!}
+            rimId={params!.params as string}
+          />
+        )}
+      </MainWrapper>
+    </>
   );
 }

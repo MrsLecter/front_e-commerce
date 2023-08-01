@@ -1,6 +1,7 @@
 "use client";
 
 import Footer from "@/components/common/footer/Footer";
+import HeadComponent from "@/components/common/head/Head";
 import Header from "@/components/common/header/Header";
 import ContactModal from "@/components/common/modals/contactModal/ContactModal";
 import MainWrapper from "@/components/common/wrappers/MainWrapper";
@@ -14,11 +15,14 @@ export default function MakersLayout({
   const { managementObj } = useModal();
 
   return (
-    <MainWrapper>
-      <Header modalHandler={managementObj.activateHandler} />
-      {children}
-      <Footer />
-      <ContactModal managementObject={managementObj} />
-    </MainWrapper>
+    <>
+      <HeadComponent />
+      <MainWrapper>
+        <Header modalHandler={managementObj.activateHandler} />
+        {children}
+        <Footer />
+        <ContactModal managementObject={managementObj} />
+      </MainWrapper>
+    </>
   );
 }

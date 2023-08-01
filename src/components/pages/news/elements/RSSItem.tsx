@@ -22,7 +22,7 @@ const RSSItem: FC<Props> = ({
         <span>&#128279;</span>&nbsp;
         <span>&nbsp;{sourceName}</span>
       </ItemHeader>
-      <a href={sourceLink} target={"_blank"}>
+      <a href={sourceLink} target={"_blank"} rel="noreferrer">
         {newsTitle}
       </a>
     </StyledRSSItem>
