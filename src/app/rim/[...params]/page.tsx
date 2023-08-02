@@ -55,7 +55,7 @@ export default function Rim() {
   return (
     <>
       <HeadComponent />
-      <MainWrapper>
+      <MainWrapper marginTop={64}>
         <Header modalHandler={managementObj.activateHandler} />
         {loading && (
           <RimOrder
