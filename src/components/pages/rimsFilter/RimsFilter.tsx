@@ -8,23 +8,33 @@ import {
 } from "./RimsFilter.styles";
 import Filter from "./elements/filter/Filter";
 import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn/ShowMoreBtn";
-import { useParams, useSearchParams } from "next/navigation";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import rimsService from "@/api/rims-service";
 import { IRimObject } from "@/types/common.types";
 import { popularRimsStub } from "@/constants/helpers";
 import {
+  createQueryString,
   getRetrievedDiameters,
   getRimBrand,
   getRimsDiameterFiltered,
 } from "@/utils/functions";
 import { CardContainer } from "../home/popular/Popular.styles";
+import { AppRoutes } from "@/constants/common";
 
 const RimsFilter: FC = () => {
   const params = useParams();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
   const rimsBrand = searchParams!.get("brand");
   const rimsModel = searchParams!.get("model");
   const rimsYear = searchParams!.get("year");
+  const currPage = searchParams!.get("page");
   const diametersRef = useRef<string>();
 
   const [filterDiameters, setFilterDiameters] = useState<string[]>([]);
@@ -32,7 +42,9 @@ const RimsFilter: FC = () => {
   const [rimsList, setRimsList] = useState<IRimObject[]>();
   const [rimsResponse, setRimsResponse] = useState<IRimObject[]>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [visibleRimsAmount, setVisibleRimsAmount] = useState<number>(8);
+  const [visibleRimsAmount, setVisibleRimsAmount] = useState<number>(
+    currPage ? +currPage * 8 : 8
+  );
 
   useEffect(() => {
     if (!diametersRef.current) {
@@ -69,6 +81,23 @@ const RimsFilter: FC = () => {
   };
 
   const showMoreHandler = () => {
+    if (searchParams && rimsBrand && rimsModel && rimsYear && currPage) {
+      let queryString = createQueryString({
+        brand: rimsBrand,
+        model: rimsModel,
+        year: rimsYear,
+        page: +currPage + 1,
+        searchParamsString: searchParams.toString(),
+      });
+      router.push(queryString);
+    } else if (searchParams && currPage) {
+      const routeParams = params!.params;
+      const searchParamsString = new URLSearchParams(searchParams?.toString());
+      searchParamsString.set("page", String(+currPage + 1));
+      const queryString = searchParamsString.toString();
+      const newRoute = `${AppRoutes.Home}${routeParams}${queryString}`;
+      router.push(newRoute);
+    }
     setVisibleRimsAmount((prev) => prev + 8);
   };
 
@@ -114,6 +143,7 @@ const RimsFilter: FC = () => {
   }, [params!.params as string, rimsBrand, rimsModel, rimsYear]);
 
   useEffect(() => {
+    setVisibleRimsAmount(currPage ? +currPage * 8 : 8);
     if (rimsResponse) {
       setRimsList((prev) => rimsResponse!.slice(0, visibleRimsAmount));
     }

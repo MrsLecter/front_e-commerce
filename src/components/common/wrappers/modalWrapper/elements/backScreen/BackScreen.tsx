@@ -43,8 +43,7 @@ export const StyledBackdrop = styled.div<{
   ${(props) =>
     props.hasAnimation &&
     css`
-      animation: ${(isAppearing) =>
-        isAppearing ? "appearance 0.5s ease-in" : "disappearance 0.5s ease-in"};
+      animation: ${(isAppearing) => isAppearing && "appearance 0.5s ease-in"};
     `}
 
   @keyframes appearance {
@@ -53,15 +52,6 @@ export const StyledBackdrop = styled.div<{
     }
     to {
       opacity: 1;
-    }
-  }
-
-  @keyframes disappearance {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0.7;
     }
   }
 `;

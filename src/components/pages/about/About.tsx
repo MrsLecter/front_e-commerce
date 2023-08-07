@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 import ContentWrapper from "@/components/common/wrappers/ContentWrapper";
-import { AppModals, AppRoutes } from "@/constants/common";
+import { AppModals, AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
 
 import { AboutHeader, Paragraph } from "./About.styles";
 import Location from "./elements/Location";
@@ -13,7 +13,6 @@ interface Props {
 }
 
 const About: FC<Props> = ({ modalHandler }) => {
-  
   const orderCallClickHandler = () => {
     modalHandler(AppModals.Call);
   };
@@ -21,6 +20,7 @@ const About: FC<Props> = ({ modalHandler }) => {
   const orderQuestionClickHandler = () => {
     modalHandler(AppModals.Question);
   };
+
   return (
     <ContentWrapper>
       <AboutHeader>O нас</AboutHeader>
@@ -32,12 +32,32 @@ const About: FC<Props> = ({ modalHandler }) => {
         </p>
         <p>
           За время работы мы стали эксклюзивным представителем компаний &nbsp;
-          <Link href={AppRoutes.Rims + ManufacturesNames.Kosei}>Kosei aluminium (Япония)</Link>
-          ,&nbsp;<Link href={AppRoutes.Rims + ManufacturesNames.Mkw}>MKW (Mi-tech)</Link>,
-          &nbsp;<Link href={AppRoutes.Rims + ManufacturesNames.Marcello}>Marcello wheels</Link>
+          <Link
+            href={AppRoutes.Rims + ManufacturesNames.Kosei + FIRST_PAGE_PARAM}
+          >
+            Kosei aluminium (Япония)
+          </Link>
+          ,&nbsp;
+          <Link
+            href={AppRoutes.Rims + ManufacturesNames.Mkw + FIRST_PAGE_PARAM}
+          >
+            MKW (Mi-tech)
+          </Link>
+          , &nbsp;
+          <Link
+            href={
+              AppRoutes.Rims + ManufacturesNames.Marcello + FIRST_PAGE_PARAM
+            }
+          >
+            Marcello wheels
+          </Link>
           , Zent и&nbsp;
-          <Link href={AppRoutes.Rims + ManufacturesNames.Inzi}>Inzi Aone (Корея)</Link>&nbsp;в
-          Украине.
+          <Link
+            href={AppRoutes.Rims + ManufacturesNames.Inzi + FIRST_PAGE_PARAM}
+          >
+            Inzi Aone (Корея)
+          </Link>
+          &nbsp;в Украине.
         </p>
         <p>
           Наш ассортимент - легкосплавные, литые диски высокого качества,

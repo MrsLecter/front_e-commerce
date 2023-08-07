@@ -22,10 +22,7 @@ export const StyledModalWrapper = styled.div<{
   ${(props) =>
     props.hasAnimation &&
     css`
-      animation: ${(isActive) =>
-        isActive
-          ? "appearance 0.3s ease-in-out"
-          : "disappearance 0.3s ease-in-out"};
+      animation: ${(isActive) => isActive && "appearance 0.3s ease-in-out"};
     `}
 
   @keyframes appearance {
@@ -36,17 +33,6 @@ export const StyledModalWrapper = styled.div<{
     to {
       padding-top: 0px;
       opacity: 1;
-    }
-  }
-
-  @keyframes disappearance {
-    from {
-      opacity: 1;
-      padding-top: 0px;
-    }
-    to {
-      opacity: 0;
-      padding-bottom: 250px;
     }
   }
 `;

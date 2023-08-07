@@ -11,6 +11,31 @@ export const StyledPopular = styled.section`
   align-items: center;
   background-color: #f0f0f0;
 
+  & > a {
+    padding: 14px;
+    width: 488px;
+    height: 40px;
+    font-family: var(--font-roboto);
+    font-size: 14px;
+    font-weight: 500;
+    color: #425f80;
+    line-height: 12px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    overflow: hidden;
+    border: none;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(81, 115, 152, 0.2);
+  }
+
+  & > a:hover,
+  & > a:focus {
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    transition-duration: 0.45s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
   @media (max-width: 760px) {
     display: none;
   }

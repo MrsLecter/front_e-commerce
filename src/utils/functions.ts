@@ -1,4 +1,4 @@
-import { AppRoutes, BASE_URL } from "@/constants/common";
+import { AppRoutes } from "@/constants/common";
 import { GET_BRANDS_URL } from "@/constants/routes-api";
 import {
   IRimDetailedInfo,
@@ -92,23 +92,26 @@ export const getSertedRimData = (rimDataArr: IRimObject[]): IRimObject[] => {
   return sortedRimData;
 };
 
-export const getUrlWithSearchParams = ({
+export const createQueryString = ({
   brand,
   model,
   year,
+  page,
+  searchParamsString,
 }: {
   brand: string;
   model: string;
-  year: number;
+  year: string;
+  page: number;
+  searchParamsString: string;
 }): string => {
-  const urlOrigin = new URL(AppRoutes.Rims + "/filter", BASE_URL);
-  const params = new URLSearchParams(urlOrigin.search);
-
+  const params = new URLSearchParams(searchParamsString);
   params.set("brand", brand);
   params.set("model", model);
   params.set("year", String(year));
-  const url = `${urlOrigin}?${params}`;
-  return url;
+  params.set("page", String(page));
+  const queryString = params.toString();
+  return `${AppRoutes.Rims}/all?${queryString}`;
 };
 
 export const getRetrievedDiameters = (rims: IRimObject[]): string[] => {

@@ -2,8 +2,8 @@ import Image from "next/image";
 import { FC } from "react";
 
 import { StyledCard } from "./Card.styles";
-import { useRouter } from "next/navigation";
-import { AppRoutes } from "@/constants/common";
+import { AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
+import Link from "next/link";
 
 interface Props {
   id: number;
@@ -13,17 +13,15 @@ interface Props {
 }
 
 const Card: FC<Props> = (props) => {
-  const router = useRouter();
-  const goToManufacturersRims = () => {
-    router.push(AppRoutes.Rims + props.href);
-  };
   return (
     <StyledCard>
       <div>
         <div>
           <Image src={props.logo} alt={"logo.png"} width={130} height={28} />
         </div>
-        <button onClick={goToManufacturersRims}>Посмотреть все</button>
+        <Link href={AppRoutes.Rims + props.href + FIRST_PAGE_PARAM}>
+          Посмотреть все
+        </Link>
       </div>
 
       <div>

@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body className={roboto.variable}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
         <div id="backdrop"></div>

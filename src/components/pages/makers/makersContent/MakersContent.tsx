@@ -1,12 +1,12 @@
 import { usePathname } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
-import OptionBtn from "../optionLink/OptionLink";
+import OptionBtn from "../elements/optionLink/OptionLink";
 import { Message, StyledMakersContent } from "./MakersContent.styles";
 import rimsService from "@/api/rims-service";
 import { IRimObject } from "@/types/common.types";
 import { getAllConfigs } from "@/utils/functions";
-import RimLink from "../rimLink/RimLink";
+import RimLink from "../elements/rimLink/RimLink";
 
 const MakersContent: FC = () => {
   const pathname = usePathname();

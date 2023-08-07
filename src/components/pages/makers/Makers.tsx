@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import ContentWrapper from "@/components/common/wrappers/ContentWrapper";
 
-import MakersContent from "./elements/makersContent/MakersContent";
+import MakersContent from "./makersContent/MakersContent";
 import MakersHeader from "./makersHeader/MakersHeader";
 
 interface Props {

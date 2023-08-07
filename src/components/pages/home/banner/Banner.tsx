@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { FC } from "react";
 
-import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
 import carBanner from "@images/auto-banner.png";
 
 import {
@@ -9,15 +8,11 @@ import {
   StyledBanner,
   StyledBannerWrapper,
 } from "./Banner.styles";
-import { useRouter } from "next/navigation";
-import { AppRoutes } from "@/constants/common";
+import { AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
 import { ManufacturesNames } from "@/constants/manufactures-card-list";
+import Link from "next/link";
 
 const Banner: FC = () => {
-  const router = useRouter();
-  const showAllReplica = () => {
-    router.push(AppRoutes.Rims + ManufacturesNames.Replica);
-  };
   return (
     <StyledBannerWrapper>
       <StyledBanner>
@@ -31,12 +26,11 @@ const Banner: FC = () => {
         <ContentContainer>
           <p>Replica</p>
           <p>Копии оригинальных дисков теперь у нас на сайте</p>
-          <BlueBtn
-            label={"Посмотреть все"}
-            color={"light"}
-            clickHandler={showAllReplica}
-            height={"36"}
-          />
+          <Link
+            href={AppRoutes.Rims + ManufacturesNames.Replica + FIRST_PAGE_PARAM}
+          >
+            Посмотреть все
+          </Link>
         </ContentContainer>
       </StyledBanner>
     </StyledBannerWrapper>

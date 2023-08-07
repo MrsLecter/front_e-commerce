@@ -25,7 +25,7 @@ export const StyledCard = styled.div`
       height: 42px;
     }
 
-    button {
+    & > a {
       padding: 8px 16px;
       width: 100%;
       height: 32px;

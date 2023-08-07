@@ -6,21 +6,18 @@ import SectionHeader from "@/components/common/sectionHeader/SectionHeader";
 
 import { CardContainer, StyledPopular } from "./Popular.styles";
 import { useRouter } from "next/navigation";
-import { AppRoutes } from "@/constants/common";
+import { AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
 import rimsService from "@/api/rims-service";
 import { IRimObject } from "@/types/common.types";
 
 import { popularRimsStub } from "@/constants/helpers";
 import { getSertedRimData } from "@/utils/functions";
+import Link from "next/link";
 
 const Popular: FC = () => {
   const router = useRouter();
   const [rims, setRims] = useState<IRimObject[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
-  const showAllRimsHandler = () => {
-    router.push(AppRoutes.Rims + "/all");
-  };
 
   useEffect(() => {
     const getPopularRims = async () => {
@@ -48,7 +45,9 @@ const Popular: FC = () => {
           );
         })}
       </CardContainer>
-      <ShowMoreBtn clickHandler={showAllRimsHandler} />
+      <Link href={AppRoutes.Rims + "/all" + FIRST_PAGE_PARAM}>
+        Показать все
+      </Link>
     </StyledPopular>
   );
 };

@@ -107,9 +107,28 @@ export const ContentContainer = styled.div`
     text-align: center;
   }
 
-  button {
+  & > a {
     margin-top: 26px;
+    padding: 10px;
     width: 180px;
+    height: 36px;
+    font-family: var(--font-roboto);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    opacity: 0.9;
+    text-align: center;
+    border-radius: 4px;
+    color: #425f8f;
+    background-color: #ebf1f4;
+  }
+
+  & > a:hover,
+  & > a:focus {
+    opacity: 1;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    transition-duration: 0.45s;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
   }
 
   @media (max-width: 1020px) {
@@ -117,7 +136,7 @@ export const ContentContainer = styled.div`
       padding: 2px 46px;
     }
 
-    button {
+    & > a {
       margin-top: 16px;
     }
   }

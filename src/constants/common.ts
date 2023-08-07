@@ -1,6 +1,6 @@
 import { ManufacturesNames } from "./manufactures-card-list";
 
-export const BASE_URL = "https://front-e-commerce-six.vercel.app/";
+export const FIRST_PAGE_PARAM = "?page=1";
 
 export enum AppRoutes {
   Home = "/",
@@ -22,27 +22,27 @@ export enum AppModals {
 export const FOOTER_LINKS = [
   {
     id: 1,
-    href: AppRoutes.Rims + ManufacturesNames.Inzi,
+    href: AppRoutes.Rims + ManufacturesNames.Inzi + FIRST_PAGE_PARAM,
     description: "Диски InziAone",
   },
   {
     id: 2,
-    href: AppRoutes.Rims + ManufacturesNames.Kosei,
+    href: AppRoutes.Rims + ManufacturesNames.Kosei + FIRST_PAGE_PARAM,
     description: "Диски Kosei",
   },
   {
     id: 3,
-    href: AppRoutes.Rims + ManufacturesNames.Marcello,
+    href: AppRoutes.Rims + ManufacturesNames.Marcello + FIRST_PAGE_PARAM,
     description: "Диски Marcello",
   },
   {
     id: 4,
-    href: AppRoutes.Rims + ManufacturesNames.Mkw,
+    href: AppRoutes.Rims + ManufacturesNames.Mkw + FIRST_PAGE_PARAM,
     description: "Диски MKW",
   },
   {
     id: 5,
-    href: AppRoutes.Rims + ManufacturesNames.Replica,
+    href: AppRoutes.Rims + ManufacturesNames.Replica + FIRST_PAGE_PARAM,
     description: "Диски Replica",
   },
   {
@@ -52,7 +52,7 @@ export const FOOTER_LINKS = [
   },
   {
     id: 7,
-    href: AppRoutes.Makers + "/all",
+    href: AppRoutes.Makers + "/all" + FIRST_PAGE_PARAM,
     description: "Подбор дисков по авто",
   },
   {

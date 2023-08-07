@@ -1,12 +1,12 @@
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
 import rimsService from "@/api/rims-service";
 import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
 import SelectMenu from "@/components/common/selectMenu/SelectMenu";
-import { getUrlWithSearchParams } from "@/utils/functions";
 
 import { ChoosingContent, Message } from "./ChooseParamsBox.styles";
+import { createQueryString } from "@/utils/functions";
 
 interface Props {
   header?: string;
@@ -15,6 +15,7 @@ interface Props {
 
 const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   const router = useRouter();
+  const searchParams = useSearchParams()!;
 
   const defaultBrand = defaultParams[0] ? defaultParams[0] : "Марка";
   const defaultModel = defaultParams[1] ? defaultParams[1] : "Модель";
@@ -36,12 +37,14 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
         setMessage("");
       }, 1300);
     } else {
-      const url = getUrlWithSearchParams({
+      const queryString = createQueryString({
         brand,
         model,
-        year: +year,
+        year,
+        page: 1,
+        searchParamsString: searchParams.toString(),
       });
-      router.push(url);
+      router.push(queryString);
     }
   };
 
