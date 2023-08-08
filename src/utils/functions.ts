@@ -120,7 +120,7 @@ export const getRetrievedDiameters = (rims: IRimObject[]): string[] => {
     return [];
   }
 
-  let map = new Map();
+  let map = new Map<string, string>();
 
   for (let rim of rims) {
     for (let diameter of rim.diameter) {
@@ -130,7 +130,7 @@ export const getRetrievedDiameters = (rims: IRimObject[]): string[] => {
     }
   }
   const arrDiameters = Array.from(map, ([name, value]) => value);
-  arrDiameters.sort((a, b) => a - b);
+  arrDiameters.sort((a, b) => +a - +b);
   return arrDiameters;
 };
 
