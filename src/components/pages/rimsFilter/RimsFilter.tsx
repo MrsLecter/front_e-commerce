@@ -1,30 +1,32 @@
-import ProductCard from "@/components/common/productCard/ProductCard";
-import ProductCardContainer from "@/components/common/productCardContainer/ProductCardContainer";
-import { FC, useEffect, useRef, useState } from "react";
-import {
-  Message,
-  ShowMoreBtnWrapper,
-  StyledRimsFilter,
-} from "./RimsFilter.styles";
-import Filter from "./elements/filter/Filter";
-import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn/ShowMoreBtn";
 import {
   useParams,
   usePathname,
   useRouter,
   useSearchParams,
 } from "next/navigation";
+import { FC, Suspense, useEffect, useMemo, useRef, useState } from "react";
+
 import rimsService from "@/api/rims-service";
-import { IRimObject } from "@/types/common.types";
+import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn/ShowMoreBtn";
+import ProductCard from "@/components/common/productCard/ProductCard";
+import ProductCardContainer from "@/components/common/productCardContainer/ProductCardContainer";
+import { AppRoutes } from "@/constants/common";
 import { popularRimsStub } from "@/constants/helpers";
+import { IRimObject } from "@/types/common.types";
 import {
   createQueryString,
   getRetrievedDiameters,
   getRimBrand,
   getRimsDiameterFiltered,
 } from "@/utils/functions";
+
 import { CardContainer } from "../home/popular/Popular.styles";
-import { AppRoutes } from "@/constants/common";
+import Filter from "./elements/filter/Filter";
+import {
+  Message,
+  ShowMoreBtnWrapper,
+  StyledRimsFilter,
+} from "./RimsFilter.styles";
 
 const RimsFilter: FC = () => {
   const params = useParams();
@@ -36,6 +38,11 @@ const RimsFilter: FC = () => {
   const rimsYear = searchParams!.get("year");
   const currPage = searchParams!.get("page");
   const diametersRef = useRef<string>();
+  const pageRef = useRef<number>();
+
+  if (!pageRef.current) {
+    pageRef.current = 1;
+  }
 
   const [filterDiameters, setFilterDiameters] = useState<string[]>([]);
   const [retrievedDiameters, setRetrievedDiameters] = useState<string[]>([]);
@@ -43,7 +50,7 @@ const RimsFilter: FC = () => {
   const [rimsResponse, setRimsResponse] = useState<IRimObject[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const [visibleRimsAmount, setVisibleRimsAmount] = useState<number>(
-    currPage ? +currPage * 8 : 8
+    pageRef.current * 8
   );
 
   useEffect(() => {
@@ -81,24 +88,35 @@ const RimsFilter: FC = () => {
   };
 
   const showMoreHandler = () => {
-    if (searchParams && rimsBrand && rimsModel && rimsYear && currPage) {
-      let queryString = createQueryString({
-        brand: rimsBrand,
-        model: rimsModel,
-        year: rimsYear,
-        page: +currPage + 1,
-        searchParamsString: searchParams.toString(),
-      });
-      router.push(queryString);
-    } else if (searchParams && currPage) {
-      const routeParams = params!.params;
-      const searchParamsString = new URLSearchParams(searchParams?.toString());
-      searchParamsString.set("page", String(+currPage + 1));
-      const queryString = searchParamsString.toString();
-      const newRoute = `${AppRoutes.Home}${routeParams}${queryString}`;
-      router.push(newRoute);
+    if (
+      pageRef.current &&
+      !(
+        visibleRimsAmount >= rimsResponse!.length &&
+        visibleRimsAmount - 8 < rimsResponse!.length
+      )
+    ) {
+      pageRef.current += 1;
+      if (searchParams && rimsBrand && rimsModel && rimsYear && currPage) {
+        let queryString = createQueryString({
+          brand: rimsBrand,
+          model: rimsModel,
+          year: rimsYear,
+          page: pageRef.current,
+          searchParamsString: searchParams.toString(),
+        });
+        router.replace(queryString, { scroll: false });
+      } else if (searchParams && currPage) {
+        const routeParams = params!.params;
+        const searchParamsString = new URLSearchParams(
+          searchParams?.toString()
+        );
+        searchParamsString.set("page", String(pageRef.current));
+        const queryString = searchParamsString.toString();
+
+        router.replace(pathname + "?" + queryString, { scroll: false });
+      }
+      setVisibleRimsAmount((prev) => prev + 8);
     }
-    setVisibleRimsAmount((prev) => prev + 8);
   };
 
   useEffect(() => {
@@ -108,8 +126,9 @@ const RimsFilter: FC = () => {
       const response = await rimsService.getRimsByBrand({
         rimBrand: getRimBrand((params!.params as string) || "all") || "all",
       });
+
       setRimsResponse((prev) => response.data.message);
-      setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount));
+      setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount)); //
       const avaliableDiameters = getRetrievedDiameters(response.data.message);
       setRetrievedDiameters((prev) => avaliableDiameters);
       setTimeout(() => {
@@ -143,47 +162,58 @@ const RimsFilter: FC = () => {
   }, [params!.params as string, rimsBrand, rimsModel, rimsYear]);
 
   useEffect(() => {
-    setVisibleRimsAmount(currPage ? +currPage * 8 : 8);
-    if (rimsResponse) {
-      setRimsList((prev) => rimsResponse!.slice(0, visibleRimsAmount));
+    if (pageRef.current) {
+      setVisibleRimsAmount(pageRef.current * 8);
+      if (rimsResponse) {
+        setRimsList((prev) => rimsResponse!.slice(0, visibleRimsAmount));
+      }
     }
-  }, [visibleRimsAmount]);
+  }, [visibleRimsAmount, pageRef.current]);
 
-  return (
-    <StyledRimsFilter>
+  const FilterElement = useMemo(() => {
+    return (
       <Filter
         rimBrand={getRimBrand((params!.params as string) || "")}
         rimFilterParams={[rimsBrand, rimsModel, rimsYear]}
         avaliableDiameters={retrievedDiameters}
         setFilterDiameters={(value: string) => setDiametersHandler(value)}
       />
+    );
+  }, [rimsBrand, rimsModel, rimsYear, retrievedDiameters.length]);
+
+  return (
+    <StyledRimsFilter>
+      {FilterElement}
       {!loading && rimsList && rimsList.length === 0 && (
         <Message>Data not found</Message>
       )}
-      <CardContainer marginTop={16}>
-        {loading &&
-          popularRimsStub.map((item) => {
-            return (
-              <ProductCard
-                key={item.rimId}
-                parameters={item}
-                loading={loading}
-              />
-            );
-          })}
+      <Suspense fallback={null}>
+        <CardContainer marginTop={16}>
+          {loading &&
+            popularRimsStub.map((item) => {
+              return (
+                <ProductCard
+                  key={item.rimId}
+                  parameters={item}
+                  loading={loading}
+                />
+              );
+            })}
 
-        {!loading &&
-          rimsList &&
-          rimsList.map((item) => {
-            return (
-              <ProductCard
-                key={item.rimId}
-                parameters={item}
-                loading={loading}
-              />
-            );
-          })}
-      </CardContainer>
+          {!loading &&
+            rimsList &&
+            rimsList.map((item) => {
+              return (
+                <ProductCard
+                  key={item.rimId}
+                  parameters={item}
+                  loading={loading}
+                />
+              );
+            })}
+        </CardContainer>
+      </Suspense>
+
       <ShowMoreBtnWrapper>
         <ShowMoreBtn clickHandler={showMoreHandler} />
       </ShowMoreBtnWrapper>

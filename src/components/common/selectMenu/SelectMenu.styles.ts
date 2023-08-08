@@ -29,6 +29,7 @@ export const StyledSelectMenu = styled.div`
     &:focus,
     &:hover {
       opacity: 1;
+      cursor: pointer;
     }
   }
 

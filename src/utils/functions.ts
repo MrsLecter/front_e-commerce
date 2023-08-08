@@ -106,12 +106,13 @@ export const createQueryString = ({
   searchParamsString: string;
 }): string => {
   const params = new URLSearchParams(searchParamsString);
+
   params.set("brand", brand);
   params.set("model", model);
   params.set("year", String(year));
   params.set("page", String(page));
   const queryString = params.toString();
-  return `${AppRoutes.Rims}/all?${queryString}`;
+  return `${AppRoutes.Rims}/filter?${queryString}`;
 };
 
 export const getRetrievedDiameters = (rims: IRimObject[]): string[] => {

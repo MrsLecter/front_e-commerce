@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react";
 
-import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn/ShowMoreBtn";
 import ProductCard from "@/components/common/productCard/ProductCard";
 import SectionHeader from "@/components/common/sectionHeader/SectionHeader";
 
@@ -11,7 +10,6 @@ import rimsService from "@/api/rims-service";
 import { IRimObject } from "@/types/common.types";
 
 import { popularRimsStub } from "@/constants/helpers";
-import { getSertedRimData } from "@/utils/functions";
 import Link from "next/link";
 
 const Popular: FC = () => {
