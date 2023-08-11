@@ -18,8 +18,6 @@ const SearchBar: FC<Props> = ({
   inputSearch,
   ...defaultProps
 }) => {
-
-
   const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       if (openSearchModal) openSearchModal(AppModals.Search);

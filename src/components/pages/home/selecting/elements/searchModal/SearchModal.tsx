@@ -54,14 +54,16 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
                 setInputHandler={(value) => setInput(value)}
                 autoFocus={true}
               />
-              <SearchResult>
-                {!loading &&
-                  searchResult &&
-                  searchResult.map((item, index) => {
-                    return <ResultItem key={item.rimId} params={item} />;
-                  })}
-                {loading && <></>}
-              </SearchResult>
+              {input.length > 0 && (
+                <SearchResult>
+                  {!loading &&
+                    searchResult &&
+                    searchResult.map((item, index) => {
+                      return <ResultItem key={item.rimId} params={item} />;
+                    })}
+                  {loading && <></>}
+                </SearchResult>
+              )}
             </ModalContent>
           </StyledSearchModal>
         </ModalWrapper>

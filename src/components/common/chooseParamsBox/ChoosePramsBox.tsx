@@ -48,6 +48,11 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
     }
   };
 
+  const setModelHandler = (value: string) => {
+    setYear("Год");
+    setModel(value);
+  };
+
   useEffect(() => {
     const getCarBrands = async () => {
       setYearsArr([]);
@@ -57,7 +62,6 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
     };
     const getCarModels = async () => {
       setYearsArr([]);
-      setYear("Год");
       setOldBrand(brand);
       const response = await rimsService.getAutoModels({
         brand,
@@ -81,7 +85,7 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
     if (!brandsArr.length) {
       getCarBrands();
     }
-    if (brand !== "Марка" && year === "Год") {
+    if (brand !== "Марка") {
       getCarModels();
     }
     if (model !== "Модель" && brand !== "Марка") {
@@ -99,7 +103,7 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       />
       <SelectMenu
         defaultOption={model}
-        setValue={setModel}
+        setValue={setModelHandler}
         optionsArray={modelsArr}
       />
       <SelectMenu
