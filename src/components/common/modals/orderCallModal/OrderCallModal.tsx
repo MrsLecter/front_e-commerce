@@ -21,11 +21,11 @@ const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
     value: phoneNumber,
     error: phoneNumberIsValid,
     changeHandler: phoneNumberChangeHandler,
+    refresh: refreshPhoneHandler,
   } = useInput({
     regexp: PHONE_REGEXP,
     allowEmpty: false,
     maskType: "phone",
-    mask: "+380(000)-000-00-00",
   });
 
   const orderHandler = (e: KeyboardEvent) => {
@@ -42,6 +42,11 @@ const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
       try {
         await modalService.postCallData({ phoneNumber });
         setOrderCall(true);
+        setTimeout(() => {
+          setOrderCall(false);
+          refreshPhoneHandler();
+          setError(false);
+        }, 5000);
       } catch (err) {
         setError(true);
       }
@@ -83,7 +88,7 @@ const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
                     isRequired={true}
                     onChangeHandler={phoneNumberChangeHandler}
                     onKeyDown={(e) => orderHandler(e)}
-                    maxLen={18}
+                    maxLen={12}
                     autofocus={true}
                   />
                   <div>

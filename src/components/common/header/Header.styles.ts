@@ -11,7 +11,7 @@ export const StyledHeader = styled.header<{ color: "blue" | "none" }>`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
+  z-index: 3;
   ${(props) =>
     props.color === "blue" &&
     css`

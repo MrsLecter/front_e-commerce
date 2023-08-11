@@ -14,7 +14,7 @@ export default function News() {
   return (
     <>
       <HeadComponent />
-      <MainWrapper>
+      <MainWrapper topGap={64}>
         <Header modalHandler={managementObj.activateHandler} />
         <NewsFeed />
         <Footer />

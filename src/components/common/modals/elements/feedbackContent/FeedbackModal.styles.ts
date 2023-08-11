@@ -19,32 +19,40 @@ export const FeedbackModalContent = styled.div`
   margin: 0 auto;
   padding: 16px 20px;
   width: 100%;
-  height: 200px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: white;
 
-  & > img {
-    margin-bottom: 8px;
-  }
-
-  & > p {
-    width: 340px;
-    text-align: center;
-  }
-
   & > div {
-    margin-top: 14px;
-    width: 100%;
+    height: 180px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 
-    & > button {
-      width: 86px;
+    div {
+      margin-top: 14px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      & > button {
+        width: 86px;
+      }
+    }
+
+    & > img {
+      margin-bottom: 8px;
+    }
+
+    & > p {
+      width: 340px;
+      text-align: center;
     }
   }
 `;

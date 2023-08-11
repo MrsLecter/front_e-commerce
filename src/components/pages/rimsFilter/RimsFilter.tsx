@@ -222,10 +222,6 @@ const RimsFilter: FC = () => {
         </CardContainer>
       </Suspense>
 
-      {/* <ShowMoreBtnWrapper>
-        <ShowMoreBtn clickHandler={showMoreHandler} />
-      </ShowMoreBtnWrapper> */}
-
       {!diametersRef.current &&
         rimsResponse &&
         !(

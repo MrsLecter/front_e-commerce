@@ -23,6 +23,7 @@ const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
     value: email,
     error: emailIsValid,
     changeHandler: emailChangeHandler,
+    refresh: refreshEmailHandler,
   } = useInput({
     regexp: EMAIL_REGEXP,
     allowEmpty: false,
@@ -32,11 +33,11 @@ const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
     value: phone,
     error: phoneIsValid,
     changeHandler: phoneChangeHandler,
+    refresh: refreshPhoneHandler,
   } = useInput({
     regexp: PHONE_REGEXP,
     allowEmpty: true,
     maskType: "phone",
-    mask: "+380(099)-250-75-69",
   });
 
   const questionHandler = (e: KeyboardEvent) => {
@@ -51,30 +52,30 @@ const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
         alert("Ошибка: неправильный адрес почты");
       }
     }
+
     if ((phone && !phoneIsValid) || !phone) {
       alert("Ошибка: неправильный номер телефона");
     }
-    if (!text || text.length <= 11) {
-      alert("Ошибка: минимальная длина вопроса - 10 символов");
-    }
 
     if (
-      (phoneIsValid && phone && text && text.length >= 11) ||
-      (phoneIsValid &&
-        phone &&
-        text &&
-        text.length >= 11 &&
-        email &&
-        emailIsValid)
+      (phoneIsValid && phone) ||
+      (phoneIsValid && phone && email && emailIsValid)
     ) {
       try {
         await modalService.postFeedback({
-          question: text,
+          question: text || " ",
           email,
           phone,
         });
 
         setQuestionSend(true);
+        setTimeout(() => {
+          setQuestionSend(false);
+          setText("");
+          setError(false);
+          refreshEmailHandler();
+          refreshPhoneHandler();
+        }, 5000);
       } catch (err) {
         setError(true);
       }
@@ -117,7 +118,7 @@ const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
                     placeholder={"Ваш номер телефона"}
                     inputValue={phone}
                     isRequired={true}
-                    maxLen={18}
+                    maxLen={12}
                     onChangeHandler={phoneChangeHandler}
                     onKeyDown={(e) => questionHandler(e)}
                   />

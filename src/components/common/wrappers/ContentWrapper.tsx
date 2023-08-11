@@ -10,12 +10,12 @@ const ContentWrapper: FC<Props> = ({ children }) => {
 };
 
 const StyledContentWrapper = styled.div`
-  margin: 64px auto 16px;
+  margin: 0px auto 16px;
   padding: 16px 16px;
   width: calc(100% - 16px);
   min-width: 230px;
   max-width: 994px;
-  min-height: 777px;
+  min-height: auto;
   background-color: #fefeff;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   border-radius: 4px;

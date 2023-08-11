@@ -14,7 +14,7 @@ export const StyledFilter = styled.div`
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 
   & > div {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -105,6 +105,10 @@ export const StyledFilter = styled.div`
         align-items: center;
       }
     }
+  }
+
+  @media (max-width: 766px) {
+    height: 418px;
   }
 `;
 

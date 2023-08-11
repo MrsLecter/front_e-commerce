@@ -43,7 +43,11 @@ const NewsFeed: FC = () => {
         })}
       </RSSContent>
       <div>
-        <ShowMoreBtn color={"blue"} clickHandler={getMoreNews} />
+        {newsFeed.length > 0 ? (
+          <ShowMoreBtn color={"blue"} clickHandler={getMoreNews} />
+        ) : (
+          <></>
+        )}
       </div>
     </NewsFeedWrapper>
   );

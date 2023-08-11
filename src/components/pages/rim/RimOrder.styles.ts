@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledRimOrder = styled.div`
   margin: 16px auto;
   width: 994px;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -15,6 +16,7 @@ export const StyledRimOrder = styled.div`
 
     & > div {
       width: 535px;
+      height: auto;
     }
   }
 
@@ -34,6 +36,6 @@ export const QuestionWrapper = styled.div`
 
   @media (max-width: 1000px) {
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NewsFeedWrapper = styled.div`
-  margin: 64px auto 16px;
+  margin: 0px auto 16px;
   padding: 16px 0 1px 0;
   width: calc(100% - 16px);
   min-width: 230px;
@@ -33,8 +33,7 @@ export const NewsHeader = styled.div`
 
 export const RSSContent = styled.div`
   width: 100%;
-  height: 100%;
-  min-height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

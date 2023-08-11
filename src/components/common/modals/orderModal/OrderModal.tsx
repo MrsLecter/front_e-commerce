@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FC, MouseEvent, useState, KeyboardEvent } from "react";
+import { FC, MouseEvent, useState, KeyboardEvent, useEffect } from "react";
 
 import { useInput } from "@/hooks/use-input";
 import { getPrettyPrice } from "@/utils/functions";
@@ -44,6 +44,7 @@ const OrderModal: FC<Props> = ({
     value: name,
     error: nameIsValid,
     changeHandler: nameChangeHandler,
+    refresh: refreshNameHandler,
   } = useInput({
     regexp: "none",
     allowEmpty: false,
@@ -53,6 +54,7 @@ const OrderModal: FC<Props> = ({
     value: email,
     error: emailIsValid,
     changeHandler: emailChangeHandler,
+    refresh: refreshEmailHandler,
   } = useInput({
     regexp: EMAIL_REGEXP,
     allowEmpty: false,
@@ -62,11 +64,11 @@ const OrderModal: FC<Props> = ({
     value: phone,
     error: phoneIsValid,
     changeHandler: phoneChangeHandler,
+    refresh: refreshPhoneHandler,
   } = useInput({
     regexp: PHONE_REGEXP,
     allowEmpty: true,
     maskType: "phone",
-    mask: "+380(099)-250-75-69",
   });
 
   const [isOrderReady, setOrderReady] = useState<boolean>(false);
@@ -92,6 +94,14 @@ const OrderModal: FC<Props> = ({
           },
         });
         setOrderReady(true);
+        setTimeout(() => {
+          setOrderReady(false);
+          setOrderError(false);
+          setError(false);
+          refreshNameHandler();
+          refreshPhoneHandler();
+          refreshEmailHandler();
+        }, 5000);
       } catch (err) {
         setOrderError(true);
       }
@@ -178,7 +188,7 @@ const OrderModal: FC<Props> = ({
                     placeholder={"Ваш номер телефона"}
                     inputValue={phone}
                     isRequired={true}
-                    maxLen={18}
+                    maxLen={12}
                     onChangeHandler={phoneChangeHandler}
                     onKeyDown={(e) => orderHandler(e)}
                   />

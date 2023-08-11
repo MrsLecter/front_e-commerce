@@ -17,7 +17,7 @@ export default function MakersLayout({
   return (
     <>
       <HeadComponent />
-      <MainWrapper>
+      <MainWrapper topGap={64}>
         <Header modalHandler={managementObj.activateHandler} />
         {children}
         <Footer />
