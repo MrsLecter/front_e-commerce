@@ -14,28 +14,28 @@ export interface IModalProps {
   };
 }
 
-// export interface IRimConfig {
-//   width: string;
-//   offset: number;
-//   diameter: string;
-//   boltPattern: string;
-//   centralBore: number;
-//   price: number;
-// }
+export interface IRimConfig {
+  width: string;
+  offset: number;
+  diameter: string;
+  boltPattern: string;
+  centralBore: number;
+  price: number;
+}
 
 export interface IRimObject {
-  // rimId: string;
-  // brand: string;
-  // name: string;
-  // image: string;
-  // config: IRimConfig[];
-  // diameter?: number[];
-  // price?: number[];
   rimId: string;
+  brand: string;
   name: string;
   image: string;
-  diameter: string[];
-  price: number[];
+  config: IRimConfig[];
+  diameters?: string[];
+  price?: number[];
+  // rimId: string;
+  // name: string;
+  // image: string;
+  // diameter: string[];
+  // price: number[];
 }
 
 export interface IRimDetailedData {

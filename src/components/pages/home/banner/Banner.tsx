@@ -9,14 +9,16 @@ import {
   StyledBanner,
   StyledBannerWrapper,
 } from "./Banner.styles";
-import { AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
+import { AppRoutes } from "@/constants/common";
 import { ManufacturesNames } from "@/constants/manufactures-card-list";
 import Link from "next/link";
+import { setSearchParamForManufacturerFiltering } from "@/utils/functions";
 
 const Banner: FC = () => {
-  const bannerLink =
-    AppRoutes.Rims + ManufacturesNames.Replica + FIRST_PAGE_PARAM;
-
+  const bannerParams = setSearchParamForManufacturerFiltering(
+    ManufacturesNames.Replica
+  );
+  const bannerLink = `${AppRoutes.Rims}${ManufacturesNames.Replica}?${bannerParams}`;
   return (
     <Link href={bannerLink}>
       <StyledBannerWrapper>

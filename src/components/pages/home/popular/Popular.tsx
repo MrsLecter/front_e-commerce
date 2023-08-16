@@ -4,7 +4,7 @@ import ProductCard from "@/components/common/productCard/ProductCard";
 import SectionHeader from "@/components/common/sectionHeader/SectionHeader";
 
 import { CardContainer, StyledPopular } from "./Popular.styles";
-import { AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
+import { AppRoutes } from "@/constants/common";
 import rimsService from "@/api/rims-service";
 import { IRimObject } from "@/types/common.types";
 
@@ -12,6 +12,10 @@ import { popularRimsStub } from "@/constants/helpers";
 import Link from "next/link";
 import ProductCardStub from "@/components/common/LoadingStub/ProductCardStub/ProductCardStub";
 import { Message } from "@/styles/common";
+import {
+  getPrepearedRimsData,
+  setSearchParamForManufacturerFiltering,
+} from "@/utils/functions";
 
 const Popular: FC = () => {
   const [rims, setRims] = useState<IRimObject[]>([]);
@@ -20,9 +24,10 @@ const Popular: FC = () => {
   useEffect(() => {
     const getPopularRims = async () => {
       const response = await rimsService.getPopularRims();
-      const popularRims = response.data.message.slice(0, 8);
-      
-      setRims((prev) => [...popularRims]);
+      // const popularRims = response.data.message.slice(0, 8);
+      const popularRims = getPrepearedRimsData(response.data.message).rims;
+      console.log("popularRims: ", popularRims);
+      setRims((prev) => popularRims);
       setLoading(false);
     };
     getPopularRims();
@@ -47,7 +52,13 @@ const Popular: FC = () => {
           })}
       </CardContainer>
       {rims && rims.length > 0 && (
-        <Link href={AppRoutes.Rims + "/all" + FIRST_PAGE_PARAM}>
+        <Link
+          href={
+            AppRoutes.Rims +
+            "/all?" +
+            setSearchParamForManufacturerFiltering("/all")
+          }
+        >
           Показать все
         </Link>
       )}

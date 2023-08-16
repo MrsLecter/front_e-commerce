@@ -184,21 +184,24 @@ class RimsService {
   }
 
   public async getFilteredRims({
-    brand,
-    model,
-    year,
+    carBrand,
+    carModel,
+    carYear,
+    rimsBrand,
   }: {
-    brand: string;
-    model: string;
-    year: string;
+    carBrand: string;
+    carModel: string;
+    carYear: string;
+    rimsBrand: string | null;
   }): Promise<AxiosResponse<IGetRimsResponse, any>> {
     try {
       const response = await axios.post<IGetRimsResponse>(
         GET_FILTERED_RIMS_URL,
         {
-          brand,
-          model,
-          year: +year,
+          brand: carBrand,
+          model: carModel,
+          year: +carYear,
+          rimBrand: rimsBrand ? rimsBrand : undefined,
         },
         {
           headers: {

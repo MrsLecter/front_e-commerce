@@ -1,3 +1,4 @@
+import { AppModals } from "@/constants/common";
 import { useState } from "react";
 
 export const useModal = () => {
@@ -11,9 +12,13 @@ export const useModal = () => {
 
   const closeModal = () => {
     setIsAppearing(false);
-    setTimeout(() => {
+    if (activeModal !== AppModals.Search) {
+      setTimeout(() => {
+        toggleModal(0);
+      }, 300);
+    } else {
       toggleModal(0);
-    }, 300);
+    }
   };
 
   return {

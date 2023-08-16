@@ -36,7 +36,7 @@ export const StyledBackdrop = styled.div<{
   background-color: rgba(0, 0, 0, 0.54);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(0px);
-  scrollbar-gutter: auto;
+  scrollbar-gutter: stable;
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   overflow: hidden;
 

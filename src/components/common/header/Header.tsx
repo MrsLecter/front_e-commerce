@@ -1,11 +1,12 @@
 import { useRouter } from "next/navigation";
 import { FC, MouseEvent } from "react";
 
-import { AppModals } from "@/constants/common";
+import { AppModals, AppRoutes } from "@/constants/common";
 
 import TextBtn from "../buttons/TextBtn/TextBtn";
 import Logo from "../logo/Logo";
 import { HeaderContent, StyledHeader } from "./Header.styles";
+import Link from "next/link";
 
 interface Props {
   color?: "blue" | "none";
@@ -30,7 +31,7 @@ const Header: FC<Props> = ({ color, modalHandler }) => {
           <Logo />
         </div>
         <div>
-          <TextBtn label={"Новости"} clickHandler={(e) => showNews(e)} />
+          <Link href={AppRoutes.Home + 'news'}>Новости</Link>
           <TextBtn label={"Контакты"} clickHandler={(e) => showContact(e)} />
         </div>
       </HeaderContent>

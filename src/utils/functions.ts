@@ -1,7 +1,7 @@
 import { AppRoutes } from "@/constants/common";
-import { ManufacturesNames } from "@/constants/manufactures-card-list";
 import { GET_BRANDS_URL } from "@/constants/routes-api";
 import {
+  IRimConfig,
   IRimDetailedInfo,
   IRimObject,
   IRimsConfigs,
@@ -65,34 +65,6 @@ export const getPrettyDate = (dateString: string): string => {
   return dateArr;
 };
 
-export const getSertedRimData = (rimDataArr: IRimObject[]): IRimObject[] => {
-  let map = new Map();
-
-  for (let rim of rimDataArr) {
-    const currRimId = rim.rimId;
-    if (map.has(currRimId)) {
-      let rimObj = map.get(currRimId);
-      rimObj.diameter.push(rim.diameter);
-      rimObj.price.push(rim.price);
-
-      map.delete(currRimId);
-      map.set(currRimId, rimObj);
-    }
-    if (!map.has(currRimId)) {
-      const rimObj = {
-        rimId: currRimId,
-        name: rim.name,
-        image: rim.image,
-        diameter: [rim.diameter],
-        price: [rim.price],
-      };
-      map.set(currRimId, rimObj);
-    }
-  }
-  const sortedRimData = Array.from(map, ([name, value]) => value);
-  return sortedRimData;
-};
-
 export const createQueryString = ({
   brand,
   model,
@@ -112,27 +84,9 @@ export const createQueryString = ({
   params.set("model_name", model);
   params.set("year", String(year));
   params.set("page", String(page));
+  params.set("diameter", "all");
   const queryString = params.toString();
   return `${AppRoutes.Rims}/filter?${queryString}`;
-};
-
-export const getRetrievedDiameters = (rims: IRimObject[]): string[] => {
-  if (!rims || !rims.length) {
-    return [];
-  }
-
-  let map = new Map<string, string>();
-
-  for (let rim of rims) {
-    for (let diameter of rim.diameter) {
-      if (!map.has(diameter)) {
-        map.set(diameter, diameter);
-      }
-    }
-  }
-  const arrDiameters = Array.from(map, ([name, value]) => value);
-  arrDiameters.sort((a, b) => +a - +b);
-  return arrDiameters;
 };
 
 export const getRimBrand = (rimBrand: string): string | undefined => {
@@ -143,30 +97,8 @@ export const getRimBrand = (rimBrand: string): string | undefined => {
       return "";
     case "":
       return;
-    case "mkw":
-      return "MKW";
-    case "inzi":
-      return "InziAone";
     default:
-      return rimBrand[0].toUpperCase() + rimBrand.slice(1);
-  }
-};
-
-export const getDiameterLabel = (diameters: string[]): string[] => {
-  if (diameters.length === 1) {
-    return diameters;
-  } else {
-    diameters.sort((a, b) => +a - +b);
-    return [diameters[0], diameters[diameters.length - 1]];
-  }
-};
-
-export const getPriceLabel = (prices: number[]): string => {
-  if (prices.length === 1) {
-    return getPrettyPrice(prices[0]);
-  } else {
-    prices.sort((a, b) => a - b);
-    return getPrettyPrice(prices[0]);
+      return rimBrand;
   }
 };
 
@@ -179,7 +111,7 @@ export const getRimsDiameterFiltered = ({
 }) => {
   const arr = rims.filter((item) => {
     for (let diameter of diameters) {
-      if (item.diameter.includes(diameter)) {
+      if (item.diameters!.includes(diameter)) {
         return item;
       }
     }
@@ -235,39 +167,71 @@ export const setSearchParamForManufacturerFiltering = (
   const params = new URLSearchParams("");
   params.set("page", "1");
   params.set("brand", manufacturer.substring(1));
+  params.set("diameter", "all");
+  return params.toString();
+};
+
+export const setSearchParamForFilter = (diameters:string, searchParams: string) => {
+  const params = new URLSearchParams(searchParams);
+  params.set("diameter", diameters);
   return params.toString();
 };
 
 // rim_id=12297&bolt_pattern=5x114.3&width=7&diameter=17&brand=Kosei&name=K1%20FS
-export const setSearchParamForRimPage = (parameters: IRimObject) => {
+// /MKW_M88%20Chrome?rim_id=3378&bolt_pattern=6x139.7&width=9&diameter=18&brand=MKW&name=M88%20Chrome
+// /MKW_M88%20Chrome?rim_id=3378&bolt_pattern=6x139.7&width=9.0&diameter=18&brand=MKW&name=M88+Chrome
+export const getUrlToRimPage = ({
+  rimId,
+  brand,
+  name,
+  config,
+}: {
+  rimId: string;
+  brand: string;
+  name: string;
+  config: IRimConfig;
+}): string => {
   const params = new URLSearchParams("");
-  params.set("rim_id", parameters.rimId);
-  params.set("bolt_pattern", "empty"); //TODO:
-  params.set("width", "empty"); //TODO:
-  params.set("diameter", parameters.diameter[0]);
-  params.set("brand", parameters.name);
-  return params.toString();
+  name = encodeURIComponent(name);
+  params.set("rim_id", rimId);
+  params.set("bolt_pattern", config.boltPattern);
+  params.set("width", config.width);
+  params.set("diameter", config.diameter);
+  params.set("brand", brand);
+  params.set("name", name);
+  const searchParams = params.toString();
+
+  const url = AppRoutes.Rim + `/${brand}_${name}?${searchParams}`;
+
+  return url;
 };
 
-// export const getPrepearedRimsData = (rimsData: IRimObject[]): IRimObject[] => {
-//   for (let rim of rimsData) {
-//     if (rim.config.length > 1) {
-//       rim.diameter = [+rim.config[0].diameter, +rim.config[0].diameter];
-//       rim.price = [rim.config[0].price, rim.config[0].price];
-//       for (let rimType of rim.config) {
-//         rim.diameter = [
-//           Math.min(+rimType.diameter, rim.diameter[0]),
-//           Math.max(+rimType.diameter, rim.diameter[1]),
-//         ];
-//         rim.price = [
-//           Math.min(rimType.price, rim.price[0]),
-//           Math.max(rimType.price, rim.price[1]),
-//         ];
-//       }
-//     } else {
-//       rim.diameter = [+rim.config[0].diameter];
-//       rim.price = [+rim.config[0].price];
-//     }
-//   }
-//   return rimsData;
-// };
+export const getPrepearedRimsData = (
+  rimsData: IRimObject[]
+): { rims: IRimObject[]; diameters: string[] } => {
+  if (!rimsData || !rimsData.length) return { rims: [], diameters: [] };
+
+  const allDiametersSet = new Set<string>();
+
+  for (let rim of rimsData) {
+    let diametersSet = new Set<string>();
+    if (rim.config.length > 1) {
+      rim.price = [rim.config[0].price];
+
+      for (let rimType of rim.config) {
+        rim.price = [Math.min(rimType.price, rim.price[0])];
+        diametersSet.add(rimType.diameter);
+        allDiametersSet.add(rimType.diameter);
+      }
+    } else {
+      rim.price = [+rim.config[0].price];
+      diametersSet.add(rim.config[0].diameter);
+      allDiametersSet.add(rim.config[0].diameter);
+    }
+    rim.diameters = Array.from(diametersSet).sort((a, b) => +a - +b);
+  }
+  return {
+    rims: rimsData,
+    diameters: Array.from(allDiametersSet).sort((a, b) => +a - +b),
+  };
+};

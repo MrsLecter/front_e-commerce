@@ -4,11 +4,12 @@ import styled from "styled-components";
 interface Props {
   name: string;
   label: string;
+  checked: boolean;
   setDiameter: (selectedDiameter: string) => void;
 }
 
-const Checkbox: FC<Props> = ({ name, label, setDiameter }) => {
-  const [check, setCheck] = useState<boolean>(false);
+const Checkbox: FC<Props> = ({ name, label, checked, setDiameter }) => {
+  const [check, setCheck] = useState<boolean>(checked);
 
   const toggleCheckbox = (e: ChangeEvent) => {
     setDiameter((e.currentTarget as HTMLInputElement).value);

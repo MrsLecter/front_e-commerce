@@ -13,9 +13,10 @@ import { popularRimsStub } from "@/constants/helpers";
 import { IRimObject } from "@/types/common.types";
 import {
   createQueryString,
-  getRetrievedDiameters,
+  getPrepearedRimsData,
   getRimBrand,
   getRimsDiameterFiltered,
+  setSearchParamForFilter,
 } from "@/utils/functions";
 
 import { CardContainer } from "../home/popular/Popular.styles";
@@ -31,13 +32,22 @@ const RimsFilter: FC = () => {
   const params = useParams();
   const searchParams = useSearchParams();
   const pathname = usePathname();
+
   const router = useRouter();
-  const rimsBrand = searchParams!.get("maker_name");
-  const rimsModel = searchParams!.get("model_name");
-  const rimsYear = searchParams!.get("year");
+  const carBrand = searchParams!.get("maker_name");
+  const carModel = searchParams!.get("model_name");
+  const carYear = searchParams!.get("year");
   const currPage = searchParams!.get("page");
+  const rimsBrand = searchParams!.get("brand");
+  const rimsDiameter = searchParams!.get("diameter");
+
   const diametersRef = useRef<string>();
   const pageRef = useRef<number>();
+  if (diametersRef) {
+    diametersRef.current =
+      rimsDiameter && rimsDiameter !== "all" ? rimsDiameter : "";
+  }
+
 
   if (!pageRef.current) {
     pageRef.current = currPage !== null ? +currPage : 1;
@@ -64,7 +74,7 @@ const RimsFilter: FC = () => {
       setLoading(true);
       const newRimsList = getRimsDiameterFiltered({
         rims: rimsResponse || [],
-        diameters: diametersRef.current.split("-"),
+        diameters: diametersRef.current.split("+"),
       });
       setRimsList((prev) => newRimsList);
       setTimeout(() => {
@@ -75,25 +85,33 @@ const RimsFilter: FC = () => {
 
   const setDiametersHandler = (selectedDiameter: string) => {
     if (diametersRef.current) {
-      const oldDiamArr = diametersRef.current.split("-");
+      const oldDiamArr = diametersRef.current.split("+");
       const isDiamExist = oldDiamArr.filter(
         (item) => item === selectedDiameter
       );
       if (!isDiamExist.length) {
         setFilterDiameters((prev) => [...prev, selectedDiameter]);
-        diametersRef.current = [...oldDiamArr, selectedDiameter].join("-");
+        diametersRef.current = [...oldDiamArr, selectedDiameter].join("+");
       }
       if (isDiamExist.length > 0) {
         const filteredArr = oldDiamArr.filter(
           (item) => item !== selectedDiameter
         );
         setFilterDiameters((prev) => filteredArr);
-        diametersRef.current = filteredArr.join("-");
+        diametersRef.current = filteredArr.join("+");
       }
     } else if (!diametersRef.current) {
       setFilterDiameters((prev) => [selectedDiameter]);
       diametersRef.current = selectedDiameter;
     }
+    const filterDiameters = setSearchParamForFilter(
+      diametersRef.current,
+      searchParams?.toString() || ""
+    );
+
+    router.replace(pathname + "?" + filterDiameters, {
+      scroll: false,
+    });
   };
 
   const showMoreHandler = () => {
@@ -105,11 +123,11 @@ const RimsFilter: FC = () => {
       )
     ) {
       pageRef.current += 1;
-      if (searchParams && rimsBrand && rimsModel && rimsYear && currPage) {
+      if (searchParams && carBrand && carModel && carYear && currPage) {
         const queryString = createQueryString({
-          brand: rimsBrand,
-          model: rimsModel,
-          year: rimsYear,
+          brand: carBrand,
+          model: carModel,
+          year: carYear,
           page: pageRef.current,
           searchParamsString: searchParams.toString(),
         });
@@ -118,7 +136,6 @@ const RimsFilter: FC = () => {
         const searchParamsString = new URLSearchParams(
           searchParams?.toString()
         );
-        searchParamsString.set("page", String(pageRef.current));
         const queryString = searchParamsString.toString();
         router.replace(pathname + "?" + queryString, { scroll: false });
       }
@@ -134,10 +151,18 @@ const RimsFilter: FC = () => {
         rimBrand: getRimBrand((params!.params as string) || "all") || "all",
       });
 
-      setRimsResponse((prev) => response.data.message);
-      setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount));
-      const avaliableDiameters = getRetrievedDiameters(response.data.message);
-      setRetrievedDiameters((prev) => avaliableDiameters);
+      const { rims, diameters } = getPrepearedRimsData(response.data.message);
+      if (diametersRef && diametersRef.current) {
+        const newRimsList = getRimsDiameterFiltered({
+          rims: rims || [],
+          diameters: diametersRef.current.split("+"),
+        });
+        setRimsList((prev) => [...newRimsList]);
+      } else {
+        setRimsList((prev) => rims.slice(0, visibleRimsAmount));
+      }
+      setRimsResponse((prev) => rims);
+      setRetrievedDiameters((prev) => diameters);
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -147,15 +172,23 @@ const RimsFilter: FC = () => {
       setLoading(true);
       setVisibleRimsAmount(8);
       const response = await rimsService.getFilteredRims({
-        brand: rimsBrand || "",
-        model: rimsModel || "",
-        year: rimsYear || "",
+        carBrand: carBrand || "",
+        carModel: carModel || "",
+        carYear: carYear || "",
+        rimsBrand: rimsBrand,
       });
-
-      setRimsResponse((prev) => response.data.message);
-      setRimsList((prev) => response.data.message.slice(0, visibleRimsAmount));
-      const avaliableDiameters = getRetrievedDiameters(response.data.message);
-      setRetrievedDiameters((prev) => avaliableDiameters);
+      const { rims, diameters } = getPrepearedRimsData(response.data.message);
+      if (diametersRef && diametersRef.current) {
+        const newRimsList = getRimsDiameterFiltered({
+          rims: rims || [],
+          diameters: diametersRef.current.split("+"),
+        });
+        setRimsList((prev) => [...newRimsList]);
+      } else {
+        setRimsList((prev) => rims.slice(0, visibleRimsAmount));
+      }
+      setRimsResponse((prev) => rims);
+      setRetrievedDiameters((prev) => diameters);
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -166,7 +199,7 @@ const RimsFilter: FC = () => {
     if (params!.params !== "filter") {
       getRimsByBrand();
     }
-  }, [params!.params as string, rimsBrand, rimsModel, rimsYear]);
+  }, [params!.params as string, carBrand, carModel, carYear]);
 
   useEffect(() => {
     if (pageRef.current) {
@@ -182,13 +215,15 @@ const RimsFilter: FC = () => {
   const FilterElement = useMemo(() => {
     return (
       <Filter
-        rimBrand={getRimBrand((params!.params as string) || "")}
-        rimFilterParams={[rimsBrand, rimsModel, rimsYear]}
+        rimBrand={rimsBrand}
+        path={getRimBrand((params!.params as string) || "")}
+        rimFilterParams={[carBrand, carModel, carYear]}
         avaliableDiameters={retrievedDiameters}
+        checkedDiameters={rimsDiameter}
         setFilterDiameters={(value: string) => setDiametersHandler(value)}
       />
     );
-  }, [rimsBrand, rimsModel, rimsYear, retrievedDiameters.length]);
+  }, [carBrand, carModel, carYear, retrievedDiameters.length]);
 
   return (
     <StyledRimsFilter>

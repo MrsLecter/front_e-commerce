@@ -5,6 +5,7 @@ export const StyledProductCard = styled.div<{ loading: boolean }>`
   position: relative;
   width: 236px;
   height: 356px;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -20,9 +21,11 @@ export const StyledProductCard = styled.div<{ loading: boolean }>`
     left: 0px;
     width: 100%;
     height: 236px;
+    max-height: 236px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     /* border: 2px solid black; */
     /* object-fit: contain; */
 

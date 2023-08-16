@@ -442,26 +442,29 @@ const rimsData = [
 ];
 
 function getPrepearedRimsData(rimsData) {
+  const allDiameters = new Set();
   for (let rim of rimsData) {
     if (rim.config.length > 1) {
       rim.diameter = [rim.config[0].diameter, rim.config[0].diameter];
-      rim.price = [rim.config[0].price, rim.config[0].price];
+      rim.price = [rim.config[0].price];
       for (let rimType of rim.config) {
         rim.diameter = [
           Math.min(rimType.diameter, rim.diameter[0]),
           Math.max(rimType.diameter, rim.diameter[1]),
         ];
-        rim.price = [
-          Math.min(rimType.price, rim.price[0]),
-          Math.max(rimType.price, rim.price[1]),
-        ];
+        rim.price = [Math.min(rimType.price, rim.price[0])];
+        allDiameters.add(rimType.diameter);
       }
     } else {
       rim.diameter = [+rim.config[0].diameter];
       rim.price = [+rim.config[0].price];
+      allDiameters.add(rim.config[0].diameter);
     }
   }
-  return rimsData;
+  console.log(Array.from(allDiameters));
+  // return rimsData;
 }
 
-console.log(getPrepearedRimsData(rimsData));
+// console.log(getPrepearedRimsData(rimsData));
+let str = "15-18-17";
+console.log(str.split("-").join("+"));

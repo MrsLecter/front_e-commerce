@@ -17,7 +17,7 @@ export const StyledModalWrapper = styled.div<{
   align-items: center;
   overflow: hidden;
   z-index: 101;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: ${(props) => (props.isActive ? "stable" : "auto")};
   transition: 0.5s top ease;
 
   ${(props) =>
@@ -44,12 +44,12 @@ export const StyledModalWrapper = styled.div<{
     from {
       top: 0px;
       opacity: 1;
-      scrollbar-gutter: auto;
+      /* scrollbar-gutter: auto; */
     }
     to {
       top: -100px;
       opacity: 0;
-      scrollbar-gutter: auto;
+      /* scrollbar-gutter: auto; */
     }
   }
 `;

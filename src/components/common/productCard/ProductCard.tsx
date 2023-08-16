@@ -1,3 +1,5 @@
+import { IRimObject } from "@/types/common.types";
+import { getPrettyPrice, getUrlToRimPage } from "@/utils/functions";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -7,26 +9,24 @@ import {
   ProductName,
   StyledProductCard,
 } from "./ProductCard.styles";
-import {
-  getDiameterLabel,
-  getPriceLabel,
-  setSearchParamForRimPage,
-} from "@/utils/functions";
-import { IRimObject } from "@/types/common.types";
-import { AppRoutes } from "@/constants/common";
 
 interface Props {
   parameters: IRimObject;
 }
 
 const ProductCard: FC<Props> = ({ parameters }) => {
-  const { name, price, diameter, image, rimId } = parameters;
-  const diameterLabel = getDiameterLabel(diameter);
-  const priceLabel = getPriceLabel(price);
-  const searchParams = setSearchParamForRimPage(parameters);
+  const { name, brand, price, diameters, image, rimId, config } = parameters;
+  const diameterLabel = diameters ? diameters : [0];
+  const priceLabel = price ? price[0] : 0;
+  const urlToPage = getUrlToRimPage({
+    rimId,
+    brand,
+    name,
+    config: config[0],
+  });
 
   return (
-    <Link href={AppRoutes.Rim + `/${rimId}?${searchParams}`}>
+    <Link href={urlToPage}>
       <StyledProductCard loading={false}>
         <div>
           <Image
@@ -38,8 +38,8 @@ const ProductCard: FC<Props> = ({ parameters }) => {
           />
         </div>
         <CardContent>
-          <ProductName>{name}</ProductName>
-          <p>от&nbsp;{priceLabel}&nbsp;грн</p>
+          <ProductName>{`${brand} - ${name}`}</ProductName>
+          <p>от&nbsp;{getPrettyPrice(priceLabel)}&nbsp;грн</p>
           <p>
             {diameterLabel.length === 1 && (
               <span>&#8960;{diameterLabel[0]}&rsquo;&rsquo;</span>
@@ -47,7 +47,8 @@ const ProductCard: FC<Props> = ({ parameters }) => {
             {diameterLabel.length > 1 && (
               <span>
                 &#8960;{diameterLabel[0]}
-                &rsquo;&rsquo;&nbsp;-&nbsp;&#8960;{diameterLabel[1]}
+                &rsquo;&rsquo;&nbsp;-&nbsp;&#8960;
+                {diameterLabel[diameterLabel.length - 1]}
                 &rsquo;&rsquo;
               </span>
             )}

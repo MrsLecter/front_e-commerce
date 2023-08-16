@@ -4,7 +4,9 @@ import Checkbox from "../checkbox/Checkbox";
 import ChooseParamsBox from "@/components/common/chooseParamsBox/ChoosePramsBox";
 
 interface Props {
-  rimBrand?: string;
+  rimBrand: string | null;
+  path?: string;
+  checkedDiameters: string | null;
   rimFilterParams: (string | null)[];
   avaliableDiameters: string[];
   setFilterDiameters: (value: string) => void;
@@ -12,17 +14,19 @@ interface Props {
 
 const Filter: FC<Props> = ({
   rimBrand,
+  path,
   rimFilterParams,
   avaliableDiameters,
+  checkedDiameters,
   setFilterDiameters,
 }) => {
+  const chekedDiametersArr = checkedDiameters ? checkedDiameters.split("+"):[];
   return (
     <StyledFilter>
       <div>
-        {rimBrand && (
-          <p>Литые диски&nbsp;{rimBrand === "all" ? "на авто" : rimBrand}</p>
-        )}
-        {!rimBrand && <p>Литые диски</p>}
+        {path && <p>Литые диски&nbsp;{path === "all" ? "на авто" : path}</p>}
+        {!path && !rimBrand && <p>Литые диски</p>}
+        {!path && rimBrand && <p>Литые диски&nbsp;{rimBrand}</p>}
         {rimFilterParams[0] && <p>на&nbsp;{rimFilterParams.join(" ")}</p>}
         {!rimFilterParams[0] && (
           <p>Вы можете выбрать ваш автомобиль в фильтрах</p>
@@ -43,6 +47,7 @@ const Filter: FC<Props> = ({
                 key={index}
                 name={item}
                 label={item}
+                checked={chekedDiametersArr.includes(item)}
                 setDiameter={(selectedDiameter: string) =>
                   setFilterDiameters(selectedDiameter)
                 }
