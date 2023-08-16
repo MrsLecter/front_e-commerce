@@ -1,5 +1,5 @@
 import FocusTrap from "focus-trap-react";
-import { FC } from "react";
+import { FC, RefObject } from "react";
 
 import { FOCUS_TRAP_OPTIONS } from "@/config/focus-trap-options";
 
@@ -10,6 +10,7 @@ export interface IModalWindowProps {
   children: React.ReactNode;
   backClickHandler: () => void;
   hasAnimation?: boolean;
+  modalRef: RefObject<HTMLDivElement>;
 }
 
 const ModalWindow: FC<IModalWindowProps> = ({
@@ -17,18 +18,30 @@ const ModalWindow: FC<IModalWindowProps> = ({
   children,
   backClickHandler,
   hasAnimation = true,
+  modalRef,
 }) => {
   const backdropClickHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
-    backClickHandler();
+
+    if (
+      (event.target as HTMLElement).id === "close" ||
+      (event.target as HTMLElement).id === "modal"
+    ) {
+      if (modalRef.current && hasAnimation) {
+        modalRef.current.style.animation = "disappearance 0.3s ease-in-out";
+      }
+      backClickHandler();
+    }
   };
 
   return (
     <FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS}>
       <StyledModalWrapper
+        ref={modalRef}
         onClick={(e) => backdropClickHandler(e)}
         isActive={isAppearing}
         hasAnimation={hasAnimation}
+        id="modal"
       >
         {children}
       </StyledModalWrapper>

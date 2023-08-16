@@ -6,6 +6,7 @@ export const StyledRimsFilter = styled.div`
   width: calc(100% - 16px);
   min-width: 230px;
   max-width: 1010px;
+  scrollbar-gutter: stable;
 `;
 
 export const ShowMoreBtnWrapper = styled.div`

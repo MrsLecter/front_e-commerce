@@ -17,6 +17,7 @@ const ErrorContent: FC<Props> = ({ closeModalHandler }) => {
       <p>Произошла ошибка!</p>
       <div>
         <BlueBtn
+          id="close"
           label={"Закрыть"}
           clickHandler={closeModalHandler}
           color={"dark"}

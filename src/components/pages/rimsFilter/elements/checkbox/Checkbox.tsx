@@ -33,7 +33,9 @@ const Checkbox: FC<Props> = ({ name, label, setDiameter }) => {
         onKeyDown={(e) => toggleCheckboxKeyboard(e)}
         checked={check}
       />
-      <StyledLabel htmlFor={"checkbox-" + name}>{label}</StyledLabel>
+      <StyledLabel htmlFor={"checkbox-" + name}>
+        {label}&rsquo;&rsquo;
+      </StyledLabel>
     </StyledCheckbox>
   );
 };
@@ -48,10 +50,13 @@ const StyledCheckbox = styled.div`
 `;
 
 const StyledInput = styled.input`
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
   width: 14px;
   height: 14px;
   accent-color: #517399;
-  border: 4px solid #517399;
+  border: 2px solid #517399;
   border-radius: 2px;
   margin-right: 4px;
 

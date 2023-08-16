@@ -16,7 +16,7 @@ export default function RimsLayout({
   return (
     <>
       <HeadComponent />
-      <MainWrapper>
+      <MainWrapper preventScroll={managementObj.isAppearing}>
         <Header modalHandler={managementObj.activateHandler} />
         {children}
         <Footer />

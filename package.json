@@ -25,5 +25,9 @@
   "devDependencies": {
     "@types/styled-components": "^5.1.26",
     "styled-components": "^6.0.5"
-  }
+  },
+  "browserslist": [
+    "defaults and supports es6-module",
+    "maintained node versions"
+  ]
 }

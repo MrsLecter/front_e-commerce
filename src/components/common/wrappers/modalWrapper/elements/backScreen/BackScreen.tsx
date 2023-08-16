@@ -35,15 +35,16 @@ export const StyledBackdrop = styled.div<{
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.54);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(1px);
-  scrollbar-gutter: inherit;
+  backdrop-filter: blur(0px);
+  scrollbar-gutter: auto;
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   overflow: hidden;
 
   ${(props) =>
     props.hasAnimation &&
     css`
-      animation: ${(isAppearing) => isAppearing && "appearance 0.5s ease-in"};
+      animation: ${(isAppearing) =>
+        isAppearing ? "appearance 0.1s ease-in" : "disappearance 0.1s ease-in"};
     `}
 
   @keyframes appearance {
@@ -52,6 +53,15 @@ export const StyledBackdrop = styled.div<{
     }
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes disappearance {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.7;
     }
   }
 `;

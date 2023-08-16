@@ -19,6 +19,7 @@ const SuccessContent: FC<Props> = ({ closeModalHandler }) => {
         <p>Запрос отправлен, скоро с Вами свяжутся</p>
         <div>
           <BlueBtn
+            id="close"
             label={"Закрыть"}
             clickHandler={closeModalHandler}
             color={"dark"}

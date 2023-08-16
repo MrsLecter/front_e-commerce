@@ -4,7 +4,7 @@ import { FC, MouseEvent } from "react";
 import { AppModals } from "@/constants/common";
 
 import TextBtn from "../buttons/TextBtn/TextBtn";
-import Logo from "../Logo/Logo";
+import Logo from "../logo/Logo";
 import { HeaderContent, StyledHeader } from "./Header.styles";
 
 interface Props {

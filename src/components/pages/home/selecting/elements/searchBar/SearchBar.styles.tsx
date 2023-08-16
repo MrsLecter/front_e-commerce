@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const StyledSearchBar = styled.div`
+export const StyledSearchBar = styled.div<{ isDisabled: boolean }>`
   margin: 0 auto;
   position: relative;
   width: 362px;
@@ -15,6 +15,12 @@ export const StyledSearchBar = styled.div`
     width: calc(100% - 16px);
     margin: 0 auto;
   }
+
+  ${(props) =>
+    props.isDisabled &&
+    css`
+      cursor: text;
+    `}
 `;
 
 export const SearchInput = styled.input`
@@ -26,6 +32,7 @@ export const SearchInput = styled.input`
   font-family: var(--font-roboto);
   font-size: 16px;
   letter-spacing: 0.6px;
+  color: #333;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 
   @media (max-width: 500px) {

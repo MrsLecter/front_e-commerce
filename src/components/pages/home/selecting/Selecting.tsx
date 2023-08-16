@@ -18,7 +18,7 @@ const Selecting: FC<Props> = ({ openSearchModal }) => {
     <StyledSelecting>
       <Substrate />
       <SearchWrapper>
-        <SearchBar openSearchModal={openSearchModal} />
+        <SearchBar openSearchModal={openSearchModal} isDisabled={true} />
       </SearchWrapper>
       <ChoosingWrapper>
         <Choosing />

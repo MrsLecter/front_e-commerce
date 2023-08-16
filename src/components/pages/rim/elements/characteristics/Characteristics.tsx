@@ -1,5 +1,6 @@
 import { FC } from "react";
 import {
+  BorderedSpan,
   ChHeader,
   ChRow,
   LoadingHeader,
@@ -21,7 +22,7 @@ const Characteristics: FC<Props> = ({
 }) => {
   return (
     <StyledChContainer>
-     {loading && <LoadingHeader />}
+      {loading && <LoadingHeader />}
       {!loading && <ChHeader>Характеристики</ChHeader>}
       <ChRow color={"#e8ebed"}>
         {!loading && (
@@ -31,7 +32,7 @@ const Characteristics: FC<Props> = ({
             </div>
             <div />
             <div>
-              <span>{width}</span>
+              <span>{width}&rsquo;&rsquo;</span>
             </div>
           </>
         )}
@@ -44,7 +45,7 @@ const Characteristics: FC<Props> = ({
             </div>
             <div />
             <div>
-              <span>&#8709;{diameter}</span>
+              <span>{diameter}</span>
             </div>
           </>
         )}
@@ -58,7 +59,7 @@ const Characteristics: FC<Props> = ({
             <div />
             <div>
               {fixingHoles.split("/").map((item, index) => {
-                return <span key={index}>{item}</span>;
+                return <BorderedSpan key={index}>{item}</BorderedSpan>;
               })}
             </div>
           </>

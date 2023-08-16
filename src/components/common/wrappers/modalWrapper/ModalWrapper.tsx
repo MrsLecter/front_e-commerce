@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
 import BackScreen from "./elements/backScreen/BackScreen";
@@ -8,16 +8,17 @@ interface Props {
   isAppearing: boolean;
   children: React.ReactNode;
   backClickHandler: () => void;
-  hasAnimation?:boolean
+  hasAnimation?: boolean;
 }
 
 const ModalWrapper: FC<Props> = ({
   isAppearing,
   children,
   backClickHandler,
-  hasAnimation
+  hasAnimation = true,
 }) => {
   const [render, setRender] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   interface KeyboardEvent {
     key: string;
@@ -26,6 +27,10 @@ const ModalWrapper: FC<Props> = ({
   useEffect(() => {
     const handleKeyboardEvents = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        if (modalRef.current && hasAnimation) {
+          modalRef.current.style.animation = "disappearance 0.3s ease-in-out";
+        }
+
         backClickHandler();
       }
     };
@@ -56,6 +61,7 @@ const ModalWrapper: FC<Props> = ({
         )}
         {ReactDOM.createPortal(
           <ModalWindow
+            modalRef={modalRef}
             isAppearing={isAppearing}
             backClickHandler={backClickHandler}
             hasAnimation={hasAnimation}

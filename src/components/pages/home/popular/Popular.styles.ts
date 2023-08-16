@@ -32,8 +32,8 @@ export const StyledPopular = styled.section`
   & > a:hover,
   & > a:focus {
     transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-    transition-duration: 0.45s;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition-duration: 0.2s;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   }
 
   @media (max-width: 760px) {

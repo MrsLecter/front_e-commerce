@@ -1,9 +1,9 @@
 export enum ManufacturesNames {
-  Kosei = "/kosei",
-  Marcello = "/marcello",
-  Mkw = "/mkw",
-  Inzi = "/inzi",
-  Replica = "/replica",
+  Kosei = "/Kosei",
+  Marcello = "/Marcello",
+  Mkw = "/MKW",
+  Inzi = "/InziAone",
+  Replica = "/Replica",
 }
 
 export const MANUFACTURERS_CARD_LIST = [

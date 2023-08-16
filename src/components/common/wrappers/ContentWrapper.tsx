@@ -13,6 +13,7 @@ const StyledContentWrapper = styled.div`
   margin: 0px auto 16px;
   padding: 16px 16px;
   width: calc(100% - 16px);
+  /* height: 100%; */
   min-width: 230px;
   max-width: 994px;
   min-height: auto;

@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { FC } from "react";
 
-import { StyledCard } from "./Card.styles";
+import { ImageWrapper, LogoWrapper, StyledCard } from "./Card.styles";
 import { AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
+import { setSearchParamForManufacturerFiltering } from "@/utils/functions";
 import Link from "next/link";
 
 interface Props {
@@ -13,21 +14,24 @@ interface Props {
 }
 
 const Card: FC<Props> = (props) => {
-  return (
-    <StyledCard>
-      <div>
-        <div>
-          <Image src={props.logo} alt={"logo.png"} width={130} height={28} />
-        </div>
-        <Link href={AppRoutes.Rims + props.href + FIRST_PAGE_PARAM}>
-          Посмотреть все
-        </Link>
-      </div>
+  const searchParams = setSearchParamForManufacturerFiltering(props.href);
+  const manufacturersLink = `${AppRoutes.Rims}${props.href}?${searchParams}`;
 
-      <div>
-        <Image src={props.rim} alt={"rim.png"} width={184} height={152} />
-      </div>
-    </StyledCard>
+  return (
+    <Link href={manufacturersLink}>
+      <StyledCard>
+        <LogoWrapper>
+          <div>
+            <Image src={props.logo} alt={"logo.png"} width={130} height={28} />
+          </div>
+          <div>Посмотреть все</div>
+        </LogoWrapper>
+
+        <ImageWrapper>
+          <Image src={props.rim} alt={"rim.png"} width={184} height={152} />
+        </ImageWrapper>
+      </StyledCard>
+    </Link>
   );
 };
 

@@ -55,7 +55,7 @@ export default function Rim() {
   return (
     <>
       <HeadComponent />
-      <MainWrapper topGap={64}>
+      <MainWrapper topGap={64} preventScroll={managementObj.isAppearing}>
         <Header modalHandler={managementObj.activateHandler} />
         {loading && (
           <RimOrder

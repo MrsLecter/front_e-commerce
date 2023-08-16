@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const StyledModalWrapper = styled.div<{
   isActive: boolean;
-  hasAnimation: Boolean;
+  hasAnimation: boolean;
 }>`
   position: absolute;
   top: 0px;
@@ -17,22 +17,39 @@ export const StyledModalWrapper = styled.div<{
   align-items: center;
   overflow: hidden;
   z-index: 101;
-  scrollbar-gutter: inherit;
+  scrollbar-gutter: stable;
+  transition: 0.5s top ease;
 
   ${(props) =>
     props.hasAnimation &&
     css`
-      animation: ${(isActive) => isActive && "appearance 0.3s ease-in-out"};
+      animation: ${(isActive) =>
+        isActive
+          ? "appearance 0.3s ease-in-out"
+          : "disappearance 0.4s ease-in-out"};
     `}
 
   @keyframes appearance {
     from {
-      padding-bottom: 250px;
+      padding-bottom: 100px;
       opacity: 0;
     }
     to {
-      padding-top: 0px;
+      padding-bottom: 0px;
       opacity: 1;
+    }
+  }
+
+  @keyframes disappearance {
+    from {
+      top: 0px;
+      opacity: 1;
+      scrollbar-gutter: auto;
+    }
+    to {
+      top: -100px;
+      opacity: 0;
+      scrollbar-gutter: auto;
     }
   }
 `;

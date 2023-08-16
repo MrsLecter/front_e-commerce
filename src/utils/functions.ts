@@ -1,4 +1,5 @@
 import { AppRoutes } from "@/constants/common";
+import { ManufacturesNames } from "@/constants/manufactures-card-list";
 import { GET_BRANDS_URL } from "@/constants/routes-api";
 import {
   IRimDetailedInfo,
@@ -107,8 +108,8 @@ export const createQueryString = ({
 }): string => {
   const params = new URLSearchParams(searchParamsString);
 
-  params.set("brand", brand);
-  params.set("model", model);
+  params.set("maker_name", brand);
+  params.set("model_name", model);
   params.set("year", String(year));
   params.set("page", String(page));
   const queryString = params.toString();
@@ -227,3 +228,46 @@ export const getAllConfigs = (configs: IRimsConfigs): string[] => {
 
   return optionsArr;
 };
+
+export const setSearchParamForManufacturerFiltering = (
+  manufacturer: string
+) => {
+  const params = new URLSearchParams("");
+  params.set("page", "1");
+  params.set("brand", manufacturer.substring(1));
+  return params.toString();
+};
+
+// rim_id=12297&bolt_pattern=5x114.3&width=7&diameter=17&brand=Kosei&name=K1%20FS
+export const setSearchParamForRimPage = (parameters: IRimObject) => {
+  const params = new URLSearchParams("");
+  params.set("rim_id", parameters.rimId);
+  params.set("bolt_pattern", "empty"); //TODO:
+  params.set("width", "empty"); //TODO:
+  params.set("diameter", parameters.diameter[0]);
+  params.set("brand", parameters.name);
+  return params.toString();
+};
+
+// export const getPrepearedRimsData = (rimsData: IRimObject[]): IRimObject[] => {
+//   for (let rim of rimsData) {
+//     if (rim.config.length > 1) {
+//       rim.diameter = [+rim.config[0].diameter, +rim.config[0].diameter];
+//       rim.price = [rim.config[0].price, rim.config[0].price];
+//       for (let rimType of rim.config) {
+//         rim.diameter = [
+//           Math.min(+rimType.diameter, rim.diameter[0]),
+//           Math.max(+rimType.diameter, rim.diameter[1]),
+//         ];
+//         rim.price = [
+//           Math.min(rimType.price, rim.price[0]),
+//           Math.max(rimType.price, rim.price[1]),
+//         ];
+//       }
+//     } else {
+//       rim.diameter = [+rim.config[0].diameter];
+//       rim.price = [+rim.config[0].price];
+//     }
+//   }
+//   return rimsData;
+// };

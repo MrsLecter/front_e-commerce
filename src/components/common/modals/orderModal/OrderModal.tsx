@@ -101,7 +101,7 @@ const OrderModal: FC<Props> = ({
           refreshNameHandler();
           refreshPhoneHandler();
           refreshEmailHandler();
-        }, 5000);
+        }, 3000);
       } catch (err) {
         setOrderError(true);
       }
@@ -114,9 +114,14 @@ const OrderModal: FC<Props> = ({
     }
   };
 
-  const modalClickHandler = (e: MouseEvent) => {
-    e.stopPropagation();
-  };
+  useEffect(() => {
+    setOrderReady(false);
+    setOrderError(false);
+    setError(false);
+    refreshNameHandler();
+    refreshPhoneHandler();
+    refreshEmailHandler();
+  }, [managementObject.isAppearing]);
 
   return (
     <>
@@ -126,7 +131,7 @@ const OrderModal: FC<Props> = ({
           backClickHandler={() => managementObject.closeHandler()}
           isAppearing={managementObject.isAppearing}
         >
-          <StyledOrderModal onClick={(e) => modalClickHandler(e)}>
+          <StyledOrderModal>
             <OrderHeader>
               <Product>
                 <ProductPreview>

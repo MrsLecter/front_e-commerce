@@ -16,7 +16,7 @@ export default function AboutUs() {
   return (
     <>
       <HeadComponent />
-      <MainWrapper topGap={64}>
+      <MainWrapper topGap={64} preventScroll={managementObj.isAppearing}>
         <Header modalHandler={managementObj.activateHandler} />
         <About modalHandler={managementObj.activateHandler} />
         <Footer />

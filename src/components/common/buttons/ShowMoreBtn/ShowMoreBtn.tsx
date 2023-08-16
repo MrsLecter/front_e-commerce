@@ -14,7 +14,7 @@ const ShowMoreBtn: FC<Props> = ({ clickHandler, ...defaultProps }) => {
       onClick={clickHandler}
       {...defaultProps}
     >
-      Показать все
+      Показать еще
     </StyledShowMoreBtn>
   );
 };

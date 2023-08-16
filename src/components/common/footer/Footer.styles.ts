@@ -79,7 +79,6 @@ export const LinksWrapper = styled.nav`
   ul li:hover {
     text-decoration: underline;
     cursor: pointer;
-    color: #425f80;
   }
 
   @media (max-width: 660px) {

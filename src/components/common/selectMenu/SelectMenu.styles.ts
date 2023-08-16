@@ -14,7 +14,7 @@ export const StyledSelectMenu = styled.div`
     height: 30px;
 
     font-family: var(--font-roboto);
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 0px;
     text-overflow: ellipsis;
     color: #364d66;

@@ -94,8 +94,8 @@ export const ChRow = styled.div<{ color?: string }>`
     span {
       margin: 2px;
       display: inline-block;
-      border: 1px solid #757575;
-      border-radius: 3px;
+      /* border: 1px solid #757575; */
+      /* border-radius: 3px; */
     }
   }
 
@@ -128,4 +128,11 @@ export const LoadingHeader = styled.div`
   width: 100%;
   height: 48px;
   border-radius: 4px;
+`;
+
+export const BorderedSpan = styled.span`
+  margin: 2px;
+  display: inline-block;
+  border: 1px solid #757575;
+  border-radius: 3px;
 `;

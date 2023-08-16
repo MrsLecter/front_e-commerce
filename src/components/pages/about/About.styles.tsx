@@ -21,11 +21,11 @@ export const Paragraph = styled.div`
     color: rgba(0, 0, 0, 0.87);
   }
 
-  a {
+  /* a {
     padding: 2px 0;
     text-decoration: underline;
     color: rgb(80, 114, 153);
-  }
+  } */
 
   button {
     font-size: 14px;
@@ -35,5 +35,14 @@ export const Paragraph = styled.div`
     cursor: pointer;
     border: none;
     background-color: transparent;
+  }
+`;
+
+export const ContactLink = styled.a`
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;

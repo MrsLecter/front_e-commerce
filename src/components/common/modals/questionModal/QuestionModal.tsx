@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState, KeyboardEvent } from "react";
+import { FC, MouseEvent, useState, KeyboardEvent, useEffect } from "react";
 import ModalHeader from "../elements/ModalHeaderElement";
 import ModalContent from "../elements/ModalContentElement";
 import Input from "../../input/Input";
@@ -82,9 +82,13 @@ const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
     }
   };
 
-  const windowClickHandler = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-  };
+  useEffect(() => {
+    setQuestionSend(false);
+    setText("");
+    setError(false);
+    refreshEmailHandler();
+    refreshPhoneHandler();
+  }, [managementObject.isAppearing]);
 
   return (
     <>
@@ -94,7 +98,7 @@ const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
           backClickHandler={() => managementObject.closeHandler()}
           isAppearing={managementObject.isAppearing}
         >
-          <StyledQuestionModal onClick={windowClickHandler}>
+          <StyledQuestionModal>
             <ModalHeader label={"Обратная связь"} />
             {!error && !isQuestionSend && (
               <>

@@ -1,12 +1,13 @@
-import Link from "next/link";
 import { FC } from "react";
 
 import ContentWrapper from "@/components/common/wrappers/ContentWrapper";
 import { AppModals, AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
 
-import { AboutHeader, Paragraph } from "./About.styles";
+import { AboutHeader, ContactLink, Paragraph } from "./About.styles";
 import Location from "./elements/Location";
 import { ManufacturesNames } from "@/constants/manufactures-card-list";
+import BlueLink from "./elements/BlueLink";
+import { setSearchParamForManufacturerFiltering } from "@/utils/functions";
 
 interface Props {
   modalHandler: (modalID: number) => void;
@@ -21,6 +22,12 @@ const About: FC<Props> = ({ modalHandler }) => {
     modalHandler(AppModals.Question);
   };
 
+  const getFormedUrl = (manufacturer: string) => {
+    return `${
+      AppRoutes.Rims
+    }${manufacturer}?${setSearchParamForManufacturerFiltering(manufacturer)}`;
+  };
+
   return (
     <ContentWrapper>
       <AboutHeader>O нас</AboutHeader>
@@ -32,31 +39,25 @@ const About: FC<Props> = ({ modalHandler }) => {
         </p>
         <p>
           За время работы мы стали эксклюзивным представителем компаний &nbsp;
-          <Link
-            href={AppRoutes.Rims + ManufacturesNames.Kosei + FIRST_PAGE_PARAM}
-          >
-            Kosei aluminium (Япония)
-          </Link>
+          <BlueLink
+            label={"Kosei aluminium (Япония)"}
+            link={getFormedUrl(ManufacturesNames.Kosei)}
+          />
           ,&nbsp;
-          <Link
-            href={AppRoutes.Rims + ManufacturesNames.Mkw + FIRST_PAGE_PARAM}
-          >
-            MKW (Mi-tech)
-          </Link>
+          <BlueLink
+            label={"MKW (Mi-tech)"}
+            link={getFormedUrl(ManufacturesNames.Mkw)}
+          />
           , &nbsp;
-          <Link
-            href={
-              AppRoutes.Rims + ManufacturesNames.Marcello + FIRST_PAGE_PARAM
-            }
-          >
-            Marcello wheels
-          </Link>
+          <BlueLink
+            label={"Marcello wheels"}
+            link={getFormedUrl(ManufacturesNames.Marcello)}
+          />
           , Zent и&nbsp;
-          <Link
-            href={AppRoutes.Rims + ManufacturesNames.Inzi + FIRST_PAGE_PARAM}
-          >
-            Inzi Aone (Корея)
-          </Link>
+          <BlueLink
+            label={"Inzi Aone (Корея)"}
+            link={getFormedUrl(ManufacturesNames.Inzi)}
+          />
           &nbsp;в Украине.
         </p>
         <p>
@@ -65,7 +66,7 @@ const About: FC<Props> = ({ modalHandler }) => {
         </p>
         <p>
           У нас на сайте вы можете легко подбрать диски на свое авто прямо{" "}
-          <Link href={AppRoutes.Home}>здесь</Link>
+          <BlueLink label={"здесь"} link={AppRoutes.Home} />
         </p>
       </Paragraph>
       <AboutHeader>Как с нами связаться?</AboutHeader>
@@ -75,15 +76,19 @@ const About: FC<Props> = ({ modalHandler }) => {
           <button onClick={orderCallClickHandler}>здесь</button>
         </p>
         <p>
-          Напишите нам прямо на&nbsp;
-          <button onClick={orderQuestionClickHandler}>сайте</button>
+          Напишите нам прямо &nbsp;
+          <button onClick={orderQuestionClickHandler}>на сайте</button>
         </p>
         <p>Свяжитесь с нами напрямую:</p>
         <p>
-          <a href="tel:+380503403726">+38 (050) 340-37-26</a>
+          <ContactLink href={"mailto:blokhvova@gmail.com"}>
+            +38 (050) 340 37 26
+          </ContactLink>
         </p>
         <p>
-          <a href="mailto:blokhvova@gmail.com">blokhvova@gmail.com</a>
+          <ContactLink href={"mailto:blokhvova@gmail.com"}>
+            blokhvova@gmail.com
+          </ContactLink>
         </p>
       </Paragraph>
       <AboutHeader>Где мы находимся?</AboutHeader>

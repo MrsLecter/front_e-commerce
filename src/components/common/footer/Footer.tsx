@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import { FOOTER_LINKS } from "@/constants/common";
 
-import Logo from "../Logo/Logo";
+import Logo from "../logo/Logo";
 import {
   ContactWrapper,
   FooterWrapper,
@@ -35,7 +35,7 @@ const Footer: FC = () => {
             <a href="mailto:blokhvova@gmail.com">blokhvova@gmail.com</a>
           </p>
           <p>
-            <a href="tel:+380503403726">+38(050) 340-37-26</a>
+            <a href="tel:+380503403726">(050) 340-37-26</a>
           </p>
         </ContactWrapper>
       </FooterWrapper>

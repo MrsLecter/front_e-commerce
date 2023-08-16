@@ -18,7 +18,7 @@ export const StyledChoosing = styled.div`
 
   @media (max-width: 500px) {
     margin: 0 8px;
-    padding: 24px 0px;
+    padding: 24px 8px;
     width: calc(100% - 16px);
     justify-content: center;
     div:first-child {

@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       <HeadComponent />
-      <MainWrapper>
+      <MainWrapper preventScroll={managementObj.isAppearing}>
         <Header color={"none"} modalHandler={managementObj.activateHandler} />
         <Selecting
           openSearchModal={(modalId: number) =>

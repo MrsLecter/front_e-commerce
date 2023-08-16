@@ -25,14 +25,15 @@ import {
   ShowMoreBtnWrapper,
   StyledRimsFilter,
 } from "./RimsFilter.styles";
+import ProductCardStub from "@/components/common/LoadingStub/ProductCardStub/ProductCardStub";
 
 const RimsFilter: FC = () => {
   const params = useParams();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  const rimsBrand = searchParams!.get("brand");
-  const rimsModel = searchParams!.get("model");
+  const rimsBrand = searchParams!.get("maker_name");
+  const rimsModel = searchParams!.get("model_name");
   const rimsYear = searchParams!.get("year");
   const currPage = searchParams!.get("page");
   const diametersRef = useRef<string>();
@@ -199,25 +200,13 @@ const RimsFilter: FC = () => {
         <CardContainer marginTop={16}>
           {loading &&
             popularRimsStub.map((item) => {
-              return (
-                <ProductCard
-                  key={item.rimId}
-                  parameters={item}
-                  loading={loading}
-                />
-              );
+              return <ProductCardStub key={item.rimId} />;
             })}
 
           {!loading &&
             rimsList &&
             rimsList.map((item) => {
-              return (
-                <ProductCard
-                  key={item.rimId}
-                  parameters={item}
-                  loading={loading}
-                />
-              );
+              return <ProductCard key={item.rimId} parameters={item} />;
             })}
         </CardContainer>
       </Suspense>

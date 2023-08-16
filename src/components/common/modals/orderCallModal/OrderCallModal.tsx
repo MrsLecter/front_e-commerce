@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, MouseEvent, useState } from "react";
+import { FC, KeyboardEvent, useEffect, useState } from "react";
 
 import { useInput } from "@/hooks/use-input";
 import { IModalProps } from "@/types/common.types";
@@ -46,16 +46,18 @@ const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
           setOrderCall(false);
           refreshPhoneHandler();
           setError(false);
-        }, 5000);
+        }, 2000);
       } catch (err) {
         setError(true);
       }
     }
   };
 
-  const windowClickHandler = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-  };
+  useEffect(() => {
+    setOrderCall(false);
+    refreshPhoneHandler();
+    setError(false);
+  }, [managementObject.isAppearing]);
 
   return (
     <>
@@ -65,7 +67,7 @@ const OrderCallModal: FC<IModalProps> = ({ managementObject }) => {
           backClickHandler={() => managementObject.closeHandler()}
           isAppearing={managementObject.isAppearing}
         >
-          <StyledOrderCall onClick={(e) => windowClickHandler(e)}>
+          <StyledOrderCall>
             <ModalHeader label={"Обратный звонок"} />
 
             <OrderCallContent>

@@ -13,6 +13,10 @@ export const StyledSearchModal = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
+  @media (max-width: 500px) {
+    margin-top: 16px;
+  }
 `;
 
 export const ModalContent = styled.div`

@@ -14,10 +14,18 @@ export const StyledProductCard = styled.div<{ loading: boolean }>`
   overflow: hidden;
   background-color: #fff;
 
-  div:first-child {
+  & > div:first-child {
     position: absolute;
     top: 0px;
     left: 0px;
+    width: 100%;
+    height: 236px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black; */
+    /* object-fit: contain; */
+
     ${(props) =>
       props.loading &&
       css`
@@ -25,8 +33,8 @@ export const StyledProductCard = styled.div<{ loading: boolean }>`
       `}
   }
 
-  button {
-    border-radius: 4px;
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -34,14 +42,6 @@ export const CardContent = styled.div`
   padding: 0px 12px 12px;
   width: 100%;
   font-family: var(--font-roboto);
-
-  a {
-    font-size: 14px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: #507299;
-    letter-spacing: 0.5px;
-  }
 
   p:nth-child(2) {
     margin-top: 4px;
@@ -60,29 +60,61 @@ export const CardContent = styled.div`
   }
 `;
 
-export const LoadingName = styled.span`
-  display: block;
-  width: 200px;
-  height: 18px;
-  border-radius: 2px;
-  background-color: hsl(200, 20%, 70%);
-  animation: image-loading 1s linear infinite alternate;
+// export const LoadingName = styled.span`
+//   display: block;
+//   width: 200px;
+//   height: 18px;
+//   border-radius: 2px;
+//   background-color: hsl(200, 20%, 70%);
+//   animation: image-loading 1s linear infinite alternate;
+// `;
+
+// export const LoadingPrice = styled.div`
+//   margin-top: 4px;
+//   width: 80px;
+//   height: 15px;
+//   border-radius: 2px;
+//   background-color: hsl(200, 20%, 70%);
+//   animation: image-loading 1s linear infinite alternate;
+// `;
+
+// export const LoadingDiameters = styled.div`
+//   margin: 4px 0 13px 0;
+//   width: 50px;
+//   height: 11px;
+//   border-radius: 2px;
+//   background-color: hsl(200, 20%, 70%);
+//   animation: image-loading 1s linear infinite alternate;
+// `;
+
+export const ProductName = styled.div`
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #507299;
+  letter-spacing: 0.5px;
 `;
 
-export const LoadingPrice = styled.div`
-  margin-top: 4px;
-  width: 80px;
-  height: 15px;
-  border-radius: 2px;
-  background-color: hsl(200, 20%, 70%);
-  animation: image-loading 1s linear infinite alternate;
-`;
+export const GetOrderBtn = styled.div`
+  padding: 8px 12px;
+  width: 100%;
+  height: 32px;
+  font-family: var(--font-roboto);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  opacity: 1;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  background-color: #507298;
 
-export const LoadingDiameters = styled.div`
-  margin: 4px 0 13px 0;
-  width: 50px;
-  height: 11px;
-  border-radius: 2px;
-  background-color: hsl(200, 20%, 70%);
-  animation: image-loading 1s linear infinite alternate;
+  &:hover,
+  &:focus {
+    opacity: 0.9;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    transition-duration: 0.2s;
+    /* box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19); */
+  }
 `;

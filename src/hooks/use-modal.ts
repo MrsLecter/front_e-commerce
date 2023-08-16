@@ -5,17 +5,15 @@ export const useModal = () => {
   const [activeModal, toggleModal] = useState<number>(0);
 
   const setActive = (modalID: number) => {
-    setTimeout(() => {
-      setIsAppearing(true);
-    }, 200);
-    setTimeout(() => {
-      toggleModal(modalID);
-    }, 500);
+    setIsAppearing(true);
+    toggleModal(modalID);
   };
 
   const closeModal = () => {
     setIsAppearing(false);
-    toggleModal(0);
+    setTimeout(() => {
+      toggleModal(0);
+    }, 300);
   };
 
   return {

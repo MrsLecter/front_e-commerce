@@ -1,23 +1,19 @@
-import { FC, MouseEvent, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-import { AppModals } from "@/constants/common";
+import rimsService from "@/api/rims-service";
+import Header from "@/components/common/header/Header";
 import ModalWrapper from "@/components/common/wrappers/modalWrapper/ModalWrapper";
-import { ModalContent, StyledSearchModal } from "./SearchModal.styles";
+import { AppModals } from "@/constants/common";
+import { IModalProps, IRimObject } from "@/types/common.types";
+import ResultItem from "../resultItem/ResultItem";
 import SearchBar from "../searchBar/SearchBar";
 import SearchResult from "../searchResult/SearchResult";
-import ResultItem from "../resultItem/ResultItem";
-import Header from "@/components/common/header/Header";
-import { IModalProps, IRimObject } from "@/types/common.types";
-import rimsService from "@/api/rims-service";
+import { ModalContent, StyledSearchModal } from "./SearchModal.styles";
 
 const SearchModal: FC<IModalProps> = ({ managementObject }) => {
   const [input, setInput] = useState<string>("");
   const [searchResult, setSearchResult] = useState<IRimObject[]>();
   const [loading, setLoading] = useState<boolean>(true);
-
-  const modalClickHandler = (e: MouseEvent) => {
-    e.stopPropagation();
-  };
 
   useEffect(() => {
     const getSearchResult = async () => {
@@ -43,7 +39,7 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
           isAppearing={managementObject.isAppearing}
           hasAnimation={false}
         >
-          <StyledSearchModal>
+          <StyledSearchModal id="modal">
             <Header
               color={"none"}
               modalHandler={managementObject.activateHandler}
@@ -53,6 +49,7 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
                 inputSearch={input}
                 setInputHandler={(value) => setInput(value)}
                 autoFocus={true}
+                isDisabled={false}
               />
               {input.length > 0 && (
                 <SearchResult>
