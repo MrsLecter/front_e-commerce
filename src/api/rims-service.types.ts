@@ -2,7 +2,7 @@ import {
   INewsFeedItem,
   IRimDetailedInfo,
   IRimObject,
-  IRimsConfigs,
+  IRimsConfigsByCar,
 } from "@/types/common.types";
 
 export interface INewsFeedResponse {
@@ -26,5 +26,5 @@ export interface IGetRimDetailedResponse {
 }
 
 export interface IGetRimsConfigResponse {
-  message: IRimsConfigs;
+  message: IRimsConfigsByCar;
 }

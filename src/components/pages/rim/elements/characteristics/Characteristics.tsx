@@ -10,14 +10,14 @@ import {
 interface Props {
   width: string;
   diameter: string;
-  fixingHoles: string;
+  boltPattern: string;
   loading: boolean;
 }
 
 const Characteristics: FC<Props> = ({
   width,
   diameter,
-  fixingHoles,
+  boltPattern,
   loading,
 }) => {
   return (
@@ -58,7 +58,7 @@ const Characteristics: FC<Props> = ({
             </div>
             <div />
             <div>
-              {fixingHoles.split("/").map((item, index) => {
+              {boltPattern.split("/").map((item, index) => {
                 return <BorderedSpan key={index}>{item}</BorderedSpan>;
               })}
             </div>

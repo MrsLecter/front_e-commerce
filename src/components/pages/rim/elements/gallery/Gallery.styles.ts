@@ -28,11 +28,12 @@ export const StyledGallery = styled.div`
 export const Thumbnail = styled.div<{ loading: boolean }>`
   padding: 16px;
   width: 100%;
-  height: 80px;
+  height: 86px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  overflow: ${(props) => (props.loading ? "hidden" : "auto")};
   ${(props) =>
     props.loading &&
     css`
@@ -48,11 +49,12 @@ export const Thumbnail = styled.div<{ loading: boolean }>`
 export const Preview = styled.div`
   margin: 0 2px;
   width: 52px;
-  height: 52px;
+  height: 54px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #507299;
+  overflow: hidden;
 
   &:hover {
     border: 2px solid #507299;
@@ -80,7 +82,7 @@ export const Prev = styled.button`
   opacity: 0;
   transition: opacity 0.1s ease-in-out;
 
-  &:focus {
+  &:hover {
     background-color: black;
     opacity: 1;
   }
@@ -105,7 +107,7 @@ export const Next = styled.button`
   opacity: 0;
   transition: opacity 0.1s ease-in-out;
 
-  &:focus {
+  &:hover {
     background-color: black;
     opacity: 1;
   }
@@ -119,6 +121,7 @@ export const Slide = styled.div<{ loading: boolean; switches: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
   ${(props) =>
     props.loading &&
@@ -132,7 +135,7 @@ export const Slide = styled.div<{ loading: boolean; switches: boolean }>`
       animation: switch-slide 0.4s linear infinite alternate;
     `}
 
-  &:hover, &:focus {
+  &:hover {
     button {
       transition: opacity 0.3s ease-in-out;
       background-color: black;
@@ -141,8 +144,7 @@ export const Slide = styled.div<{ loading: boolean; switches: boolean }>`
   }
 
   img {
-    transition: 0.5s top ease;
-    
+    transition: opacity 0.5s ease;
   }
 
   @keyframes switch-slide {

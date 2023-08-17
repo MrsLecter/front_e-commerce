@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { StyledOptionLink } from "./OptionLink.styles";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { getRimConfigFromLabel, getSearchParamsByConfig } from "@/utils/functions";
 
 interface Props {
   label: string;
@@ -11,12 +12,12 @@ const OptionLink: FC<Props> = ({ label }) => {
   const pathname = usePathname();
   let link = label;
   if (label.length > 30) {
-    const parsedLink = label.match(/[\d\.\x]+/g);
-    link = `d-${parsedLink![0]}&w-${parsedLink![1]}&pcd-${parsedLink![2]}`;
+    const rimParams =  getRimConfigFromLabel(label);
+    link = getSearchParamsByConfig(rimParams);
   }
 
   return (
-    <Link href={pathname + `/${link}/`}>
+    <Link href={pathname + `/${link}`}>
       <StyledOptionLink>{label}</StyledOptionLink>
     </Link>
   );

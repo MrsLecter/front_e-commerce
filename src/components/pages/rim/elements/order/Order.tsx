@@ -15,12 +15,13 @@ import {
   StyledOrder,
 } from "./Order.styles";
 import { LoadingButton } from "@/styles/common";
+import SelectObjectMenu from "@/components/common/selectMenu/SelectObjectMenu";
 
 interface Props {
   header: string;
   rimPrice: number;
-  optionArray: string[];
-  setVariationHandler: (option: string) => void;
+  optionsObject: { [id: number]: string };
+  setRimTypeHandler: (id: number) => void;
   placeOrderHandler: () => void;
   loading: boolean;
 }
@@ -28,16 +29,12 @@ interface Props {
 const Order: FC<Props> = ({
   header,
   rimPrice,
-  optionArray,
-  setVariationHandler,
+  optionsObject,
+  setRimTypeHandler,
   placeOrderHandler,
   loading,
 }) => {
   const [isHaveAlert, setAlert] = useState<boolean>(true);
-
-  setTimeout(() => {
-    setAlert(false);
-  }, 2000);
 
   return (
     <StyledOrder onClick={() => setAlert(false)}>
@@ -49,10 +46,10 @@ const Order: FC<Props> = ({
               Здесь Вы можете выбрать диаметр и ширину дисков
             </StyledAlert>
           )}
-          <SelectMenu
-            defaultOption={optionArray[0]}
-            setValue={setVariationHandler}
-            optionsArray={optionArray}
+          <SelectObjectMenu
+            defaultOption={0}
+            setValue={setRimTypeHandler}
+            optionsObject={optionsObject}
           />
           <OrderPrice price={rimPrice} />
           <BlueBtn

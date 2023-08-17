@@ -9,7 +9,7 @@ import { FC, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import rimsService from "@/api/rims-service";
 import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn/ShowMoreBtn";
 import ProductCard from "@/components/common/productCard/ProductCard";
-import { popularRimsStub } from "@/constants/helpers";
+import { RIMS_CONTAINER_COUNT } from "@/constants/helpers";
 import { IRimObject } from "@/types/common.types";
 import {
   createQueryString,
@@ -48,7 +48,6 @@ const RimsFilter: FC = () => {
       rimsDiameter && rimsDiameter !== "all" ? rimsDiameter : "";
   }
 
-
   if (!pageRef.current) {
     pageRef.current = currPage !== null ? +currPage : 1;
   }
@@ -59,7 +58,7 @@ const RimsFilter: FC = () => {
   const [rimsResponse, setRimsResponse] = useState<IRimObject[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const [visibleRimsAmount, setVisibleRimsAmount] = useState<number>(
-    pageRef.current * 8
+    pageRef.current * 40
   );
 
   useEffect(() => {
@@ -119,7 +118,7 @@ const RimsFilter: FC = () => {
       pageRef.current &&
       !(
         visibleRimsAmount >= rimsResponse!.length &&
-        visibleRimsAmount - 8 < rimsResponse!.length
+        visibleRimsAmount - 40 < rimsResponse!.length
       )
     ) {
       pageRef.current += 1;
@@ -139,14 +138,14 @@ const RimsFilter: FC = () => {
         const queryString = searchParamsString.toString();
         router.replace(pathname + "?" + queryString, { scroll: false });
       }
-      setVisibleRimsAmount((prev) => prev + 8);
+      setVisibleRimsAmount((prev) => prev + 40);
     }
   };
 
   useEffect(() => {
     const getRimsByBrand = async () => {
       setLoading(true);
-      setVisibleRimsAmount(8);
+      setVisibleRimsAmount(40);
       const response = await rimsService.getRimsByBrand({
         rimBrand: getRimBrand((params!.params as string) || "all") || "all",
       });
@@ -170,13 +169,14 @@ const RimsFilter: FC = () => {
 
     const getFilteredRims = async () => {
       setLoading(true);
-      setVisibleRimsAmount(8);
+      setVisibleRimsAmount(40);
       const response = await rimsService.getFilteredRims({
         carBrand: carBrand || "",
         carModel: carModel || "",
         carYear: carYear || "",
         rimsBrand: rimsBrand,
       });
+      console.log("response getFilteredRims", response);
       const { rims, diameters } = getPrepearedRimsData(response.data.message);
       if (diametersRef && diametersRef.current) {
         const newRimsList = getRimsDiameterFiltered({
@@ -203,7 +203,7 @@ const RimsFilter: FC = () => {
 
   useEffect(() => {
     if (pageRef.current) {
-      setVisibleRimsAmount(pageRef.current * 8);
+      setVisibleRimsAmount(pageRef.current * 40);
       if (rimsResponse) {
         setLoading(true);
         setRimsList((prev) => rimsResponse!.slice(0, visibleRimsAmount));
@@ -234,9 +234,11 @@ const RimsFilter: FC = () => {
       <Suspense fallback={null}>
         <CardContainer marginTop={16}>
           {loading &&
-            popularRimsStub.map((item) => {
-              return <ProductCardStub key={item.rimId} />;
-            })}
+            Array.apply(null, Array(RIMS_CONTAINER_COUNT)).map(
+              (item, index) => {
+                return <ProductCardStub key={index} />;
+              }
+            )}
 
           {!loading &&
             rimsList &&
@@ -250,7 +252,7 @@ const RimsFilter: FC = () => {
         rimsResponse &&
         !(
           visibleRimsAmount >= rimsResponse!.length &&
-          visibleRimsAmount - 8 < rimsResponse!.length
+          visibleRimsAmount - 40 < rimsResponse!.length
         ) && (
           <ShowMoreBtnWrapper>
             <ShowMoreBtn clickHandler={showMoreHandler} />

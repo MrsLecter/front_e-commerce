@@ -38,34 +38,39 @@ export interface IRimObject {
   // price: number[];
 }
 
-export interface IRimDetailedData {
-  name: string;
-  width: string[];
-  diameter: string[];
-  mountingHoles: string[];
-  price: number[];
-  images: string[];
-}
+// export interface IRimDetailedData {
+//   name: string;
+//   width: string[];
+//   diameter: string[];
+//   mountingHoles: string[];
+//   price: number[];
+//   images: string[];
+// }
 
 export interface IRimDetailedInfo {
+  rimId: string;
+  brand: string;
   name: string;
   images: string[];
-  rimVariations: IRimParams[];
+  config: IRimConfig[];
 }
 
-export interface IRimParams {
-  width: string;
-  diameter: string;
-  mountingHoles: string;
-  price: number;
-}
+// export interface IRimParams {
+//   width: string;
+//   diameter: string;
+//   mountingHoles: string;
+//   price: number;
+// }
 
-export interface IRimsConfigs {
+// export interface IRimsConfigs {
+//   pcd: string;
+//   rims: IRimConfigs[];
+// }
+
+export interface IRimsConfigsByCar {
   pcd: string;
-  rims: IRimConfigs[];
-}
-
-export interface IRimConfigs {
-  width: string;
-  diameter: string;
+  rims: {
+    width: string;
+    diameter: string;
+  }[];
 }

@@ -24,6 +24,7 @@ export const StyledAlert = styled.div`
   width: 260px;
   height: 60px;
   padding: 11px 17px;
+  font-family: var(--font-roboto);
   color: rgba(0, 0, 0, 0.871);
   text-align: left;
   border-radius: 1px;

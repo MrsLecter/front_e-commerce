@@ -6,13 +6,13 @@ import Order from "./elements/order/Order";
 import Questions from "@/components/common/questions/Questions";
 import { AppModals } from "@/constants/common";
 
-import { IRimDetailedInfo, IRimParams } from "@/types/common.types";
+import { IRimDetailedInfo } from "@/types/common.types";
 
 interface Props {
   rimData: IRimDetailedInfo;
-  optionArray: string[];
-  setVariation: (vary: string) => void;
-  rimVariation: IRimParams;
+  rimConfigObject: { [id: number]: string };
+  setRimTypeHandler: (id: number) => void;
+  rimType: number;
   loading: boolean;
   managementObject: {
     isAppearing: boolean;
@@ -24,9 +24,9 @@ interface Props {
 
 const RimOrder: FC<Props> = ({
   rimData,
-  optionArray,
-  setVariation,
-  rimVariation,
+  rimConfigObject,
+  setRimTypeHandler,
+  rimType,
   managementObject,
   loading,
 }) => {
@@ -41,10 +41,10 @@ const RimOrder: FC<Props> = ({
       </div>
       <div>
         <Order
-          header={rimData.name}
-          rimPrice={rimVariation.price}
-          optionArray={optionArray}
-          setVariationHandler={setVariation}
+          header={`${rimData.brand} - ${rimData.name}`}
+          rimPrice={rimData.config[rimType].price}
+          optionsObject={rimConfigObject}
+          setRimTypeHandler={setRimTypeHandler}
           placeOrderHandler={placeOrderHandler}
           loading={loading}
         />
@@ -55,9 +55,9 @@ const RimOrder: FC<Props> = ({
           />
         </QuestionWrapper>
         <Characteristics
-          width={rimVariation.width}
-          diameter={rimVariation.diameter}
-          fixingHoles={rimVariation.mountingHoles}
+          width={rimData.config[rimType].width}
+          diameter={rimData.config[rimType].diameter}
+          boltPattern={rimData.config[rimType].boltPattern}
           loading={loading}
         />
       </div>

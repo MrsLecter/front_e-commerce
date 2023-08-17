@@ -4,7 +4,7 @@ import {
   IRimConfig,
   IRimDetailedInfo,
   IRimObject,
-  IRimsConfigs,
+  IRimsConfigsByCar,
 } from "@/types/common.types";
 
 export const getBtnLabel = (path: string[]): string => {
@@ -119,16 +119,19 @@ export const getRimsDiameterFiltered = ({
   return arr;
 };
 
-export const getDimentionOptionsArray = (
+export const getRimConfigObject = (
   rimObject: IRimDetailedInfo
-): string[] => {
-  let extractOptions = [];
-  for (let item of rimObject.rimVariations) {
-    extractOptions.push(
-      `${item.diameter}" - Диаметр;  ${item.width}" - Ширина;`
-    );
+): { [id: number]: string } => {
+  let rimConfigs: { [id: number]: string } = {};
+  let index = 0;
+
+  for (let item of rimObject.config) {
+    rimConfigs[
+      index++
+    ] = `${item.diameter}" - Диаметр;  ${item.width}" - Ширина;`;
   }
-  return extractOptions;
+
+  return rimConfigs;
 };
 
 export const getLinksObjectArr = (
@@ -147,7 +150,7 @@ export const getLinksObjectArr = (
   return imagesLinks;
 };
 
-export const getAllConfigs = (configs: IRimsConfigs): string[] => {
+export const getAllConfigs = (configs: IRimsConfigsByCar): string[] => {
   let optionsArr = [];
   const pcd = configs.pcd;
   const configsArr = configs.rims;
@@ -171,15 +174,15 @@ export const setSearchParamForManufacturerFiltering = (
   return params.toString();
 };
 
-export const setSearchParamForFilter = (diameters:string, searchParams: string) => {
+export const setSearchParamForFilter = (
+  diameters: string,
+  searchParams: string
+) => {
   const params = new URLSearchParams(searchParams);
   params.set("diameter", diameters);
   return params.toString();
 };
 
-// rim_id=12297&bolt_pattern=5x114.3&width=7&diameter=17&brand=Kosei&name=K1%20FS
-// /MKW_M88%20Chrome?rim_id=3378&bolt_pattern=6x139.7&width=9&diameter=18&brand=MKW&name=M88%20Chrome
-// /MKW_M88%20Chrome?rim_id=3378&bolt_pattern=6x139.7&width=9.0&diameter=18&brand=MKW&name=M88+Chrome
 export const getUrlToRimPage = ({
   rimId,
   brand,
@@ -194,7 +197,7 @@ export const getUrlToRimPage = ({
   const params = new URLSearchParams("");
   name = encodeURIComponent(name);
   params.set("rim_id", rimId);
-  params.set("bolt_pattern", config.boltPattern);
+  params.set("bolt_pattern", config.boltPattern.split("/")[0]);
   params.set("width", config.width);
   params.set("diameter", config.diameter);
   params.set("brand", brand);
@@ -234,4 +237,33 @@ export const getPrepearedRimsData = (
     rims: rimsData,
     diameters: Array.from(allDiametersSet).sort((a, b) => +a - +b),
   };
+};
+
+export const getRimConfigFromLabel = (label: string) => {
+  const parsedLink = label.match(/[\d\.x]+/g);
+  return {
+    diameter: parsedLink![0],
+    width: parsedLink![1],
+    boltPattern: parsedLink![2],
+  };
+};
+
+export const getSearchParamsByConfig = ({
+  diameter,
+  width,
+  boltPattern,
+}: {
+  diameter: string;
+  width: string;
+  boltPattern: string;
+}): string => {
+  const params = new URLSearchParams("");
+  params.set("diameter", diameter);
+  params.set("width", width);
+  params.set("bolt_pattern", boltPattern);
+  const searchParams = params.toString();
+
+  const url = `${AppRoutes.Rim}?${searchParams}`;
+
+  return url;
 };

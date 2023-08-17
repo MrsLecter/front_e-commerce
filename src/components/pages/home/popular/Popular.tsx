@@ -8,7 +8,7 @@ import { AppRoutes } from "@/constants/common";
 import rimsService from "@/api/rims-service";
 import { IRimObject } from "@/types/common.types";
 
-import { popularRimsStub } from "@/constants/helpers";
+import { RIMS_CONTAINER_COUNT } from "@/constants/helpers";
 import Link from "next/link";
 import ProductCardStub from "@/components/common/LoadingStub/ProductCardStub/ProductCardStub";
 import { Message } from "@/styles/common";
@@ -24,9 +24,8 @@ const Popular: FC = () => {
   useEffect(() => {
     const getPopularRims = async () => {
       const response = await rimsService.getPopularRims();
-      // const popularRims = response.data.message.slice(0, 8);
+
       const popularRims = getPrepearedRimsData(response.data.message).rims;
-      console.log("popularRims: ", popularRims);
       setRims((prev) => popularRims);
       setLoading(false);
     };
@@ -38,7 +37,7 @@ const Popular: FC = () => {
       <SectionHeader label={"Популярные модели"} />
       <CardContainer marginTop={32}>
         {loading &&
-          popularRimsStub.map((item, index) => {
+         Array.apply(null, Array(RIMS_CONTAINER_COUNT)).map((item, index) => {
             return <ProductCardStub key={index} />;
           })}
         {!loading && rims && rims.length === 0 && (

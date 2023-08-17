@@ -23,7 +23,6 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
         searchText: input || "",
       });
       const searchResult = getPrepearedRimsData(response.data.message);
-      console.log("searchResult", response);
       setSearchResult((prev) => response.data.message);
       setLoading(false);
     };
@@ -54,7 +53,7 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
                 autoFocus={true}
                 isDisabled={false}
               />
-              {input.length > 0 && (
+              {input.length > 0 && searchResult && searchResult.length > 0 && (
                 <SearchResult>
                   {!loading &&
                     searchResult &&

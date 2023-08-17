@@ -467,4 +467,16 @@ function getPrepearedRimsData(rimsData) {
 
 // console.log(getPrepearedRimsData(rimsData));
 let str = "15-18-17";
-console.log(str.split("-").join("+"));
+// console.log(str.split("-").join("+"));
+//rim_id=14682&bolt_pattern=5x112&width=8&diameter=18&brand=Marcello&name=SFT%2012
+//rim_id=12810&bolt_pattern=4x100%2F4x114.3&width=6.0&diameter=15&brand=Marcello&name=SFT%252012%2520AMB
+let obj = {
+  1: "one",
+  2: "two",
+  3: "three",
+};
+let objArray = Object.entries(obj);
+let newArr = Object.entries(obj).map(
+  (item) => "key: " + item[0] + " value: " + item[1]
+);
+console.log(newArr);

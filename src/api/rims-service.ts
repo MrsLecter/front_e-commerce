@@ -111,7 +111,7 @@ class RimsService {
     }
   }
 
-  public async getRimDetailedData({
+  public async getRimById({
     rimId,
   }: {
     rimId: string;
@@ -201,7 +201,7 @@ class RimsService {
           brand: carBrand,
           model: carModel,
           year: +carYear,
-          rimBrand: rimsBrand ? rimsBrand : undefined,
+          rimBrand: rimsBrand ? rimsBrand : "all",
         },
         {
           headers: {

@@ -18,11 +18,7 @@ import {
   UserInputContainer,
 } from "./OredrModal.styles";
 import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
-import {
-  IModalProps,
-  IRimDetailedInfo,
-  IRimParams,
-} from "@/types/common.types";
+import { IModalProps, IRimDetailedInfo } from "@/types/common.types";
 import { AppModals } from "@/constants/common";
 import modalService from "@/api/modal-service";
 import ErrorContent from "../elements/feedbackContent/ErrorContent";
@@ -30,16 +26,10 @@ import SuccessContent from "../elements/feedbackContent/SuccessContent";
 
 interface Props extends IModalProps {
   rimData: IRimDetailedInfo;
-  rimVariation: IRimParams;
-  rimId: string;
+  rimType: number;
 }
 
-const OrderModal: FC<Props> = ({
-  managementObject,
-  rimData,
-  rimVariation,
-  rimId,
-}) => {
+const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
   const {
     value: name,
     error: nameIsValid,
@@ -86,11 +76,14 @@ const OrderModal: FC<Props> = ({
           name,
           email,
           phone,
+          rimId: rimData.rimId,
           orderConfig: {
-            mountingHoles: rimVariation.mountingHoles,
-            diameter: rimVariation.diameter,
-            width: rimVariation.width,
-            rimId: rimId,
+            width: rimData.config[rimType].width,
+            offset: rimData.config[rimType].offset,
+            diameter: rimData.config[rimType].diameter,
+            boltPattern: rimData.config[rimType].boltPattern,
+            centralBore: rimData.config[rimType].centralBore,
+            price: rimData.config[rimType].price,
           },
         });
         setOrderReady(true);
@@ -144,17 +137,21 @@ const OrderModal: FC<Props> = ({
                 </ProductPreview>
                 <ProductDescription>
                   <div>
-                    <span>{rimData.name.split("-")[1].trim()}</span>
-                    <span>{getPrettyPrice(rimVariation.price)}&nbsp;грн</span>
+                    <span>{rimData.name}</span>
+                    <span>
+                      {getPrettyPrice(rimData.config[rimType].price)}&nbsp;грн
+                    </span>
                   </div>
                   <div>
-                    <span>{rimData.name.split(" ")[0]}</span>
+                    <span>{rimData.brand}</span>
                     <span>4&nbsp;шт</span>
                   </div>
                 </ProductDescription>
               </Product>
               <Price>
-                <p>{getPrettyPrice(rimVariation.price * 4)}&nbsp;грн</p>
+                <p>
+                  {getPrettyPrice(rimData.config[rimType].price * 4)}&nbsp;грн
+                </p>
                 <p>Всего</p>
               </Price>
             </OrderHeader>
@@ -179,7 +176,17 @@ const OrderModal: FC<Props> = ({
                     inputValue={name}
                     isRequired={false}
                     onChangeHandler={nameChangeHandler}
-                    autofocus={true}
+                    autofocus={false}
+                  />
+
+                  <Input
+                    type={"tel"}
+                    placeholder={"Ваш телефон (прим: 0505554433)"}
+                    inputValue={phone}
+                    isRequired={true}
+                    maxLen={12}
+                    onChangeHandler={phoneChangeHandler}
+                    onKeyDown={(e) => orderHandler(e)}
                   />
                   <Input
                     type={"email"}
@@ -187,15 +194,6 @@ const OrderModal: FC<Props> = ({
                     inputValue={email}
                     isRequired={false}
                     onChangeHandler={emailChangeHandler}
-                  />
-                  <Input
-                    type={"tel"}
-                    placeholder={"Ваш номер телефона"}
-                    inputValue={phone}
-                    isRequired={true}
-                    maxLen={12}
-                    onChangeHandler={phoneChangeHandler}
-                    onKeyDown={(e) => orderHandler(e)}
                   />
                   {error && (
                     <Message>

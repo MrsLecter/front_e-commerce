@@ -30,7 +30,7 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
     if (currSlide.id !== item.id) {
       toggleSlideSwitch(true);
       if (imageRef.current) {
-        imageRef.current.style.animation = "remove-slide 0.4s ease";
+        imageRef.current.style.animation = "remove-slide 0.5s ease";
       }
       setTimeout(() => {
         setCurrSlide(item);
@@ -38,7 +38,7 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
       }, 400);
 
       if (imageRef.current) {
-        imageRef.current.style.animation = "set-slide 0.4s ease";
+        imageRef.current.style.animation = "set-slide 0.5s ease";
       }
     }
   };
@@ -49,15 +49,15 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
     }
     toggleSlideSwitch(true);
     if (imageRef.current) {
-      imageRef.current.style.animation = "remove-slide 0.4s ease";
+      imageRef.current.style.animation = "remove-slide 0.5s ease";
     }
     setTimeout(() => {
       setCurrSlide(linksArr[prevId]);
       toggleSlideSwitch(false);
     }, 400);
 
-    if (imageRef.current) {
-      imageRef.current.style.animation = "set-slide 0.4s ease";
+    if (!loading && imageRef.current) {
+      imageRef.current.style.animation = "set-slide 0.5s ease";
     }
   };
 
@@ -67,7 +67,7 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
       nextId = 0;
       toggleSlideSwitch(true);
       if (imageRef.current) {
-        imageRef.current.style.animation = "remove-slide 0.4s ease-in";
+        imageRef.current.style.animation = "remove-slide 0.5s ease";
       }
       setTimeout(() => {
         setCurrSlide(linksArr[nextId]);
@@ -75,12 +75,12 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
       }, 400);
 
       if (imageRef.current) {
-        imageRef.current.style.animation = "set-slide 0.4s ease-out";
+        imageRef.current.style.animation = "set-slide 0.5s ease";
       }
     } else {
       toggleSlideSwitch(true);
       if (imageRef.current) {
-        imageRef.current.style.animation = "remove-slide 0.4s ease-in";
+        imageRef.current.style.animation = "remove-slide 0.5s ease";
       }
       setTimeout(() => {
         setCurrSlide(linksArr[nextId]);
@@ -88,7 +88,7 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
       }, 400);
 
       if (imageRef.current) {
-        imageRef.current.style.animation = "set-slide 0.4s ease-out";
+        imageRef.current.style.animation = "set-slide 0.5s ease";
       }
     }
   };
@@ -96,32 +96,59 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
   return (
     <StyledGallery>
       <Slide loading={loading} switches={isSlideSwitched}>
-        <Image
-          ref={imageRef}
-          width={551}
-          height={551}
-          src={currSlide.link.length === 0 ? placeholder : currSlide.link}
-          alt={"bigRim"}
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
-        />
+        {!loading && (
+          <Image
+            ref={imageRef}
+            width={551}
+            height={551}
+            src={currSlide.link.length === 0 ? placeholder : currSlide.link}
+            alt={"bigRim"}
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          />
+        )}
+        {loading && (
+          <Image
+            ref={imageRef}
+            width={551}
+            height={551}
+            src={placeholder}
+            alt={"bigRim"}
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          />
+        )}
         <Prev onClick={getPrev}>&#10094;</Prev>
         <Next onClick={getNext}>&#10095;</Next>
       </Slide>
 
       <Thumbnail loading={loading}>
-        {linksArr.map((item) => {
-          return (
-            <Preview key={item.id} onClick={() => pickImageHandler(item)}>
-              <Image
-                src={item.link.length === 0 ? placeholder : item.link}
-                width={48}
-                height={48}
-                alt="rim.png"
-                style={{ width: "100%", height: "auto" }}
-              />
-            </Preview>
-          );
-        })}
+        {!loading &&
+          linksArr &&
+          linksArr.map((item) => {
+            return (
+              <Preview key={item.id} onClick={() => pickImageHandler(item)}>
+                <Image
+                  src={
+                    !loading && item.link.length === 0 ? placeholder : item.link
+                  }
+                  width={48}
+                  height={48}
+                  alt="rim.png"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </Preview>
+            );
+          })}
+        {loading && (
+          <Preview key={111}>
+            <Image
+              src={placeholder}
+              width={48}
+              height={48}
+              alt="rim.png"
+              style={{ width: "100%", height: "auto" }}
+            />
+          </Preview>
+        )}
       </Thumbnail>
     </StyledGallery>
   );

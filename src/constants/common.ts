@@ -28,8 +28,7 @@ export const FOOTER_LINKS = [
     href:
       AppRoutes.Rims +
       ManufacturesNames.Inzi +
-      "?" +
-      setSearchParamForManufacturerFiltering(ManufacturesNames.Inzi),
+      `?page=1&brand=${ManufacturesNames.Inzi.substring(1)}&diameter=all`,
     description: "Диски InziAone",
   },
   {
@@ -37,8 +36,7 @@ export const FOOTER_LINKS = [
     href:
       AppRoutes.Rims +
       ManufacturesNames.Kosei +
-      "?" +
-      setSearchParamForManufacturerFiltering(ManufacturesNames.Kosei),
+      `?page=1&brand=${ManufacturesNames.Kosei.substring(1)}&diameter=all`,
     description: "Диски Kosei",
   },
   {
@@ -46,8 +44,7 @@ export const FOOTER_LINKS = [
     href:
       AppRoutes.Rims +
       ManufacturesNames.Marcello +
-      "?" +
-      setSearchParamForManufacturerFiltering(ManufacturesNames.Marcello),
+      `?page=1&brand=${ManufacturesNames.Marcello.substring(1)}&diameter=all`,
     description: "Диски Marcello",
   },
   {
@@ -55,8 +52,7 @@ export const FOOTER_LINKS = [
     href:
       AppRoutes.Rims +
       ManufacturesNames.Mkw +
-      "?" +
-      setSearchParamForManufacturerFiltering(ManufacturesNames.Mkw),
+      `?page=1&brand=${ManufacturesNames.Mkw.substring(1)}&diameter=all`,
     description: "Диски MKW",
   },
   {
@@ -64,8 +60,7 @@ export const FOOTER_LINKS = [
     href:
       AppRoutes.Rims +
       ManufacturesNames.Replica +
-      "?" +
-      setSearchParamForManufacturerFiltering(ManufacturesNames.Replica),
+      `?page=1&brand=${ManufacturesNames.Replica.substring(1)}&diameter=all`,
     description: "Диски Replica",
   },
   {

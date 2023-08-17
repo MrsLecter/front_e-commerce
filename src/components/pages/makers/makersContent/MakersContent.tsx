@@ -1,16 +1,19 @@
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
 import OptionBtn from "../elements/optionLink/OptionLink";
 import { Message, StyledMakersContent } from "./MakersContent.styles";
 import rimsService from "@/api/rims-service";
 import { IRimObject } from "@/types/common.types";
-import { getAllConfigs } from "@/utils/functions";
+import { getAllConfigs, getPrepearedRimsData } from "@/utils/functions";
 import RimLink from "../elements/rimLink/RimLink";
+import { IGetRimsResponse } from "@/api/rims-service.types";
+import { AxiosResponse } from "axios";
 
 const MakersContent: FC = () => {
   const pathname = usePathname();
   const patharr = pathname!.split("/");
+  const searchParams = useSearchParams();
 
   const [parameters, setParameters] = useState<string[]>([]);
   const [rimsLinks, setRimsLinks] = useState<IRimObject[]>();
@@ -77,21 +80,24 @@ const MakersContent: FC = () => {
     const downloadLinks = async () => {
       setLoading(true);
       setIsEmpty(false);
-      const configPart = patharr[patharr.length - 1].match(/[\d\.\x]+/g);
-      const diameter = configPart![0];
-      const width = configPart![1];
-      const mountingHoles = configPart![2];
-      const response = await rimsService.getRimsByConfig({
-        width,
-        diameter,
-        mountingHoles,
-      });
-      if (response.data.message) {
-        setRimsLinks(response.data.message);
+      const rimsDiameter = searchParams!.get("diameter");
+      const rimsWidth = searchParams!.get("width");
+      const rimsBoltPattern = searchParams!.get("bolt_pattern");
+      let response: AxiosResponse<IGetRimsResponse, any>;
+      if (rimsDiameter && rimsWidth && rimsBoltPattern) {
+        response = await rimsService.getRimsByConfig({
+          width: rimsWidth,
+          diameter: rimsDiameter,
+          mountingHoles: rimsBoltPattern,
+        });
+        if (!response.data.message.length) setIsEmpty(true);
+        if (response.data.message.length) {
+          const popularRims = getPrepearedRimsData(response.data.message).rims;
+          setRimsLinks(popularRims);
+        }
       } else {
         setIsEmpty(true);
       }
-
       setLoading(false);
     };
 
