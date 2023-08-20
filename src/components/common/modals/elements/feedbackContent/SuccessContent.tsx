@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import doneSVG from "@icons/done.svg";
 
-import BlueBtn from "../../../buttons/BlueBtn/BlueBtn";
+import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
 import { FeedbackModalContent } from "./FeedbackModal.styles";
 import Link from "next/link";
 

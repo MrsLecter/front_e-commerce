@@ -17,6 +17,7 @@ const StyledOrderHeader = styled.div`
   font-size: 22px;
   font-weight: 500;
   letter-spacing: 0.8px;
+  overflow: hidden;
 `;
 
 export default OrderHeader;

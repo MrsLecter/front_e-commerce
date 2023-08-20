@@ -2,7 +2,7 @@ import { FC, MouseEvent, useState, KeyboardEvent, useEffect } from "react";
 import ModalHeader from "../elements/ModalHeaderElement";
 import ModalContent from "../elements/ModalContentElement";
 import Input from "../../input/Input";
-import BlueBtn from "../../buttons/BlueBtn/BlueBtn";
+import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
 import { useInput } from "@/hooks/use-input";
 import { EMAIL_REGEXP, PHONE_REGEXP } from "@/utils/regexp";
 import { StyledQuestionModal } from "./QuestionModal.styles";

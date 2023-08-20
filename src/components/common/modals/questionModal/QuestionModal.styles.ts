@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledQuestionModal = styled.div`
-  width: 464px;
+  width: 460px;
   height: 368px;
   display: flex;
   flex-direction: column;

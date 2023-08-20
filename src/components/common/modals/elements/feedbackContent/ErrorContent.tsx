@@ -3,8 +3,8 @@ import { FC } from "react";
 
 import errorSVG from "@icons/error.svg";
 
-import BlueBtn from "../../../buttons/BlueBtn/BlueBtn";
 import { FeedbackModalContent } from "./FeedbackModal.styles";
+import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
 
 interface Props {
   closeModalHandler: () => void;

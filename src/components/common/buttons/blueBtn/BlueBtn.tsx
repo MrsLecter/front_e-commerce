@@ -7,6 +7,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   height?: "36" | "30" | "32";
   clickHandler: () => void;
   label: string;
+  isModal?:boolean
 }
 
 const BlueBtn: FC<Props> = ({
@@ -14,6 +15,7 @@ const BlueBtn: FC<Props> = ({
   clickHandler,
   label,
   height,
+  isModal=false,
   ...defaultProps
 }) => {
   const colors = {
@@ -48,6 +50,7 @@ const BlueBtn: FC<Props> = ({
       height={height ? height : "36"}
       aria-label="submit-button"
       aria-labelledby="submit"
+      isModal={isModal}
       {...defaultProps}
     >
       {label}

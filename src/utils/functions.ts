@@ -66,22 +66,22 @@ export const getPrettyDate = (dateString: string): string => {
 };
 
 export const createQueryString = ({
-  brand,
-  model,
+  makerName,
+  modelName,
   year,
   page,
   searchParamsString,
 }: {
-  brand: string;
-  model: string;
+  makerName: string;
+  modelName: string;
   year: string;
   page: number;
   searchParamsString: string;
 }): string => {
   const params = new URLSearchParams(searchParamsString);
 
-  params.set("maker_name", brand);
-  params.set("model_name", model);
+  params.set("maker_name", makerName);
+  params.set("model_name", modelName);
   params.set("year", String(year));
   params.set("page", String(page));
   params.set("diameter", "all");
@@ -179,7 +179,7 @@ export const setSearchParamForFilter = (
   searchParams: string
 ) => {
   const params = new URLSearchParams(searchParams);
-  params.set("diameter", diameters);
+  params.set("diameter", diameters.length > 0 ? diameters : "all");
   return params.toString();
 };
 
@@ -266,4 +266,29 @@ export const getSearchParamsByConfig = ({
   const url = `${AppRoutes.Rim}?${searchParams}`;
 
   return url;
+};
+
+export const getCurrentRimConfigType = ({
+  rimObject,
+  width,
+  diameter,
+  boltPattern,
+}: {
+  rimObject: IRimDetailedInfo;
+  width: string;
+  diameter: string;
+  boltPattern: string;
+}) => {
+  for (let i = 0; i < rimObject.config.length; i++) {
+    let item = rimObject.config[i];
+
+    if (
+      item.width === width &&
+      item.diameter === diameter &&
+      item.boltPattern === boltPattern
+    ) {
+      return i;
+    }
+  }
+  return 0;
 };

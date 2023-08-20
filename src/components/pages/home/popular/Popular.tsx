@@ -10,12 +10,13 @@ import { IRimObject } from "@/types/common.types";
 
 import { RIMS_CONTAINER_COUNT } from "@/constants/helpers";
 import Link from "next/link";
-import ProductCardStub from "@/components/common/LoadingStub/ProductCardStub/ProductCardStub";
+
 import { Message } from "@/styles/common";
 import {
   getPrepearedRimsData,
   setSearchParamForManufacturerFiltering,
 } from "@/utils/functions";
+import ProductCardStub from "@/components/common/loadingStub/productCardStub/ProductCardStub";
 
 const Popular: FC = () => {
   const [rims, setRims] = useState<IRimObject[]>([]);
@@ -29,6 +30,7 @@ const Popular: FC = () => {
       setRims((prev) => popularRims);
       setLoading(false);
     };
+
     getPopularRims();
   }, []);
 
@@ -37,7 +39,7 @@ const Popular: FC = () => {
       <SectionHeader label={"Популярные модели"} />
       <CardContainer marginTop={32}>
         {loading &&
-         Array.apply(null, Array(RIMS_CONTAINER_COUNT)).map((item, index) => {
+          Array.apply(null, Array(RIMS_CONTAINER_COUNT)).map((item, index) => {
             return <ProductCardStub key={index} />;
           })}
         {!loading && rims && rims.length === 0 && (

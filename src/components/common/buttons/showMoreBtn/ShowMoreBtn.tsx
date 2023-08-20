@@ -36,20 +36,22 @@ const StyledShowMoreBtn = styled.button<{ color: string }>`
   text-align: center;
   background-color: ${(props) => (props.color === "blue" ? "#507299" : "#fff")};
   color: ${(props) => (props.color === "blue" ? "#fff" : "#425f80")};
-  opacity: 0.8;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  transition-duration: 0.45s;
+  opacity: 1;
 
   &:hover {
-    opacity: 1;
+    opacity: 0.8;
   }
 
   @media (max-width: 760px) {
     margin: 8px auto 0;
-    width: 488px;
+    /* width: 488px; */
   }
 
-  @media (max-width: 510px) {
+  /* @media (max-width: 510px) {
     width: 100%;
-  }
+  } */
 `;
 
 export default ShowMoreBtn;

@@ -19,7 +19,7 @@ export const StyledOrderCall = styled.div`
 `;
 
 export const OrderCallContent = styled.div`
-  padding: 24px 24px;
+  padding: 16px 20px;
   width: 100%;
   height: auto;
   display: flex;
@@ -28,7 +28,7 @@ export const OrderCallContent = styled.div`
   align-items: end;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  background-color: white;
+  background-color: #eceff1;
 
   & > div:last-child {
     margin-top: 16px;

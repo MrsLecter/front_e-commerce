@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFilter = styled.div`
-  padding: 16px 16px 8px 16px;
+  padding: 0px 16px 8px 16px;
   width: 100%;
   min-width: 992px;
   min-height: 218px;
@@ -21,7 +21,7 @@ export const StyledFilter = styled.div`
     align-items: flex-start;
 
     & > div {
-      padding: 8px;
+      padding: 8px 8px 8px 14px;
     }
   }
 
@@ -37,8 +37,9 @@ export const StyledFilter = styled.div`
     }
 
     & > p:first-child {
+      margin-top:24px;
       color: black;
-      font-size: 18px;
+      font-size: 20px;
     }
 
     & > p:last-child {
@@ -118,6 +119,7 @@ export const FilterHeader = styled.div`
   font-family: var(--font-roboto);
   font-size: 13px;
   border-left: 2px solid #517399;
+  color: rgba(0, 0, 0, 0.87);
   background-color: #f4f9fa;
 
   @media (max-width: 766px) {

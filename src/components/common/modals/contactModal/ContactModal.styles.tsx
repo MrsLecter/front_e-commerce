@@ -29,6 +29,7 @@ export const ModalHeader = styled.div`
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   border-bottom: 1px solid #c4c8cc;
+  z-index: 2;
 
   @media (max-width: 360px) {
     text-align: center;
@@ -41,7 +42,7 @@ export const ModalContent = styled.div`
   height: auto;
   font-family: var(--font-roboto);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: rgba(0, 0, 0, 0.6);
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;

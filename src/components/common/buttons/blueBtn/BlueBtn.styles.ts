@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledBlueBtn = styled.button<{
   mainColor: string;
   fontColor: string;
   height: string;
+  isModal: boolean;
 }>`
   width: 100%;
   height: ${(props) => props.height + "px"};
@@ -16,12 +17,17 @@ export const StyledBlueBtn = styled.button<{
   border-radius: 4px;
   color: ${(props) => props.fontColor};
   background-color: ${(props) => props.mainColor};
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  transition-duration: 0.45s;
 
   &:hover,
   &:focus {
-    opacity: 0.9;
-    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-    transition-duration: 0.2s;
-    /* box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19); */
+    opacity: 0.8;
+    ${(props) =>
+      props.isModal &&
+      css`
+        opacity: 1;
+        background-color: #4a698d;
+      `}
   }
 `;

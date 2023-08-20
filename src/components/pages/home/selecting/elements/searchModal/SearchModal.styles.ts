@@ -15,12 +15,16 @@ export const StyledSearchModal = styled.div`
   align-items: flex-start;
 
   @media (max-width: 500px) {
-    margin-top: 16px;
+    margin-top: 0px;
+  }
+
+  @media (max-width: 350px) {
+    margin-top: 18px;
   }
 `;
 
 export const ModalContent = styled.div`
-  margin: 33px auto 0;
+  margin: 40px auto 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +34,11 @@ export const ModalContent = styled.div`
     rgba(0, 0, 0, 0.22) 0px 10px 18px;
 
   @media (max-width: 500px) {
+    margin: 40px auto 0;
     width: 100%;
+  }
+
+  @media (max-width: 350px) {
+    margin: 40px auto 0;
   }
 `;

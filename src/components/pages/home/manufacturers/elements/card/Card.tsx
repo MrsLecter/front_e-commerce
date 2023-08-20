@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { FC } from "react";
 
-import { ImageWrapper, LogoWrapper, StyledCard } from "./Card.styles";
-import { AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
+import { AppRoutes } from "@/constants/common";
 import { setSearchParamForManufacturerFiltering } from "@/utils/functions";
 import Link from "next/link";
+import { ImageWrapper, LogoWrapper, StyledCard } from "./Card.styles";
 
 interface Props {
   id: number;

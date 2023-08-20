@@ -8,7 +8,7 @@ import {
 import rimsService from "@/api/rims-service";
 import { INewsFeedItem } from "@/types/common.types";
 import RSSItem from "./elements/RSSItem";
-import ShowMoreBtn from "../home/manufacturers/elements/showMoreBtn/ShowMoreBtn";
+import ShowMoreBtn from "@/components/common/buttons/showMoreBtn/ShowMoreBtn";
 
 const NewsFeed: FC = () => {
   const [currPage, setCurrPage] = useState<number>(0);
@@ -44,7 +44,7 @@ const NewsFeed: FC = () => {
       </RSSContent>
       <div>
         {newsFeed.length > 0 ? (
-          <ShowMoreBtn color={"blue"} clickHandler={getMoreNews} />
+          <ShowMoreBtn clickHandler={getMoreNews} color="blue" />
         ) : (
           <></>
         )}

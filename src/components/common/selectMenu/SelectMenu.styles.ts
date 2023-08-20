@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledSelectMenu = styled.div`
+export const StyledSelectMenu = styled.div<{ type?: string }>`
   position: relative;
   width: 100%;
   min-width: 212px;
@@ -11,16 +11,17 @@ export const StyledSelectMenu = styled.div`
     min-width: 100%;
     max-width: 100%;
     padding: 0px 8px;
-    height: 30px;
+    height: ${(props) => (props.type === "large" ? "36px" : "30px")};
 
     font-family: var(--font-roboto);
-    font-size: 13px;
+    font-size: ${(props) => (props.type === "large" ? "14px" : "13px")};
     letter-spacing: 0px;
     text-overflow: ellipsis;
     color: #364d66;
     border: none;
     border-radius: 4px;
-    background-color: #ebf1f4;
+    background-color: ${(props) =>
+      props.type === "large" ? "#e4e9ec" : "#ebf1f4"};
     appearance: none;
     overflow: auto;
     cursor: pointer;
@@ -53,7 +54,7 @@ export const StyledSelectMenu = styled.div`
   &::after {
     position: absolute;
     content: " 23424";
-    top: 12px;
+    top: ${(props) => (props.type === "large" ? "15px" : "12px")};
     right: 6px;
     width: 10px;
     height: 5px;

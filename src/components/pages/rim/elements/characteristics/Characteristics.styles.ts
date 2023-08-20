@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const StyledChContainer = styled.div`
   margin-top: 26px;
@@ -94,8 +94,6 @@ export const ChRow = styled.div<{ color?: string }>`
     span {
       margin: 2px;
       display: inline-block;
-      /* border: 1px solid #757575; */
-      /* border-radius: 3px; */
     }
   }
 

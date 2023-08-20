@@ -54,15 +54,15 @@ class RimsService {
   }
 
   public async getAutoYears({
-    brand,
-    model,
+    makerName,
+    modelName,
   }: {
-    brand: string;
-    model: string;
+    makerName: string;
+    modelName: string;
   }): Promise<AxiosResponse<IAutoResponse, any>> {
     try {
       const response = await axios.get<IAutoResponse>(
-        `${GET_AUTO_YEARS_URL}/${brand}/${model}`,
+        `${GET_AUTO_YEARS_URL}/${makerName}/${modelName}`,
         {
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -77,13 +77,13 @@ class RimsService {
   }
 
   public async getAutoModels({
-    brand,
+    makerName,
   }: {
-    brand: string;
+    makerName: string;
   }): Promise<AxiosResponse<IAutoResponse, any>> {
     try {
       const response = await axios.get<IAutoResponse>(
-        `${GET_AUTO_MODELS_URL}/${brand}`,
+        `${GET_AUTO_MODELS_URL}/${makerName}`,
         {
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -235,17 +235,17 @@ class RimsService {
   }
 
   public async getRimsConfig({
-    brand,
-    model,
+    makerName,
+    modelName,
     year,
   }: {
-    brand: string;
-    model: string;
+    makerName: string;
+    modelName: string;
     year: string;
   }): Promise<AxiosResponse<IGetRimsConfigResponse, any>> {
     try {
       const response = await axios.get<IGetRimsConfigResponse>(
-        `${GET_RIM_CONFIGS_URL}/${brand}/${model}/${year}`,
+        `${GET_RIM_CONFIGS_URL}/${makerName}/${modelName}/${year}`,
         {
           headers: {
             "Access-Control-Allow-Origin": "*",

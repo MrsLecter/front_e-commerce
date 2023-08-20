@@ -25,7 +25,7 @@ export const StyledHeader = styled.header<{ color: "blue" | "none" }>`
   }
 `;
 
-export const HeaderContent = styled.div`
+export const HeaderContent = styled.div<{ color: "blue" | "none" }>`
   height: inherit;
   margin: 0 auto;
   width: 100%;
@@ -54,8 +54,8 @@ export const HeaderContent = styled.div`
     text-decoration: none;
     font-family: var(--font-roboto);
     font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.6px;
+    font-weight: ${(props) => (props.color === "blue" ? 400 : 500)};
+    letter-spacing: ${(props) => (props.color === "blue" ? "0.4px" : "0.6px")};
     color: white;
     background: transparent;
     border: none;
@@ -67,6 +67,8 @@ export const HeaderContent = styled.div`
 
   div:last-child button {
     margin-left: 16px;
+    font-weight: ${(props) => (props.color === "blue" ? 400 : 500)};
+    letter-spacing: ${(props) => (props.color === "blue" ? "0.4px" : "0.6px")};
   }
 
   @media (max-width: 350px) {

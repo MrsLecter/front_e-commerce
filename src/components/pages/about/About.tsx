@@ -1,13 +1,13 @@
 import { FC } from "react";
 
 import ContentWrapper from "@/components/common/wrappers/ContentWrapper";
-import { AppModals, AppRoutes, FIRST_PAGE_PARAM } from "@/constants/common";
+import { AppModals, AppRoutes } from "@/constants/common";
 
-import { AboutHeader, ContactLink, Paragraph } from "./About.styles";
-import Location from "./elements/Location";
 import { ManufacturesNames } from "@/constants/manufactures-card-list";
-import BlueLink from "./elements/BlueLink";
 import { setSearchParamForManufacturerFiltering } from "@/utils/functions";
+import { AboutHeader, ContactLink, Paragraph } from "./About.styles";
+import BlueLink from "./elements/BlueLink";
+import Location from "./elements/Location";
 
 interface Props {
   modalHandler: (modalID: number) => void;

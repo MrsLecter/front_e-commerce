@@ -3,16 +3,16 @@ import { FC } from "react";
 
 import carBanner from "@images/auto-banner.png";
 
+import { AppRoutes } from "@/constants/common";
+import { ManufacturesNames } from "@/constants/manufactures-card-list";
+import { setSearchParamForManufacturerFiltering } from "@/utils/functions";
+import Link from "next/link";
 import {
   BannerLink,
   ContentContainer,
   StyledBanner,
   StyledBannerWrapper,
 } from "./Banner.styles";
-import { AppRoutes } from "@/constants/common";
-import { ManufacturesNames } from "@/constants/manufactures-card-list";
-import Link from "next/link";
-import { setSearchParamForManufacturerFiltering } from "@/utils/functions";
 
 const Banner: FC = () => {
   const bannerParams = setSearchParamForManufacturerFiltering(

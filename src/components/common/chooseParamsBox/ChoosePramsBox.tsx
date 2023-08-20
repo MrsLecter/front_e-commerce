@@ -2,11 +2,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
 import rimsService from "@/api/rims-service";
-import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
 import SelectMenu from "@/components/common/selectMenu/SelectMenu";
 
-import { ChoosingContent, Message } from "./ChooseParamsBox.styles";
+import { useAppDispatch } from "@/hooks/reducers.hook";
+import { setCarProps } from "@/store/reducers/carSlice";
 import { createQueryString } from "@/utils/functions";
+import BlueBtn from "../buttons/blueBtn/BlueBtn";
+import { ChoosingContent, Message } from "./ChooseParamsBox.styles";
 
 interface Props {
   header?: string;
@@ -16,30 +18,31 @@ interface Props {
 const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   const router = useRouter();
   const searchParams = useSearchParams()!;
+  const dispatch = useAppDispatch();
 
-  const defaultBrand = defaultParams[0] ? defaultParams[0] : "Марка";
-  const defaultModel = defaultParams[1] ? defaultParams[1] : "Модель";
-  const defaultYear = defaultParams[2] ? defaultParams[2] : "Год";
+  const defaultMakerName = !!defaultParams[0] ? defaultParams[0] : "";
+  const defaultModelName = !!defaultParams[1] ? defaultParams[1] : "";
+  const defaultYear = !!defaultParams[2] ? defaultParams[2] : "";
 
-  const [brand, setBrand] = useState<string>(defaultBrand);
-  const [oldBrand, setOldBrand] = useState<string>(defaultBrand);
-  const [brandsArr, setBrandsArr] = useState<string[]>([]);
-  const [model, setModel] = useState<string>(defaultModel);
-  const [modelsArr, setModelsArr] = useState<string[]>([]);
+  const [makerName, setMakerName] = useState<string>(defaultMakerName);
+  const [modelName, setModelName] = useState<string>(defaultModelName);
   const [year, setYear] = useState<string>(defaultYear);
-  const [yearsArr, setYearsArr] = useState<string[]>([]);
-  const [message, setMessage] = useState<string>("");
 
-  const choseAutoHandler = () => {
-    if (brand === "Марка" || model === "Модель" || year === "Год") {
-      setMessage("Пожалуйста, заполните все поля");
-      setTimeout(() => {
-        setMessage("");
-      }, 1300);
-    } else {
+  const [makerNamesArray, setMakerNamesArray] = useState<string[]>([]);
+  const [modelNamesArray, setModelNamesArray] = useState<string[]>([]);
+  const [yearsArray, setYearsArray] = useState<string[]>([]);
+
+  const [error, setError] = useState<boolean>(false);
+
+  const chooseAutoHandler = () => {
+    if (!makerName || !modelName || !year) setError(true);
+    if (makerName && modelName && year) {
+      dispatch(
+        setCarProps({ makerName: makerName, modelName: modelName, year })
+      );
       const queryString = createQueryString({
-        brand,
-        model,
+        makerName,
+        modelName,
         year,
         page: 1,
         searchParamsString: searchParams.toString(),
@@ -48,74 +51,101 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
     }
   };
 
-  const setModelHandler = (value: string) => {
-    setYear("Год");
-    setModel(value);
-  };
+  useEffect(() => {
+    if (error && makerName && modelName && year) {
+      setError(false);
+    }
+  }, [makerName, modelName, year]);
 
   useEffect(() => {
     const getCarBrands = async () => {
-      setYearsArr([]);
-      setModelsArr([]);
       const response = await rimsService.getAllAuto();
-      setBrandsArr(response.data.message);
-    };
-    const getCarModels = async () => {
-      setYearsArr([]);
-      setOldBrand(brand);
-      const response = await rimsService.getAutoModels({
-        brand,
-      });
-      setModelsArr(response.data.message);
-    };
-    const getCarYears = async () => {
-      const response = await rimsService.getAutoYears({
-        brand,
-        model,
-      });
-      setYearsArr(response.data.message);
+      setMakerNamesArray(response.data.message);
     };
 
-    if (brand !== oldBrand) {
-      setYear("Год");
-      setModel("Модель");
-      setYearsArr([]);
-      setModelsArr([]);
-    }
-    if (!brandsArr.length) {
+    const getCarModelsAndYears = async () => {
+      const [modelsResponse, yearsResponse] = await Promise.allSettled([
+        await rimsService.getAutoModels({ makerName }),
+        await rimsService.getAutoYears({ makerName, modelName }),
+      ]);
+      if (modelsResponse.status === "fulfilled") {
+        setModelNamesArray(modelsResponse.value.data.message);
+      }
+      if (yearsResponse.status === "fulfilled") {
+        setYearsArray(yearsResponse.value.data.message);
+      }
+    };
+
+    if (!makerNamesArray.length) {
       getCarBrands();
     }
-    if (brand !== "Марка") {
+
+    if (defaultParams[0] && defaultParams.length === 3) {
+      setModelName(defaultParams[1] as string);
+      setYear(defaultParams[2] as string);
+      getCarModelsAndYears();
+    }
+  }, []);
+
+  const setMakerNameHandler = (maker: string) => {
+    const getCarModels = async () => {
+      setYear("");
+      setModelName("");
+      setMakerName(maker);
+      const modelsResponse = await rimsService.getAutoModels({
+        makerName: maker,
+      });
+      setModelNamesArray(modelsResponse.data.message);
+    };
+
+    if (makerName !== maker) {
       getCarModels();
     }
-    if (model !== "Модель" && brand !== "Марка") {
+  };
+
+  const setModelNameHandler = (model: string) => {
+    const getCarYears = async () => {
+      setYear("");
+      setModelName(model);
+      const response = await rimsService.getAutoYears({
+        makerName,
+        modelName: model,
+      });
+      setYearsArray(response.data.message);
+    };
+
+    if (modelName !== model) {
       getCarYears();
     }
-  }, [brand, model, year]);
+  };
 
   return (
     <ChoosingContent>
       {header && <p>{header}</p>}
       <SelectMenu
-        defaultOption={brand}
-        setValue={setBrand}
-        optionsArray={brandsArr}
+        defaultOption={"Марка"}
+        selectedValue={makerName}
+        setValue={setMakerNameHandler}
+        optionsArray={makerNamesArray}
       />
       <SelectMenu
-        defaultOption={model}
-        setValue={setModelHandler}
-        optionsArray={modelsArr}
+        defaultOption={"Модель"}
+        selectedValue={modelName}
+        setValue={setModelNameHandler}
+        optionsArray={modelNamesArray}
       />
       <SelectMenu
-        defaultOption={year}
+        defaultOption={"Год"}
+        selectedValue={year}
         setValue={setYear}
-        optionsArray={yearsArr}
+        optionsArray={yearsArray}
       />
-      <Message>{message}</Message>
+      <Message>{error ? "Пожалуйста, заполните все поля" : ""}</Message>
       <BlueBtn
         color={"dark"}
         label={"Подобрать"}
-        clickHandler={choseAutoHandler}
+        clickHandler={chooseAutoHandler}
+        isModal={true}
       />
     </ChoosingContent>
   );

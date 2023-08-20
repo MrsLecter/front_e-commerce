@@ -74,11 +74,16 @@ export const LinksWrapper = styled.nav`
     width: 100%;
     height: 16px;
     margin: 3px;
+    transition: text-decoration 0.1s ease-in;
   }
 
   ul li:hover {
     text-decoration: underline;
     cursor: pointer;
+  }
+  a {
+    transition: text-decoration 0.1s ease-in;
+    color: #7a8999;
   }
 
   @media (max-width: 660px) {

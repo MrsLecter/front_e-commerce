@@ -14,9 +14,11 @@ const SelectObjectMenu: FC<Props> = ({
   setValue,
 }) => {
   return (
-    <StyledSelectMenu>
+    <StyledSelectMenu type={"large"}>
       <select onChange={(e) => setValue(+e.target.value)}>
-        <option value={defaultOption}>{optionsObject[defaultOption]}</option>
+        {/* <option value={defaultOption} disabled>
+          {optionsObject[defaultOption]}
+        </option> */}
         {optionsObject &&
           Object.entries(optionsObject).map((item, index) => {
             return (

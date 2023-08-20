@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
-import Card from "../Card/Card";
+import Card from "../card/Card";
 import { StyledContainer } from "./CardsContainer.styles";
 
 interface Props {
@@ -16,6 +16,7 @@ interface Props {
 const CardContainer: FC<Props> = ({ cardList, isHaveHiddenCards }) => {
   const splicedArr = cardList.slice(0, 2);
   const restArr = cardList.slice(2);
+
   return (
     <>
       <StyledContainer param={"large"}>
@@ -63,4 +64,4 @@ const CardContainer: FC<Props> = ({ cardList, isHaveHiddenCards }) => {
   );
 };
 
-export default CardContainer;
+export default memo(CardContainer);

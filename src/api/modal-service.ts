@@ -6,8 +6,8 @@ import {
   POST_ORDER_URL,
 } from "@/constants/routes-api";
 
-import { IPostDataResponse } from "./rims-service.types";
 import { IRimConfig } from "@/types/common.types";
+import { IPostDataResponse } from "./rims-service.types";
 
 class ModalService {
   public async postOrderData({

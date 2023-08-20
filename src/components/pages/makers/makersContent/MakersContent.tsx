@@ -1,19 +1,22 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
-import OptionBtn from "../elements/optionLink/OptionLink";
-import { Message, StyledMakersContent } from "./MakersContent.styles";
 import rimsService from "@/api/rims-service";
+import { IGetRimsResponse } from "@/api/rims-service.types";
+import { useAppDispatch } from "@/hooks/reducers.hook";
+import { setCarProps } from "@/store/reducers/carSlice";
 import { IRimObject } from "@/types/common.types";
 import { getAllConfigs, getPrepearedRimsData } from "@/utils/functions";
-import RimLink from "../elements/rimLink/RimLink";
-import { IGetRimsResponse } from "@/api/rims-service.types";
 import { AxiosResponse } from "axios";
+import OptionBtn from "../elements/optionLink/OptionLink";
+import RimLink from "../elements/rimLink/RimLink";
+import { Message, StyledMakersContent } from "./MakersContent.styles";
 
 const MakersContent: FC = () => {
   const pathname = usePathname();
   const patharr = pathname!.split("/");
   const searchParams = useSearchParams();
+  const dispatch = useAppDispatch();
 
   const [parameters, setParameters] = useState<string[]>([]);
   const [rimsLinks, setRimsLinks] = useState<IRimObject[]>();
@@ -29,15 +32,14 @@ const MakersContent: FC = () => {
       } else {
         setIsEmpty(true);
       }
-
       setLoading(false);
     };
 
     const downloadAutoModels = async () => {
       setLoading(true);
       setIsEmpty(false);
-      const brand = patharr[patharr.length - 1];
-      const response = await rimsService.getAutoModels({ brand });
+      const [_, makers, all, makerName] = patharr;
+      const response = await rimsService.getAutoModels({ makerName });
       if (response.data.message) {
         setParameters(response.data.message);
       } else {
@@ -49,9 +51,8 @@ const MakersContent: FC = () => {
     const downloadAutoYears = async () => {
       setLoading(true);
       setIsEmpty(false);
-      const brand = patharr[patharr.length - 2];
-      const model = patharr[patharr.length - 1];
-      const response = await rimsService.getAutoYears({ brand, model });
+      const [_, makers, all, makerName, modelName] = patharr;
+      const response = await rimsService.getAutoYears({ makerName, modelName });
       if (response.data.message) {
         setParameters(response.data.message);
       } else {
@@ -63,14 +64,17 @@ const MakersContent: FC = () => {
     const downloadConfigs = async () => {
       setLoading(true);
       setIsEmpty(false);
-      const brand = patharr[patharr.length - 3];
-      const model = patharr[patharr.length - 2];
-      const year = patharr[patharr.length - 1];
-      const response = await rimsService.getRimsConfig({ brand, model, year });
+      const [_, makers, all, makerName, modelName, year] = patharr;
+      const response = await rimsService.getRimsConfig({
+        makerName,
+        modelName,
+        year,
+      });
 
       if (response.data.message) {
         const retrieveConfigs = getAllConfigs(response.data.message);
         setParameters(retrieveConfigs);
+        dispatch(setCarProps({ makerName, modelName, year }));
       } else {
         setIsEmpty(true);
       }
@@ -83,6 +87,7 @@ const MakersContent: FC = () => {
       const rimsDiameter = searchParams!.get("diameter");
       const rimsWidth = searchParams!.get("width");
       const rimsBoltPattern = searchParams!.get("bolt_pattern");
+
       let response: AxiosResponse<IGetRimsResponse, any>;
       if (rimsDiameter && rimsWidth && rimsBoltPattern) {
         response = await rimsService.getRimsByConfig({
@@ -117,10 +122,6 @@ const MakersContent: FC = () => {
       downloadLinks();
     }
   }, [patharr]);
-
-  const goBack = () => {
-    alert(pathname!.split("/"));
-  };
 
   return (
     <StyledMakersContent>

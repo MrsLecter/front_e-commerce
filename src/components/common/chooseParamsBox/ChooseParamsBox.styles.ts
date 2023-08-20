@@ -15,6 +15,7 @@ export const ChoosingContent = styled.div`
     font-weight: 500;
     color: rgba(66, 95, 128, 0.78);
   }
+
   & > div {
     margin: 8px 0 0 0;
   }

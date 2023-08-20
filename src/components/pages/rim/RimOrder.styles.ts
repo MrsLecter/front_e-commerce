@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledRimOrder = styled.div`
-  margin: 16px auto;
+  margin: 0px auto;
+  padding-bottom: 16px;
   width: 994px;
   height: auto;
   display: flex;
@@ -10,6 +11,7 @@ export const StyledRimOrder = styled.div`
 
   @media (max-width: 1000px) {
     max-width: calc(100% - 16px);
+    height: 100%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -28,14 +30,19 @@ export const StyledRimOrder = styled.div`
 `;
 
 export const QuestionWrapper = styled.div`
+  margin: 0 auto;
   width: 411px;
   height: auto;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   border-radius: 2px;
-  background-color: #fffefe;
+  background-color: transparent;
+
+  & > div {
+    width: 100%;
+  }
 
   @media (max-width: 1000px) {
-    width: 100%;
+    width: calc(100% - 16px);
     height: auto;
   }
 `;

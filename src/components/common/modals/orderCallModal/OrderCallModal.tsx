@@ -4,7 +4,7 @@ import { useInput } from "@/hooks/use-input";
 import { IModalProps } from "@/types/common.types";
 import { PHONE_REGEXP } from "@/utils/regexp";
 
-import BlueBtn from "../../buttons/BlueBtn/BlueBtn";
+import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
 import Input from "../../input/Input";
 import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
 import ErrorContent from "../elements/feedbackContent/ErrorContent";

@@ -5,17 +5,21 @@ export const Substrate = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 287px;
+  height: 338px;
   background: linear-gradient(0deg, #507299, #2d435c);
 `;
 
 export const StyledSelecting = styled.section`
-  margin-top: 32px;
+  margin-top: 42px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   z-index: 2;
+
+  @media (max-width: 600px) {
+    width: calc(100% - 16px);
+  }
 `;
 
 export const SearchWrapper = styled.div`

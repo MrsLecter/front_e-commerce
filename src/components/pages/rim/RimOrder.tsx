@@ -1,12 +1,12 @@
-import { FC } from "react";
-import Characteristics from "./elements/characteristics/Characteristics";
-import { QuestionWrapper, StyledRimOrder } from "./RimOrder.styles";
-import Gallery from "./elements/gallery/Gallery";
-import Order from "./elements/order/Order";
 import Questions from "@/components/common/questions/Questions";
 import { AppModals } from "@/constants/common";
+import { FC } from "react";
+import { QuestionWrapper, StyledRimOrder } from "./RimOrder.styles";
+import Characteristics from "./elements/characteristics/Characteristics";
+import Order from "./elements/order/Order";
 
 import { IRimDetailedInfo } from "@/types/common.types";
+import Slider from "./elements/slider/Slider";
 
 interface Props {
   rimData: IRimDetailedInfo;
@@ -30,6 +30,7 @@ const RimOrder: FC<Props> = ({
   managementObject,
   loading,
 }) => {
+
   const placeOrderHandler = () => {
     managementObject.activateHandler(AppModals.Order);
   };
@@ -37,10 +38,11 @@ const RimOrder: FC<Props> = ({
   return (
     <StyledRimOrder>
       <div>
-        <Gallery imageLinks={rimData.images} loading={loading} />
+        <Slider imageLinks={rimData.images} loading={loading} />
       </div>
       <div>
         <Order
+          defaultRimType={rimType}
           header={`${rimData.brand} - ${rimData.name}`}
           rimPrice={rimData.config[rimType].price}
           optionsObject={rimConfigObject}

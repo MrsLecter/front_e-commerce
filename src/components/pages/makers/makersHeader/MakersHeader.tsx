@@ -1,13 +1,14 @@
 import { FC } from "react";
 
+import { AppRoutes } from "@/constants/common";
+import { getBtnLabel } from "@/utils/functions";
+import { usePathname } from "next/navigation";
 import NavBtn from "../elements/navBtn/NavBtn";
 import { StyledMakersHeader } from "./MakersHeader.styled";
-import { usePathname } from "next/navigation";
-import { getBtnLabel } from "@/utils/functions";
-import { AppRoutes } from "@/constants/common";
 
 const MakersHeader: FC = () => {
   const pathname = usePathname();
+  
   let path = pathname!.substring(1, pathname!.length).split("/");
   path.splice(0, 1);
 

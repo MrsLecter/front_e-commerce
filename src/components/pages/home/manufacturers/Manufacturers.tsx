@@ -3,9 +3,9 @@ import { FC, useState } from "react";
 import SectionHeader from "@/components/common/sectionHeader/SectionHeader";
 import { MANUFACTURERS_CARD_LIST } from "@/constants/manufactures-card-list";
 
-import CardContainer from "./elements/CardsContainer/CardsContainer";
-import ShowMoreBtn from "./elements/showMoreBtn/ShowMoreBtn";
+import ShowMoreBtn from "@/components/common/buttons/showMoreBtn/ShowMoreBtn";
 import { ShowMoreBtnWrapper, StyledManufacturers } from "./Manufacturers.styles";
+import CardContainer from "./elements/cardsContainer/CardsContainer";
 
 const Manufacturers: FC = () => {
   const hiddenCardsAmount = MANUFACTURERS_CARD_LIST.length - 2;

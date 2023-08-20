@@ -24,7 +24,6 @@ const ProductCard: FC<Props> = ({ parameters }) => {
     name,
     config: config[0],
   });
-
   return (
     <Link href={urlToPage}>
       <StyledProductCard loading={false}>

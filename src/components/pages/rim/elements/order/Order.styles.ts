@@ -5,7 +5,7 @@ export const StyledOrder = styled.div`
   padding: 16px 16px;
   margin-bottom: 26px;
   width: 411px;
-  height: 246px;
+  min-height: 246px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   border-radius: 4px;
   background-color: #fffefe;
@@ -31,8 +31,8 @@ export const StyledAlert = styled.div`
   background-color: #fff;
   cursor: pointer;
   border: 1px solid #c4c8cc;
-  z-index: 120;
-  animation: translate-hor linear 2s infinite;
+  z-index: 20;
+  animation: block-oscillation linear 2s infinite;
 
   &:after {
     content: " ";
@@ -48,11 +48,18 @@ export const StyledAlert = styled.div`
     background-color: #fff;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 1000px) {
+    left: -160px;
+  }
+  @media (max-width: 880px) {
+    left: -60px;
+  }
+
+  @media (max-width: 700px) {
     left: 50px;
   }
 
-  @keyframes translate-hor {
+  @keyframes block-oscillation {
     0% {
       transform: translateZ(0);
     }

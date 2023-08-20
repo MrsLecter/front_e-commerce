@@ -1,8 +1,7 @@
+import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { styled } from "styled-components";
-
-import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
 
 const NotFound: FC = () => {
   const router = useRouter();

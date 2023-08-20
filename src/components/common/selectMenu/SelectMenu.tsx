@@ -4,22 +4,35 @@ import { StyledSelectMenu } from "./SelectMenu.styles";
 
 interface Props {
   defaultOption: string;
+  selectedValue: string;
   setValue: (value: string) => void;
   optionsArray: string[];
 }
 
-const SelectMenu: FC<Props> = ({ defaultOption, optionsArray, setValue }) => {
+const SelectMenu: FC<Props> = ({
+  defaultOption,
+  optionsArray=[],
+  selectedValue = "",
+  setValue,
+}) => {
+
   return (
     <StyledSelectMenu>
       <select
         onChange={(e) => setValue(e.target.value)}
-        disabled={!optionsArray || optionsArray.length === 0}
+        disabled={!selectedValue.length && !optionsArray.length}
       >
-        <option value={defaultOption}>{defaultOption}</option>
+        <option value={defaultOption} disabled selected={!selectedValue.length}>
+          {defaultOption}
+        </option>
         {optionsArray &&
           optionsArray.map((item, index) => {
             return (
-              <option key={index} value={item}>
+              <option
+                key={index}
+                value={item}
+                selected={selectedValue === item}
+              >
                 {item}
               </option>
             );

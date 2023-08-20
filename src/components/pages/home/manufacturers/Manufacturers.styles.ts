@@ -14,6 +14,11 @@ export const StyledManufacturers = styled.section`
 
   @media (max-width: 1020px) {
     padding: 24px 0;
+    min-height: 440px;
+  }
+
+  @media (max-width: 760px) {
+    min-height: 472px;
   }
 `;
 

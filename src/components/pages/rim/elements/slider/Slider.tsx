@@ -1,45 +1,36 @@
 import Image from "next/image";
-import { FC, useRef, useState } from "react";
+import { FC, useState } from "react";
 
 import { getLinksObjectArr } from "@/utils/functions";
 import placeholder from "@images/rim-placeholder.png";
-
 import {
   Next,
   Prev,
   Preview,
   Slide,
-  StyledGallery,
+  StyledSlider,
   Thumbnail,
-} from "./Gallery.styles";
+} from "./Slider.styles";
 
 interface Props {
   imageLinks: string[];
   loading: boolean;
 }
 
-const Gallery: FC<Props> = ({ imageLinks, loading }) => {
+const Slider: FC<Props> = ({ imageLinks, loading }) => {
   const linksArr = getLinksObjectArr(imageLinks);
   const [isSlideSwitched, toggleSlideSwitch] = useState<boolean>(false);
   const [currSlide, setCurrSlide] = useState<{ id: number; link: string }>(
     linksArr[0]
   );
-  const imageRef = useRef<HTMLImageElement>(null);
 
   const pickImageHandler = (item: { id: number; link: string }) => {
     if (currSlide.id !== item.id) {
       toggleSlideSwitch(true);
-      if (imageRef.current) {
-        imageRef.current.style.animation = "remove-slide 0.5s ease";
-      }
       setTimeout(() => {
-        setCurrSlide(item);
         toggleSlideSwitch(false);
+        setCurrSlide(item);
       }, 400);
-
-      if (imageRef.current) {
-        imageRef.current.style.animation = "set-slide 0.5s ease";
-      }
     }
   };
   const getPrev = () => {
@@ -48,17 +39,10 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
       prevId = linksArr.length - 1;
     }
     toggleSlideSwitch(true);
-    if (imageRef.current) {
-      imageRef.current.style.animation = "remove-slide 0.5s ease";
-    }
     setTimeout(() => {
-      setCurrSlide(linksArr[prevId]);
       toggleSlideSwitch(false);
+      setCurrSlide(linksArr[prevId]);
     }, 400);
-
-    if (!loading && imageRef.current) {
-      imageRef.current.style.animation = "set-slide 0.5s ease";
-    }
   };
 
   const getNext = () => {
@@ -66,54 +50,46 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
     if (nextId > linksArr.length - 1) {
       nextId = 0;
       toggleSlideSwitch(true);
-      if (imageRef.current) {
-        imageRef.current.style.animation = "remove-slide 0.5s ease";
-      }
       setTimeout(() => {
-        setCurrSlide(linksArr[nextId]);
         toggleSlideSwitch(false);
+        setCurrSlide(linksArr[nextId]);
       }, 400);
-
-      if (imageRef.current) {
-        imageRef.current.style.animation = "set-slide 0.5s ease";
-      }
     } else {
       toggleSlideSwitch(true);
-      if (imageRef.current) {
-        imageRef.current.style.animation = "remove-slide 0.5s ease";
-      }
       setTimeout(() => {
-        setCurrSlide(linksArr[nextId]);
         toggleSlideSwitch(false);
+        setCurrSlide(linksArr[nextId]);
       }, 400);
-
-      if (imageRef.current) {
-        imageRef.current.style.animation = "set-slide 0.5s ease";
-      }
     }
   };
 
   return (
-    <StyledGallery>
+    <StyledSlider>
       <Slide loading={loading} switches={isSlideSwitched}>
         {!loading && (
           <Image
-            ref={imageRef}
             width={551}
             height={551}
-            src={currSlide.link.length === 0 ? placeholder : currSlide.link}
+            src={currSlide.link}
             alt={"bigRim"}
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
           />
         )}
         {loading && (
           <Image
-            ref={imageRef}
             width={551}
             height={551}
             src={placeholder}
             alt={"bigRim"}
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
           />
         )}
         <Prev onClick={getPrev}>&#10094;</Prev>
@@ -127,9 +103,7 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
             return (
               <Preview key={item.id} onClick={() => pickImageHandler(item)}>
                 <Image
-                  src={
-                    !loading && item.link.length === 0 ? placeholder : item.link
-                  }
+                  src={item.link}
                   width={48}
                   height={48}
                   alt="rim.png"
@@ -150,8 +124,8 @@ const Gallery: FC<Props> = ({ imageLinks, loading }) => {
           </Preview>
         )}
       </Thumbnail>
-    </StyledGallery>
+    </StyledSlider>
   );
 };
 
-export default Gallery;
+export default Slider;

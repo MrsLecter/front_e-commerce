@@ -4,8 +4,7 @@ import { FC, MouseEvent, useState, KeyboardEvent, useEffect } from "react";
 import { useInput } from "@/hooks/use-input";
 import { getPrettyPrice } from "@/utils/functions";
 import { EMAIL_REGEXP, PHONE_REGEXP } from "@/utils/regexp";
-
-import BlueBtn from "../../buttons/BlueBtn/BlueBtn";
+import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
 import Input from "../../input/Input";
 import {
   Message,
@@ -61,7 +60,7 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
     maskType: "phone",
   });
 
-  const [isOrderReady, setOrderReady] = useState<boolean>(false);
+  const [isOrderReady, setOrderReady] = useState<boolean>(true);
   const [orderError, setOrderError] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
@@ -87,14 +86,14 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
           },
         });
         setOrderReady(true);
-        setTimeout(() => {
-          setOrderReady(false);
-          setOrderError(false);
-          setError(false);
-          refreshNameHandler();
-          refreshPhoneHandler();
-          refreshEmailHandler();
-        }, 3000);
+        // setTimeout(() => {
+        //   setOrderReady(false);
+        //   setOrderError(false);
+        //   setError(false);
+        //   refreshNameHandler();
+        //   refreshPhoneHandler();
+        //   refreshEmailHandler();
+        // }, 3000);
       } catch (err) {
         setOrderError(true);
       }
@@ -190,7 +189,7 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
                   />
                   <Input
                     type={"email"}
-                    placeholder={"Ваш email (необязательно)"}
+                    placeholder={"Ваш email"}
                     inputValue={email}
                     isRequired={false}
                     onChangeHandler={emailChangeHandler}

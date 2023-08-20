@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import styled from 'styled-components';
+import { FC } from "react";
+import styled from "styled-components";
 
 const OrderDescription: FC = () => {
   return (
@@ -17,6 +17,8 @@ const StyledOrderDescription = styled.div`
   font-size: 12px;
   letter-spacing: 0.4px;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export default OrderDescription;

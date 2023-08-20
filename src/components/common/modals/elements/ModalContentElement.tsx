@@ -10,7 +10,7 @@ const ModalContentElement: FC<Props> = ({ children }) => {
 };
 
 const StyledModalContentElement = styled.div`
-  padding: 24px;
+  padding: 16px 20px;
   width: 100%;
   height: 100%;
   display: flex;

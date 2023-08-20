@@ -7,7 +7,6 @@ import {
 import { FC, Suspense, useEffect, useMemo, useRef, useState } from "react";
 
 import rimsService from "@/api/rims-service";
-import ShowMoreBtn from "@/components/common/buttons/ShowMoreBtn/ShowMoreBtn";
 import ProductCard from "@/components/common/productCard/ProductCard";
 import { RIMS_CONTAINER_COUNT } from "@/constants/helpers";
 import { IRimObject } from "@/types/common.types";
@@ -19,19 +18,29 @@ import {
   setSearchParamForFilter,
 } from "@/utils/functions";
 
+import ProductCardStub from "@/components/common/loadingStub/productCardStub/ProductCardStub";
+import { useAppDispatch, useAppSelector } from "@/hooks/reducers.hook";
+import { setCarProps } from "@/store/reducers/carSlice";
 import { CardContainer } from "../home/popular/Popular.styles";
-import Filter from "./elements/filter/Filter";
 import {
   Message,
   ShowMoreBtnWrapper,
   StyledRimsFilter,
 } from "./RimsFilter.styles";
-import ProductCardStub from "@/components/common/LoadingStub/ProductCardStub/ProductCardStub";
+import Filter from "./elements/filter/Filter";
+import ShowMoreBtn from "./elements/showMoreBtn/ShowMoreBtn";
 
 const RimsFilter: FC = () => {
   const params = useParams();
   const searchParams = useSearchParams();
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
+
+  const {
+    makerName: storeMakerName,
+    modelName: storeModelName,
+    year: storeYear,
+  } = useAppSelector((store) => store.carReducer);
 
   const router = useRouter();
   const carBrand = searchParams!.get("maker_name");
@@ -40,6 +49,20 @@ const RimsFilter: FC = () => {
   const currPage = searchParams!.get("page");
   const rimsBrand = searchParams!.get("brand");
   const rimsDiameter = searchParams!.get("diameter");
+
+  if (
+    storeMakerName !== carBrand ||
+    storeModelName !== carModel ||
+    storeYear !== carYear
+  ) {
+    dispatch(
+      setCarProps({
+        makerName: carBrand as string,
+        modelName: carModel as string,
+        year: carYear as string,
+      })
+    );
+  }
 
   const diametersRef = useRef<string>();
   const pageRef = useRef<number>();
@@ -62,13 +85,6 @@ const RimsFilter: FC = () => {
   );
 
   useEffect(() => {
-    if (!diametersRef.current) {
-      setLoading(true);
-      setRimsList((prev) => rimsResponse?.slice(0, visibleRimsAmount));
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    }
     if (diametersRef.current && diametersRef.current.length > 0) {
       setLoading(true);
       const newRimsList = getRimsDiameterFiltered({
@@ -76,6 +92,13 @@ const RimsFilter: FC = () => {
         diameters: diametersRef.current.split("+"),
       });
       setRimsList((prev) => newRimsList);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
+    if (!diametersRef.current) {
+      setLoading(true);
+      setRimsList((prev) => rimsResponse?.slice(0, visibleRimsAmount));
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -124,8 +147,8 @@ const RimsFilter: FC = () => {
       pageRef.current += 1;
       if (searchParams && carBrand && carModel && carYear && currPage) {
         const queryString = createQueryString({
-          brand: carBrand,
-          model: carModel,
+          makerName: carBrand,
+          modelName: carModel,
           year: carYear,
           page: pageRef.current,
           searchParamsString: searchParams.toString(),
@@ -176,7 +199,7 @@ const RimsFilter: FC = () => {
         carYear: carYear || "",
         rimsBrand: rimsBrand,
       });
-      console.log("response getFilteredRims", response);
+
       const { rims, diameters } = getPrepearedRimsData(response.data.message);
       if (diametersRef && diametersRef.current) {
         const newRimsList = getRimsDiameterFiltered({
@@ -191,7 +214,7 @@ const RimsFilter: FC = () => {
       setRetrievedDiameters((prev) => diameters);
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 1200);
     };
     if (params!.params === "filter") {
       getFilteredRims();

@@ -1,12 +1,17 @@
+"use client";
 import "../styles/globals.css";
 import type { Metadata } from "next";
 import StyledComponentsRegistry from "@/lib/registry";
 import { roboto } from "@/styles/fonts";
+import { Provider } from "react-redux";
+import { setupStore } from "@/store";
 
-export const metadata: Metadata = {
-  title: "Ukrdisk",
-  description: "Диски на авто",
-};
+const store = setupStore();
+
+// export const metadata: Metadata = {
+//   title: "Ukrdisk",
+//   description: "Диски на авто",
+// };
 
 export default function RootLayout({
   children,
@@ -16,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={roboto.variable}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <Provider store={store}>
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </Provider>
         <div id="backdrop"></div>
         <div id="modal"></div>
       </body>

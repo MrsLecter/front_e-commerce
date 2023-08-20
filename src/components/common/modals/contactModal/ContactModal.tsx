@@ -1,6 +1,5 @@
 import { FC, MouseEvent, useEffect, useState } from "react";
 
-import BlueBtn from "../../buttons/BlueBtn/BlueBtn";
 import {
   ModalContent,
   ModalHeader,
@@ -9,6 +8,7 @@ import {
 import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
 import { IModalProps } from "@/types/common.types";
 import { AppModals, AppRoutes } from "@/constants/common";
+import BlueBtn from "../../buttons/blueBtn/BlueBtn";
 
 const ContactModal: FC<IModalProps> = ({ managementObject }) => {
   return (
@@ -30,12 +30,13 @@ const ContactModal: FC<IModalProps> = ({ managementObject }) => {
               </div>
               <div>
                 <span>Наши телефоны:</span>{" "}
-                <a href="tel:+380503403726">+38(050) 340-37-26</a>
+                <a href="tel:+380503403726">(050) 340-37-26</a>
               </div>
               <BlueBtn
                 id="close"
                 color="dark"
                 height="36"
+                isModal={true}
                 clickHandler={() => managementObject.closeHandler()}
                 label={"Закрыть"}
               />

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
 
-import BlueBtn from "@/components/common/buttons/BlueBtn/BlueBtn";
+import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
 import questions from "@images/questions.png";
 
 import {

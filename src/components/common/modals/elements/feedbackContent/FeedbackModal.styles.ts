@@ -24,7 +24,9 @@ export const FeedbackModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #eceff1;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 
   & > div {
     height: 180px;

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const StyledGallery = styled.div`
+export const StyledSlider = styled.div`
   position: relative;
   margin: 0 auto;
   width: 551px;
@@ -21,7 +21,7 @@ export const StyledGallery = styled.div`
   }
 
   @media (max-width: 560px) {
-    min-height: 100%;
+    min-height: auto;
   }
 `;
 
@@ -41,7 +41,7 @@ export const Thumbnail = styled.div<{ loading: boolean }>`
     `}
 
   @media (max-width: 560px) {
-    height: 100%;
+    height: auto;
     flex-wrap: wrap;
   }
 `;
@@ -113,7 +113,10 @@ export const Next = styled.button`
   }
 `;
 
-export const Slide = styled.div<{ loading: boolean; switches: boolean }>`
+export const Slide = styled.div<{
+  loading: boolean;
+  switches: boolean;
+}>`
   width: 100%;
   height: 551px;
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
@@ -123,17 +126,18 @@ export const Slide = styled.div<{ loading: boolean; switches: boolean }>`
   align-items: center;
   overflow: hidden;
 
-  ${(props) =>
-    props.loading &&
-    css`
-      animation: image-loading 1s linear infinite alternate;
-    `}
-
-  ${(props) =>
-    props.switches &&
-    css`
-      animation: switch-slide 0.4s linear infinite alternate;
-    `}
+  img {
+    -webkit-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
+    transition-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
+    animation: ${(props) =>
+      props.switches
+        ? "remove-image 0.5s ease-in-out"
+        : "set-image 0.4s ease-in-out"};
+  }
 
   &:hover {
     button {
@@ -141,10 +145,6 @@ export const Slide = styled.div<{ loading: boolean; switches: boolean }>`
       background-color: black;
       opacity: 0.7;
     }
-  }
-
-  img {
-    transition: opacity 0.5s ease;
   }
 
   @keyframes switch-slide {

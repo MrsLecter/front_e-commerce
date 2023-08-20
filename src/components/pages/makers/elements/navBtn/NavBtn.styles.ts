@@ -18,6 +18,10 @@ export const StyledNavBtn = styled.button`
   color: #364d66;
   background-color: #e4e8ed;
 
+  &:hover {
+    text-decoration: underline;
+  }
+
   @media (max-width: 600px) {
     width: 100%;
     margin: 4px auto;
