@@ -1,5 +1,5 @@
 import { useRouter, useSearchParams } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, memo } from "react";
 
 import rimsService from "@/api/rims-service";
 import SelectMenu from "@/components/common/selectMenu/SelectMenu";
@@ -16,17 +16,18 @@ interface Props {
 }
 
 const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
+
   const router = useRouter();
   const searchParams = useSearchParams()!;
   const dispatch = useAppDispatch();
 
   const defaultMakerName = !!defaultParams[0] ? defaultParams[0] : "";
   const defaultModelName = !!defaultParams[1] ? defaultParams[1] : "";
-  const defaultYear = !!defaultParams[2] ? defaultParams[2] : "";
+  const defaultYearName = !!defaultParams[2] ? defaultParams[2] : "";
 
   const [makerName, setMakerName] = useState<string>(defaultMakerName);
   const [modelName, setModelName] = useState<string>(defaultModelName);
-  const [year, setYear] = useState<string>(defaultYear);
+  const [yearName, setYearName] = useState<string>(defaultYearName);
 
   const [makerNamesArray, setMakerNamesArray] = useState<string[]>([]);
   const [modelNamesArray, setModelNamesArray] = useState<string[]>([]);
@@ -35,15 +36,19 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   const [error, setError] = useState<boolean>(false);
 
   const chooseAutoHandler = () => {
-    if (!makerName || !modelName || !year) setError(true);
-    if (makerName && modelName && year) {
+    if (!makerName || !modelName || !yearName) setError(true);
+    if (makerName && modelName && yearName) {
       dispatch(
-        setCarProps({ makerName: makerName, modelName: modelName, year })
+        setCarProps({
+          makerName: makerName,
+          modelName: modelName,
+          year: yearName,
+        })
       );
       const queryString = createQueryString({
         makerName,
         modelName,
-        year,
+        year: yearName,
         page: 1,
         searchParamsString: searchParams.toString(),
       });
@@ -52,22 +57,28 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   };
 
   useEffect(() => {
-    if (error && makerName && modelName && year) {
+    if (error && makerName && modelName && yearName) {
       setError(false);
     }
-  }, [makerName, modelName, year]);
+  }, [makerName, modelName, yearName]);
 
   useEffect(() => {
     const getCarBrands = async () => {
       const response = await rimsService.getAllAuto();
       setMakerNamesArray(response.data.message);
+      setYearName("");
     };
 
     const getCarModelsAndYears = async () => {
-      const [modelsResponse, yearsResponse] = await Promise.allSettled([
-        await rimsService.getAutoModels({ makerName }),
-        await rimsService.getAutoYears({ makerName, modelName }),
-      ]);
+      const [makerResponse, modelsResponse, yearsResponse] =
+        await Promise.allSettled([
+          await rimsService.getAllAuto(),
+          await rimsService.getAutoModels({ makerName }),
+          await rimsService.getAutoYears({ makerName, modelName }),
+        ]);
+      if (makerResponse.status === "fulfilled") {
+        setMakerNamesArray(makerResponse.value.data.message);
+      }
       if (modelsResponse.status === "fulfilled") {
         setModelNamesArray(modelsResponse.value.data.message);
       }
@@ -76,21 +87,20 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       }
     };
 
-    if (!makerNamesArray.length) {
-      getCarBrands();
-    }
-
     if (defaultParams[0] && defaultParams.length === 3) {
-      setModelName(defaultParams[1] as string);
-      setYear(defaultParams[2] as string);
       getCarModelsAndYears();
     }
-  }, []);
+
+    if (!makerName && makerNamesArray.length === 0) {
+      getCarBrands();
+    }
+  }, [makerName, modelName, yearName]);
 
   const setMakerNameHandler = (maker: string) => {
     const getCarModels = async () => {
-      setYear("");
+      setYearsArray((prev) => []);
       setModelName("");
+      setYearName("");
       setMakerName(maker);
       const modelsResponse = await rimsService.getAutoModels({
         makerName: maker,
@@ -105,7 +115,7 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
 
   const setModelNameHandler = (model: string) => {
     const getCarYears = async () => {
-      setYear("");
+      setYearName("");
       setModelName(model);
       const response = await rimsService.getAutoYears({
         makerName,
@@ -116,6 +126,12 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
 
     if (modelName !== model) {
       getCarYears();
+    }
+  };
+
+  const setYearNameHandler = (year: string) => {
+    if (year && yearName !== year) {
+      setYearName(year);
     }
   };
 
@@ -136,8 +152,8 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       />
       <SelectMenu
         defaultOption={"Год"}
-        selectedValue={year}
-        setValue={setYear}
+        selectedValue={yearName}
+        setValue={setYearNameHandler}
         optionsArray={yearsArray}
       />
       <Message>{error ? "Пожалуйста, заполните все поля" : ""}</Message>
@@ -151,4 +167,4 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   );
 };
 
-export default ChooseParamsBox;
+export default memo(ChooseParamsBox);

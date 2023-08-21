@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useEffect, useState } from "react";
+import { FC } from "react";
 
 import {
   ModalContent,
@@ -7,7 +7,7 @@ import {
 } from "./ContactModal.styles";
 import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
 import { IModalProps } from "@/types/common.types";
-import { AppModals, AppRoutes } from "@/constants/common";
+import { AppModals } from "@/constants/common";
 import BlueBtn from "../../buttons/blueBtn/BlueBtn";
 
 const ContactModal: FC<IModalProps> = ({ managementObject }) => {

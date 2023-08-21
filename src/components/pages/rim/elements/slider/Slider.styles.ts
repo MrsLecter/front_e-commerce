@@ -21,14 +21,15 @@ export const StyledSlider = styled.div`
   }
 
   @media (max-width: 560px) {
-    min-height: auto;
+    min-height: 100%;
   }
 `;
 
 export const Thumbnail = styled.div<{ loading: boolean }>`
   padding: 16px;
   width: 100%;
-  height: 86px;
+  height: 90px;
+  min-height: 90px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -41,7 +42,6 @@ export const Thumbnail = styled.div<{ loading: boolean }>`
     `}
 
   @media (max-width: 560px) {
-    height: auto;
     flex-wrap: wrap;
   }
 `;
@@ -135,8 +135,8 @@ export const Slide = styled.div<{
     transition-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
     animation: ${(props) =>
       props.switches
-        ? "remove-image 0.5s ease-in-out"
-        : "set-image 0.4s ease-in-out"};
+        ? "remove-image 0.5s ease-in-out 0.1s"
+        : "set-image 0.5s ease-in-out"};
   }
 
   &:hover {

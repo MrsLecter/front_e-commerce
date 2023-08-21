@@ -7,6 +7,7 @@ import Order from "./elements/order/Order";
 
 import { IRimDetailedInfo } from "@/types/common.types";
 import Slider from "./elements/slider/Slider";
+import { useAppSelector } from "@/hooks/reducers.hook";
 
 interface Props {
   rimData: IRimDetailedInfo;
@@ -30,10 +31,11 @@ const RimOrder: FC<Props> = ({
   managementObject,
   loading,
 }) => {
-
   const placeOrderHandler = () => {
     managementObject.activateHandler(AppModals.Order);
   };
+
+  const { makerName } = useAppSelector((store) => store.carReducer);
 
   return (
     <StyledRimOrder>

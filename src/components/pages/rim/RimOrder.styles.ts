@@ -4,21 +4,18 @@ export const StyledRimOrder = styled.div`
   margin: 0px auto;
   padding-bottom: 16px;
   width: 994px;
-  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   @media (max-width: 1000px) {
     max-width: calc(100% - 16px);
-    height: 100%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 
     & > div {
       width: 535px;
-      height: auto;
     }
   }
 

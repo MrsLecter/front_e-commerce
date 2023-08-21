@@ -56,10 +56,8 @@ export default function Rim() {
 
   const rimTypeRef = useRef(0);
   rimTypeRef.current = currentRimType;
-  // const [rimType, setRimType] = useState<number>(0);
 
   const setRimTypeHandler = (id: number) => {
-    // setRimType(id);
     rimTypeRef.current = id;
     const updatedUrl = getUrlToRimPage({
       rimId: rimObject.rimId,

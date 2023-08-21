@@ -45,9 +45,8 @@ const Order: FC<Props> = ({
     setAlert(false);
   };
 
-  const selectRimTypeHandler = (id: number) => {
+  const menuClickHandler = () => {
     if (isHaveAlert) setAlert(false);
-    setRimTypeHandler(id);
   };
 
   return (
@@ -62,8 +61,9 @@ const Order: FC<Props> = ({
           )}
           <SelectObjectMenu
             defaultOption={+defaultRimType}
-            setValue={selectRimTypeHandler}
+            setValue={setRimTypeHandler}
             optionsObject={optionsObject}
+            clickHandler={menuClickHandler}
           />
           {!!makerName && (
             <FitForCarInfo

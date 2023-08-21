@@ -20,7 +20,10 @@ const Filter: FC<Props> = ({
   checkedDiameters,
   setFilterDiameters,
 }) => {
-  const chekedDiametersArr = checkedDiameters ? checkedDiameters.split("+"):[];
+  const chekedDiametersArr = checkedDiameters
+    ? checkedDiameters.split("+")
+    : [];
+
   return (
     <StyledFilter>
       <div>

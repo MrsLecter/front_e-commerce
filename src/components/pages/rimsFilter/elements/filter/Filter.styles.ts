@@ -37,7 +37,7 @@ export const StyledFilter = styled.div`
     }
 
     & > p:first-child {
-      margin-top:24px;
+      margin-top: 24px;
       color: black;
       font-size: 20px;
     }
@@ -110,6 +110,14 @@ export const StyledFilter = styled.div`
 
   @media (max-width: 766px) {
     height: 418px;
+  }
+
+  @media (max-width: 400px) {
+    height: 428px;
+
+    & > div:nth-child(1) {
+      height: 100px;
+    }
   }
 `;
 

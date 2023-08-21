@@ -46,12 +46,8 @@ const StyledShowMoreBtn = styled.button<{ color: string }>`
 
   @media (max-width: 760px) {
     margin: 8px auto 0;
-    /* width: 488px; */
   }
 
-  /* @media (max-width: 510px) {
-    width: 100%;
-  } */
 `;
 
 export default ShowMoreBtn;

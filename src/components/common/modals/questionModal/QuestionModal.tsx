@@ -1,18 +1,18 @@
-import { FC, MouseEvent, useState, KeyboardEvent, useEffect } from "react";
-import ModalHeader from "../elements/ModalHeaderElement";
-import ModalContent from "../elements/ModalContentElement";
-import Input from "../../input/Input";
-import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
-import { useInput } from "@/hooks/use-input";
-import { EMAIL_REGEXP, PHONE_REGEXP } from "@/utils/regexp";
-import { StyledQuestionModal } from "./QuestionModal.styles";
-import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
-import TextArea from "../../textArea/TextArea";
-import SuccessContent from "../elements/feedbackContent/SuccessContent";
-import ErrorContent from "../elements/feedbackContent/ErrorContent";
-import { IModalProps } from "@/types/common.types";
-import { AppModals } from "@/constants/common";
 import modalService from "@/api/modal-service";
+import BlueBtn from "@/components/common/buttons/blueBtn/BlueBtn";
+import { AppModals } from "@/constants/common";
+import { useInput } from "@/hooks/use-input";
+import { IModalProps } from "@/types/common.types";
+import { EMAIL_REGEXP, PHONE_REGEXP } from "@/utils/regexp";
+import { FC, KeyboardEvent, useEffect, useState } from "react";
+import Input from "../../input/Input";
+import TextArea from "../../textArea/TextArea";
+import ModalWrapper from "../../wrappers/modalWrapper/ModalWrapper";
+import ModalContent from "../elements/ModalContentElement";
+import ModalHeader from "../elements/ModalHeaderElement";
+import ErrorContent from "../elements/feedbackContent/ErrorContent";
+import SuccessContent from "../elements/feedbackContent/SuccessContent";
+import { StyledQuestionModal } from "./QuestionModal.styles";
 
 const QuestionModal: FC<IModalProps> = ({ managementObject }) => {
   const [text, setText] = useState<string>("");

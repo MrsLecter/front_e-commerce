@@ -38,7 +38,7 @@ const ModalWindow: FC<IModalWindowProps> = ({
     <FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS}>
       <StyledModalWrapper
         ref={modalRef}
-        onClick={(e) => backdropClickHandler(e)}
+        onMouseDown={(e) => backdropClickHandler(e)}
         isActive={isAppearing}
         hasAnimation={hasAnimation}
         id="modal"

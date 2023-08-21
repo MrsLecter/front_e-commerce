@@ -1,17 +1,11 @@
 "use client";
-import "../styles/globals.css";
-import type { Metadata } from "next";
 import StyledComponentsRegistry from "@/lib/registry";
+import { setupStore } from "@/store";
 import { roboto } from "@/styles/fonts";
 import { Provider } from "react-redux";
-import { setupStore } from "@/store";
+import "../styles/globals.css";
 
 const store = setupStore();
-
-// export const metadata: Metadata = {
-//   title: "Ukrdisk",
-//   description: "Диски на авто",
-// };
 
 export default function RootLayout({
   children,

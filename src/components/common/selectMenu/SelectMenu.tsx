@@ -11,16 +11,15 @@ interface Props {
 
 const SelectMenu: FC<Props> = ({
   defaultOption,
-  optionsArray=[],
+  optionsArray = [],
   selectedValue = "",
   setValue,
 }) => {
-
   return (
     <StyledSelectMenu>
       <select
         onChange={(e) => setValue(e.target.value)}
-        disabled={!selectedValue.length && !optionsArray.length}
+        disabled={selectedValue.length === 0 && optionsArray.length === 0}
       >
         <option value={defaultOption} disabled selected={!selectedValue.length}>
           {defaultOption}
@@ -31,7 +30,7 @@ const SelectMenu: FC<Props> = ({
               <option
                 key={index}
                 value={item}
-                selected={selectedValue === item}
+                selected={+selectedValue === +item}
               >
                 {item}
               </option>

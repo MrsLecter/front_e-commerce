@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledManufacturers = styled.section`
+export const StyledManufacturers = styled.section<{ isOpen: boolean }>`
   padding: 32px 0 22px;
   width: 100%;
   height: 100%;
@@ -18,7 +18,7 @@ export const StyledManufacturers = styled.section`
   }
 
   @media (max-width: 760px) {
-    min-height: 472px;
+    min-height: ${(props) => (props.isOpen ? "760px" : "472px")};
   }
 `;
 

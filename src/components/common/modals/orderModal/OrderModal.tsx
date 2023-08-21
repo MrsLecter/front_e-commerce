@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FC, MouseEvent, useState, KeyboardEvent, useEffect } from "react";
+import { FC, useState, KeyboardEvent, useEffect } from "react";
 
 import { useInput } from "@/hooks/use-input";
 import { getPrettyPrice } from "@/utils/functions";
@@ -86,14 +86,14 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
           },
         });
         setOrderReady(true);
-        // setTimeout(() => {
-        //   setOrderReady(false);
-        //   setOrderError(false);
-        //   setError(false);
-        //   refreshNameHandler();
-        //   refreshPhoneHandler();
-        //   refreshEmailHandler();
-        // }, 3000);
+        setTimeout(() => {
+          setOrderReady(false);
+          setOrderError(false);
+          setError(false);
+          refreshNameHandler();
+          refreshPhoneHandler();
+          refreshEmailHandler();
+        }, 3000);
       } catch (err) {
         setOrderError(true);
       }

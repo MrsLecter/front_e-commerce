@@ -273,6 +273,7 @@ const RimsFilter: FC = () => {
 
       {!diametersRef.current &&
         rimsResponse &&
+        rimsResponse!.length > 0 &&
         !(
           visibleRimsAmount >= rimsResponse!.length &&
           visibleRimsAmount - 40 < rimsResponse!.length

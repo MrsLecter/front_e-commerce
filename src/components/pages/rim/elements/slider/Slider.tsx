@@ -38,23 +38,25 @@ const Slider: FC<Props> = ({ imageLinks, loading }) => {
     if (prevId < 0) {
       prevId = linksArr.length - 1;
     }
-    toggleSlideSwitch(true);
-    setTimeout(() => {
-      toggleSlideSwitch(false);
-      setCurrSlide(linksArr[prevId]);
-    }, 400);
+    if (linksArr.length > 1) {
+      toggleSlideSwitch(true);
+      setTimeout(() => {
+        toggleSlideSwitch(false);
+        setCurrSlide(linksArr[prevId]);
+      }, 400);
+    }
   };
 
   const getNext = () => {
     let nextId = currSlide.id + 1;
-    if (nextId > linksArr.length - 1) {
+    if (nextId > linksArr.length - 1 && linksArr.length > 1) {
       nextId = 0;
       toggleSlideSwitch(true);
       setTimeout(() => {
         toggleSlideSwitch(false);
         setCurrSlide(linksArr[nextId]);
       }, 400);
-    } else {
+    } else if (linksArr.length > 1) {
       toggleSlideSwitch(true);
       setTimeout(() => {
         toggleSlideSwitch(false);

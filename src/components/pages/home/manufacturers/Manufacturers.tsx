@@ -12,7 +12,7 @@ const Manufacturers: FC = () => {
   const [isHaveHiddenCards, toggleIsHaveHiddenCards] = useState<boolean>(false);
 
   return (
-    <StyledManufacturers>
+    <StyledManufacturers isOpen={isHaveHiddenCards}>
       <SectionHeader label={"Производители дисков"} />
       <CardContainer
         isHaveHiddenCards={isHaveHiddenCards}

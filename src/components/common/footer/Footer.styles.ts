@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFooter = styled.div`
+  padding-bottom: 20px;
   position: relative;
   width: 100%;
   display: flex;
