@@ -209,35 +209,6 @@ export const getUrlToRimPage = ({
   return url;
 };
 
-export const getPrepearedRimsData = (
-  rimsData: IRimObject[]
-): { rims: IRimObject[]; diameters: string[] } => {
-  if (!rimsData || !rimsData.length) return { rims: [], diameters: [] };
-
-  const allDiametersSet = new Set<string>();
-
-  for (let rim of rimsData) {
-    let diametersSet = new Set<string>();
-    if (rim.config.length > 1) {
-      rim.price = [rim.config[0].price];
-
-      for (let rimType of rim.config) {
-        rim.price = [Math.min(rimType.price, rim.price[0])];
-        diametersSet.add(rimType.diameter);
-        allDiametersSet.add(rimType.diameter);
-      }
-    } else {
-      rim.price = [+rim.config[0].price];
-      diametersSet.add(rim.config[0].diameter);
-      allDiametersSet.add(rim.config[0].diameter);
-    }
-    rim.diameters = Array.from(diametersSet).sort((a, b) => +a - +b);
-  }
-  return {
-    rims: rimsData,
-    diameters: Array.from(allDiametersSet).sort((a, b) => +a - +b),
-  };
-};
 
 export const getRimConfigFromLabel = (label: string) => {
   const parsedLink = label.match(/[\d\.x]+/g);
