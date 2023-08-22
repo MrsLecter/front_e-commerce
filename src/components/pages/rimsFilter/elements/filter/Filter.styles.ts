@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFilter = styled.div`
-  padding: 0px 16px 8px 16px;
+  padding: 0px 0px 8px 16px;
   width: 100%;
   min-width: 992px;
   min-height: 218px;
@@ -49,13 +49,13 @@ export const StyledFilter = styled.div`
   }
 
   & > div:nth-child(2) {
-    margin: 0px 8px;
+    margin: 0px 16px;
     width: 26%;
     align-items: center;
   }
 
   & > div:nth-child(3) {
-    width: 24%;
+    width: 26%;
     height: 100%;
     overflow: auto;
     & > div {
