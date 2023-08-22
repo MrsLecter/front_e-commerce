@@ -34,6 +34,7 @@ export const SearchInput = styled.input`
   letter-spacing: 0.6px;
   color: #333;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  outline: none;
 
   @media (max-width: 500px) {
     width: 100%;

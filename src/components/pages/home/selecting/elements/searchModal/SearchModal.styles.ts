@@ -24,7 +24,7 @@ export const StyledSearchModal = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  margin: 40px auto 0;
+  margin: 42px auto 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

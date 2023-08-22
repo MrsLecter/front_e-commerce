@@ -68,19 +68,25 @@ const Slider: FC<Props> = ({ imageLinks, loading }) => {
   return (
     <StyledSlider>
       <Slide loading={loading} switches={isSlideSwitched}>
-        {!loading && (
-          <Image
-            width={551}
-            height={551}
-            src={currSlide.link}
-            alt={"bigRim"}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-            }}
-          />
-        )}
+        {!loading &&
+          linksArr &&
+          linksArr.map((item, index) => {
+            return (
+              <Image
+                key={item.id}
+                width={551}
+                height={551}
+                src={item.link}
+                alt={"bigRim"}
+                style={{
+                  display: currSlide.link === item.link ? "block" : "none",
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                }}
+              />
+            );
+          })}
         {loading && (
           <Image
             width={551}

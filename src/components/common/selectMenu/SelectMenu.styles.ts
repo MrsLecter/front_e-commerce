@@ -49,6 +49,10 @@ export const StyledSelectMenu = styled.div<{ type?: string }>`
     font-family: var(--font-roboto);
     text-overflow: ellipsis;
     background-color: white;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &::after {
