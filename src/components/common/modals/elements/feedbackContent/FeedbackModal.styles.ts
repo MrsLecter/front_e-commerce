@@ -15,7 +15,7 @@ export const StyledFeedbackModal = styled.div`
   }
 `;
 
-export const FeedbackModalContent = styled.div`
+export const FeedbackModalContent = styled.div<{ color: "grey" | "white" }>`
   margin: 0 auto;
   padding: 16px 20px;
   width: 100%;
@@ -24,7 +24,8 @@ export const FeedbackModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #eceff1;
+  background-color: ${(props) =>
+    props.color === "grey" ? "#eceff1" : "#ffffff"};
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 

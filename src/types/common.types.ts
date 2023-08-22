@@ -23,6 +23,10 @@ export interface IRimConfig {
   price: number;
 }
 
+export interface IRimConfigBody extends IRimConfig {
+  rimId: string;
+}
+
 export interface IRimObject {
   rimId: string;
   brand: string;
@@ -31,21 +35,7 @@ export interface IRimObject {
   config: IRimConfig[];
   diameters?: string[];
   price?: number[];
-  // rimId: string;
-  // name: string;
-  // image: string;
-  // diameter: string[];
-  // price: number[];
 }
-
-// export interface IRimDetailedData {
-//   name: string;
-//   width: string[];
-//   diameter: string[];
-//   mountingHoles: string[];
-//   price: number[];
-//   images: string[];
-// }
 
 export interface IRimDetailedInfo {
   rimId: string;
@@ -54,18 +44,6 @@ export interface IRimDetailedInfo {
   images: string[];
   config: IRimConfig[];
 }
-
-// export interface IRimParams {
-//   width: string;
-//   diameter: string;
-//   mountingHoles: string;
-//   price: number;
-// }
-
-// export interface IRimsConfigs {
-//   pcd: string;
-//   rims: IRimConfigs[];
-// }
 
 export interface IRimsConfigsByCar {
   pcd: string;

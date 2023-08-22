@@ -6,29 +6,26 @@ import {
   POST_ORDER_URL,
 } from "@/constants/routes-api";
 
-import { IRimConfig } from "@/types/common.types";
+import { IRimConfigBody } from "@/types/common.types";
 import { IPostDataResponse } from "./rims-service.types";
 
 class ModalService {
   public async postOrderData({
-    rimId,
     name,
     phone,
     email,
     orderConfig,
   }: {
-    rimId: string;
     name: string;
     phone: string;
     email: string;
-    orderConfig: IRimConfig;
+    orderConfig: IRimConfigBody;
   }): Promise<AxiosResponse<IPostDataResponse, any>> {
     try {
       const response = await axios.post<IPostDataResponse>(POST_ORDER_URL, {
         name,
         phone,
         email,
-        rimId,
         orderConfig,
       });
       return response;

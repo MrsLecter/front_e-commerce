@@ -60,7 +60,7 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
     maskType: "phone",
   });
 
-  const [isOrderReady, setOrderReady] = useState<boolean>(true);
+  const [isOrderReady, setOrderReady] = useState<boolean>(false);
   const [orderError, setOrderError] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
@@ -75,8 +75,8 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
           name,
           email,
           phone,
-          rimId: rimData.rimId,
           orderConfig: {
+            rimId: rimData.rimId,
             width: rimData.config[rimType].width,
             offset: rimData.config[rimType].offset,
             diameter: rimData.config[rimType].diameter,
@@ -163,6 +163,7 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
               )}
               {isOrderReady && !orderError && (
                 <SuccessContent
+                  color={"white"}
                   closeModalHandler={() => managementObject.closeHandler()}
                 />
               )}

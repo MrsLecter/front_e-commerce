@@ -7,6 +7,7 @@ interface Props {
   selectedValue: string;
   setValue: (value: string) => void;
   optionsArray: string[];
+  isNumber?: boolean;
 }
 
 const SelectMenu: FC<Props> = ({
@@ -14,6 +15,7 @@ const SelectMenu: FC<Props> = ({
   optionsArray = [],
   selectedValue = "",
   setValue,
+  isNumber,
 }) => {
   return (
     <StyledSelectMenu>
@@ -30,7 +32,9 @@ const SelectMenu: FC<Props> = ({
               <option
                 key={index}
                 value={item}
-                selected={+selectedValue === +item}
+                selected={
+                  isNumber ? +selectedValue === +item : selectedValue === item
+                }
               >
                 {item}
               </option>

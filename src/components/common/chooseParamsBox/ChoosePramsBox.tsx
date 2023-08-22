@@ -16,7 +16,6 @@ interface Props {
 }
 
 const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
-
   const router = useRouter();
   const searchParams = useSearchParams()!;
   const dispatch = useAppDispatch();
@@ -69,12 +68,15 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       setYearName("");
     };
 
-    const getCarModelsAndYears = async () => {
+    const getAllArrays = async () => {
       const [makerResponse, modelsResponse, yearsResponse] =
         await Promise.allSettled([
           await rimsService.getAllAuto(),
           await rimsService.getAutoModels({ makerName }),
-          await rimsService.getAutoYears({ makerName, modelName }),
+          await rimsService.getAutoYears({
+            makerName,
+            modelName,
+          }),
         ]);
       if (makerResponse.status === "fulfilled") {
         setMakerNamesArray(makerResponse.value.data.message);
@@ -87,8 +89,12 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
       }
     };
 
-    if (defaultParams[0] && defaultParams.length === 3) {
-      getCarModelsAndYears();
+    if (
+      defaultParams[0] &&
+      defaultParams.length === 3 &&
+      makerName === defaultParams[0]
+    ) {
+      getAllArrays();
     }
 
     if (!makerName && makerNamesArray.length === 0) {
@@ -155,6 +161,7 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
         selectedValue={yearName}
         setValue={setYearNameHandler}
         optionsArray={yearsArray}
+        isNumber={true}
       />
       <Message>{error ? "Пожалуйста, заполните все поля" : ""}</Message>
       <BlueBtn
