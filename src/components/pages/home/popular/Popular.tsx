@@ -12,10 +12,7 @@ import { RIMS_CONTAINER_COUNT } from "@/constants/helpers";
 import Link from "next/link";
 
 import { Message } from "@/styles/common";
-import {
-  getPrepearedRimsData,
-  setSearchParamForManufacturerFiltering,
-} from "@/utils/functions";
+import { setSearchParamForManufacturerFiltering } from "@/utils/functions";
 import ProductCardStub from "@/components/common/loadingStub/productCardStub/ProductCardStub";
 
 const Popular: FC = () => {
