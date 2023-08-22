@@ -34,7 +34,12 @@ export interface IRimObject {
   image: string;
   config: IRimConfig[];
   diameters?: string[];
-  price?: number[];
+  minPrice?: number[];
+}
+
+export interface IRimResponse {
+  rimList: IRimObject[];
+  diameters: string[];
 }
 
 export interface IRimDetailedInfo {

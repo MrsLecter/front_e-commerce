@@ -25,8 +25,7 @@ const Popular: FC = () => {
   useEffect(() => {
     const getPopularRims = async () => {
       const response = await rimsService.getPopularRims();
-
-      const popularRims = getPrepearedRimsData(response.data.message).rims;
+      const popularRims = response.data.message;
       setRims((prev) => popularRims);
       setLoading(false);
     };

@@ -15,9 +15,9 @@ interface Props {
 }
 
 const ProductCard: FC<Props> = ({ parameters }) => {
-  const { name, brand, price, diameters, image, rimId, config } = parameters;
+  const { name, brand, minPrice, diameters, image, rimId, config } = parameters;
   const diameterLabel = diameters ? diameters : [0];
-  const priceLabel = price ? price[0] : 0;
+  const priceLabel = minPrice ? minPrice[0] : 0;
   const urlToPage = getUrlToRimPage({
     rimId,
     brand,

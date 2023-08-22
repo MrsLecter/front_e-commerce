@@ -2,11 +2,11 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
 import rimsService from "@/api/rims-service";
-import { IGetRimsResponse } from "@/api/rims-service.types";
+import { IGetRimsDiameterResponse } from "@/api/rims-service.types";
 import { useAppDispatch } from "@/hooks/reducers.hook";
 import { setCarProps } from "@/store/reducers/carSlice";
 import { IRimObject } from "@/types/common.types";
-import { getAllConfigs, getPrepearedRimsData } from "@/utils/functions";
+import { getAllConfigs } from "@/utils/functions";
 import { AxiosResponse } from "axios";
 import OptionBtn from "../elements/optionLink/OptionLink";
 import RimLink from "../elements/rimLink/RimLink";
@@ -88,17 +88,17 @@ const MakersContent: FC = () => {
       const rimsWidth = searchParams!.get("width");
       const rimsBoltPattern = searchParams!.get("bolt_pattern");
 
-      let response: AxiosResponse<IGetRimsResponse, any>;
+      let response: AxiosResponse<IGetRimsDiameterResponse, any>;
       if (rimsDiameter && rimsWidth && rimsBoltPattern) {
         response = await rimsService.getRimsByConfig({
           width: rimsWidth,
           diameter: rimsDiameter,
           mountingHoles: rimsBoltPattern,
         });
-        if (!response.data.message.length) setIsEmpty(true);
-        if (response.data.message.length) {
-          const popularRims = getPrepearedRimsData(response.data.message).rims;
-          setRimsLinks(popularRims);
+        const rimsList = response.data.message.rimList;
+        if (!rimsList.length) setIsEmpty(true);
+        if (rimsList.length) {
+          setRimsLinks(rimsList);
         }
       } else {
         setIsEmpty(true);

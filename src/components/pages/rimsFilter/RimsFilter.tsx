@@ -4,7 +4,15 @@ import {
   useRouter,
   useSearchParams,
 } from "next/navigation";
-import { FC, Suspense, useEffect, useMemo, useRef, useState } from "react";
+import {
+  FC,
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  memo,
+} from "react";
 
 import rimsService from "@/api/rims-service";
 import ProductCard from "@/components/common/productCard/ProductCard";
@@ -12,7 +20,6 @@ import { RIMS_CONTAINER_COUNT } from "@/constants/helpers";
 import { IRimObject } from "@/types/common.types";
 import {
   createQueryString,
-  getPrepearedRimsData,
   getRimBrand,
   getRimsDiameterFiltered,
   setSearchParamForFilter,
@@ -173,17 +180,17 @@ const RimsFilter: FC = () => {
         rimBrand: getRimBrand((params!.params as string) || "all") || "all",
       });
 
-      const { rims, diameters } = getPrepearedRimsData(response.data.message);
+      const { rimList, diameters } = response.data.message;
       if (diametersRef && diametersRef.current) {
         const newRimsList = getRimsDiameterFiltered({
-          rims: rims || [],
+          rims: rimList || [],
           diameters: diametersRef.current.split("+"),
         });
         setRimsList((prev) => [...newRimsList]);
       } else {
-        setRimsList((prev) => rims.slice(0, visibleRimsAmount));
+        setRimsList((prev) => rimList.slice(0, visibleRimsAmount));
       }
-      setRimsResponse((prev) => rims);
+      setRimsResponse((prev) => rimList);
       setRetrievedDiameters((prev) => diameters);
       setTimeout(() => {
         setLoading(false);
@@ -200,17 +207,18 @@ const RimsFilter: FC = () => {
         rimsBrand: rimsBrand,
       });
 
-      const { rims, diameters } = getPrepearedRimsData(response.data.message);
+      const { rimList, diameters } = response.data.message;
+
       if (diametersRef && diametersRef.current) {
         const newRimsList = getRimsDiameterFiltered({
-          rims: rims || [],
+          rims: rimList || [],
           diameters: diametersRef.current.split("+"),
         });
         setRimsList((prev) => [...newRimsList]);
-      } else {
-        setRimsList((prev) => rims.slice(0, visibleRimsAmount));
+      } else if (rimList && rimList.length) {
+        setRimsList((prev) => rimList.slice(0, visibleRimsAmount));
       }
-      setRimsResponse((prev) => rims);
+      setRimsResponse((prev) => rimList);
       setRetrievedDiameters((prev) => diameters);
       setTimeout(() => {
         setLoading(false);
@@ -251,9 +259,7 @@ const RimsFilter: FC = () => {
   return (
     <StyledRimsFilter>
       {FilterElement}
-      {!loading && rimsList && rimsList.length === 0 && (
-        <Message>Data not found</Message>
-      )}
+      {!loading && !rimsList && <Message>Data not found</Message>}
       <Suspense fallback={null}>
         <CardContainer marginTop={16}>
           {loading &&
@@ -286,4 +292,4 @@ const RimsFilter: FC = () => {
   );
 };
 
-export default RimsFilter;
+export default memo(RimsFilter);

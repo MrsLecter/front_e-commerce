@@ -11,9 +11,9 @@ interface Props {
 }
 
 const RimLink: FC<Props> = ({ rimData }) => {
-  const { name, brand, price, diameters, image, rimId, config } = rimData;
+  const { name, brand, minPrice, diameters, image, rimId, config } = rimData;
   const diameterLabel = diameters ? diameters : [0];
-  const priceLabel = price ? price[0] : 0;
+  const priceLabel = minPrice ? minPrice[0] : 0;
   const urlToPage = getUrlToRimPage({
     rimId,
     brand,

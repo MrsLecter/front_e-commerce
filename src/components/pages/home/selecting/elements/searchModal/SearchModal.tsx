@@ -9,7 +9,6 @@ import ResultItem from "../resultItem/ResultItem";
 import SearchBar from "../searchBar/SearchBar";
 import SearchResult from "../searchResult/SearchResult";
 import { ModalContent, StyledSearchModal } from "./SearchModal.styles";
-import { getPrepearedRimsData } from "@/utils/functions";
 
 const SearchModal: FC<IModalProps> = ({ managementObject }) => {
   const [input, setInput] = useState<string>("");
@@ -22,8 +21,8 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
       const response = await rimsService.postSearchString({
         searchText: input || "",
       });
-      const searchResult = getPrepearedRimsData(response.data.message);
-      setSearchResult((prev) => response.data.message);
+      const searchResult = response.data.message;
+      setSearchResult((prev) => response.data.message.rimList);
       setLoading(false);
     };
     setSearchResult((prev) => []);

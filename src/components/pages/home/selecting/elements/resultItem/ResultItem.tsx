@@ -12,8 +12,8 @@ interface Props {
 }
 
 const ResultItem: FC<Props> = ({ params }) => {
-  const { rimId, brand, name, image, price, config } = params;
-  const priceLabel = price ? price[0] : 0;
+  const { rimId, brand, name, image, minPrice, config } = params;
+  const priceLabel = minPrice ? minPrice[0] : 0;
   const url = getUrlToRimPage({
     rimId,
     brand,

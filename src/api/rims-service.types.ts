@@ -2,6 +2,7 @@ import {
   INewsFeedItem,
   IRimDetailedInfo,
   IRimObject,
+  IRimResponse,
   IRimsConfigsByCar,
 } from "@/types/common.types";
 
@@ -9,7 +10,7 @@ export interface INewsFeedResponse {
   message: INewsFeedItem[];
 }
 
-export interface IAutoResponse {
+export interface IOptionListResponse {
   message: string[];
 }
 
@@ -19,6 +20,10 @@ export interface IPostDataResponse {
 
 export interface IGetRimsResponse {
   message: IRimObject[];
+}
+
+export interface IGetRimsDiameterResponse {
+  message: IRimResponse;
 }
 
 export interface IGetRimDetailedResponse {

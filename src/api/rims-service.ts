@@ -16,10 +16,11 @@ import {
 } from "@/constants/routes-api";
 
 import {
-  IAutoResponse,
+  IOptionListResponse,
   IGetRimDetailedResponse,
   IGetRimsConfigResponse,
   IGetRimsResponse,
+  IGetRimsDiameterResponse,
   INewsFeedResponse,
 } from "./rims-service.types";
 
@@ -39,9 +40,9 @@ class RimsService {
     }
   }
 
-  public async getAllAuto(): Promise<AxiosResponse<IAutoResponse, any>> {
+  public async getAllAuto(): Promise<AxiosResponse<IOptionListResponse, any>> {
     try {
-      const response = await axios.get<IAutoResponse>(GET_ALL_AUTO_URL, {
+      const response = await axios.get<IOptionListResponse>(GET_ALL_AUTO_URL, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
@@ -59,9 +60,9 @@ class RimsService {
   }: {
     makerName: string;
     modelName: string;
-  }): Promise<AxiosResponse<IAutoResponse, any>> {
+  }): Promise<AxiosResponse<IOptionListResponse, any>> {
     try {
-      const response = await axios.get<IAutoResponse>(
+      const response = await axios.get<IOptionListResponse>(
         `${GET_AUTO_YEARS_URL}/${makerName}/${modelName}`,
         {
           headers: {
@@ -80,9 +81,9 @@ class RimsService {
     makerName,
   }: {
     makerName: string;
-  }): Promise<AxiosResponse<IAutoResponse, any>> {
+  }): Promise<AxiosResponse<IOptionListResponse, any>> {
     try {
-      const response = await axios.get<IAutoResponse>(
+      const response = await axios.get<IOptionListResponse>(
         `${GET_AUTO_MODELS_URL}/${makerName}`,
         {
           headers: {
@@ -139,9 +140,9 @@ class RimsService {
     searchText,
   }: {
     searchText: string;
-  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
+  }): Promise<AxiosResponse<IGetRimsDiameterResponse, any>> {
     try {
-      const response = await axios.post<IGetRimsResponse>(
+      const response = await axios.post<IGetRimsDiameterResponse>(
         POST_SEARCH_TEXT_URL,
         {
           searchText,
@@ -163,9 +164,9 @@ class RimsService {
     rimBrand,
   }: {
     rimBrand: string;
-  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
+  }): Promise<AxiosResponse<IGetRimsDiameterResponse, any>> {
     try {
-      const response = await axios.post<IGetRimsResponse>(
+      const response = await axios.post<IGetRimsDiameterResponse>(
         GET_RIMS_BY_BRAND_URL,
         {
           rimBrand,
@@ -193,9 +194,9 @@ class RimsService {
     carModel: string;
     carYear: string;
     rimsBrand: string | null;
-  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
+  }): Promise<AxiosResponse<IGetRimsDiameterResponse, any>> {
     try {
-      const response = await axios.post<IGetRimsResponse>(
+      const response = await axios.post<IGetRimsDiameterResponse>(
         GET_FILTERED_RIMS_URL,
         {
           brand: carBrand,
@@ -267,9 +268,9 @@ class RimsService {
     mountingHoles: string;
     width: string;
     diameter: string;
-  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
+  }): Promise<AxiosResponse<IGetRimsDiameterResponse, any>> {
     try {
-      const response = await axios.post<IGetRimsResponse>(
+      const response = await axios.post<IGetRimsDiameterResponse>(
         GET_RIM_BY_CONFIG_URL,
         {
           mountingHoles,
