@@ -158,6 +158,7 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
             <UserInputContainer>
               {orderError && (
                 <ErrorContent
+                  color={"white"}
                   closeModalHandler={() => managementObject.closeHandler()}
                 />
               )}

@@ -11,7 +11,7 @@ import RSSItem from "./elements/RSSItem";
 import ShowMoreBtn from "@/components/common/buttons/showMoreBtn/ShowMoreBtn";
 
 const NewsFeed: FC = () => {
-  const [currPage, setCurrPage] = useState<number>(0);
+  const [currPage, setCurrPage] = useState<number>(1);
   const [newsFeed, setNewsFeed] = useState<INewsFeedItem[]>([]);
 
   useEffect(() => {
