@@ -135,8 +135,8 @@ export const Slide = styled.div<{
     transition-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
     animation: ${(props) =>
       props.switches
-        ? "remove-image 0.5s ease-in-out 0.13s"
-        : "set-image 0.5s ease-in-out"};
+        ? "remove-image 0.4s ease-in-out 0.12s"
+        : "set-image 0.4s ease-in-out"};
   }
 
   &:hover {
