@@ -31,7 +31,7 @@ export const StyledAlert = styled.div`
   background-color: #fff;
   cursor: pointer;
   border: 1px solid #c4c8cc;
-  z-index: 20;
+  z-index: 3;
   animation: block-oscillation linear 2s infinite;
 
   &:after {
