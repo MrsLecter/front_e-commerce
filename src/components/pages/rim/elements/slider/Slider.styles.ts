@@ -135,7 +135,7 @@ export const Slide = styled.div<{
     transition-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
     animation: ${(props) =>
       props.switches
-        ? "remove-image 0.4s ease-in-out 0.12s"
+        ? "remove-image 0.4s ease-in-out 0.2s"
         : "set-image 0.4s ease-in-out"};
   }
 
@@ -153,13 +153,13 @@ export const Slide = styled.div<{
     }
 
     100% {
-      opacity: 0;
+      opacity: 0.4;
     }
   }
 
   @keyframes set-image {
     0% {
-      opacity: 0;
+      opacity: 0.4;
     }
 
     100% {
@@ -173,7 +173,7 @@ export const Slide = styled.div<{
     }
 
     100% {
-      opacity: 0;
+      opacity: 0.4;
     }
   }
 `;

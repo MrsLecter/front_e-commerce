@@ -73,6 +73,7 @@ const RimsFilter: FC = () => {
 
   const diametersRef = useRef<string>();
   const pageRef = useRef<number>();
+
   if (diametersRef) {
     diametersRef.current =
       rimsDiameter && rimsDiameter !== "all" ? rimsDiameter : "";
