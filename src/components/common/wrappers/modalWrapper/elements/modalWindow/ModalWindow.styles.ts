@@ -26,7 +26,7 @@ export const StyledModalWrapper = styled.div<{
       animation: ${(isActive) =>
         isActive
           ? "appearance 0.3s ease-in-out"
-          : "disappearance 0.4s ease-in-out"};
+          : "disappearance 0.2s ease-in-out"};
     `}
 
   @keyframes appearance {

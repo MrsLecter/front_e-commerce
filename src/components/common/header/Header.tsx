@@ -27,7 +27,6 @@ const Header: FC<Props> = ({ color, modalHandler }) => {
           <Logo />
         </div>
         <div>
-          <Link href={AppRoutes.Home + "news"}>Новости</Link>
           <TextBtn label={"Контакты"} clickHandler={(e) => showContact(e)} />
         </div>
       </HeaderContent>

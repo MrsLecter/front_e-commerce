@@ -28,7 +28,7 @@ const ModalWrapper: FC<Props> = ({
     const handleKeyboardEvents = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         if (modalRef.current && hasAnimation) {
-          modalRef.current.style.animation = "disappearance 0.3s ease-in-out";
+          modalRef.current.style.animation = "disappearance 0.2s ease-in-out";
         }
 
         backClickHandler();

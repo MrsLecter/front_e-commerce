@@ -13,8 +13,8 @@ interface Props {
 }
 
 const Filter: FC<Props> = ({
-  rimBrand,
-  path,
+  rimBrand = "all",
+  path = "all",
   rimFilterParams,
   avaliableDiameters,
   checkedDiameters,
@@ -23,13 +23,22 @@ const Filter: FC<Props> = ({
   const chekedDiametersArr = checkedDiameters
     ? checkedDiameters.split("+")
     : [];
-
+  console.log("rimBrand", rimBrand, "path", path, path.length);
   return (
     <StyledFilter>
       <div>
-        {path && <p>Литые диски&nbsp;{path === "all" ? "на авто" : path}</p>}
         {!path && !rimBrand && <p>Литые диски</p>}
-        {!path && rimBrand && <p>Литые диски&nbsp;{rimBrand}</p>}
+        {rimBrand === "all" && <p>Литые диски на авто</p>}
+        {path && rimBrand !== "all" && (
+          <p>
+            Литые диски&nbsp;
+            {path === "all" ? "на авто" : path}
+          </p>
+        )}
+
+        {!path && rimBrand && rimBrand !== "all" && path !== "all" && (
+          <p>Литые диски&nbsp;{rimBrand}</p>
+        )}
         {rimFilterParams[0] && <p>на&nbsp;{rimFilterParams.join(" ")}</p>}
         {!rimFilterParams[0] && (
           <p>Вы можете выбрать ваш автомобиль в фильтрах</p>

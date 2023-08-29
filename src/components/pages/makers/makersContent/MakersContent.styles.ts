@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-export const StyledMakersContent = styled.div`
+export const StyledMakersContent = styled.div<{ isLoading: boolean }>`
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: ${(props) =>
+    props.isLoading ? "auto" : "auto auto auto"};
 
   @media (max-width: 780px) {
     grid-template-columns: auto auto;

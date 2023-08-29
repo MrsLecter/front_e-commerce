@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 import rimsService from "@/api/rims-service";
 import Header from "@/components/common/header/Header";
@@ -21,13 +21,13 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
       const response = await rimsService.postSearchString({
         searchText: input || "",
       });
-      const searchResult = response.data.message;
-      setSearchResult((prev) => response.data.message.rimList);
+      setSearchResult((prev) => response.data.message);
       setLoading(false);
     };
-    setSearchResult((prev) => []);
     if (input) {
       getSearchResult();
+    } else {
+      setSearchResult((prev) => []);
     }
   }, [input]);
 
@@ -56,7 +56,8 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
                 <SearchResult>
                   {!loading &&
                     searchResult &&
-                    searchResult.map((item, index) => {
+                    searchResult.length > 0 &&
+                    searchResult.map((item) => {
                       return <ResultItem key={item.rimId} params={item} />;
                     })}
                   {loading && <></>}

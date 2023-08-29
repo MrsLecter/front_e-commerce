@@ -46,7 +46,7 @@ const RimOrder: FC<Props> = ({
         <Order
           defaultRimType={rimType}
           header={`${rimData.brand} - ${rimData.name}`}
-          rimPrice={rimData.config[rimType].price}
+          rimPrice={rimData.config[rimType] ? rimData.config[rimType].price : 0}
           optionsObject={rimConfigObject}
           setRimTypeHandler={setRimTypeHandler}
           placeOrderHandler={placeOrderHandler}
@@ -59,9 +59,21 @@ const RimOrder: FC<Props> = ({
           />
         </QuestionWrapper>
         <Characteristics
-          width={rimData.config[rimType].width}
-          diameter={rimData.config[rimType].diameter}
-          boltPattern={rimData.config[rimType].boltPattern}
+          width={
+            rimData.config[rimType]
+              ? rimData.config[rimType].width
+              : "not signed"
+          }
+          diameter={
+            rimData.config[rimType]
+              ? rimData.config[rimType].diameter
+              : "not signed"
+          }
+          boltPattern={
+            rimData.config[rimType]
+              ? rimData.config[rimType].boltPattern
+              : "not signed"
+          }
           loading={loading}
         />
       </div>

@@ -197,9 +197,15 @@ export const getUrlToRimPage = ({
   const params = new URLSearchParams("");
   name = encodeURIComponent(name);
   params.set("rim_id", rimId);
-  params.set("bolt_pattern", config.boltPattern.split("/")[0]);
-  params.set("width", config.width);
-  params.set("diameter", config.diameter);
+  if (!config) {
+    params.set("bolt_pattern", "not signed");
+    params.set("width", "not signed");
+    params.set("diameter", "not signed");
+  } else {
+    params.set("bolt_pattern", config.boltPattern);
+    params.set("width", config.width);
+    params.set("diameter", config.diameter);
+  }
   params.set("brand", brand);
   params.set("name", name);
   const searchParams = params.toString();
@@ -208,7 +214,6 @@ export const getUrlToRimPage = ({
 
   return url;
 };
-
 
 export const getRimConfigFromLabel = (label: string) => {
   const parsedLink = label.match(/[\d\.x]+/g);

@@ -5,7 +5,6 @@ import {
   GET_AUTO_MODELS_URL,
   GET_AUTO_YEARS_URL,
   GET_FILTERED_RIMS_URL,
-  GET_NEWS_URL,
   GET_POPULAR_RIMS_URL,
   GET_RIM_BY_CONFIG_URL,
   GET_RIM_CONFIGS_URL,
@@ -21,25 +20,9 @@ import {
   IGetRimsConfigResponse,
   IGetRimsResponse,
   IGetRimsDiameterResponse,
-  INewsFeedResponse,
 } from "./rims-service.types";
 
 class RimsService {
-  public async getNewsFeed({
-    page = 0,
-  }: {
-    page: number;
-  }): Promise<AxiosResponse<INewsFeedResponse, any>> {
-    try {
-      const response = await axios.get<INewsFeedResponse>(
-        GET_NEWS_URL + `/${page}`
-      );
-      return response;
-    } catch (err: any) {
-      return err;
-    }
-  }
-
   public async getAllAuto(): Promise<AxiosResponse<IOptionListResponse, any>> {
     try {
       const response = await axios.get<IOptionListResponse>(GET_ALL_AUTO_URL, {
@@ -140,9 +123,9 @@ class RimsService {
     searchText,
   }: {
     searchText: string;
-  }): Promise<AxiosResponse<IGetRimsDiameterResponse, any>> {
+  }): Promise<AxiosResponse<IGetRimsResponse, any>> {
     try {
-      const response = await axios.post<IGetRimsDiameterResponse>(
+      const response = await axios.post<IGetRimsResponse>(
         POST_SEARCH_TEXT_URL,
         {
           searchText,

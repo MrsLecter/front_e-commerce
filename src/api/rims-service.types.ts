@@ -1,14 +1,9 @@
 import {
-  INewsFeedItem,
   IRimDetailedInfo,
   IRimObject,
   IRimResponse,
   IRimsConfigsByCar,
 } from "@/types/common.types";
-
-export interface INewsFeedResponse {
-  message: INewsFeedItem[];
-}
 
 export interface IOptionListResponse {
   message: string[];

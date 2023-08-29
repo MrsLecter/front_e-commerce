@@ -65,16 +65,11 @@ export const FOOTER_LINKS = [
   },
   {
     id: 6,
-    href: AppRoutes.News,
-    description: "Новости мира машин",
-  },
-  {
-    id: 7,
     href: AppRoutes.Makers + "/all",
     description: "Подбор дисков по авто",
   },
   {
-    id: 8,
+    id: 7,
     href: AppRoutes.About,
     description: "О нас",
   },

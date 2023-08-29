@@ -124,7 +124,7 @@ const MakersContent: FC = () => {
   }, [patharr]);
 
   return (
-    <StyledMakersContent>
+    <StyledMakersContent isLoading={loading}>
       {loading && <Message>{"Loading..."}</Message>}
       {!loading && isEmpty && <Message>{"Data not found"}</Message>}
       {!loading &&

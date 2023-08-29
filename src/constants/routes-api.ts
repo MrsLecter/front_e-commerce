@@ -1,6 +1,5 @@
 const BASE_API_URL = "https://rims-i467.onrender.com";
 export const GET_BRANDS_URL = `${BASE_API_URL}/car-brands`;
-export const GET_NEWS_URL = `${BASE_API_URL}/car-news`;
 export const GET_ALL_AUTO_URL = `${BASE_API_URL}/car-brands`;
 export const GET_AUTO_MODELS_URL = `${BASE_API_URL}/car-models`;
 export const POST_CALL_DATA_URL = `${BASE_API_URL}/order-phcall`;
