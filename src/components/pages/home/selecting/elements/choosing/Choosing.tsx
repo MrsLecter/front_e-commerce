@@ -23,10 +23,7 @@ const Choosing: FC = () => {
           style={{ marginLeft: "10px", marginTop: "6px" }}
         />
       </div>
-      <ChooseParamsBox
-        header={"Подбор по авто"}
-        defaultParams={[null, null, null]}
-      />
+      <ChooseParamsBox header={"Подбор по авто"} defaultParams={["", "", ""]} />
     </StyledChoosing>
   );
 };

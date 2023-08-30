@@ -1,5 +1,5 @@
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { FC, useEffect, useState, memo, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FC, useEffect, useState } from "react";
 
 import rimsService from "@/api/rims-service";
 import SelectMenu from "@/components/common/selectMenu/SelectMenu";
@@ -9,40 +9,20 @@ import { setCarProps } from "@/store/reducers/carSlice";
 import { createQueryString } from "@/utils/functions";
 import BlueBtn from "../buttons/blueBtn/BlueBtn";
 import { ChoosingContent, Message } from "./ChooseParamsBox.styles";
-import { AppRoutes } from "@/constants/common";
 
 interface Props {
   header?: string;
-  defaultParams: (string | null)[];
+  defaultParams: string[];
 }
 
 const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   const router = useRouter();
   const searchParams = useSearchParams()!;
-  const pathname = usePathname();
   const dispatch = useAppDispatch();
 
-  let defaultMakerName = useRef<string>("");
-  let defaultModelName = useRef<string>("");
-  let defaultYearName = useRef<string>("");
-
-  const paramMakerName = !!defaultParams[0] ? defaultParams[0] : "";
-  const paramModelName = !!defaultParams[1] ? defaultParams[1] : "";
-  const paramYearName = !!defaultParams[2] ? defaultParams[2] : "";
-
-  if (paramMakerName !== defaultMakerName.current) {
-    defaultMakerName.current = paramMakerName;
-    if (paramModelName !== defaultModelName.current) {
-      defaultModelName.current = paramModelName;
-    }
-  }
-  if (paramYearName !== defaultYearName.current) {
-    defaultYearName.current = paramYearName;
-  }
-
-  const [makerName, setMakerName] = useState<string>(defaultMakerName.current);
-  const [modelName, setModelName] = useState<string>(defaultModelName.current);
-  const [yearName, setYearName] = useState<string>(defaultYearName.current);
+  const [makerName, setMakerName] = useState<string>(defaultParams[0]);
+  const [modelName, setModelName] = useState<string>(defaultParams[1]);
+  const [yearName, setYearName] = useState<string>(defaultParams[2]);
 
   const [makerNamesArray, setMakerNamesArray] = useState<string[]>([]);
   const [modelNamesArray, setModelNamesArray] = useState<string[]>([]);
@@ -67,11 +47,8 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
         page: 1,
         searchParamsString: searchParams.toString(),
       });
-      if (pathname === `${AppRoutes.Rims}/filter`) {
-        router.replace(queryString);
-      } else {
-        router.push(queryString);
-      }
+
+      router.replace(queryString);
     }
   };
 
@@ -194,4 +171,4 @@ const ChooseParamsBox: FC<Props> = ({ header, defaultParams }) => {
   );
 };
 
-export default memo(ChooseParamsBox);
+export default ChooseParamsBox;

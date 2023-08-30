@@ -29,11 +29,7 @@ import ProductCardStub from "@/components/common/loadingStub/productCardStub/Pro
 import { useAppDispatch, useAppSelector } from "@/hooks/reducers.hook";
 import { setCarProps } from "@/store/reducers/carSlice";
 import { CardContainer } from "../home/popular/Popular.styles";
-import {
-  Message,
-  ShowMoreBtnWrapper,
-  StyledRimsFilter,
-} from "./RimsFilter.styles";
+import { ShowMoreBtnWrapper, StyledRimsFilter } from "./RimsFilter.styles";
 import Filter from "./elements/filter/Filter";
 import ShowMoreBtn from "./elements/showMoreBtn/ShowMoreBtn";
 
@@ -50,26 +46,18 @@ const RimsFilter: FC = () => {
   } = useAppSelector((store) => store.carReducer);
 
   const router = useRouter();
-  const carBrand = searchParams!.get("maker_name");
-  const carModel = searchParams!.get("model_name");
-  const carYear = searchParams!.get("year");
+
+  const carBrand = storeMakerName
+    ? storeMakerName
+    : searchParams!.get("maker_name") || "";
+  const carModel = storeModelName
+    ? storeModelName
+    : searchParams!.get("model_name") || "";
+  const carYear = storeYear ? storeYear : searchParams!.get("year") || "";
+
   const currPage = searchParams!.get("page");
   const rimsBrand = searchParams!.get("brand");
   const rimsDiameter = searchParams!.get("diameter");
-
-  if (
-    storeMakerName !== carBrand ||
-    storeModelName !== carModel ||
-    storeYear !== carYear
-  ) {
-    dispatch(
-      setCarProps({
-        makerName: carBrand as string,
-        modelName: carModel as string,
-        year: carYear as string,
-      })
-    );
-  }
 
   const diametersRef = useRef<string>();
   const pageRef = useRef<number>();
@@ -244,7 +232,7 @@ const RimsFilter: FC = () => {
     }
   }, [visibleRimsAmount, pageRef.current]);
 
-  const FilterElement = useMemo(() => {
+  const FilterElement = () => {
     return (
       <Filter
         rimBrand={rimsBrand}
@@ -255,11 +243,11 @@ const RimsFilter: FC = () => {
         setFilterDiameters={(value: string) => setDiametersHandler(value)}
       />
     );
-  }, [carBrand, carModel, carYear, retrievedDiameters.length]);
+  };
 
   return (
     <StyledRimsFilter>
-      {FilterElement}
+      {FilterElement()}
       <Suspense fallback={null}>
         <CardContainer marginTop={16}>
           {loading &&
