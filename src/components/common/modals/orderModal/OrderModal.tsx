@@ -137,7 +137,8 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
                 <ProductDescription>
                   <div>
                     <span>{rimData.name}</span>
-                    {!!rimData.config[rimType].price ? (
+                    {!!rimData.config[rimType] &&
+                    !!rimData.config[rimType].price ? (
                       <span>
                         {getPrettyPrice(rimData.config[rimType].price)}&nbsp;грн
                       </span>
@@ -152,7 +153,8 @@ const OrderModal: FC<Props> = ({ managementObject, rimData, rimType }) => {
                 </ProductDescription>
               </Product>
               <Price>
-                {!!rimData.config[rimType].price ? (
+                {!!rimData.config[rimType] &&
+                !!rimData.config[rimType].price ? (
                   <>
                     <p>
                       {getPrettyPrice(rimData.config[rimType].price * 4)}

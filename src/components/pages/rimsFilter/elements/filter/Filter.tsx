@@ -23,7 +23,6 @@ const Filter: FC<Props> = ({
   const chekedDiametersArr = checkedDiameters
     ? checkedDiameters.split("+")
     : [];
-  console.log("rimBrand", rimBrand, "path", path, path.length);
   return (
     <StyledFilter>
       <div>
