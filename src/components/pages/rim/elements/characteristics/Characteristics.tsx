@@ -24,47 +24,53 @@ const Characteristics: FC<Props> = ({
     <StyledChContainer>
       {loading && <LoadingHeader />}
       {!loading && <ChHeader>Характеристики</ChHeader>}
-      <ChRow color={"#e8ebed"}>
-        {!loading && (
-          <>
-            <div>
-              <span>Ширина обода (J)</span>
-            </div>
-            <div />
-            <div>
-              <span>{width}&rsquo;&rsquo;</span>
-            </div>
-          </>
-        )}
-      </ChRow>
-      <ChRow color={" #fffefe"}>
-        {!loading && (
-          <>
-            <div>
-              <span>Диаметр обода (D)</span>
-            </div>
-            <div />
-            <div>
-              <span>{diameter}</span>
-            </div>
-          </>
-        )}
-      </ChRow>
-      <ChRow color={"#e8ebed"}>
-        {!loading && (
-          <>
-            <div>
-              <span>Крепежные отверстия (PCD)</span>
-            </div>
-            <div />
-            <div>
-              {boltPattern.split("/").map((item, index) => {
-                return <BorderedSpan key={index}>{item}</BorderedSpan>;
-              })}
-            </div>
-          </>
-        )}
-      </ChRow>
+      {!!width && (
+        <ChRow color={"#e8ebed"}>
+          {!loading && (
+            <>
+              <div>
+                <span>Ширина обода (J)</span>
+              </div>
+              <div />
+              <div>
+                <span>{width}&rsquo;&rsquo;</span>
+              </div>
+            </>
+          )}
+        </ChRow>
+      )}
+      {!!diameter && (
+        <ChRow color={" #fffefe"}>
+          {!loading && (
+            <>
+              <div>
+                <span>Диаметр обода (D)</span>
+              </div>
+              <div />
+              <div>
+                <span>{diameter}</span>
+              </div>
+            </>
+          )}
+        </ChRow>
+      )}
+      {!!boltPattern && (
+        <ChRow color={"#e8ebed"}>
+          {!loading && (
+            <>
+              <div>
+                <span>Крепежные отверстия (PCD)</span>
+              </div>
+              <div />
+              <div>
+                {boltPattern.split("/").map((item, index) => {
+                  return <BorderedSpan key={index}>{item}</BorderedSpan>;
+                })}
+              </div>
+            </>
+          )}
+        </ChRow>
+      )}
     </StyledChContainer>
   );
 };

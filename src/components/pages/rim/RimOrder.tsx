@@ -58,24 +58,22 @@ const RimOrder: FC<Props> = ({
             loading={loading}
           />
         </QuestionWrapper>
-        <Characteristics
-          width={
-            rimData.config[rimType]
-              ? rimData.config[rimType].width
-              : "not signed"
-          }
-          diameter={
-            rimData.config[rimType]
-              ? rimData.config[rimType].diameter
-              : "not signed"
-          }
-          boltPattern={
-            rimData.config[rimType]
-              ? rimData.config[rimType].boltPattern
-              : "not signed"
-          }
-          loading={loading}
-        />
+        {!!rimData.config[rimType] && (
+          <Characteristics
+            width={
+              rimData.config[rimType] ? rimData.config[rimType].width : " "
+            }
+            diameter={
+              rimData.config[rimType] ? rimData.config[rimType].diameter : " "
+            }
+            boltPattern={
+              rimData.config[rimType]
+                ? rimData.config[rimType].boltPattern
+                : " "
+            }
+            loading={loading}
+          />
+        )}
       </div>
     </StyledRimOrder>
   );

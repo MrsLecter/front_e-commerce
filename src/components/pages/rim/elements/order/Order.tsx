@@ -54,17 +54,21 @@ const Order: FC<Props> = ({
       {!loading && (
         <>
           <OrderHeader header={header} />
-          {isHaveAlert && (
+          {!!rimPrice && isHaveAlert && (
             <StyledAlert onClick={() => setAlert(false)}>
               Здесь Вы можете выбрать диаметр и ширину дисков
             </StyledAlert>
           )}
-          <SelectObjectMenu
-            defaultOption={+defaultRimType}
-            setValue={setRimTypeHandler}
-            optionsObject={optionsObject}
-            clickHandler={menuClickHandler}
-          />
+
+          {!!rimPrice && (
+            <SelectObjectMenu
+              defaultOption={+defaultRimType}
+              setValue={setRimTypeHandler}
+              optionsObject={optionsObject}
+              clickHandler={menuClickHandler}
+            />
+          )}
+
           {!!makerName && (
             <FitForCarInfo
               makerName={makerName}
@@ -75,7 +79,9 @@ const Order: FC<Props> = ({
           <OrderPrice price={rimPrice} />
           <BlueBtn
             color={"dark"}
-            label={"Заказать в 1 клик"}
+            label={
+              !!rimPrice ? "Заказать в 1 клик" : "Сообщить, когда появится"
+            }
             clickHandler={placeOrderHandler}
           />
           <OrderDescription />

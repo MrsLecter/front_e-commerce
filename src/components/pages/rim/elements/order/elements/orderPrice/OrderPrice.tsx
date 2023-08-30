@@ -7,7 +7,11 @@ interface Props {
 }
 
 const OrderPrice: FC<Props> = ({ price }) => {
-  return <StyledOrderPrice>{getPrettyPrice(price)}&nbsp;грн</StyledOrderPrice>;
+  return (
+    <StyledOrderPrice>
+      {!!price ? getPrettyPrice(price) + " грн" : "Нет в наличии"}
+    </StyledOrderPrice>
+  );
 };
 
 const StyledOrderPrice = styled.div`

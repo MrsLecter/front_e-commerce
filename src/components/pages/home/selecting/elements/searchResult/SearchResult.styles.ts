@@ -4,8 +4,8 @@ export const StyledSearchResult = styled.div`
   margin: 10px auto 0px;
   padding: 2px;
   width: 362px;
-  height: 448px;
-
+  /* height: 448px; */
+  max-height: 448px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

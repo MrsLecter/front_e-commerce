@@ -6,14 +6,14 @@ interface Props {
   defaultOption: number;
   setValue: (id: number) => void;
   optionsObject: { [id: number]: string };
-  clickHandler: ()=>void;
+  clickHandler: () => void;
 }
 
 const SelectObjectMenu: FC<Props> = ({
   defaultOption,
   optionsObject,
   setValue,
-  clickHandler
+  clickHandler,
 }) => {
   return (
     <StyledSelectMenu type={"large"} onClick={clickHandler}>

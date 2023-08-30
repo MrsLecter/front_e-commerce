@@ -260,7 +260,6 @@ const RimsFilter: FC = () => {
   return (
     <StyledRimsFilter>
       {FilterElement}
-      {!loading && !rimsList && <Message>Data not found</Message>}
       <Suspense fallback={null}>
         <CardContainer marginTop={16}>
           {loading &&
