@@ -15,9 +15,10 @@ import {
 interface Props {
   imageLinks: string[];
   loading: boolean;
+  isHaveArrows: boolean;
 }
 
-const Slider: FC<Props> = ({ imageLinks, loading }) => {
+const Slider: FC<Props> = ({ imageLinks, loading, isHaveArrows }) => {
   const linksArr = getLinksObjectArr(imageLinks);
   const [isSlideSwitched, toggleSlideSwitch] = useState<boolean>(false);
   const [currSlide, setCurrSlide] = useState<{ id: number; link: string }>(
@@ -100,8 +101,12 @@ const Slider: FC<Props> = ({ imageLinks, loading }) => {
             }}
           />
         )}
-        <Prev onClick={getPrev}>&#10094;</Prev>
-        <Next onClick={getNext}>&#10095;</Next>
+        {isHaveArrows && (
+          <>
+            <Prev onClick={getPrev}>&#10094;</Prev>
+            <Next onClick={getNext}>&#10095;</Next>
+          </>
+        )}
       </Slide>
 
       <Thumbnail loading={loading}>

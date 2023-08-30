@@ -22,7 +22,7 @@ const ResultItem: FC<Props> = ({ params }) => {
   });
 
   return (
-    <Link href={url}>
+    <Link href={url} target="_blank">
       <StyldResultItem>
         <div>
           <Image src={image} alt="rim.png" width={36} height={36} />

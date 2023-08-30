@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
-export const StyledMakersContent = styled.div<{ isLoading: boolean }>`
+export const StyledMakersContent = styled.div<{
+  isLoading: boolean;
+  isEmpty: boolean;
+}>`
   display: grid;
   grid-template-columns: ${(props) =>
-    props.isLoading ? "auto" : "auto auto auto"};
+    props.isLoading || props.isEmpty ? "auto" : "auto auto auto"};
 
   @media (max-width: 780px) {
     grid-template-columns: auto auto;

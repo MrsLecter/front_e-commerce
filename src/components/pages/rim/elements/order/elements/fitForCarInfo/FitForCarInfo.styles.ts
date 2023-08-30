@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 
 export const StyledSuitableBlock = styled.div`
-position:relative;
-padding: 12px 16px 10px;
+  position: relative;
+  padding: 12px 16px 10px;
   margin-bottom: 16px;
   width: 100%;
   height: 56px;
@@ -18,6 +18,9 @@ padding: 12px 16px 10px;
 export const StyledCheckmark = styled.div`
   width: 24px;
   height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   color: #71b979;
   border: 1px solid #71b979;
@@ -25,8 +28,7 @@ export const StyledCheckmark = styled.div`
 
   &::before {
     content: "";
-    top: 24px;
-    left: 23px;
+    position: relative;
     width: 11px;
     height: 5px;
     border: 1px solid #71b979;

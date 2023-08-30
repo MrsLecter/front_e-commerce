@@ -52,17 +52,17 @@ const SearchModal: FC<IModalProps> = ({ managementObject }) => {
                 autoFocus={true}
                 isDisabled={false}
               />
-              {input.length > 0 && searchResult && searchResult.length > 0 && (
-                <SearchResult>
-                  {!loading &&
-                    searchResult &&
-                    searchResult.length > 0 &&
-                    searchResult.map((item) => {
+              {!loading &&
+                input.length > 0 &&
+                searchResult &&
+                searchResult.length > 0 && (
+                  <SearchResult>
+                    {searchResult.map((item) => {
                       return <ResultItem key={item.rimId} params={item} />;
                     })}
-                  {loading && <></>}
-                </SearchResult>
-              )}
+                    {loading && <></>}
+                  </SearchResult>
+                )}
             </ModalContent>
           </StyledSearchModal>
         </ModalWrapper>

@@ -40,7 +40,7 @@ const RimOrder: FC<Props> = ({
   return (
     <StyledRimOrder>
       <div>
-        <Slider imageLinks={rimData.images} loading={loading} />
+        <Slider imageLinks={rimData.images} loading={loading} isHaveArrows={rimData.images.length>1}/>
       </div>
       <div>
         <Order
